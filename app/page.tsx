@@ -48,7 +48,7 @@ export default function Portfolio() {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="gap-2 text-xs border border-border/50 hover:border-foreground/50"
+                    className="gap-2 text-xs border border-border/50 hover:border-foreground hover:text-foreground hover:bg-white/5 transition-all duration-200"
                     asChild
                   >
                     <a href="https://github.com/aryy8" target="_blank" rel="noopener noreferrer">
@@ -59,7 +59,7 @@ export default function Portfolio() {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="gap-2 text-xs border border-border/50 hover:border-foreground/50"
+                    className="gap-2 text-xs border border-border/50 hover:border-foreground hover:text-foreground hover:bg-white/5 transition-all duration-200"
                     asChild
                   >
                     <a href="https://linkedin.com/in/aryy8" target="_blank" rel="noopener noreferrer">
@@ -70,7 +70,7 @@ export default function Portfolio() {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="gap-2 text-xs border border-border/50 hover:border-foreground/50"
+                    className="gap-2 text-xs border border-border/50 hover:border-foreground hover:text-foreground hover:bg-white/5 transition-all duration-200"
                     asChild
                   >
                     <a href="/resume.pdf" download>
@@ -88,12 +88,10 @@ export default function Portfolio() {
             <SectionHeader>About Me</SectionHeader>
             <div className="space-y-5 text-muted-foreground leading-relaxed text-base">
               <p>
-                I train models to learn and they teach me patience.
-                I am a computer science student focused on machine learning, artificial intelligence, and building applied intelligent systems.              </p>
-              <p>
-                Off screen, I like to slow down, eat well, and catch up on sleep.
-
+                I teach machines to learn and they teach me patience. I am a computer science student working on machine
+                learning, artificial intelligence, and applied intelligent systems.
               </p>
+              <p>Off screen, I like to slow down, eat well, and catch up on sleep.</p>
             </div>
           </section>
 
