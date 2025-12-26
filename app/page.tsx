@@ -31,7 +31,7 @@ export default function Portfolio() {
                 <div className="flex flex-wrap gap-6 text-sm text-muted-foreground mb-8">
                   <div className="flex items-center gap-2">
                     <MapPin className="size-4" />
-                    <span>San Francisco, CA</span>
+                    <span>Jaipur, India</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Mail className="size-4" />
@@ -39,7 +39,7 @@ export default function Portfolio() {
                       href="mailto:aryan@example.com"
                       className="hover:text-primary transition-colors hover:underline underline-offset-4"
                     >
-                      aryan@example.com
+                      aryanfeb17@gmail.com
                     </a>
                   </div>
                 </div>
@@ -51,7 +51,7 @@ export default function Portfolio() {
                     className="gap-2 text-xs border border-border/50 hover:border-foreground/50"
                     asChild
                   >
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/aryy8" target="_blank" rel="noopener noreferrer">
                       <Github className="size-3.5" />
                       GitHub
                     </a>
@@ -62,7 +62,7 @@ export default function Portfolio() {
                     className="gap-2 text-xs border border-border/50 hover:border-foreground/50"
                     asChild
                   >
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                    <a href="https://linkedin.com/in/aryy8" target="_blank" rel="noopener noreferrer">
                       <Linkedin className="size-3.5" />
                       LinkedIn
                     </a>
@@ -88,18 +88,12 @@ export default function Portfolio() {
             <SectionHeader>About Me</SectionHeader>
             <div className="space-y-5 text-muted-foreground leading-relaxed text-base">
               <p>
-                I'm a Machine Learning and AI Engineer with a passion for building intelligent systems that solve
-                real-world problems. My expertise spans deep learning, computer vision, natural language processing, and
-                large language models.
+                I teach machines to learn and they teach me patience.
+                I am a computer science student working on machine learning, artificial intelligence, and applied intelligent systems.
               </p>
               <p>
-                I specialize in developing end-to-end ML solutions, from data preprocessing and model architecture
-                design to deployment and optimization. I'm particularly interested in transformer architectures,
-                reinforcement learning, and the practical applications of AI in production environments.
-              </p>
-              <p>
-                When I'm not training models or fine-tuning hyperparameters, I contribute to open-source ML projects and
-                write technical articles about AI engineering best practices.
+                Off screen, I like to slow down, eat well, and catch up on sleep.
+
               </p>
             </div>
           </section>
