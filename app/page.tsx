@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { SectionHeader } from "@/components/section-header"
@@ -45,39 +44,32 @@ export default function Portfolio() {
                 </div>
 
                 <div className="flex flex-wrap gap-3">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="gap-2 text-xs border border-border/50 hover:border-foreground hover:text-foreground hover:bg-transparent transition-all duration-200"
-                    asChild
+                  <a
+                    href="https://github.com/aryy8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground transition-all duration-200 hover:border-foreground hover:text-foreground"
                   >
-                    <a href="https://github.com/aryy8" target="_blank" rel="noopener noreferrer">
-                      <Github className="size-3.5" />
-                      GitHub
-                    </a>
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="gap-2 text-xs border border-border/50 hover:border-foreground hover:text-foreground hover:bg-transparent transition-all duration-200"
-                    asChild
+                    <Github className="size-3.5" />
+                    GitHub
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/aryy8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground transition-all duration-200 hover:border-foreground hover:text-foreground"
                   >
-                    <a href="https://linkedin.com/in/aryy8" target="_blank" rel="noopener noreferrer">
-                      <Linkedin className="size-3.5" />
-                      LinkedIn
-                    </a>
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="gap-2 text-xs border border-border/50 hover:border-foreground hover:text-foreground hover:bg-transparent transition-all duration-200"
-                    asChild
+                    <Linkedin className="size-3.5" />
+                    LinkedIn
+                  </a>
+                  <a
+                    href="/resume.pdf"
+                    download
+                    className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground transition-all duration-200 hover:border-foreground hover:text-foreground"
                   >
-                    <a href="/resume.pdf" download>
-                      <FileText className="size-3.5" />
-                      Resume
-                    </a>
-                  </Button>
+                    <FileText className="size-3.5" />
+                    Resume
+                  </a>
                 </div>
               </div>
             </div>
