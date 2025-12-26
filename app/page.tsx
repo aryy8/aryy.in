@@ -80,10 +80,19 @@ export default function Portfolio() {
             <SectionHeader>About Me</SectionHeader>
             <div className="space-y-5 text-muted-foreground leading-relaxed text-base">
               <p>
-                I train models to learn & they teach me patience. I am a computer science student working on machine
-                learning, artificial intelligence, and applied intelligent systems.
+                I train models to learn &amp; they teach me patience.
               </p>
-              <p>Off screen, I like to slow down, eat well, and catch up on sleep.</p>
+
+              <p>
+                I am a computer science student working on machine learning, computer vision,
+                NLP, and applied intelligent systems.
+                I craft effective prompts, build clean frontends, and work comfortably across backend systems.
+              </p>
+
+              <p>
+                Off screen, I like to slow down, eat well, and catch up on sleep.
+              </p>
+
             </div>
           </section>
 
@@ -95,11 +104,10 @@ export default function Portfolio() {
                 <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">Languages</h3>
                 <div className="flex flex-wrap gap-2.5">
                   <TechBadge>Python</TechBadge>
-                  <TechBadge>Julia</TechBadge>
-                  <TechBadge>R</TechBadge>
+                  <TechBadge>Cpp</TechBadge>
                   <TechBadge>SQL</TechBadge>
-                  <TechBadge>C++</TechBadge>
-                  <TechBadge>JavaScript</TechBadge>
+                  <TechBadge>Typescript</TechBadge>
+
                 </div>
               </div>
 
@@ -110,7 +118,6 @@ export default function Portfolio() {
                 <div className="flex flex-wrap gap-2.5">
                   <TechBadge>PyTorch</TechBadge>
                   <TechBadge>TensorFlow</TechBadge>
-                  <TechBadge>JAX</TechBadge>
                   <TechBadge>Scikit-learn</TechBadge>
                   <TechBadge>Hugging Face</TechBadge>
                   <TechBadge>LangChain</TechBadge>
@@ -120,16 +127,27 @@ export default function Portfolio() {
 
               <div>
                 <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+                  Full Stack
+                </h3>
+                <div className="flex flex-wrap gap-2.5">
+                  <TechBadge>React</TechBadge>
+                  <TechBadge>Next.js</TechBadge>
+                  <TechBadge>Node.js</TechBadge>
+                  <TechBadge>REST APIs</TechBadge>
+                  <TechBadge>Supabase</TechBadge>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
                   Tools & Platforms
                 </h3>
                 <div className="flex flex-wrap gap-2.5">
-                  <TechBadge>Docker</TechBadge>
-                  <TechBadge>Kubernetes</TechBadge>
+                  <TechBadge>FastAPI</TechBadge>
                   <TechBadge>AWS</TechBadge>
                   <TechBadge>GCP</TechBadge>
-                  <TechBadge>MLflow</TechBadge>
-                  <TechBadge>Weights & Biases</TechBadge>
-                  <TechBadge>Git</TechBadge>
+                  <TechBadge>Docker</TechBadge>
+                  <TechBadge>Kaggle</TechBadge>
                 </div>
               </div>
             </div>
@@ -149,15 +167,17 @@ export default function Portfolio() {
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1">
-                      <h3 className="text-base font-semibold mb-1">Senior ML Engineer</h3>
-                      <p className="text-xs text-muted-foreground mb-2">TechCorp AI • San Francisco</p>
+                      <h3 className="text-base font-semibold mb-1">AI Engineer Intern</h3>
+                      <p className="text-xs text-muted-foreground mb-2">Elumina Street Solutions • Jaipur</p>
                       <p className="text-xs text-muted-foreground/80 leading-relaxed">
-                        Led recommendation system serving 10M+ daily users. Implemented real-time inference pipeline
-                        with 50ms latency.
+                        Developed a violence detection model using CNN (MobileNet) and LSTM in TensorFlow for video-based behavior
+                        recognition; improved accuracy with focal loss and class weighting.
+                        Implemented and evaluated a real-time weapon detection system using YOLOv8 and OpenCV.
+                        Collaborated with the AI research team to analyze model performance, optimize hyperparameters, and enhance detection.
                       </p>
                     </div>
                     <div className="text-right shrink-0">
-                      <p className="text-xs text-muted-foreground">2022 - Present</p>
+                      <p className="text-xs text-muted-foreground">April - July 2025</p>
                     </div>
                   </div>
                 </CardContent>
@@ -167,37 +187,21 @@ export default function Portfolio() {
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1">
-                      <h3 className="text-base font-semibold mb-1">ML Research Engineer</h3>
-                      <p className="text-xs text-muted-foreground mb-2">AI Labs Inc • Remote</p>
+                      <h3 className="text-base font-semibold mb-1">Research Intern</h3>
+                      <p className="text-xs text-muted-foreground mb-2">AI²: computAtional linguIstics & vIsion Lab • MUJ</p>
                       <p className="text-xs text-muted-foreground/80 leading-relaxed">
-                        Developed computer vision models for medical imaging. Published 3 peer-reviewed papers on deep
-                        learning.
+                        Conducting an ablation study on LLM creativity, evaluating the impact of fine-tuning methods (SFT, LoRA, QLoRA, RLHF,
+                        DPO) on creative performance using DAT and AUT benchmarks.
                       </p>
                     </div>
                     <div className="text-right shrink-0">
-                      <p className="text-xs text-muted-foreground">2020 - 2022</p>
+                      <p className="text-xs text-muted-foreground">Jan 2025 - Present</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
-                <CardContent className="p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1">
-                      <h3 className="text-base font-semibold mb-1">Data Science Intern</h3>
-                      <p className="text-xs text-muted-foreground mb-2">StartupXYZ • Boston</p>
-                      <p className="text-xs text-muted-foreground/80 leading-relaxed">
-                        Built predictive models for customer churn. Developed automated ETL pipelines and interactive
-                        dashboards.
-                      </p>
-                    </div>
-                    <div className="text-right shrink-0">
-                      <p className="text-xs text-muted-foreground">2019 - 2020</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+
             </div>
           </section>
 
