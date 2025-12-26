@@ -48,7 +48,7 @@ export default function Portfolio() {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="gap-2 text-xs border border-border/50 hover:border-foreground hover:text-foreground hover:bg-white/5 transition-all duration-200"
+                    className="gap-2 text-xs border border-border/50 hover:border-foreground hover:text-foreground hover:bg-transparent transition-all duration-200"
                     asChild
                   >
                     <a href="https://github.com/aryy8" target="_blank" rel="noopener noreferrer">
@@ -59,7 +59,7 @@ export default function Portfolio() {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="gap-2 text-xs border border-border/50 hover:border-foreground hover:text-foreground hover:bg-white/5 transition-all duration-200"
+                    className="gap-2 text-xs border border-border/50 hover:border-foreground hover:text-foreground hover:bg-transparent transition-all duration-200"
                     asChild
                   >
                     <a href="https://linkedin.com/in/aryy8" target="_blank" rel="noopener noreferrer">
@@ -70,7 +70,7 @@ export default function Portfolio() {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="gap-2 text-xs border border-border/50 hover:border-foreground hover:text-foreground hover:bg-white/5 transition-all duration-200"
+                    className="gap-2 text-xs border border-border/50 hover:border-foreground hover:text-foreground hover:bg-transparent transition-all duration-200"
                     asChild
                   >
                     <a href="/resume.pdf" download>
