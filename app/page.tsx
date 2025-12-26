@@ -80,7 +80,7 @@ export default function Portfolio() {
             <SectionHeader>About Me</SectionHeader>
             <div className="space-y-5 text-muted-foreground leading-relaxed text-base">
               <p>
-                I teach machines to learn and they teach me patience. I am a computer science student working on machine
+                I train models to learn & they teach me patience. I am a computer science student working on machine
                 learning, artificial intelligence, and applied intelligent systems.
               </p>
               <p>Off screen, I like to slow down, eat well, and catch up on sleep.</p>
