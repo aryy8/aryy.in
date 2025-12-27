@@ -262,7 +262,7 @@ export default function Portfolio() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70"></div>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">Project @ CodeClash 2025</div>
                 </CardContent>
               </Card>
 
@@ -292,25 +292,36 @@ export default function Portfolio() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">Campus Navigation Platform</div>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">Winner @ Uniway Hackathon 2025</div>
                 </CardContent>
               </Card>
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
-                <CardContent className="p-4">
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 overflow-hidden relative">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 overflow-hidden">
+                  <div className="absolute inset-0 flex items-center justify-center bg-background">
+                    <img 
+                      src="/geoverse.png"
+                      alt="Geoverse Project" 
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+                </div>
+                <CardContent className="p-4 relative z-10 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
                   <div className="flex items-start justify-between gap-2 mb-3">
                     <div className="flex-1">
-                      <h3 className="text-sm font-semibold mb-2">Vision Transformer Lib</h3>
+                      <h3 className="text-sm font-semibold mb-2">Geoverse</h3>
                       <p className="text-xs text-muted-foreground/80 mb-3 leading-relaxed">
-                        Modular library for implementing and fine-tuning vision transformers efficiently.
+                        An AI powered conversational information retrieval system that transforms complex satellite data from the MOSDAC web portal into instant, contextual answers. It leverages NLP, knowledge graphs, and semantic search to enable efficient and intuitive access to dynamic geospatial content.
                       </p>
-                      <div className="flex flex-wrap gap-1">
-                        <TechBadge>PyTorch</TechBadge>
-                        <TechBadge>Transformers</TechBadge>
+                      <div className="flex flex-wrap gap-1 text-[10px]">
+                        <TechBadge className="scale-90">Python</TechBadge>
+                        <TechBadge className="scale-90">NLP</TechBadge>
+                        <TechBadge className="scale-90">Knowledge Graphs</TechBadge>
+                        <TechBadge className="scale-90">FastAPI</TechBadge>
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">1.2k stars</div>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">Project @ BAH ISRO, 2025</div>
                 </CardContent>
               </Card>
             </div>
