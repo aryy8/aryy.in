@@ -208,57 +208,91 @@ export default function Portfolio() {
           <section id="projects" className="mb-16 scroll-mt-20">
             <SectionHeader>Featured Projects</SectionHeader>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
-                <CardContent className="p-4">
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 overflow-hidden relative">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 overflow-hidden">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <img
+                      src="/roadeye.png"
+                      alt="Roadeye Project"
+                      className="max-w-full max-h-full object-contain"
+
+                    />
+                  </div>
+                </div>
+                <CardContent className="p-4 relative z-10 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
                   <div className="flex items-start justify-between gap-2 mb-3">
                     <div className="flex-1">
-                      <h3 className="text-sm font-semibold mb-2">Neural Style Transfer API</h3>
+                      <h3 className="text-sm font-semibold mb-2">Roadeye</h3>
                       <p className="text-xs text-muted-foreground/80 mb-3 leading-relaxed">
-                        Production-ready API for artistic style transfer using PyTorch and FastAPI.
-                      </p>
-                      <div className="flex flex-wrap gap-1">
-                        <TechBadge>PyTorch</TechBadge>
-                        <TechBadge>FastAPI</TechBadge>
+                        An AI powered road audit system that uses deep learning and computer vision to analyze highway videos for detecting road defects and assets. The system automatically generates structured insights and produces professional road audit reports for cost effective infrastructure assessment.                      </p>
+                      <div className="flex flex-wrap gap-1 text-[10px]">
+                        <TechBadge className="scale-90">Python</TechBadge>
+                        <TechBadge className="scale-90">PyTorch</TechBadge>
+                        <TechBadge className="scale-90">OpenCV</TechBadge>
+                        <TechBadge className="scale-90">FastAPI</TechBadge>
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">2.3k stars</div>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">Finalist @ National Road Safety Hackathon 2025, IIT Madras</div>
                 </CardContent>
               </Card>
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
-                <CardContent className="p-4">
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 overflow-hidden relative">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 overflow-hidden">
+                  <div className="absolute inset-0 flex items-center justify-center bg-background">
+                    <img 
+                      src="/p2p.png" 
+                      alt="Prompt2Plugin Project" 
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+                </div>
+                <CardContent className="p-4 relative z-10 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
                   <div className="flex items-start justify-between gap-2 mb-3">
                     <div className="flex-1">
-                      <h3 className="text-sm font-semibold mb-2">LLM Fine-tuning Toolkit</h3>
+                      <h3 className="text-sm font-semibold mb-2">Prompt2Plugin</h3>
                       <p className="text-xs text-muted-foreground/80 mb-3 leading-relaxed">
-                        Open-source toolkit for efficiently fine-tuning LLMs using PEFT techniques.
+                        An AI powered Chrome extension and automation workflow generator that transforms natural language prompts into fully functional Chrome extensions and n8n automation pipelines. The system streamlines automation creation by converting ideas into deployable workflows with minimal manual effort.
                       </p>
-                      <div className="flex flex-wrap gap-1">
-                        <TechBadge>Python</TechBadge>
-                        <TechBadge>PEFT</TechBadge>
+                      <div className="flex flex-wrap gap-1 text-[10px]">
+                        <TechBadge className="scale-90">React</TechBadge>
+                        <TechBadge className="scale-90">Typescript</TechBadge>
+                        <TechBadge className="scale-90">n8n</TechBadge>
+                        <TechBadge className="scale-90">Chrome API</TechBadge>
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">1.8k stars</div>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70"></div>
                 </CardContent>
               </Card>
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
-                <CardContent className="p-4">
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 overflow-hidden relative">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 overflow-hidden">
+                  <div className="absolute inset-0 flex items-center justify-center bg-background">
+                    <img 
+                      src="/uniway.png"
+                      alt="Uniway Project" 
+                      className="max-w-full max-h-full object-contain"
+
+                    />
+                  </div>
+                </div>
+                <CardContent className="p-4 relative z-10 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
                   <div className="flex items-start justify-between gap-2 mb-3">
                     <div className="flex-1">
-                      <h3 className="text-sm font-semibold mb-2">Real-time Object Detection</h3>
+                      <h3 className="text-sm font-semibold mb-2">Uniway</h3>
                       <p className="text-xs text-muted-foreground/80 mb-3 leading-relaxed">
-                        High-performance detection system for edge devices achieving 30+ FPS.
+                        Developed UniWay, a campus navigation platform for MUJ featuring interactive maps, smart search, route guidance, and student services. The system is designed to support future ready extensions such as AI chatbot assistance, crowd heatmaps, volunteer support, public APIs, and 360 degree campus street view.
                       </p>
-                      <div className="flex flex-wrap gap-1">
-                        <TechBadge>TensorFlow</TechBadge>
-                        <TechBadge>TensorRT</TechBadge>
+                      <div className="flex flex-wrap gap-1 text-[10px]">
+                        <TechBadge className="scale-90">React Native</TechBadge>
+                        <TechBadge className="scale-90">Firebase</TechBadge>
+                        <TechBadge className="scale-90">Mapbox</TechBadge>
+                        <TechBadge className="scale-90">Node.js</TechBadge>
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">950 stars</div>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">Campus Navigation Platform</div>
                 </CardContent>
               </Card>
 
