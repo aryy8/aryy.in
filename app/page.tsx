@@ -240,9 +240,9 @@ export default function Portfolio() {
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 overflow-hidden relative">
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center bg-background">
-                    <img 
-                      src="/p2p.png" 
-                      alt="Prompt2Plugin Project" 
+                    <img
+                      src="/p2p.png"
+                      alt="Prompt2Plugin Project"
                       className="max-w-full max-h-full object-contain"
                     />
                   </div>
@@ -269,9 +269,9 @@ export default function Portfolio() {
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 overflow-hidden relative">
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center bg-background">
-                    <img 
+                    <img
                       src="/uniway.png"
-                      alt="Uniway Project" 
+                      alt="Uniway Project"
                       className="max-w-full max-h-full object-contain"
 
                     />
@@ -285,10 +285,10 @@ export default function Portfolio() {
                         Developed UniWay, a campus navigation platform for MUJ featuring interactive maps, smart search, route guidance, and student services. The system is designed to support future ready extensions such as AI chatbot assistance, crowd heatmaps, volunteer support, public APIs, and 360 degree campus street view.
                       </p>
                       <div className="flex flex-wrap gap-1 text-[10px]">
-                        <TechBadge className="scale-90">React Native</TechBadge>
-                        <TechBadge className="scale-90">Firebase</TechBadge>
-                        <TechBadge className="scale-90">Mapbox</TechBadge>
-                        <TechBadge className="scale-90">Node.js</TechBadge>
+                        <TechBadge className="scale-90">React</TechBadge>
+                        <TechBadge className="scale-90">OSRM</TechBadge>
+                        <TechBadge className="scale-90">Google JS APIs</TechBadge>
+                        <TechBadge className="scale-90">Leaflet</TechBadge>
                       </div>
                     </div>
                   </div>
@@ -299,9 +299,9 @@ export default function Portfolio() {
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 overflow-hidden relative">
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center bg-background">
-                    <img 
+                    <img
                       src="/geoverse.png"
-                      alt="Geoverse Project" 
+                      alt="Geoverse Project"
                       className="max-w-full max-h-full object-contain"
                     />
                   </div>
@@ -338,12 +338,30 @@ export default function Portfolio() {
                       <Award className="size-5 text-primary" />
                     </div>
                     <div>
-                      <h3 className="text-sm font-semibold text-foreground mb-1">Best Paper Award</h3>
+                      <h3 className="text-sm font-semibold text-foreground mb-1">National Road Safety Hackathon Finalist</h3>
                       <p className="text-xs text-muted-foreground mb-2">
-                        International Conference on Machine Learning (ICML) 2023
+                        National Road Safety Hackathon 2025, IIT Madras
                       </p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
-                        Recognized for novel approach to few-shot learning in computer vision applications
+                        Shortlisted among the top 10 finalist teams nationwide from 3.6k+ participants at the National Road Safety Hackathon organised by COERs, IIT Madras.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+                <CardContent className="p-5">
+                  <div className="flex items-start gap-5">
+                    <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors">
+                      <Award className="size-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold text-foreground mb-1">UniWay Hackathon Winner</h3>
+                      <p className="text-xs text-muted-foreground mb-2">Uniway MUJ Hackathon 2025</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        Secured 1st place, won a cash prize, and earned an opportunity to collaborate on a project with Southern Federal University, Russia.
                       </p>
                     </div>
                   </div>
@@ -357,10 +375,27 @@ export default function Portfolio() {
                       <Award className="size-5 text-primary" />
                     </div>
                     <div>
-                      <h3 className="text-sm font-semibold text-foreground mb-1">Kaggle Grandmaster</h3>
-                      <p className="text-xs text-muted-foreground mb-2">Top 100 Global Ranking • 5 Gold Medals</p>
+                      <h3 className="text-sm font-semibold text-foreground mb-1">Student Excellence Awardee</h3>
+                      <p className="text-xs text-muted-foreground mb-2">Manipal University Jaipur, CSE dept 2025</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
-                        Achieved top rankings in computer vision and NLP competitions
+                        Awarded for outstanding technical performance, hackathon achievements, and project based innovation during the 3rd semester.
+                     </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+                <CardContent className="p-5">
+                  <div className="flex items-start gap-5">
+                    <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors">
+                      <Award className="size-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold text-foreground mb-1">Solana Bounty Winner</h3>
+                      <p className="text-xs text-muted-foreground mb-2">Superteam India, 2025</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        Won a $60 bounty and became a Global Superteam Contributor within the Solana ecosystem.
                       </p>
                     </div>
                   </div>
@@ -374,27 +409,10 @@ export default function Portfolio() {
                       <Award className="size-5 text-primary" />
                     </div>
                     <div>
-                      <h3 className="text-sm font-semibold text-foreground mb-1">Open Source Contributor</h3>
-                      <p className="text-xs text-muted-foreground mb-2">500+ contributions to major ML libraries</p>
+                      <h3 className="text-sm font-semibold text-foreground mb-1">Dean's List Awardee</h3>
+                      <p className="text-xs text-muted-foreground mb-2">Manipal University Jaipur, CSE dept 2025</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
-                        Active contributor to PyTorch, Hugging Face Transformers, and TensorFlow
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
-                <CardContent className="p-5">
-                  <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors">
-                      <Award className="size-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-foreground mb-1">AI Innovation Award</h3>
-                      <p className="text-xs text-muted-foreground mb-2">Tech Excellence Summit 2022</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        Awarded for breakthrough work in efficient model compression and deployment
+                        Named to the Dean’s List in the 2nd semester for academic excellence.
                       </p>
                     </div>
                   </div>
@@ -407,7 +425,7 @@ export default function Portfolio() {
 
           {/* Footer */}
           <footer className="text-center text-sm text-muted-foreground pb-12">
-            <p>© 2025 Aryan Rastogi. Built with Next.js and Tailwind CSS.</p>
+            <p>© 2026 Aryan Rastogi. </p>
           </footer>
         </main>
       </div>
