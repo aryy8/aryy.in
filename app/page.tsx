@@ -63,8 +63,9 @@ export default function Portfolio() {
                     LinkedIn
                   </a>
                   <a
-                    href="/resume.pdf"
-                    download
+                    href="/Aryan_Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground transition-all duration-200 hover:border-foreground hover:text-foreground"
                   >
                     <FileText className="size-3.5" />
