@@ -4,6 +4,7 @@ import { SectionHeader } from "@/components/section-header"
 import { GitHubContributionGrid } from "@/components/github-contribution-grid"
 import { TechBadge } from "@/components/tech-badge"
 import { Navbar } from "@/components/navbar"
+import { JupyterCell } from "@/components/jupyter-cell"
 import { Mail, MapPin, Award } from "lucide-react"
 import { Github, Linkedin, FileText } from "lucide-react"
 
@@ -14,7 +15,7 @@ export default function Portfolio() {
 
       <Navbar />
 
-      <div className="relative z-10 flex max-w-7xl mx-auto px-6 lg:px-12 py-20 gap-12 pt-32">
+      <div className="relative z-10 flex flex-col max-w-7xl mx-auto px-6 lg:px-12 py-20 gap-12 pt-32">
         <main className="flex-1 max-w-3xl mx-auto">
           {/* Hero Section */}
           <section className="mb-16">
@@ -152,6 +153,11 @@ export default function Portfolio() {
                 </div>
               </div>
             </div>
+          </section>
+
+          {/* Jupyter Notebook Cell */}
+          <section className="mb-16">
+            <JupyterCell />
           </section>
 
           {/* GitHub Contributions */}
