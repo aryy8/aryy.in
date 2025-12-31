@@ -155,11 +155,6 @@ export default function Portfolio() {
             </div>
           </section>
 
-          {/* Jupyter Notebook Cell */}
-          <section className="mb-16">
-            <JupyterCell />
-          </section>
-
           {/* GitHub Contributions */}
           <section className="mb-16">
             <SectionHeader>GitHub Activity</SectionHeader>
@@ -430,9 +425,14 @@ export default function Portfolio() {
 
           <Separator className="my-8" />
 
+          {/* Jupyter Notebook Cell */}
+          <section className="mb-16">
+            <JupyterCell />
+          </section>
+
           {/* Footer */}
           <footer className="text-center text-sm text-muted-foreground pb-12">
-            <p>© 2026 Aryan Rastogi. </p>
+            <p> 2026 Aryan Rastogi. </p>
           </footer>
         </main>
       </div>

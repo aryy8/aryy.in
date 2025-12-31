@@ -20,22 +20,73 @@ export function JupyterCell() {
     const [isRunning, setIsRunning] = useState(false);
 
     // Initial code content
-    const initialCode = `# Press Shift + Enter to run this cell
-# Tech Stack Deployment Progress
-tech_stack = {
-    "ML/AI FRAMEWORKS": 95,
-    "LANGUAGES (PY/C++)": 90,
-    "FULL STACK (NEXT/JS)": 85,
-    "TOOLS & PLATFORMS": 90
-}
+    const initialCode = `#press
+#shift+enter
+#to execute cell
 
-print("--- Tech Progress Report ---")
 
-for category, score in tech_stack.items():
-    # Create a 20-character progress bar
-    filled = int(score / 5)
-    bar = "█" * filled + "░" * (20 - filled)
-    print(f"{category.ljust(20)} {bar} {score}%")
+import time
+import sys
+import random
+
+WIDTH = 60
+HEIGHT = 20
+
+def clear():
+    sys.stdout.write("\x1b[2J\x1b[H")
+
+# Generate data (y = 0.5x + noise), first quadrant only
+data = [(x, 0.5*x + random.uniform(-1, 1)) for x in range(1, 21)]
+
+# Initial line y = mx + b
+m = random.uniform(0, 1)
+b = random.uniform(0, 2)
+lr = 0.01
+
+def predict(x):
+    return m*x + b
+
+for step in range(5):
+    clear()\n    print('Linear Regression Learning\\n')\n    print(f'Step {step+1}/5 | slope={m:.2f} intercept={b:.2f}\\n')
+
+    for y in range(HEIGHT, -1, -1):
+        row = ""
+        for x in range(WIDTH + 1):
+            px = x / 3
+            py = y / 2
+
+            char = " "
+
+            # Axes (first quadrant)
+            if x == 0:
+                char = "|"
+            if y == 0:
+                char = "-"
+            if x == 0 and y == 0:
+                char = "+"
+
+            # Data points
+            for dx, dy in data:
+                if abs(px - dx) < 0.3 and abs(py - dy) < 0.3:
+                    char = "●"
+
+            # Regression line
+            if abs(py - predict(px)) < 0.3:
+                char = "="
+
+            row += char
+        print(row)
+
+    # Gradient descent update
+    dm = sum((predict(x) - y)*x for x, y in data) / len(data)
+    db = sum(predict(x) - y for x, y in data) / len(data)
+
+    m -= lr * dm
+    b -= lr * db
+
+    time.sleep(0.3)
+
+print("\\n...where learning begins!")
 
 `;
 
