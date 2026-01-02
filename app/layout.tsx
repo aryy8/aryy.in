@@ -9,7 +9,7 @@ const geistMono = Geist_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Aryan Rastogi",
   description:
-    "Portfolio - Aryan Rastogi",
+    "aryy.in",
   icons: {
     icon: "/favicon.png",
     apple: "/favicon.png",
