@@ -245,7 +245,10 @@ export default function Portfolio() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">Finalist @ National Road Safety Hackathon 2025, IIT Madras</div>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
+
+                    Finalist @ National Road Safety Hackathon 2025, IIT Madras
+                  </div>
                 </CardContent>
               </Card>
 
@@ -304,7 +307,10 @@ export default function Portfolio() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">Winner @ Uniway Hackathon 2025</div>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
+
+                    Winner @ Uniway Hackathon 2025
+                  </div>
                 </CardContent>
               </Card>
 
@@ -346,14 +352,12 @@ export default function Portfolio() {
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors">
-                      <Award className="size-5 text-primary" />
+                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                      <img src="/iitm.png" alt="IIT Madras" className="w-full h-full object-cover" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">National Road Safety Hackathon Finalist</h3>
-                      <p className="text-xs text-muted-foreground mb-2">
-                        National Road Safety Hackathon 2025, IIT Madras
-                      </p>
+                      <p className="text-xs text-muted-foreground mb-2">National Road Safety Hackathon 2025, IIT Madras</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
                         Shortlisted among the top 10 finalist teams nationwide from 3.6k+ participants at the National Road Safety Hackathon organised by COERs, IIT Madras.
                       </p>
@@ -362,14 +366,13 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
 
-
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors">
-                      <Award className="size-5 text-primary" />
+                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                      <img src="/uniway.jpeg" alt="Uniway" className="w-full h-full object-cover" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">UniWay Hackathon Winner</h3>
                       <p className="text-xs text-muted-foreground mb-2">Uniway MUJ Hackathon 2025</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
@@ -383,15 +386,15 @@ export default function Portfolio() {
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors">
-                      <Award className="size-5 text-primary" />
+                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                      <img src="/muj.png" alt="Manipal University Jaipur" className="w-full h-full object-cover" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">Student Excellence Awardee</h3>
                       <p className="text-xs text-muted-foreground mb-2">Manipal University Jaipur, CSE dept 2025</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
                         Awarded for outstanding technical performance, hackathon achievements, and project based innovation during the 3rd semester.
-                     </p>
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -400,10 +403,10 @@ export default function Portfolio() {
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors">
-                      <Award className="size-5 text-primary" />
+                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                      <img src="/superteam.jpg" alt="Superteam" className="w-full h-full object-cover" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">Solana Bounty Winner</h3>
                       <p className="text-xs text-muted-foreground mb-2">Superteam India, 2025</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
@@ -417,14 +420,14 @@ export default function Portfolio() {
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors">
-                      <Award className="size-5 text-primary" />
+                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                      <img src="/muj.png" alt="Manipal University Jaipur" className="w-full h-full object-cover" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">Dean's List Awardee</h3>
                       <p className="text-xs text-muted-foreground mb-2">Manipal University Jaipur, CSE dept 2025</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
-                        Named to the Dean’s List in the 2nd semester for academic excellence.
+                        Named to the Dean's List in the 2nd semester for academic excellence.
                       </p>
                     </div>
                   </div>
@@ -439,12 +442,12 @@ export default function Portfolio() {
           <section className="mb-16">
             <JupyterCell />
           </section>
-
-          {/* Footer */}
-          <footer className="text-center text-sm text-muted-foreground pb-12">
-            <p> 2026 Aryan Rastogi. </p>
-          </footer>
         </main>
+
+        {/* Footer */}
+        <footer className="text-center text-sm text-muted-foreground pb-12">
+          <p>© 2026 Aryan Rastogi.</p>
+        </footer>
       </div>
     </div>
   )
