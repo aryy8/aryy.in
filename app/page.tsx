@@ -168,9 +168,13 @@ export default function Portfolio() {
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1">
-                      <h3 className="text-base font-semibold mb-1">AI Engineer Intern</h3>
-                      <p className="text-xs text-muted-foreground mb-2">Elumina Street Solutions • Jaipur</p>
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                        <img src="/elumina.png" alt="Elumina Street Solutions" className="w-full h-full object-cover" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-base font-semibold mb-1">AI Engineer Intern</h3>
+                        <p className="text-xs text-muted-foreground mb-2">Elumina Street Solutions • Jaipur</p>
                       <p className="text-xs text-muted-foreground/80 leading-relaxed">
                         Developed a violence detection model using CNN (MobileNet) and LSTM in TensorFlow for video-based behavior
                         recognition; improved accuracy with focal loss and class weighting.
@@ -178,7 +182,8 @@ export default function Portfolio() {
                         Collaborated with the AI research team to analyze model performance, optimize hyperparameters, and enhance detection.
                       </p>
                     </div>
-                    <div className="text-right shrink-0">
+                  </div>
+                  <div className="text-right shrink-0">
                       <p className="text-xs text-muted-foreground">April - July 2025</p>
                     </div>
                   </div>
@@ -188,15 +193,20 @@ export default function Portfolio() {
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1">
-                      <h3 className="text-base font-semibold mb-1">Research Intern</h3>
-                      <p className="text-xs text-muted-foreground mb-2">AI²: computAtional linguIstics & vIsion Lab • MUJ</p>
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                        <img src="/ai2.png" alt="AI² Lab" className="w-full h-full object-cover" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-base font-semibold mb-1">Research Intern</h3>
+                        <p className="text-xs text-muted-foreground mb-2">AI²: computAtional linguIstics & vIsion Lab • MUJ</p>
                       <p className="text-xs text-muted-foreground/80 leading-relaxed">
                         Conducting an ablation study on LLM creativity, evaluating the impact of fine-tuning methods (SFT, LoRA, QLoRA, RLHF,
                         DPO) on creative performance using DAT and AUT benchmarks.
                       </p>
                     </div>
-                    <div className="text-right shrink-0">
+                  </div>
+                  <div className="text-right shrink-0">
                       <p className="text-xs text-muted-foreground">Jan 2025 - Present</p>
                     </div>
                   </div>
