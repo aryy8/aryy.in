@@ -7,7 +7,7 @@ import "./globals.css"
 const geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Aryan Rastogi",
+  title: "aryan|ai",
   description:
     "aryy.in",
   icons: {
