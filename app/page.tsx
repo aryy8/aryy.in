@@ -6,7 +6,7 @@ import { TechBadge } from "@/components/tech-badge"
 import { Navbar } from "@/components/navbar"
 import { JupyterCell } from "@/components/jupyter-cell"
 import { Mail, MapPin, Award } from "lucide-react"
-import { Github, Linkedin, FileText } from "lucide-react"
+import { Github, Linkedin, FileText, Twitter } from "lucide-react"
 
 export default function Portfolio() {
   return (
@@ -64,6 +64,17 @@ export default function Portfolio() {
                     LinkedIn
                   </a>
                   <a
+                    href="https://x.com/aryyann8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground transition-all duration-200 hover:border-foreground hover:text-foreground"
+                  >
+                    <svg className="size-3.5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    X
+                  </a>
+                  <a
                     href="/AryanR_Resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -81,14 +92,13 @@ export default function Portfolio() {
           <section id="about" className="mb-16 scroll-mt-20">
             <SectionHeader>About Me</SectionHeader>
             <div className="space-y-5 text-muted-foreground leading-relaxed text-base">
-              <p>
+              <p className="border-l-4 border-primary/30 pl-4 italic text-muted-foreground">
                 I train models to learn &amp; they teach me patience.
               </p>
 
               <p>
-                I am a computer science student working on machine learning, computer vision,
-                NLP, and applied intelligent systems.
-                I craft effective prompts, build clean frontends, and work comfortably across backend systems.
+                I am a computer science student working on <span className="text-primary font-medium">machine learning</span>, <span className="text-primary font-medium">computer vision</span>, <span className="text-primary font-medium">NLP</span>, and <span className="text-primary font-medium">applied intelligent systems</span>.
+                I craft effective prompts, build <span className="text-primary font-medium">clean frontends</span>, and work comfortably across <span className="text-primary font-medium">backend</span> systems.
               </p>
 
               <p>
