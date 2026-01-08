@@ -15,12 +15,12 @@ export default function Portfolio() {
 
       <Navbar />
 
-      <div className="relative z-10 flex flex-col max-w-7xl mx-auto px-6 lg:px-12 py-20 gap-12 pt-32">
-        <main className="flex-1 max-w-3xl mx-auto">
+      <div className="relative z-10 flex flex-col max-w-7xl mx-auto px-6 lg:px-12 py-20 gap-12 pt-32 scroll-smooth">
+        <main className="flex-1 max-w-3xl mx-auto snap-y snap-mandatory">
           {/* Hero Section */}
-          <section className="mb-16">
+          <section className="mb-16 snap-start">
             <div className="flex items-start gap-8 mb-8">
-              <div className="size-24 rounded-lg border-2 border-border/50 ring-4 ring-primary/5 shrink-0 overflow-hidden bg-muted">
+              <div className="size-24 rounded-lg border-2 border-black/10 ring-4 ring-black/5 shrink-0 overflow-hidden bg-muted/ backdrop-blur-sm">
                 <img src="/profile.png" alt="Aryan Rastogi" className="w-full h-full object-cover" />
               </div>
 
@@ -89,7 +89,7 @@ export default function Portfolio() {
           </section>
 
           {/* About Section */}
-          <section id="about" className="mb-16 scroll-mt-20">
+          <section id="about" className="mb-16 scroll-mt-20 snap-start">
             <SectionHeader>About Me</SectionHeader>
             <div className="space-y-5 text-muted-foreground leading-relaxed text-base">
               <p className="border-l-4 border-primary/30 pl-4 italic text-muted-foreground">
@@ -109,7 +109,7 @@ export default function Portfolio() {
           </section>
 
           {/* Tech Stack */}
-          <section className="mb-16">
+          <section className="mb-16 snap-start">
             <SectionHeader>Tech Stack</SectionHeader>
             <div className="space-y-6">
               <div>
@@ -166,13 +166,13 @@ export default function Portfolio() {
           </section>
 
           {/* GitHub Contributions */}
-          <section className="mb-16">
+          <section className="mb-16 snap-start">
             <SectionHeader>GitHub Activity</SectionHeader>
             <GitHubContributionGrid />
           </section>
 
           {/* Experience Section */}
-          <section id="experience" className="mb-16 scroll-mt-20">
+          <section id="experience" className="mb-16 scroll-mt-20 snap-start">
             <SectionHeader>Work Experience</SectionHeader>
             <div className="space-y-2">
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
@@ -227,7 +227,7 @@ export default function Portfolio() {
             </div>
           </section>
 
-          <section id="projects" className="mb-16 scroll-mt-20">
+          <section id="projects" className="mb-16 scroll-mt-20 snap-start">
             <SectionHeader>Featured Projects</SectionHeader>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 overflow-hidden relative">
@@ -356,7 +356,7 @@ export default function Portfolio() {
           </section>
 
           {/* Achievements Section */}
-          <section id="achievements" className="mb-16 scroll-mt-20">
+          <section id="achievements" className="mb-16 scroll-mt-20 snap-start">
             <SectionHeader>Achievements & Recognition</SectionHeader>
             <div className="space-y-3">
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
@@ -369,7 +369,7 @@ export default function Portfolio() {
                       <h3 className="text-sm font-semibold text-foreground mb-1">National Road Safety Hackathon Finalist</h3>
                       <p className="text-xs text-muted-foreground mb-2">National Road Safety Hackathon 2025, IIT Madras</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
-                        Shortlisted among the top 10 finalist teams nationwide from 3.6k+ participants at the National Road Safety Hackathon organised by COERs, IIT Madras.
+                        Shortlisted among the top 10 finalist teams nationwide from 3.6k+ participants & presented at the National Road Safety Hackathon organised by COERs, IIT Madras.
                       </p>
                     </div>
                   </div>
@@ -449,7 +449,7 @@ export default function Portfolio() {
           <Separator className="my-8" />
 
           {/* Jupyter Notebook Cell */}
-          <section className="mb-16">
+          <section className="mb-16 snap-start">
             <JupyterCell />
           </section>
         </main>
