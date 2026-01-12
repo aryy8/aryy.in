@@ -446,10 +446,59 @@ export default function Portfolio() {
             </div>
           </section>
 
+          {/* Blog Section */}
+          <section id="blog" className="mb-16 scroll-mt-20 snap-start">
+            <SectionHeader>Blog</SectionHeader>
+            <div className="space-y-4">
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+                <CardContent className="p-5">
+                  <div className="flex items-start gap-5">
+                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
+                      <img src="/medium.png" alt="Medium" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-sm font-semibold text-foreground mb-1">
+                        <a 
+                          href="https://medium.com/@aryanfeb17/a-cursor-and-google-colab-workflow-for-machine-learning-replacing-jupyter-and-chatgpt-e7c47b39179e"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-primary transition-colors"
+                        >
+                          A Cursor and Google Colab Workflow for Machine Learning: Replacing Jupyter and ChatGPT
+                        </a>
+                      </h3>
+                      <p className="text-xs text-muted-foreground mb-2">Medium • Published 2025</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        Exploring how to leverage Cursor and Google Colab together to create an efficient machine learning workflow that combines the best of both worlds - replacing traditional Jupyter notebooks and ChatGPT interactions with a more integrated development experience.
+                      </p>
+                      <div className="flex flex-wrap gap-1 mt-3">
+                        <TechBadge className="scale-90">Machine Learning</TechBadge>
+                        <TechBadge className="scale-90">Cursor</TechBadge>
+                        <TechBadge className="scale-90">Google Colab</TechBadge>
+                        <TechBadge className="scale-90">Workflow</TechBadge>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 opacity-60">
+                <CardContent className="p-5">
+                  <div className="flex items-center justify-center text-center">
+                    <div className="flex flex-col items-center gap-2 text-muted-foreground">
+                      <p className="text-xs">More blog posts coming soon...</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+
           <Separator className="my-8" />
 
           {/* Jupyter Notebook Cell */}
           <section className="mb-16 snap-start">
+            <SectionHeader>Live ML Playground</SectionHeader>
             <JupyterCell />
           </section>
         </main>
