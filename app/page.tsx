@@ -25,7 +25,10 @@ export default function Portfolio() {
               </div>
 
               <div className="flex-1">
-                <h1 className="text-5xl font-bold mb-3 text-balance tracking-tight">Aryan Rastogi</h1>
+                <div className="flex items-center gap-2 mb-3">
+                  <h1 className="text-5xl font-bold text-balance tracking-tight">Aryan Rastogi</h1>
+                  <img src="/verified.png" alt="Verified" className="size-6" />
+                </div>
                 <p className="text-xl text-primary mb-6 font-medium">Machine Learning & AI Engineer</p>
 
                 <div className="flex flex-wrap gap-6 text-sm text-muted-foreground mb-8">
