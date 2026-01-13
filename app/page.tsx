@@ -406,7 +406,7 @@ export default function Portfolio() {
                       <h3 className="text-sm font-semibold text-foreground mb-1">Student Excellence Awardee</h3>
                       <p className="text-xs text-muted-foreground mb-2">Manipal University Jaipur, CSE dept 2025</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
-                        Awarded for outstanding technical performance, hackathon achievements, and project based innovation during the 3rd semester.
+                        Awarded for outstanding technical performance, hackathon achievements, and project based innovation during the 3rd & 4th semester.
                       </p>
                     </div>
                   </div>
