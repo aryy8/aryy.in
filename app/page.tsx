@@ -470,7 +470,7 @@ export default function Portfolio() {
                           A Cursor and Google Colab Workflow for Machine Learning: Replacing Jupyter and ChatGPT
                         </a>
                       </h3>
-                      <p className="text-xs text-muted-foreground mb-2">Medium • Published 2025</p>
+                      <p className="text-xs text-muted-foreground mb-2">Medium • Published 2026</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
                         Exploring how to leverage Cursor and Google Colab together to create an efficient machine learning workflow that combines the best of both worlds - replacing traditional Jupyter notebooks and ChatGPT interactions with a more integrated development experience.
                       </p>
