@@ -485,7 +485,7 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
               
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 opacity-60">
+              {/* <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 opacity-60">
                 <CardContent className="p-5">
                   <div className="flex items-center justify-center text-center">
                     <div className="flex flex-col items-center gap-2 text-muted-foreground">
@@ -493,13 +493,13 @@ export default function Portfolio() {
                     </div>
                   </div>
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
           </section>
 
           {/* Notes Section */}
           <section id="notes" className="mb-16 scroll-mt-20 snap-start">
-            <SectionHeader>Knowledge Base</SectionHeader>
+            <SectionHeader>Notes</SectionHeader>
             <div className="space-y-4">
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
                 <CardContent className="p-5">
@@ -533,7 +533,7 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
               
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 opacity-60">
+              {/* <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 opacity-60">
                 <CardContent className="p-5">
                   <div className="flex items-center justify-center text-center">
                     <div className="flex flex-col items-center gap-2 text-muted-foreground">
@@ -544,7 +544,7 @@ export default function Portfolio() {
                     </div>
                   </div>
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
           </section>
 
