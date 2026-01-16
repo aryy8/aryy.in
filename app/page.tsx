@@ -73,7 +73,7 @@ export default function Portfolio() {
                     className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground transition-all duration-200 hover:border-foreground hover:text-foreground"
                   >
                     <svg className="size-3.5" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
                     X
                   </a>
@@ -178,6 +178,28 @@ export default function Portfolio() {
           <section id="experience" className="mb-16 scroll-mt-20 snap-start">
             <SectionHeader>Work Experience</SectionHeader>
             <div className="space-y-2">
+
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+                <CardContent className="p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                        <img src="/sfedu.png" alt="SfedU" className="w-full h-full object-cover" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-base font-semibold mb-1">SDE Intern</h3>
+                        <p className="text-xs text-muted-foreground mb-2">Southern Federal University, ICTIS • Russia</p>
+                        <p className="text-xs text-muted-foreground/80 leading-relaxed">
+                          Developed a web application as an international interdisciplinary project in collaboration with Southern Federal University (ICTIS) & MUJ to support the adaptation of international students. The platform acts as a digital assistant that helps to explore, understand and navigate the campus facilities and improves accessibility for new international students.</p>
+                      </div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <p className="text-xs text-muted-foreground">Oct - Nov 2025</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between gap-3">
@@ -188,20 +210,21 @@ export default function Portfolio() {
                       <div className="flex-1">
                         <h3 className="text-base font-semibold mb-1">AI Engineer Intern</h3>
                         <p className="text-xs text-muted-foreground mb-2">Elumina Street Solutions • Jaipur</p>
-                      <p className="text-xs text-muted-foreground/80 leading-relaxed">
-                        Developed a violence detection model using CNN (MobileNet) and LSTM in TensorFlow for video-based behavior
-                        recognition; improved accuracy with focal loss and class weighting.
-                        Implemented and evaluated a real-time weapon detection system using YOLOv8 and OpenCV.
-                        Collaborated with the AI research team to analyze model performance, optimize hyperparameters, and enhance detection.
-                      </p>
+                        <p className="text-xs text-muted-foreground/80 leading-relaxed">
+                          Developed a violence detection model using CNN (MobileNet) and LSTM in TensorFlow for video-based behavior
+                          recognition; improved accuracy with focal loss and class weighting.
+                          Implemented and evaluated a real-time weapon detection system using YOLOv8 and OpenCV.
+                          Collaborated with the AI research team to analyze model performance, optimize hyperparameters, and enhance detection.
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="text-right shrink-0">
+                    <div className="text-right shrink-0">
                       <p className="text-xs text-muted-foreground">April - July 2025</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
+
 
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
                 <CardContent className="p-4">
@@ -213,13 +236,13 @@ export default function Portfolio() {
                       <div className="flex-1">
                         <h3 className="text-base font-semibold mb-1">Research Intern</h3>
                         <p className="text-xs text-muted-foreground mb-2">AI²: computAtional linguIstics & vIsion Lab • MUJ</p>
-                      <p className="text-xs text-muted-foreground/80 leading-relaxed">
-                        Conducting an ablation study on LLM creativity, evaluating the impact of fine-tuning methods (SFT, LoRA, QLoRA, RLHF,
-                        DPO) on creative performance using DAT and AUT benchmarks.
-                      </p>
+                        <p className="text-xs text-muted-foreground/80 leading-relaxed">
+                          Conducting an ablation study on LLM creativity, evaluating the impact of fine-tuning methods (SFT, LoRA, QLoRA, RLHF,
+                          DPO) on creative performance using DAT and AUT benchmarks.
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="text-right shrink-0">
+                    <div className="text-right shrink-0">
                       <p className="text-xs text-muted-foreground">Jan 2025 - Present</p>
                     </div>
                   </div>
@@ -461,7 +484,7 @@ export default function Portfolio() {
                     </div>
                     <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">
-                        <a 
+                        <a
                           href="https://medium.com/@aryanfeb17/a-cursor-and-google-colab-workflow-for-machine-learning-replacing-jupyter-and-chatgpt-e7c47b39179e"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -484,7 +507,7 @@ export default function Portfolio() {
                   </div>
                 </CardContent>
               </Card>
-              
+
               {/* <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 opacity-60">
                 <CardContent className="p-5">
                   <div className="flex items-center justify-center text-center">
@@ -509,7 +532,7 @@ export default function Portfolio() {
                     </div>
                     <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">
-                        <a 
+                        <a
                           href="https://www.notion.so/Deep-Learning-2e951d8d6c098023bae4e3a8d2907e3d?source=copy_link"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -532,7 +555,7 @@ export default function Portfolio() {
                   </div>
                 </CardContent>
               </Card>
-              
+
               {/* <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 opacity-60">
                 <CardContent className="p-5">
                   <div className="flex items-center justify-center text-center">
