@@ -9,6 +9,7 @@ const navItems = [
   { id: "projects", label: "Projects" },
   { id: "achievements", label: "Achievements" },
   { id: "blog", label: "Blog" },
+  { id: "notes", label: "Notes" },
 ]
 
 export function Navbar() {
