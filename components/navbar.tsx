@@ -35,6 +35,10 @@ export function Navbar() {
     return () => observer.disconnect()
   }, [])
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
     if (element) {
@@ -57,7 +61,7 @@ export function Navbar() {
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
-        <div className="text-xl font-bold tracking-tight text-white/90">aryy.in</div>
+        <div className="text-xl font-bold tracking-tight text-white/90 cursor-pointer hover:text-white transition-colors" onClick={scrollToTop}>aryy.in</div>
 
         <div className="hidden lg:flex items-center justify-center gap-6 absolute left-1/2 -translate-x-1/2 w-full max-w-2xl">
           {navItems.map(({ id, label }) => (
