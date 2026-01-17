@@ -556,6 +556,37 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
 
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+                <CardContent className="p-5">
+                  <div className="flex items-start gap-5">
+                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
+                      <img src="/notion.png" alt="Notion" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-sm font-semibold text-foreground mb-1">
+                        <a
+                          href="https://www.notion.so/Python-2eb51d8d6c09809b9f67cfeb30e1a8e4?source=copy_link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-primary transition-colors"
+                        >
+                          Python Notes
+                        </a>
+                      </h3>
+                      <p className="text-xs text-muted-foreground mb-2">Notion • Compact Study Material</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        Compact Python notes covering fundamental concepts.
+                      </p>
+                      <div className="flex flex-wrap gap-1 mt-3">
+                        <TechBadge className="scale-90">Python</TechBadge>
+                        <TechBadge className="scale-90">Programming</TechBadge>
+                        <TechBadge className="scale-90">Fundamentals</TechBadge>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
               {/* <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 opacity-60">
                 <CardContent className="p-5">
                   <div className="flex items-center justify-center text-center">

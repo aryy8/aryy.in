@@ -16,8 +16,11 @@ export function JupyterCell() {
     const codeRef = useRef<HTMLTextAreaElement>(null);
     const runButtonRef = useRef<HTMLButtonElement>(null);
     const pyodideRef = useRef<any>(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [isRunning, setIsRunning] = useState(false);
+    const [isPyodideReady, setIsPyodideReady] = useState(false);
+    const [shouldLoadPyodide, setShouldLoadPyodide] = useState(false);
+    const sectionRef = useRef<HTMLDivElement>(null);
 
     // Initial code content
     const initialCode = `#press
@@ -99,9 +102,33 @@ print("\\n...where learning begins!")
         'micropip'
     ];
 
-    // Initialize Pyodide
+    // Intersection Observer for lazy loading
     useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && !shouldLoadPyodide) {
+                        setShouldLoadPyodide(true);
+                        observer.disconnect();
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, [shouldLoadPyodide]);
+
+    // Initialize Pyodide only when section is visible
+    useEffect(() => {
+        if (!shouldLoadPyodide) return;
+
         const loadPyodide = async () => {
+            setIsLoading(true);
             try {
                 // Load Pyodide
                 const pyodide = await window.loadPyodide({
@@ -147,13 +174,15 @@ print("\\n...where learning begins!")
         `);
 
                 pyodideRef.current = pyodide;
-                setIsLoading(false);
+                setIsPyodideReady(true);
             } catch (error) {
                 console.error('Error loading Pyodide:', error);
                 if (outputRef.current) {
                     const errorMessage = error instanceof Error ? error.message : String(error);
                     outputRef.current.textContent = `Error initializing Python environment: ${errorMessage}`;
                 }
+            } finally {
+                setIsLoading(false);
             }
         };
 
@@ -167,8 +196,10 @@ print("\\n...where learning begins!")
         } else {
             loadPyodide();
         }
+    }, [shouldLoadPyodide]);
 
-        // Set up keyboard shortcut
+    // Set up keyboard shortcut
+    useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.shiftKey && e.key === 'Enter') {
                 e.preventDefault();
@@ -180,10 +211,10 @@ print("\\n...where learning begins!")
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, []);
+    }, [isPyodideReady]);
 
     const runCode = async () => {
-        if (!pyodideRef.current || !codeRef.current) return;
+        if (!pyodideRef.current || !codeRef.current || !isPyodideReady) return;
 
         setIsRunning(true);
         if (outputRef.current) {
@@ -210,7 +241,7 @@ print("\\n...where learning begins!")
     };
 
     return (
-        <div className="w-full max-w-4xl mx-auto my-6">
+        <div ref={sectionRef} className="w-full max-w-4xl mx-auto my-6">
             {/* Main cell container */}
             <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm">
                 {/* Code input area with left sidebar */}
@@ -220,7 +251,7 @@ print("\\n...where learning begins!")
                         <button
                             ref={runButtonRef}
                             onClick={runCode}
-                            disabled={isLoading || isRunning}
+                            disabled={!isPyodideReady || isRunning}
                             className="w-full py-2 flex items-center justify-center hover:bg-foreground/5 transition-colors group"
                             aria-label="Run cell"
                         >
@@ -298,14 +329,24 @@ print("\\n...where learning begins!")
                         lineHeight: '1.5'
                     }}
                 >
-                    {isLoading && (
+                    {!shouldLoadPyodide && (
+                        <div className="flex items-center justify-center h-16 text-muted-foreground">
+                            <span className="text-sm">Scroll to activate Python environment...</span>
+                        </div>
+                    )}
+                    {shouldLoadPyodide && isLoading && (
                         <div className="flex items-center justify-center h-16 text-muted-foreground">
                             <Loader2 className="h-4 w-4 animate-spin mr-2" />
                             <span className="text-sm">Starting Python environment...</span>
                         </div>
                     )}
+                    {shouldLoadPyodide && !isLoading && !isPyodideReady && (
+                        <div className="flex items-center justify-center h-16 text-muted-foreground">
+                            <span className="text-sm">Python environment ready. Press Shift+Enter to run code.</span>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
-    );
+    )
 }
