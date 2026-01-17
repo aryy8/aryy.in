@@ -59,12 +59,12 @@ export function Navbar() {
       <div className="relative max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
         <div className="text-xl font-bold tracking-tight text-white/90">aryy.in</div>
 
-        <div className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+        <div className="hidden lg:flex items-center justify-center gap-6 absolute left-1/2 -translate-x-1/2 w-full max-w-2xl">
           {navItems.map(({ id, label }) => (
             <button
               key={id}
               onClick={() => scrollToSection(id)}
-              className="group relative flex flex-col items-center gap-2 cursor-pointer"
+              className="group relative flex flex-col items-center gap-2 cursor-pointer flex-1"
             >
               <div
                 className={cn(
