@@ -1,0 +1,43 @@
+User-agent: *
+Allow: /
+
+# Allow OpenAI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+# Allow Google bot
+User-agent: Googlebot
+Allow: /
+
+# Allow Bing bot
+User-agent: Bingbot
+Allow: /
+
+# Allow common good bots
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Sitemap
+Sitemap: https://aryy.in/sitemap.xml
