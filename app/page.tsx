@@ -188,7 +188,7 @@ export default function Portfolio() {
                       </div>
                       <div className="flex-1">
                         <h3 className="text-base font-semibold mb-1">SDE Intern</h3>
-                        <p className="text-xs text-muted-foreground mb-2">Southern Federal University, ICTIS • Russia</p>
+                        <p className="text-xs text-muted-foreground mb-2">Southern Federal University, ICTIS • Russia (remote)</p>
                         <p className="text-xs text-muted-foreground/80 leading-relaxed">
                           Developed a web application as an international interdisciplinary project in collaboration with Southern Federal University (ICTIS) & MUJ to support the adaptation of international students. The platform acts as a digital assistant that helps to explore, understand and navigate the campus facilities and improves accessibility for new international students.</p>
                       </div>
