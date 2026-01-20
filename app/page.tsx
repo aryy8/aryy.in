@@ -474,8 +474,41 @@ export default function Portfolio() {
 
           {/* Blog Section */}
           <section id="blog" className="mb-16 scroll-mt-20 snap-start">
-            <SectionHeader>Blog</SectionHeader>
+            <SectionHeader>Blogs</SectionHeader>
             <div className="space-y-4">
+
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+                <CardContent className="p-5">
+                  <div className="flex items-start gap-5">
+                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
+                      <img src="/medium.png" alt="Medium" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-sm font-semibold text-foreground mb-1">
+                        <a
+                          href="https://medium.com/@aryanfeb17/implementing-deep-learning-by-diving-deep-into-the-black-box-c26b28678309"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-primary transition-colors"
+                        >
+                          Implementing Deep Learning by Diving Deep into the Black Box
+                        </a>
+                      </h3>
+                      <p className="text-xs text-muted-foreground mb-2">Medium • Published 2026</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        An Implementation of deep learning in three stages: building a neural network from scratch using NumPy, predicting customer churn with an ANN, and classifying images with a CNN.
+                      </p>
+                      <div className="flex flex-wrap gap-1 mt-3">
+                        <TechBadge className="scale-90">Deep Learning</TechBadge>
+                        <TechBadge className="scale-90">CNN</TechBadge>
+                        <TechBadge className="scale-90">ANN</TechBadge>
+
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
