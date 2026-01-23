@@ -5,6 +5,7 @@ import { GitHubContributionGrid } from "@/components/github-contribution-grid"
 import { TechBadge } from "@/components/tech-badge"
 import { Navbar } from "@/components/navbar"
 import { JupyterCell } from "@/components/jupyter-cell"
+import { NotesGrid } from "@/components/notes-grid"
 import { Mail, MapPin, Award } from "lucide-react"
 import { Github, Linkedin, FileText, Twitter } from "lucide-react"
 
@@ -555,89 +556,11 @@ export default function Portfolio() {
 
           {/* Notes Section */}
           <section id="notes" className="mb-16 scroll-mt-20 snap-start">
-            <SectionHeader>Notes</SectionHeader>
-            <div className="space-y-4">
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
-                <CardContent className="p-5">
-                  <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
-                      <img src="/notion.png" alt="Notion" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold text-foreground mb-1">
-                        <a
-                          href="https://www.notion.so/Deep-Learning-2e951d8d6c098023bae4e3a8d2907e3d?source=copy_link"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="hover:text-primary transition-colors"
-                        >
-                          Deep Learning Notes
-                        </a>
-                      </h3>
-                      <p className="text-xs text-muted-foreground mb-2">Notion • Comprehensive Study Material</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        Complete collection of deep learning concepts, architectures, and implementations. Covers neural networks, CNNs, RNNs, transformers, and practical applications with code examples and visualizations.
-                      </p>
-                      <div className="flex flex-wrap gap-1 mt-3">
-                        <TechBadge className="scale-90">Deep Learning</TechBadge>
-                        <TechBadge className="scale-90">Neural Networks</TechBadge>
-                        <TechBadge className="scale-90">CNN</TechBadge>
-                        <TechBadge className="scale-90">Transformers</TechBadge>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
-                <CardContent className="p-5">
-                  <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
-                      <img src="/notion.png" alt="Notion" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold text-foreground mb-1">
-                        <a
-                          href="https://www.notion.so/Python-2eb51d8d6c09809b9f67cfeb30e1a8e4?source=copy_link"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="hover:text-primary transition-colors"
-                        >
-                          Python Notes
-                        </a>
-                      </h3>
-                      <p className="text-xs text-muted-foreground mb-2">Notion • Compact Study Material</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        Compact Python notes covering fundamental concepts.
-                      </p>
-                      <div className="flex flex-wrap gap-1 mt-3">
-                        <TechBadge className="scale-90">Python</TechBadge>
-                        <TechBadge className="scale-90">Programming</TechBadge>
-                        <TechBadge className="scale-90">Fundamentals</TechBadge>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 opacity-60">
-                <CardContent className="p-5">
-                  <div className="flex items-center justify-center text-center">
-                    <div className="flex flex-col items-center gap-2 text-muted-foreground">
-                      <svg className="size-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                      </svg>
-                      <p className="text-xs">More notes coming soon...</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card> */}
-            </div>
+            <SectionHeader>Knowledge Base</SectionHeader>
+            <NotesGrid />
           </section>
 
-          <Separator className="my-8" />
-
-          {/* Jupyter Notebook Cell */}
+          {/* Live ML Playground */}
           <section className="mb-16 snap-start">
             <SectionHeader>Live ML Playground</SectionHeader>
             <JupyterCell />
