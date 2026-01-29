@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { SectionHeader } from "@/components/section-header"
 import { GitHubContributionGrid } from "@/components/github-contribution-grid"
+import { LeetCodeStats } from "@/components/leetcode-stats"
 import { TechBadge } from "@/components/tech-badge"
 import { Navbar } from "@/components/navbar"
 import { JupyterCell } from "@/components/jupyter-cell"
@@ -173,6 +174,12 @@ export default function Portfolio() {
           <section className="mb-16 snap-start">
             <SectionHeader>GitHub Activity</SectionHeader>
             <GitHubContributionGrid />
+          </section>
+
+          {/* LeetCode Stats */}
+          <section id="leetcode" className="mb-16 scroll-mt-20 snap-start">
+            <SectionHeader>LeetCode Stats</SectionHeader>
+            <LeetCodeStats />
           </section>
 
           {/* Experience Section */}

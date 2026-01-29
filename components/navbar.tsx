@@ -10,6 +10,7 @@ const navItems = [
   { id: "achievements", label: "Achievements" },
   { id: "blog", label: "Blog" },
   { id: "notes", label: "Notes" },
+  { id: "leetcode", label: "LeetCode" },
 ]
 
 export function Navbar() {

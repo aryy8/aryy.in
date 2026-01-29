@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 interface ContributionDay {
   date: string
@@ -12,6 +12,7 @@ export function GitHubContributionGrid() {
   const [contributions, setContributions] = useState<ContributionDay[]>([])
   const [totalCount, setTotalCount] = useState(0)
   const [loading, setLoading] = useState(true)
+  const scrollRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     async function fetchGitHubData() {
@@ -30,6 +31,16 @@ export function GitHubContributionGrid() {
 
     fetchGitHubData()
   }, [])
+
+  useEffect(() => {
+    if (loading) return
+    const el = scrollRef.current
+    if (!el) return
+
+    requestAnimationFrame(() => {
+      el.scrollLeft = el.scrollWidth
+    })
+  }, [loading, contributions.length])
 
   const getLevelColor = (level: number) => {
     switch (level) {
@@ -79,7 +90,7 @@ export function GitHubContributionGrid() {
         </div>
       </div>
 
-      <div className="overflow-x-auto">
+      <div ref={scrollRef} className="overflow-x-auto">
         <div className="inline-flex gap-[3px]">
           {weeks.map((week, weekIndex) => (
             <div key={weekIndex} className="flex flex-col gap-[3px]">
