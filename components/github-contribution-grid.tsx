@@ -38,24 +38,24 @@ export function GitHubContributionGrid() {
     if (!el) return
 
     requestAnimationFrame(() => {
-      el.scrollLeft = el.scrollWidth
+      el.scrollLeft = Math.max(0, el.scrollWidth - el.clientWidth)
     })
   }, [loading, contributions.length])
 
   const getLevelColor = (level: number) => {
     switch (level) {
       case 0:
-        return "bg-muted/50"
+        return "bg-muted/35"
       case 1:
-        return "bg-foreground/20"
+        return "bg-foreground/35"
       case 2:
-        return "bg-foreground/40"
+        return "bg-foreground/55"
       case 3:
-        return "bg-foreground/60"
+        return "bg-foreground/75"
       case 4:
-        return "bg-foreground/85"
+        return "bg-foreground"
       default:
-        return "bg-muted/50"
+        return "bg-muted/35"
     }
   }
 
@@ -90,8 +90,8 @@ export function GitHubContributionGrid() {
         </div>
       </div>
 
-      <div ref={scrollRef} className="overflow-x-auto">
-        <div className="inline-flex gap-[3px]">
+      <div ref={scrollRef} className="overflow-x-auto pr-2">
+        <div className="inline-flex gap-[3px] pr-2">
           {weeks.map((week, weekIndex) => (
             <div key={weekIndex} className="flex flex-col gap-[3px]">
               {week.map((day, dayIndex) => (

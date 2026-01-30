@@ -57,7 +57,7 @@ export function LeetCodeHeatmap({ submissionCalendar }: { submissionCalendar?: R
 
     // Ensure DOM has painted before scrolling
     requestAnimationFrame(() => {
-      el.scrollLeft = el.scrollWidth;
+      el.scrollLeft = Math.max(0, el.scrollWidth - el.clientWidth);
     });
   }, [weeks.length]);
 
@@ -104,8 +104,8 @@ export function LeetCodeHeatmap({ submissionCalendar }: { submissionCalendar?: R
       </div>
 
       {/* The Grid - GitHub Style */}
-      <div ref={scrollRef} className="overflow-x-auto pb-2">
-        <div className="inline-flex gap-[3px]">
+      <div ref={scrollRef} className="overflow-x-auto pb-2 pr-2">
+        <div className="inline-flex gap-[3px] pr-2">
           {weeks.map((week, weekIndex) => (
             <div key={weekIndex} className="flex flex-col gap-[3px]">
               {week.map((day, dayIndex) => (
