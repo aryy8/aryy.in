@@ -59,7 +59,7 @@ export function LeetCodeStats({ username = "aryy8" }) {
   const totalQuestions = data.totalQuestions || fallbackTotalQuestions || 0
   const totalSolved = data.totalSolved || 0
 
-  const radius = 52
+  const radius = 56
   const strokeWidth = 7
   const circumference = 2 * Math.PI * radius
 
@@ -72,7 +72,7 @@ export function LeetCodeStats({ username = "aryy8" }) {
       <div className="p-4 space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-4 items-center">
           <div className="flex items-center justify-center">
-            <div className="relative size-[152px]">
+            <div className="relative size-[164px]">
               <svg viewBox="0 0 160 160" className="size-full -rotate-90">
                 <circle
                   cx="80"

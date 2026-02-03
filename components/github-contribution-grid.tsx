@@ -73,7 +73,7 @@ export function GitHubContributionGrid() {
   }
 
   return (
-    <div className="glass-card p-6 rounded-xl space-y-5">
+    <div className="glass-card p-6 rounded-xl space-y-5 hover:border-foreground/40 transition-all duration-300">
       <div className="flex items-center justify-between">
         <p className="text-sm text-muted-foreground">
           <span className="text-foreground font-semibold">{totalCount}</span> contributions in the last year by{" "}
