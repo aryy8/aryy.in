@@ -6,6 +6,8 @@ import { LeetCodeStats } from "@/components/leetcode-stats"
 import { TechBadge } from "@/components/tech-badge"
 import { Navbar } from "@/components/navbar"
 import { JupyterCell } from "@/components/jupyter-cell"
+import { LiveProjects } from "@/components/live-projects"
+import { HackathonBuilds } from "@/components/hackathon-builds"
 import { NotesGrid } from "@/components/notes-grid"
 import { Mail, MapPin, Award } from "lucide-react"
 import { Github, Linkedin, FileText, Twitter } from "lucide-react"
@@ -261,133 +263,11 @@ export default function Portfolio() {
             </div>
           </section>
 
-          <section id="projects" className="mb-16 scroll-mt-20 snap-start">
-            <SectionHeader>Featured Projects</SectionHeader>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 overflow-hidden relative">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <img
-                      src="/roadeye.png"
-                      alt="Roadeye Project"
-                      className="max-w-full max-h-full object-contain"
+          {/* Live Projects Section */}
+          <LiveProjects />
 
-                    />
-                  </div>
-                </div>
-                <CardContent className="p-4 relative z-10 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
-                  <div className="flex items-start justify-between gap-2 mb-3">
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold mb-2">Roadeye</h3>
-                      <p className="text-xs text-muted-foreground/80 mb-3 leading-relaxed">
-                        An AI powered road audit system that uses deep learning and computer vision to analyze highway videos for detecting road defects and assets. The system automatically generates structured insights and produces professional road audit reports for cost effective infrastructure assessment.                      </p>
-                      <div className="flex flex-wrap gap-1 text-[10px]">
-                        <TechBadge className="scale-90">Python</TechBadge>
-                        <TechBadge className="scale-90">PyTorch</TechBadge>
-                        <TechBadge className="scale-90">OpenCV</TechBadge>
-                        <TechBadge className="scale-90">FastAPI</TechBadge>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
-
-                    Finalist @ National Road Safety Hackathon 2025, IIT Madras
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 overflow-hidden relative">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center bg-background">
-                    <img
-                      src="/p2p.png"
-                      alt="Prompt2Plugin Project"
-                      className="max-w-full max-h-full object-contain"
-                    />
-                  </div>
-                </div>
-                <CardContent className="p-4 relative z-10 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
-                  <div className="flex items-start justify-between gap-2 mb-3">
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold mb-2">Prompt2Plugin</h3>
-                      <p className="text-xs text-muted-foreground/80 mb-3 leading-relaxed">
-                        An AI powered Chrome extension and automation workflow generator that transforms natural language prompts into fully functional Chrome extensions and n8n automation pipelines. The system streamlines automation creation by converting ideas into deployable workflows with minimal manual effort.
-                      </p>
-                      <div className="flex flex-wrap gap-1 text-[10px]">
-                        <TechBadge className="scale-90">React</TechBadge>
-                        <TechBadge className="scale-90">Typescript</TechBadge>
-                        <TechBadge className="scale-90">n8n</TechBadge>
-                        <TechBadge className="scale-90">Chrome API</TechBadge>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">Project @ CodeClash 2025</div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 overflow-hidden relative">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center bg-background">
-                    <img
-                      src="/uniway.png"
-                      alt="Uniway Project"
-                      className="max-w-full max-h-full object-contain"
-
-                    />
-                  </div>
-                </div>
-                <CardContent className="p-4 relative z-10 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
-                  <div className="flex items-start justify-between gap-2 mb-3">
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold mb-2">Uniway</h3>
-                      <p className="text-xs text-muted-foreground/80 mb-3 leading-relaxed">
-                        Developed UniWay, a campus navigation platform for MUJ featuring interactive maps, smart search, route guidance, and student services. The system is designed to support future ready extensions such as AI chatbot assistance, crowd heatmaps, volunteer support, public APIs, and 360 degree campus street view.
-                      </p>
-                      <div className="flex flex-wrap gap-1 text-[10px]">
-                        <TechBadge className="scale-90">React</TechBadge>
-                        <TechBadge className="scale-90">OSRM</TechBadge>
-                        <TechBadge className="scale-90">Google JS APIs</TechBadge>
-                        <TechBadge className="scale-90">Leaflet</TechBadge>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
-
-                    Winner @ Uniway Hackathon 2025
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 overflow-hidden relative">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center bg-background">
-                    <img
-                      src="/geoverse.png"
-                      alt="Geoverse Project"
-                      className="max-w-full max-h-full object-contain"
-                    />
-                  </div>
-                </div>
-                <CardContent className="p-4 relative z-10 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
-                  <div className="flex items-start justify-between gap-2 mb-3">
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold mb-2">Geoverse</h3>
-                      <p className="text-xs text-muted-foreground/80 mb-3 leading-relaxed">
-                        An AI powered conversational information retrieval system that transforms complex satellite data from the MOSDAC web portal into instant, contextual answers. It leverages NLP, knowledge graphs, and semantic search to enable efficient and intuitive access to dynamic geospatial content.
-                      </p>
-                      <div className="flex flex-wrap gap-1 text-[10px]">
-                        <TechBadge className="scale-90">Python</TechBadge>
-                        <TechBadge className="scale-90">NLP</TechBadge>
-                        <TechBadge className="scale-90">Knowledge Graphs</TechBadge>
-                        <TechBadge className="scale-90">FastAPI</TechBadge>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">Project @ BAH ISRO, 2025</div>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
+          {/* Hackathon Builds Section */}
+          <HackathonBuilds />
 
           {/* Achievements Section */}
           <section id="achievements" className="mb-16 scroll-mt-20 snap-start">
