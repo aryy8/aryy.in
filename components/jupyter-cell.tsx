@@ -20,6 +20,7 @@ export function JupyterCell() {
     const [isRunning, setIsRunning] = useState(false);
     const [isPyodideReady, setIsPyodideReady] = useState(false);
     const [shouldLoadPyodide, setShouldLoadPyodide] = useState(false);
+    const [sessionStarted, setSessionStarted] = useState(false);
     const sectionRef = useRef<HTMLDivElement>(null);
 
     // Initial code content
@@ -104,24 +105,15 @@ print("\\n...where learning begins!")
 
     // Intersection Observer for lazy loading
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting && !shouldLoadPyodide) {
-                        setShouldLoadPyodide(true);
-                        observer.disconnect();
-                    }
-                });
-            },
-            { threshold: 0.1 }
-        );
+        // Remove auto-loading - now requires manual start
+        return () => {};
+    }, []);
 
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
-
-        return () => observer.disconnect();
-    }, [shouldLoadPyodide]);
+    // Start session function
+    const startSession = () => {
+        setSessionStarted(true);
+        setShouldLoadPyodide(true);
+    };
 
     // Initialize Pyodide only when section is visible
     useEffect(() => {
@@ -275,6 +267,26 @@ print("\\n...where learning begins!")
                         {/* Top bar with cell actions */}
                         <div className="flex justify-end px-2 py-1 bg-background border-b border-border/50">
                             <div className="flex items-center space-x-1 bg-foreground/5 rounded-md p-0.5">
+                                {/* Start Session Button */}
+                                {!sessionStarted && (
+                                    <Button
+                                        onClick={startSession}
+                                        disabled={isLoading}
+                                        size="sm"
+                                        variant="ghost"
+                                        className="text-xs h-7 px-2 text-foreground/60 hover:text-foreground/80 hover:bg-transparent"
+                                    >
+                                        {isLoading ? (
+                                            <>
+                                                <Loader2 className="h-3 w-3 animate-spin mr-1" />
+                                                Starting...
+                                            </>
+                                        ) : (
+                                            'Start Session'
+                                        )}
+                                    </Button>
+                                )}
+                                
                                 <button
                                     className="p-1 text-foreground/60 hover:text-foreground hover:bg-foreground/10 rounded transition-colors"
                                     title="Move cell up"
@@ -329,18 +341,13 @@ print("\\n...where learning begins!")
                         lineHeight: '1.5'
                     }}
                 >
-                    {!shouldLoadPyodide && (
-                        <div className="flex items-center justify-center h-16 text-muted-foreground">
-                            <span className="text-sm">Scroll to activate Python environment...</span>
-                        </div>
-                    )}
-                    {shouldLoadPyodide && isLoading && (
+                    {sessionStarted && isLoading && (
                         <div className="flex items-center justify-center h-16 text-muted-foreground">
                             <Loader2 className="h-4 w-4 animate-spin mr-2" />
                             <span className="text-sm">Starting Python environment...</span>
                         </div>
                     )}
-                    {shouldLoadPyodide && !isLoading && !isPyodideReady && (
+                    {sessionStarted && !isLoading && !isPyodideReady && (
                         <div className="flex items-center justify-center h-16 text-muted-foreground">
                             <span className="text-sm">Python environment ready. Press Shift+Enter to run code.</span>
                         </div>
