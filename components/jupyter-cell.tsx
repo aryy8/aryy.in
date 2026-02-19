@@ -24,10 +24,7 @@ export function JupyterCell() {
     const sectionRef = useRef<HTMLDivElement>(null);
 
     // Initial code content
-    const initialCode = `#press
-#shift+enter
-#to execute cell
-
+    const initialCode = `#start session & press shift+enter to execute cell
 
 import time
 import sys
