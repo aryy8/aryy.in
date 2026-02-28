@@ -70,7 +70,7 @@ export function LeetCodeStats({ username = "aryy8" }) {
   return (
     <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300">
       <div className="p-4 space-y-4">
-        <div className="grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-4 items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-[170px_1fr] gap-4 items-center">
           <div className="flex items-center justify-center">
             <div className="relative size-[164px]">
               <svg viewBox="0 0 160 160" className="size-full -rotate-90">
@@ -104,19 +104,29 @@ export function LeetCodeStats({ username = "aryy8" }) {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-2">
-            {difficulty.map((d) => (
-              <div
-                key={d.label}
-                className="rounded-lg border border-border/50 bg-muted/20 px-3 py-2"
-              >
-                <div className={`text-xs font-semibold ${d.color}`}>{d.shortLabel}</div>
-                <div className="text-lg font-semibold text-foreground leading-tight mt-0.5">
-                  {d.count}
-                  <span className="text-xs text-muted-foreground font-normal">/{d.total}</span>
+          <div className="grid grid-cols-1 sm:grid-cols-[auto_auto] gap-3 sm:gap-6 items-start justify-start">
+            <div className="flex flex-col gap-2 w-full sm:w-[120px]">
+              {difficulty.map((d) => (
+                <div
+                  key={d.label}
+                  className="rounded-lg border border-border/50 bg-muted/20 px-2.5 py-2"
+                >
+                  <div className={`text-xs font-semibold ${d.color}`}>{d.shortLabel}</div>
+                  <div className="text-lg font-semibold text-foreground leading-tight mt-0.5">
+                    {d.count}
+                    <span className="text-xs text-muted-foreground font-normal">/{d.total}</span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            <div className="hidden sm:flex items-start justify-center pt-1">
+              <img
+                src="/feb_lc.png"
+                alt="LeetCode February Badge"
+                className="size-20 object-contain opacity-90"
+              />
+            </div>
           </div>
         </div>
 
