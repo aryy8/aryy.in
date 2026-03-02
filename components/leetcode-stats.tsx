@@ -120,10 +120,15 @@ export function LeetCodeStats({ username = "aryy8" }) {
               ))}
             </div>
 
-            <div className="hidden sm:flex items-start justify-center pt-1">
+            <div className="hidden sm:flex flex-row items-center justify-start pt-1 gap-3">
               <img
                 src="/feb_lc.png"
                 alt="LeetCode February Badge"
+                className="size-20 object-contain opacity-90"
+              />
+              <img
+                src="/50_lc.png"
+                alt="LeetCode 50 Badge"
                 className="size-20 object-contain opacity-90"
               />
             </div>
