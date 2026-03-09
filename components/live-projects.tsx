@@ -12,7 +12,7 @@ export function LiveProjects() {
         <div className="cursor-pointer" onClick={() => window.open('https://perplex.aryy.in', '_blank')}>
           <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
             {/* Cover Image Section - Full height */}
-            <div className="relative h-64 overflow-hidden">
+            <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
                 src="/perplex.png" 
                 alt="Perplex Project"
@@ -42,7 +42,7 @@ export function LiveProjects() {
         <div className="cursor-pointer" onClick={() => window.open('https://texlab.aryy.in', '_blank')}>
           <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
             {/* Cover Image Section - Full height */}
-            <div className="relative h-64 overflow-hidden">
+            <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
                 src="/texlab.png" 
                 alt="teXlab Project"

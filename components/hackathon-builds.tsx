@@ -13,7 +13,7 @@ export function HackathonBuilds() {
         <div className="cursor-pointer">
           <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
             {/* Cover Image Section - Full height */}
-            <div className="relative h-64 overflow-hidden">
+            <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
                 src="/roadeye.png" 
                 alt="Roadeye Project"
@@ -48,7 +48,7 @@ export function HackathonBuilds() {
         <div className="cursor-pointer">
           <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
             {/* Cover Image Section - Full height */}
-            <div className="relative h-64 overflow-hidden">
+            <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
                 src="/p2p.png" 
                 alt="Prompt2Plugin Project"
@@ -83,7 +83,7 @@ export function HackathonBuilds() {
         <div className="cursor-pointer">
           <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
             {/* Cover Image Section - Full height */}
-            <div className="relative h-64 overflow-hidden">
+            <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
                 src="/uniway.png" 
                 alt="Uniway Project"
@@ -118,7 +118,7 @@ export function HackathonBuilds() {
         <div className="cursor-pointer">
           <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
             {/* Cover Image Section - Full height */}
-            <div className="relative h-64 overflow-hidden">
+            <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
                 src="/geoverse.png" 
                 alt="Geoverse Project"

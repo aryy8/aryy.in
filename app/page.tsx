@@ -19,23 +19,23 @@ export default function Portfolio() {
 
       <Navbar />
 
-      <div className="relative z-10 flex flex-col max-w-7xl mx-auto px-6 lg:px-12 py-20 gap-12 pt-32 scroll-smooth">
-        <main className="flex-1 max-w-3xl mx-auto snap-y snap-mandatory">
+      <div className="relative z-10 flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-20 gap-10 sm:gap-12 pt-24 sm:pt-32 scroll-smooth">
+        <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto snap-y snap-mandatory">
           {/* Hero Section */}
           <section className="mb-16 snap-start">
-            <div className="flex items-start gap-8 mb-8">
-              <div className="size-24 rounded-lg border-2 border-black/10 ring-4 ring-black/5 shrink-0 overflow-hidden bg-muted/ backdrop-blur-sm">
+            <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-8 mb-8">
+              <div className="size-16 sm:size-24 rounded-lg border-2 border-black/10 ring-4 ring-black/5 shrink-0 overflow-hidden bg-muted/ backdrop-blur-sm">
                 <img src="/profile.png" alt="Aryan Rastogi" className="w-full h-full object-cover" />
               </div>
 
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-3">
-                  <h1 className="text-5xl font-bold text-balance tracking-tight">Aryan Rastogi</h1>
-                  <img src="/verified.png" alt="Verified" className="size-6" />
+                  <h1 className="text-3xl sm:text-5xl font-bold text-balance tracking-tight">Aryan Rastogi</h1>
+                  <img src="/verified.png" alt="Verified" className="size-5 sm:size-6" />
                 </div>
-                <p className="text-xl text-primary mb-6 font-medium">Machine Learning & AI Engineer</p>
+                <p className="text-base sm:text-xl text-primary mb-5 sm:mb-6 font-medium">Machine Learning & AI Engineer</p>
 
-                <div className="flex flex-wrap gap-6 text-sm text-muted-foreground mb-8">
+                <div className="flex flex-wrap gap-4 sm:gap-6 text-sm text-muted-foreground mb-6 sm:mb-8">
                   <div className="flex items-center gap-2">
                     <MapPin className="size-4" />
                     <span>Jaipur, India</span>
