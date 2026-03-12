@@ -23,35 +23,53 @@ export default function Portfolio() {
         <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto snap-y snap-mandatory">
           {/* Hero Section */}
           <section className="mb-16 snap-start">
-            <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-8 mb-8">
-              <div className="size-16 sm:size-24 rounded-lg border-2 border-black/10 ring-4 ring-black/5 shrink-0 overflow-hidden bg-muted/ backdrop-blur-sm">
-                <img src="/profile.png" alt="Aryan Rastogi" className="w-full h-full object-cover" />
-              </div>
+            {/* Cover Photo - Full Width */}
+            <div className="relative w-full h-40 sm:h-52 lg:h-64 overflow-hidden -mt-12 sm:-mt-20">
+              <img 
+                src="/cover_snoopy.png" 
+                alt="Cover Photo"
+                className="w-full h-full object-cover object-bottom"
+              />
+              {/* Subtle overlay for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-background/20 to-transparent" />
+            </div>
 
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-3">
-                  <h1 className="text-3xl sm:text-5xl font-bold text-balance tracking-tight">Aryan Rastogi</h1>
-                  <img src="/verified.png" alt="Verified" className="size-5 sm:size-6" />
-                </div>
-                <p className="text-base sm:text-xl text-primary mb-5 sm:mb-6 font-medium">Machine Learning & AI Engineer</p>
-
-                <div className="flex flex-wrap gap-4 sm:gap-6 text-sm text-muted-foreground mb-6 sm:mb-8">
-                  <div className="flex items-center gap-2">
-                    <MapPin className="size-4" />
-                    <span>Jaipur, India</span>
+            {/* Profile Content - Left aligned */}
+            <div className="relative -mt-16 sm:-mt-20 lg:-mt-24 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-4xl mx-auto">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
+                  {/* Profile Picture */}
+                  <div className="relative">
+                    <div className="size-24 sm:size-28 lg:size-32 rounded-xl border-4 border-background shadow-lg overflow-hidden bg-muted/ backdrop-blur-sm">
+                      <img src="/pfp.jpg" alt="Aryan Rastogi" className="w-full h-full object-cover" />
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Mail className="size-4" />
-                    <a
-                      href="mailto:aryanfeb17@gmail.com"
-                      className="hover:text-primary transition-colors hover:underline underline-offset-4"
-                    >
-                      aryanfeb17@gmail.com
-                    </a>
-                  </div>
-                </div>
 
-                <div className="flex flex-wrap gap-3">
+                  {/* Text Content */}
+                  <div className="flex-1 text-left pb-2">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight" style={{fontFamily: "'Playfair Display', serif"}}>Aryan Rastogi</h1>
+                      <img src="/verified.png" alt="Verified" className="size-5 sm:size-6" />
+                    </div>
+                    <p className="text-base sm:text-lg lg:text-xl text-primary font-medium mb-3">Machine Learning | AI Engineer</p>
+
+                    <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-6 text-sm text-muted-foreground mb-4">
+                      <div className="flex items-center gap-2">
+                        <MapPin className="size-4" />
+                        <span>Jaipur, India</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Mail className="size-4" />
+                        <a
+                          href="mailto:aryanfeb17@gmail.com"
+                          className="hover:text-primary transition-colors hover:underline underline-offset-4"
+                        >
+                          aryanfeb17@gmail.com
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap justify-start gap-2">
                   <a
                     href="https://github.com/aryy8"
                     target="_blank"
@@ -90,6 +108,8 @@ export default function Portfolio() {
                     <FileText className="size-3.5" />
                     Resume
                   </a>
+                </div>
+                  </div>
                 </div>
               </div>
             </div>
