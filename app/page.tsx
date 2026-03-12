@@ -48,7 +48,7 @@ export default function Portfolio() {
                   {/* Text Content */}
                   <div className="flex-1 text-left pb-2">
                     <div className="flex items-center gap-2 mb-2">
-                      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight" style={{fontFamily: "'Playfair Display', serif"}}>Aryan Rastogi</h1>
+                      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight" style={{fontFamily: "'Comic Sans MS', serif"}}>Aryan Rastogi</h1>
                       <img src="/verified.png" alt="Verified" className="size-5 sm:size-6" />
                     </div>
                     <p className="text-base sm:text-lg lg:text-xl text-primary font-medium mb-3">Machine Learning | AI Engineer</p>
