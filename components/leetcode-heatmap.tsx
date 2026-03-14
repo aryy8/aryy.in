@@ -62,11 +62,11 @@ export function LeetCodeHeatmap({ submissionCalendar }: { submissionCalendar?: R
   }, [weeks.length]);
 
   const getDotColor = (count: number) => {
-    if (count === 0) return 'bg-muted/50'; // Empty - matches GitHub contribution grid
-    if (count === 1) return 'bg-foreground/20'; // Low
-    if (count <= 3) return 'bg-foreground/40'; // Medium
-    if (count <= 5) return 'bg-foreground/60'; // High
-    return 'bg-foreground/85'; // Max
+    if (count === 0) return 'bg-muted/35'; // Empty - matches GitHub contribution grid
+    if (count === 1) return 'bg-foreground/35'; // Low - matches GitHub level 1
+    if (count <= 3) return 'bg-foreground/55'; // Medium - matches GitHub level 2
+    if (count <= 5) return 'bg-foreground/75'; // High - matches GitHub level 3
+    return 'bg-foreground'; // Max - matches GitHub level 4
   };
 
   if (loading) return (
