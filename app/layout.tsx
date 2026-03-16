@@ -7,7 +7,7 @@ import "./globals.css"
 const geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aryy.in"),
+  metadataBase: new URL("https://www.aryy.in"),
   title: {
     default: "Aryan Rastogi",
     template: "%s | Aryan Rastogi",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description:
     "Aryan Rastogi — Machine Learning & AI Engineer. Portfolio featuring projects, experience, achievements, and writing.",
   alternates: {
-    canonical: "/",
+    canonical: "https://www.aryy.in/",
   },
   keywords: [
     "Aryan Rastogi",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    url: "https://aryy.in/",
+    url: "https://www.aryy.in/",
     title: "Aryan Rastogi",
     description:
       "Machine Learning & AI Engineer — portfolio featuring projects, experience, achievements, and writing.",
@@ -72,30 +72,30 @@ export default function RootLayout({
     "@graph": [
       {
         "@type": "WebSite",
-        "@id": "https://aryy.in/#website",
-        url: "https://aryy.in/",
+        "@id": "https://www.aryy.in/#website",
+        url: "https://www.aryy.in/",
         name: "Aryan Rastogi",
         description:
           "Portfolio of Aryan Rastogi — Machine Learning & AI Engineer.",
       },
       {
         "@type": "WebPage",
-        "@id": "https://aryy.in/#webpage",
-        url: "https://aryy.in/",
+        "@id": "https://www.aryy.in/#webpage",
+        url: "https://www.aryy.in/",
         name: "Aryan Rastogi",
         isPartOf: {
-          "@id": "https://aryy.in/#website",
+          "@id": "https://www.aryy.in/#website",
         },
         about: {
-          "@id": "https://aryy.in/#person",
+          "@id": "https://www.aryy.in/#person",
         },
       },
       {
         "@type": "Person",
-        "@id": "https://aryy.in/#person",
+        "@id": "https://www.aryy.in/#person",
         name: "Aryan Rastogi",
-        url: "https://aryy.in/",
-        image: "https://aryy.in/pfp.jpg",
+        url: "https://www.aryy.in/",
+        image: "https://www.aryy.in/pfp.jpg",
         jobTitle: "Machine Learning & AI Engineer",
         sameAs: [
           "https://github.com/aryy8",

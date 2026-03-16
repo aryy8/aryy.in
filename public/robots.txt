@@ -40,4 +40,4 @@ User-agent: DotBot
 Disallow: /
 
 # Sitemap
-Sitemap: https://aryy.in/sitemap.xml
+Sitemap: https://www.aryy.in/sitemap.xml
