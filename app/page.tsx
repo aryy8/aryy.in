@@ -297,6 +297,23 @@ export default function Portfolio() {
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                      <img src="/HN logo-2.png" alt="Uniway" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-sm font-semibold text-foreground mb-1">India Innovates 2026 Finalist</h3>
+                      <p className="text-xs text-muted-foreground mb-2">India Innovates 2026, BHARAT MANDAPAM, NEW DELHI</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        Shortlisted as the finalist from 25k+ participants in the World's Largest Civic Tech Hackathon at Bharat Mandapam, New Delhi organised by BYHN x MCD, in collaboration with DDU, IIT KGP, DTC, NSUT, GGSIPU.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+                <CardContent className="p-5">
+                  <div className="flex items-start gap-5">
+                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
                       <img src="/iitm.png" alt="IIT Madras" className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1">
