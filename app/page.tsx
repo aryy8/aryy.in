@@ -26,7 +26,7 @@ export default function Portfolio() {
             {/* Cover Photo - Full Width */}
             <div className="relative w-full h-40 sm:h-52 lg:h-64 overflow-hidden -mt-12 sm:-mt-20">
               <img 
-                src="/cover_snoopy.png" 
+                src="/cover_snoopy.webp" 
                 alt="Cover Photo"
                 className="w-full h-full object-cover object-bottom"
               />
@@ -41,7 +41,7 @@ export default function Portfolio() {
                   {/* Profile Picture */}
                   <div className="relative">
                     <div className="size-24 sm:size-28 lg:size-32 rounded-xl border-4 border-background shadow-lg overflow-hidden bg-muted/ backdrop-blur-sm">
-                      <img src="/pfp.jpg" alt="Aryan Rastogi" className="w-full h-full object-cover" />
+                      <img src="/snoopypfp.png" alt="Aryan Rastogi" className="w-full h-full object-cover" />
                     </div>
                   </div>
 
