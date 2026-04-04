@@ -30,8 +30,9 @@ export default function Portfolio() {
                 alt="Cover Photo"
                 className="w-full h-full object-cover object-bottom"
               />
-              {/* Subtle overlay for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-background/20 to-transparent" />
+              {/* Fade into page (bottom + sides) */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/85 via-transparent to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/35 via-transparent to-background/35" />
             </div>
 
             {/* Profile Content - Left aligned */}
@@ -208,6 +209,27 @@ export default function Portfolio() {
           <section id="experience" className="mb-16 scroll-mt-20 snap-start">
             <SectionHeader>Work Experience</SectionHeader>
             <div className="space-y-2">
+
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+                <CardContent className="p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                        <img src="/sylusai.png" alt="SfedU" className="w-full h-full object-cover" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-base font-semibold mb-1">Full Stack Developer</h3>
+                        <p className="text-xs text-muted-foreground mb-2">Sylus AI  •  (remote)</p>
+                        <p className="text-xs text-muted-foreground/80 leading-relaxed">
+                          Developing and maintaining frontend and backend systems for a SaaS-based social media automation platform, Sylus AI. Building and integrating APIs, managing databases, and contributing to system architecture. Developing AI-driven features, while debugging, testing, and optimizing applications in collaboration with the team.</p>
+                      </div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <p className="text-xs text-muted-foreground">April 2026 - Present</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
 
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
                 <CardContent className="p-4">
