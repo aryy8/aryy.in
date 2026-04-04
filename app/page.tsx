@@ -212,19 +212,19 @@ export default function Portfolio() {
 
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
                 <CardContent className="p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-start gap-3">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
+                    <div className="flex items-start gap-3 min-w-0">
                       <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
                         <img src="/sylusai.png" alt="SfedU" className="w-full h-full object-cover" />
                       </div>
-                      <div className="flex-1">
+                      <div className="flex-1 min-w-0">
                         <h3 className="text-base font-semibold mb-1">Full Stack Developer</h3>
                         <p className="text-xs text-muted-foreground mb-2">Sylus AI  •  (remote)</p>
                         <p className="text-xs text-muted-foreground/80 leading-relaxed">
                           Developing and maintaining frontend and backend systems for a SaaS-based social media automation platform, Sylus AI. Building and integrating APIs, managing databases, and contributing to system architecture. Developing AI-driven features, while debugging, testing, and optimizing applications in collaboration with the team.</p>
                       </div>
                     </div>
-                    <div className="text-right shrink-0">
+                    <div className="text-left sm:text-right shrink-0">
                       <p className="text-xs text-muted-foreground">April 2026 - Present</p>
                     </div>
                   </div>
@@ -233,19 +233,19 @@ export default function Portfolio() {
 
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
                 <CardContent className="p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-start gap-3">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
+                    <div className="flex items-start gap-3 min-w-0">
                       <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
                         <img src="/sfedu.png" alt="SfedU" className="w-full h-full object-cover" />
                       </div>
-                      <div className="flex-1">
+                      <div className="flex-1 min-w-0">
                         <h3 className="text-base font-semibold mb-1">SDE Intern</h3>
                         <p className="text-xs text-muted-foreground mb-2">Southern Federal University, ICTIS • Russia (remote)</p>
                         <p className="text-xs text-muted-foreground/80 leading-relaxed">
                           Developed a web application as an international interdisciplinary project in collaboration with Southern Federal University (ICTIS) & MUJ to support the adaptation of international students. The platform acts as a digital assistant that helps to explore, understand and navigate the campus facilities and improves accessibility for new international students.</p>
                       </div>
                     </div>
-                    <div className="text-right shrink-0">
+                    <div className="text-left sm:text-right shrink-0">
                       <p className="text-xs text-muted-foreground">Oct - Nov 2025</p>
                     </div>
                   </div>
@@ -254,12 +254,12 @@ export default function Portfolio() {
 
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
                 <CardContent className="p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-start gap-3">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
+                    <div className="flex items-start gap-3 min-w-0">
                       <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
                         <img src="/elumina.png" alt="Elumina Street Solutions" className="w-full h-full object-cover" />
                       </div>
-                      <div className="flex-1">
+                      <div className="flex-1 min-w-0">
                         <h3 className="text-base font-semibold mb-1">AI Engineer Intern</h3>
                         <p className="text-xs text-muted-foreground mb-2">Elumina Street Solutions • Jaipur</p>
                         <p className="text-xs text-muted-foreground/80 leading-relaxed">
@@ -270,7 +270,7 @@ export default function Portfolio() {
                         </p>
                       </div>
                     </div>
-                    <div className="text-right shrink-0">
+                    <div className="text-left sm:text-right shrink-0">
                       <p className="text-xs text-muted-foreground">April - July 2025</p>
                     </div>
                   </div>
@@ -280,12 +280,12 @@ export default function Portfolio() {
 
               <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
                 <CardContent className="p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-start gap-3">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
+                    <div className="flex items-start gap-3 min-w-0">
                       <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
                         <img src="/ai2.png" alt="AI² Lab" className="w-full h-full object-cover" />
                       </div>
-                      <div className="flex-1">
+                      <div className="flex-1 min-w-0">
                         <h3 className="text-base font-semibold mb-1">Research Intern</h3>
                         <p className="text-xs text-muted-foreground mb-2">AI²: computAtional linguIstics & vIsion Lab • MUJ</p>
                         <p className="text-xs text-muted-foreground/80 leading-relaxed">
@@ -294,7 +294,7 @@ export default function Portfolio() {
                         </p>
                       </div>
                     </div>
-                    <div className="text-right shrink-0">
+                    <div className="text-left sm:text-right shrink-0">
                       <p className="text-xs text-muted-foreground">Jan 2025 - Present</p>
                     </div>
                   </div>
