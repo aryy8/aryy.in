@@ -416,6 +416,38 @@ export default function Portfolio() {
                   </div>
                 </CardContent>
               </Card>
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+                <CardContent className="p-5">
+                  <div className="flex items-start gap-5">
+                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                      <img src="/ieeewie.png" alt="IEEE WIE" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-sm font-semibold text-foreground mb-1">BrandIT 2.0 Winner</h3>
+                      <p className="text-xs text-muted-foreground mb-2">IEEE WIE MUJ, JUN 2025</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        Won the BrandIT 2.0 hackathon organized by IEEE WIE MUJ, designed a social networking community platform for old age people with VR memories, hobby circles, games, good companions and more.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+                <CardContent className="p-5">
+                  <div className="flex items-start gap-5">
+                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                      <img src="/180dc.png" alt="IEEE WIE" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-sm font-semibold text-foreground mb-1">Consultathon Winner</h3>
+                      <p className="text-xs text-muted-foreground mb-2">180 DC MUJ, April 2025</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        Won the Consultathon competition organized by 180 DC MUJ, presented a solution for a real-world case study.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </section>
 
