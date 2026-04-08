@@ -218,10 +218,10 @@ export default function Portfolio() {
                         <img src="/sylusai.png" alt="SfedU" className="w-full h-full object-cover" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-base font-semibold mb-1">Full Stack Developer</h3>
+                        <h3 className="text-base font-semibold mb-1">AI Engineer</h3>
                         <p className="text-xs text-muted-foreground mb-2">Sylus AI  •  (remote)</p>
                         <p className="text-xs text-muted-foreground/80 leading-relaxed">
-                          Developing and maintaining frontend and backend systems for a SaaS-based social media automation platform, Sylus AI. Building and integrating APIs, managing databases, and contributing to system architecture. Developing AI-driven features, while debugging, testing, and optimizing applications in collaboration with the team.</p>
+                          Developing and maintaining AI systems for a SaaS-based social media automation platform, Sylus AI. Building and integrating APIs, managing databases, and contributing to system architecture. Developing AI-driven features, while debugging, testing, and optimizing applications in collaboration with the team.</p>
                       </div>
                     </div>
                     <div className="text-left sm:text-right shrink-0">
@@ -260,7 +260,7 @@ export default function Portfolio() {
                         <img src="/elumina.png" alt="Elumina Street Solutions" className="w-full h-full object-cover" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-base font-semibold mb-1">AI Engineer Intern</h3>
+                        <h3 className="text-base font-semibold mb-1">AI R&D Intern</h3>
                         <p className="text-xs text-muted-foreground mb-2">Elumina Street Solutions • Jaipur</p>
                         <p className="text-xs text-muted-foreground/80 leading-relaxed">
                           Developed a violence detection model using CNN (MobileNet) and LSTM in TensorFlow for video-based behavior
