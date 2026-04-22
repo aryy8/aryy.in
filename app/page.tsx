@@ -42,7 +42,7 @@ export default function Portfolio() {
                   {/* Profile Picture */}
                   <div className="relative">
                     <div className="size-24 sm:size-28 lg:size-32 rounded-xl border-4 border-background shadow-lg overflow-hidden bg-muted/ backdrop-blur-sm">
-                      <img src="/snoopypfp.png" alt="Aryan Rastogi" className="w-full h-full object-cover" />
+                      <img src="/snoopypfp.webp" alt="Aryan Rastogi" className="w-full h-full object-cover" />
                     </div>
                   </div>
 
@@ -50,7 +50,7 @@ export default function Portfolio() {
                   <div className="flex-1 text-left pb-2">
                     <div className="flex items-center gap-2 mb-2">
                       <h1 className="text-3xl sm:text-4xl lg:text-5xl font text-foreground tracking-tight" style={{fontFamily: "'Georgia', serif"}}>Aryan Rastogi</h1>
-                      <img src="/verified.png" alt="Verified" className="size-5 sm:size-6" />
+                      <img src="/verified.webp" alt="Verified" className="size-5 sm:size-6" />
                     </div>
                     <p className="text-base sm:text-lg lg:text-xl text-primary font-medium mb-3">Machine Learning | AI Engineer</p>
 
@@ -215,7 +215,7 @@ export default function Portfolio() {
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
                     <div className="flex items-start gap-3 min-w-0">
                       <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                        <img src="/sylusai.png" alt="SfedU" className="w-full h-full object-cover" />
+                        <img src="/sylusai.webp" alt="SfedU" className="w-full h-full object-cover" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-base font-semibold mb-1">AI Engineer</h3>
@@ -236,7 +236,7 @@ export default function Portfolio() {
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
                     <div className="flex items-start gap-3 min-w-0">
                       <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                        <img src="/sfedu.png" alt="SfedU" className="w-full h-full object-cover" />
+                        <img src="/sfedu.webp" alt="SfedU" className="w-full h-full object-cover" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-base font-semibold mb-1">SDE Intern</h3>
@@ -257,7 +257,7 @@ export default function Portfolio() {
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
                     <div className="flex items-start gap-3 min-w-0">
                       <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                        <img src="/elumina.png" alt="Elumina Street Solutions" className="w-full h-full object-cover" />
+                        <img src="/elumina.webp" alt="Elumina Street Solutions" className="w-full h-full object-cover" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-base font-semibold mb-1">AI R&D Intern</h3>
@@ -283,7 +283,7 @@ export default function Portfolio() {
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
                     <div className="flex items-start gap-3 min-w-0">
                       <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                        <img src="/ai2.png" alt="AI² Lab" className="w-full h-full object-cover" />
+                        <img src="/ai2.webp" alt="AI² Lab" className="w-full h-full object-cover" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-base font-semibold mb-1">Research Intern</h3>
@@ -319,7 +319,7 @@ export default function Portfolio() {
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                      <img src="/HN logo-2.png" alt="Uniway" className="w-full h-full object-cover" />
+                      <img src="/HN logo-2.webp" alt="Uniway" className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">India Innovates 2026 Finalist</h3>
@@ -336,7 +336,7 @@ export default function Portfolio() {
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                      <img src="/iitm.png" alt="IIT Madras" className="w-full h-full object-cover" />
+                      <img src="/iitm.webp" alt="IIT Madras" className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">National Road Safety Hackathon Finalist</h3>
@@ -353,7 +353,7 @@ export default function Portfolio() {
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                      <img src="/uniway.jpeg" alt="Uniway" className="w-full h-full object-cover" />
+                      <img src="/uniway.webp" alt="Uniway" className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">UniWay Hackathon Winner</h3>
@@ -370,7 +370,7 @@ export default function Portfolio() {
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                      <img src="/muj.png" alt="Manipal University Jaipur" className="w-full h-full object-cover" />
+                      <img src="/muj.webp" alt="Manipal University Jaipur" className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">Student Excellence Awardee</h3>
@@ -387,7 +387,7 @@ export default function Portfolio() {
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                      <img src="/superteam.jpg" alt="Superteam" className="w-full h-full object-cover" />
+                      <img src="/superteam.webp" alt="Superteam" className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">Solana Bounty Winner</h3>
@@ -404,7 +404,7 @@ export default function Portfolio() {
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                      <img src="/muj.png" alt="Manipal University Jaipur" className="w-full h-full object-cover" />
+                      <img src="/muj.webp" alt="Manipal University Jaipur" className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">Dean's List Awardee</h3>
@@ -420,7 +420,7 @@ export default function Portfolio() {
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                      <img src="/ieeewie.png" alt="IEEE WIE" className="w-full h-full object-cover" />
+                      <img src="/ieeewie.webp" alt="IEEE WIE" className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">BrandIT 2.0 Winner</h3>
@@ -436,7 +436,7 @@ export default function Portfolio() {
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                      <img src="/180dc.png" alt="IEEE WIE" className="w-full h-full object-cover" />
+                      <img src="/180dc.webp" alt="IEEE WIE" className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">Consultathon Winner</h3>
@@ -460,7 +460,7 @@ export default function Portfolio() {
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
-                      <img src="/medium.png" alt="Medium" className="w-full h-full object-cover" />
+                      <img src="/medium.webp" alt="Medium" className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">
@@ -492,7 +492,7 @@ export default function Portfolio() {
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
-                      <img src="/medium.png" alt="Medium" className="w-full h-full object-cover" />
+                      <img src="/medium.webp" alt="Medium" className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">

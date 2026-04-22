@@ -122,12 +122,12 @@ export function LeetCodeStats({ username = "aryy8" }) {
 
             <div className="flex flex-row flex-wrap items-center justify-start pt-1 gap-2">
               <img
-                src="/feb_lc.png"
+                src="/feb_lc.webp"
                 alt="LeetCode February Badge"
                 className="size-14 sm:size-20 object-contain opacity-90"
               />
               <img
-                src="/50_lc.png"
+                src="/50_lc.webp"
                 alt="LeetCode 50 Badge"
                 className="size-14 sm:size-20 object-contain opacity-90"
               />

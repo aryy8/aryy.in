@@ -95,7 +95,7 @@ export default function RootLayout({
         "@id": "https://www.aryy.in/#person",
         name: "Aryan Rastogi",
         url: "https://www.aryy.in/",
-        image: "https://www.aryy.in/pfp.jpg",
+        image: "https://www.aryy.in/pfp.webp",
         jobTitle: "Machine Learning & AI Engineer",
         sameAs: [
           "https://github.com/aryy8",

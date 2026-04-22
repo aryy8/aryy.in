@@ -14,7 +14,7 @@ export function LiveProjects() {
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
-                src="/perplex.png" 
+                src="/perplex.webp" 
                 alt="Perplex Project"
                 className="w-full h-full object-cover"
               />
@@ -44,7 +44,7 @@ export function LiveProjects() {
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
-                src="/texlab.png" 
+                src="/texlab.webp" 
                 alt="teXlab Project"
                 className="w-full h-full object-cover"
               />

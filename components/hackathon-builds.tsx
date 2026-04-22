@@ -15,7 +15,7 @@ export function HackathonBuilds() {
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
-                src="/roadeye.png" 
+                src="/roadeye.webp" 
                 alt="Roadeye Project"
                 className="w-full h-full object-cover"
               />
@@ -50,7 +50,7 @@ export function HackathonBuilds() {
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
-                src="/p2p.png" 
+                src="/p2p.webp" 
                 alt="Prompt2Plugin Project"
                 className="w-full h-full object-cover"
               />
@@ -85,7 +85,7 @@ export function HackathonBuilds() {
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
-                src="/uniway.png" 
+                src="/uniway_project.webp" 
                 alt="Uniway Project"
                 className="w-full h-full object-cover"
               />
@@ -120,7 +120,7 @@ export function HackathonBuilds() {
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
-                src="/janconnectai.png" 
+                src="/janconnectai.webp" 
                 alt="JanConnectAI Project"
                 className="w-full h-full object-contain"
               />
@@ -155,7 +155,7 @@ export function HackathonBuilds() {
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
-                src="/silvercircle.png" 
+                src="/silvercircle.webp" 
                 alt="Silvercircle Project"
                 className="w-full h-full object-cover"
               />
@@ -190,7 +190,7 @@ export function HackathonBuilds() {
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
-                src="/geoverse.png" 
+                src="/geoverse.webp" 
                 alt="Geoverse Project"
                 className="w-full h-full object-cover"
               />

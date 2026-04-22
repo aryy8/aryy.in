@@ -9,7 +9,7 @@ export function NotesGrid() {
           {/* Cover Image Section */}
           <div className="relative h-28 overflow-hidden">
             <img 
-              src="/dl_notion.png" 
+              src="/dl_notion.webp" 
               alt="Deep Learning Cover"
               className="w-full h-full object-cover"
             />
@@ -38,7 +38,7 @@ export function NotesGrid() {
           {/* Cover Image Section */}
           <div className="relative h-28 overflow-hidden">
             <img 
-              src="/python_notion.png" 
+              src="/python_notion.webp" 
               alt="Python Programming Cover"
               className="w-full h-full object-cover"
             />
@@ -67,7 +67,7 @@ export function NotesGrid() {
           {/* Cover Image Section */}
           <div className="relative h-28 overflow-hidden">
             <img 
-              src="/nlp_notion.png" 
+              src="/nlp_notion.webp" 
               alt="NLP Cover"
               className="w-full h-full object-cover"
             />
@@ -96,7 +96,7 @@ export function NotesGrid() {
           {/* Cover Image Section */}
           <div className="relative h-28 overflow-hidden">
             <img 
-              src="/lc_notion.png" 
+              src="/lc_notion.webp" 
               alt="lc cover"
               className="w-full h-full object-cover"
             />
