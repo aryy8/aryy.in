@@ -29,6 +29,8 @@
   --chart-3: 0 0% 60%;
   --chart-4: 0 0% 50%;
   --chart-5: 0 0% 40%;
+  --accent-cold: 200 100% 75%;
+  --accent-cold-foreground: 200 100% 10%;
   --radius: 0.75rem;
   --glass-bg: 0 0% 8%;
   --glass-border: 0 0% 20%;
@@ -67,6 +69,8 @@
   --chart-3: 0 0% 60%;
   --chart-4: 0 0% 50%;
   --chart-5: 0 0% 40%;
+  --accent-cold: 200 100% 75%;
+  --accent-cold-foreground: 200 100% 10%;
   --glass-bg: 0 0% 8%;
   --glass-border: 0 0% 20%;
   --sidebar: oklch(0.205 0 0);
@@ -106,6 +110,8 @@
   --color-chart-3: hsl(var(--chart-3));
   --color-chart-4: hsl(var(--chart-4));
   --color-chart-5: hsl(var(--chart-5));
+  --color-accent-cold: hsl(var(--accent-cold));
+  --color-accent-cold-foreground: hsl(var(--accent-cold-foreground));
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -142,5 +148,18 @@
   }
   .glass-card {
     @apply bg-glass-bg/30 backdrop-blur-md border border-glass-border/40;
+  }
+  .roll-in {
+    animation: rollIn 0.5s ease-out;
+  }
+  @keyframes rollIn {
+    from {
+      transform: translateY(-20px) rotateX(-90deg);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0) rotateX(0deg);
+      opacity: 1;
+    }
   }
 }

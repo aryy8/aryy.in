@@ -1,3 +1,5 @@
+"use client"
+
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { SectionHeader } from "@/components/section-header"
@@ -11,6 +13,46 @@ import { HackathonBuilds } from "@/components/hackathon-builds"
 import { NotesGrid } from "@/components/notes-grid"
 import { Mail, MapPin, Award } from "lucide-react"
 import { Github, Linkedin, FileText, Twitter } from "lucide-react"
+import { useState, useEffect } from "react"
+
+function TypewriterAnimation() {
+  const phrases = [
+    "AI Engineer · Applied AI & Research",
+    "ML · NLP · AI Safety", 
+    "CS @ Manipal",
+    "Building @ Aryy & Co."
+  ]
+  
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
+  const [currentText, setCurrentText] = useState("")
+  const [charIndex, setCharIndex] = useState(0)
+
+  useEffect(() => {
+    const currentPhrase = phrases[currentPhraseIndex]
+    
+    const timeout = setTimeout(() => {
+      if (charIndex < currentPhrase.length) {
+        setCurrentText(currentPhrase.substring(0, charIndex + 1))
+        setCharIndex(charIndex + 1)
+      } else {
+        setTimeout(() => {
+          setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length)
+          setCurrentText("")
+          setCharIndex(0)
+        }, 1500)
+      }
+    }, 100)
+
+    return () => clearTimeout(timeout)
+  }, [charIndex, currentPhraseIndex, phrases])
+
+  return (
+    <span className="text-base sm:text-lg lg:text-xl text-primary font-medium">
+      <span key={currentPhraseIndex} className="transition-all duration-300 ease-in-out roll-in">{currentText}</span>
+      <span className="animate-pulse">|</span>
+    </span>
+  )
+}
 
 export default function Portfolio() {
   return (
@@ -52,7 +94,7 @@ export default function Portfolio() {
                       <h1 className="text-3xl sm:text-4xl lg:text-5xl font text-foreground tracking-tight" style={{fontFamily: "'Georgia', serif"}}>Aryan Rastogi</h1>
                       <img src="/verified.webp" alt="Verified" className="size-5 sm:size-6" />
                     </div>
-                    <p className="text-base sm:text-lg lg:text-xl text-primary font-medium mb-3">Machine Learning | AI Engineer</p>
+                    <p className="mb-3"><TypewriterAnimation /></p>
 
                     <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-6 text-sm text-muted-foreground mb-4">
                       <div className="flex items-center gap-2">
@@ -125,12 +167,12 @@ export default function Portfolio() {
               </p>
 
               <p>
-                I am a computer science student working on <span className="text-primary font-medium">machine learning</span>, <span className="text-primary font-medium">computer vision</span>, <span className="text-primary font-medium">NLP</span>, and <span className="text-primary font-medium">applied intelligent systems</span>.
+                I am a computer science engineering student working on <span className="text-primary font-medium">machine learning</span>, <span className="text-primary font-medium">NLP</span>, and <span className="text-primary font-medium">applied AI systems</span>. I run <a href="https://www.aryyandco.studio" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">Aryy & Co</a>, a tech agency helping early-stage teams build and ship products. I create tech content at <a href="https://www.instagram.com/aryy.in_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">@aryy.in_</a>.
                 I craft effective prompts, build <span className="text-primary font-medium">clean frontends</span>, and work comfortably across <span className="text-primary font-medium">backend</span> systems.
               </p>
 
               <p>
-                Off screen, I like to slow down, eat well, and catch up on sleep.
+                Off screen, I slow down, make food edits at <a href="https://www.instagram.com/nomnomsss_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">@nomnomsss_</a>, and catch up on sleep.
               </p>
 
             </div>
@@ -289,8 +331,8 @@ export default function Portfolio() {
                         <h3 className="text-base font-semibold mb-1">Research Intern</h3>
                         <p className="text-xs text-muted-foreground mb-2">AI²: computAtional linguIstics & vIsion Lab • MUJ</p>
                         <p className="text-xs text-muted-foreground/80 leading-relaxed">
-                          Conducting an ablation study on LLM creativity, evaluating the impact of fine-tuning methods (SFT, LoRA, QLoRA, RLHF,
-                          DPO) on creative performance using DAT and AUT benchmarks.
+                          Leading two concurrent research workstreams: (1) SafeAlign — a multi-arm experimental pipeline for LLM safety evaluation using taxonomy-guided data curation on the Anthropic HH-RLHF dataset, training a RoBERTa-based reward model (Arm A), a QLoRA+DPO-aligned Qwen2.5-1.5B generative model (Arm B), and a MiniLM contrastive safety encoder (Arm C). Key finding: a 66M DistilBERT classifier trained on taxonomy-filtered data achieves 81.3% accuracy vs 59.5% on raw data — showing label quality outweighs model scale. 
+                          ,(2) Quantifying the Alignment Tax — empirically measuring how SFT and DPO degrade LLM creativity using DAT, AUT, and TTCT benchmarks with Semantic Entropy metrics across Mistral-7B and Llama-3.1-8B.
                         </p>
                       </div>
                     </div>
@@ -301,6 +343,62 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
 
+
+            </div>
+          </section>
+
+          {/* Research Section */}
+          <section id="research" className="mb-16 scroll-mt-20 snap-start">
+            <SectionHeader>Research</SectionHeader>
+            <div className="space-y-3">
+
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+                <CardContent className="p-5">
+                  <div className="flex flex-col gap-3">
+                    <div>
+                      <h3 className="text-sm font-semibold text-foreground mb-1">SafeAlign: A Multi-Paradigm Pipeline for LLM Safety Evaluation via Taxonomy-Guided Data Curation</h3>
+                      <p className="text-xs text-muted-foreground mb-2">Aryan Rastogi, Dr. Varda Pareek — Manipal University Jaipur</p>
+                      <div className="flex flex-wrap gap-1 mb-2">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">LLM Safety</span>
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">RLHF</span>
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">DPO</span>
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Data Curation</span>
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">HH-RLHF</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-relaxed italic">
+                        Taxonomy-guided label denoising outperforms model scale — a 66M DistilBERT on filtered data beats a 774M baseline on safety classification.
+                      </p>
+                      <div className="mt-2">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-muted/50 text-muted-foreground border border-border/30">Under Review / Preprint</span>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+                <CardContent className="p-5">
+                  <div className="flex flex-col gap-3">
+                    <div>
+                      <h3 className="text-sm font-semibold text-foreground mb-1">Quantifying the Alignment Tax: Tracking Creativity and Semantic Entropy through the SFT and DPO Pipeline</h3>
+                      <p className="text-xs text-muted-foreground mb-2">Harshita Singh, Aryan Rastogi — Manipal University Jaipur</p>
+                      <div className="flex flex-wrap gap-1 mb-2">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Alignment Tax</span>
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Semantic Entropy</span>
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">DPO</span>
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Creativity</span>
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">LLMs</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-relaxed italic">
+                        DPO systematically collapses semantic diversity — creative narrative divergence drops from 0.7153 (base) to 0.3591 (post-DPO) on Mistral-7B.
+                      </p>
+                      <div className="mt-2">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-muted/50 text-muted-foreground border border-border/30">Under Review / Preprint</span>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
 
             </div>
           </section>
@@ -393,7 +491,7 @@ export default function Portfolio() {
                       <h3 className="text-sm font-semibold text-foreground mb-1">Solana Bounty Winner</h3>
                       <p className="text-xs text-muted-foreground mb-2">Superteam India, 2025</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
-                        Won a $60 bounty and became a Global Superteam Contributor within the Solana ecosystem.
+                        Won a Solana bounty and became a Global Superteam Contributor within the Solana ecosystem.
                       </p>
                     </div>
                   </div>
@@ -426,7 +524,7 @@ export default function Portfolio() {
                       <h3 className="text-sm font-semibold text-foreground mb-1">BrandIT 2.0 Winner</h3>
                       <p className="text-xs text-muted-foreground mb-2">IEEE WIE MUJ, JUN 2025</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
-                        Won the BrandIT 2.0 hackathon organized by IEEE WIE MUJ, designed a social networking community platform for old age people with VR memories, hobby circles, games, good companions and more.
+                        A social networking and community platform built for older adults, featuring VR Memory Lanes to relive personal memories, curated hobby circles, companion matching, and accessible games. Designed for emotional connection and digital inclusion — built and presented at BrandIT 2.0.
                       </p>
                     </div>
                   </div>
@@ -442,7 +540,7 @@ export default function Portfolio() {
                       <h3 className="text-sm font-semibold text-foreground mb-1">Consultathon Winner</h3>
                       <p className="text-xs text-muted-foreground mb-2">180 DC MUJ, April 2025</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
-                        Won the Consultathon competition organized by 180 DC MUJ, presented a solution for a real-world case study.
+                        Won the Consultathon organized by 180 DC MUJ — presented a scaling strategy for a vocational training social enterprise facing the challenge of expanding impact across India while preserving quality and financial sustainability.
                       </p>
                     </div>
                   </div>
@@ -547,7 +645,12 @@ export default function Portfolio() {
 
         {/* Footer */}
         <footer className="text-center text-sm text-muted-foreground pb-12">
-          <p>© 2026 Aryan Rastogi.</p>
+          <p>
+            © 2026 Aryan Rastogi · 
+            <a href="https://www.aryyandco.studio" target="_blank" rel="noopener noreferrer" className="text-accent-cold hover:text-accent-cold/80 transition-colors">Aryy & Co</a> · 
+            <a href="https://www.instagram.com/aryy.in_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold hover:text-accent-cold/80 transition-colors">aryy.in_</a> · 
+            <a href="https://www.instagram.com/nomnomsss_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold hover:text-accent-cold/80 transition-colors">nomnomsss_</a>
+          </p>
         </footer>
       </div>
     </div>

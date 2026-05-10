@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | Aryan Rastogi",
   },
   description:
-    "Aryan Rastogi — Machine Learning & AI Engineer. Portfolio featuring projects, experience, achievements, and writing.",
+    "Aryan Rastogi — AI Engineer, Researcher & Founder. Building at the intersection of AI safety, applied ML, and product. Founder of Aryy & Co.",
   alternates: {
     canonical: "https://www.aryy.in/",
   },
@@ -26,13 +26,22 @@ export const metadata: Metadata = {
     "Computer Vision",
     "aryy8",
     "aryy.in",
+    "AI safety",
+    "LLM safety",
+    "SafeAlign",
+    "Aryy and Co",
+    "tech agency",
+    "alignment tax",
+    "RLHF",
+    "DPO",
+    "NLP",
   ],
   openGraph: {
     type: "website",
     url: "https://www.aryy.in/",
     title: "Aryan Rastogi",
     description:
-      "Machine Learning & AI Engineer — portfolio featuring projects, experience, achievements, and writing.",
+      "AI Engineer · Researcher · Founder — portfolio featuring research, projects, experience, and writing.",
     siteName: "Aryan Rastogi",
     images: [
       {
@@ -47,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Aryan Rastogi",
     description:
-      "Machine Learning & AI Engineer — portfolio featuring projects, experience, achievements, and writing.",
+      "AI Engineer · Researcher · Founder — portfolio featuring research, projects, experience, and writing.",
     images: ["/favicon.png"],
   },
   icons: {

@@ -10,7 +10,7 @@ export function SectionHeader({ children, className }: SectionHeaderProps) {
   return (
     <h2
       className={cn(
-        "text-xs uppercase tracking-widest text-muted-foreground/80 mb-8 font-mono font-semibold",
+        "text-xs uppercase tracking-widest text-foreground font-bold mb-8 font-mono",
         className,
       )}
     >

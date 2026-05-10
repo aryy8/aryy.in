@@ -66,7 +66,7 @@ export function HackathonBuilds() {
               {/* Tech Badges */}
               <div className="flex flex-wrap gap-1.5 mb-3">
                 <TechBadge className="scale-90">React</TechBadge>
-                <TechBadge className="scale-90">Typescript</TechBadge>
+                <TechBadge className="scale-90">TypeScript</TechBadge>
                 <TechBadge className="scale-90">n8n</TechBadge>
                 <TechBadge className="scale-90">Chrome API</TechBadge>
               </div>
@@ -102,7 +102,7 @@ export function HackathonBuilds() {
               <div className="flex flex-wrap gap-1.5 mb-3">
                 <TechBadge className="scale-90">React</TechBadge>
                 <TechBadge className="scale-90">OSRM</TechBadge>
-                <TechBadge className="scale-90">Google JS APIs</TechBadge>
+                <TechBadge className="scale-90">Google APIs</TechBadge>
                 <TechBadge className="scale-90">Leaflet</TechBadge>
               </div>
               
@@ -171,9 +171,9 @@ export function HackathonBuilds() {
               {/* Tech Badges */}
               <div className="flex flex-wrap gap-1.5 mb-3">
                 <TechBadge className="scale-90">React</TechBadge>
-                <TechBadge className="scale-90">framer-motion</TechBadge>
-                <TechBadge className="scale-90">tailwind</TechBadge>
-                <TechBadge className="scale-90">shadcn/ui</TechBadge>
+                <TechBadge className="scale-90">Framer Motion</TechBadge>
+                <TechBadge className="scale-90">Tailwind</TechBadge>
+                <TechBadge className="scale-90">Shadcn</TechBadge>
               </div>
               
               {/* Hackathon Info */}
