@@ -73,7 +73,7 @@ export function GitHubContributionGrid() {
   }
 
   return (
-    <div className="glass-card p-6 rounded-xl space-y-5 hover:border-foreground/40 transition-all duration-300">
+    <div className="glass-card p-6 rounded-xl space-y-5 hover:border-foreground/40">
       <div className="flex items-center justify-between">
         <p className="text-sm text-muted-foreground">
           <span className="text-foreground font-semibold">{totalCount}</span> contributions in the last year by{" "}
@@ -97,7 +97,7 @@ export function GitHubContributionGrid() {
               {week.map((day, dayIndex) => (
                 <div
                   key={`${weekIndex}-${dayIndex}`}
-                  className={`size-3 rounded-sm ${getLevelColor(day.level)} transition-all hover:ring-2 hover:ring-foreground/40 cursor-pointer`}
+                  className={`size-3 rounded-sm ${getLevelColor(day.level)} hover:ring-2 hover:ring-foreground/40 cursor-pointer`}
                   title={`${day.date}: ${day.count} contributions`}
                 />
               ))}

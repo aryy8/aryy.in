@@ -10,7 +10,7 @@ export function LiveProjects() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Perplex Project */}
         <div className="cursor-pointer" onClick={() => window.open('https://perplex.aryy.in', '_blank')}>
-          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
+          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
@@ -40,7 +40,7 @@ export function LiveProjects() {
 
         {/* teXlab Project */}
         <div className="cursor-pointer" onClick={() => window.open('https://texlab.aryy.in', '_blank')}>
-          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
+          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 

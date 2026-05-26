@@ -112,7 +112,7 @@ export function LeetCodeHeatmap({ submissionCalendar }: { submissionCalendar?: R
                 <div
                   key={`${weekIndex}-${dayIndex}`}
                   title={`${day.count} submissions on ${day.date.toLocaleDateString()}`}
-                  className={`size-3 rounded-sm ${getDotColor(day.count)} transition-all hover:ring-2 hover:ring-foreground/40 cursor-pointer`}
+                  className={`size-3 rounded-sm ${getDotColor(day.count)} hover:ring-2 hover:ring-foreground/40 cursor-pointer`}
                 />
               ))}
             </div>

@@ -73,8 +73,8 @@ export default function Portfolio() {
                 className="w-full h-full object-cover object-bottom"
               />
               {/* Fade into page (bottom + sides) */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/85 via-transparent to-transparent" />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/35 via-transparent to-background/35" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/80 dark:from-background/85 via-background/20 dark:via-transparent to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/10 dark:from-background/35 via-transparent to-background/10 dark:to-background/35" />
             </div>
 
             {/* Profile Content - Left aligned */}
@@ -91,10 +91,13 @@ export default function Portfolio() {
                   {/* Text Content */}
                   <div className="flex-1 text-left pb-2">
                     <div className="flex items-center gap-2 mb-2">
-                      <h1 className="text-3xl sm:text-4xl lg:text-5xl font text-foreground tracking-tight" style={{fontFamily: "'Georgia', serif"}}>Aryan Rastogi</h1>
-                      <img src="/verified.webp" alt="Verified" className="size-5 sm:size-6" />
+                      <h1 className="text-3xl sm:text-4xl lg:text-5xl font text-foreground tracking-tight [text-shadow:0_1px_1px_rgba(255,255,255,1)] dark:[text-shadow:none]" style={{fontFamily: "'Georgia', serif"}}>Aryan Rastogi</h1>
+                      <div className="relative flex items-center justify-center">
+                        <div className="absolute inset-0 bg-white rounded-full scale-75 dark:hidden" />
+                        <img src="/verified.webp" alt="Verified" className="relative size-5 sm:size-6" />
+                      </div>
                     </div>
-                    <p className="mb-3"><TypewriterAnimation /></p>
+                    <p className="mb-3 [text-shadow:0_1px_1px_rgba(255,255,255,1)] dark:[text-shadow:none]"><TypewriterAnimation /></p>
 
                     <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-6 text-sm text-muted-foreground mb-4">
                       <div className="flex items-center gap-2">
@@ -105,7 +108,7 @@ export default function Portfolio() {
                         <Mail className="size-4" />
                         <a
                           href="mailto:aryanfeb17@gmail.com"
-                          className="hover:text-primary transition-colors hover:underline underline-offset-4"
+                          className="hover:text-primary hover:underline underline-offset-4"
                         >
                           aryanfeb17@gmail.com
                         </a>
@@ -117,7 +120,7 @@ export default function Portfolio() {
                     href="https://github.com/aryy8"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground transition-all duration-200 hover:border-foreground hover:text-foreground"
+                    className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground hover:border-foreground hover:text-foreground"
                   >
                     <Github className="size-3.5" />
                     GitHub
@@ -126,7 +129,7 @@ export default function Portfolio() {
                     href="https://linkedin.com/in/aryy8"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground transition-all duration-200 hover:border-foreground hover:text-foreground"
+                    className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground hover:border-foreground hover:text-foreground"
                   >
                     <Linkedin className="size-3.5" />
                     LinkedIn
@@ -135,7 +138,7 @@ export default function Portfolio() {
                     href="https://x.com/aryyann8"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground transition-all duration-200 hover:border-foreground hover:text-foreground"
+                    className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground hover:border-foreground hover:text-foreground"
                   >
                     <svg className="size-3.5" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -146,7 +149,7 @@ export default function Portfolio() {
                     href="RESUME_ARYANRASTOGI.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground transition-all duration-200 hover:border-foreground hover:text-foreground"
+                    className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground hover:border-foreground hover:text-foreground"
                   >
                     <FileText className="size-3.5" />
                     Resume
@@ -252,7 +255,7 @@ export default function Portfolio() {
             <SectionHeader>Work Experience</SectionHeader>
             <div className="space-y-2">
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+              <Card className="glass-card group hover:border-foreground/40">
                 <CardContent className="p-4">
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
                     <div className="flex items-start gap-3 min-w-0">
@@ -273,7 +276,7 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+              <Card className="glass-card group hover:border-foreground/40">
                 <CardContent className="p-4">
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
                     <div className="flex items-start gap-3 min-w-0">
@@ -294,7 +297,7 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+              <Card className="glass-card group hover:border-foreground/40">
                 <CardContent className="p-4">
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
                     <div className="flex items-start gap-3 min-w-0">
@@ -320,7 +323,7 @@ export default function Portfolio() {
               </Card>
 
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+              <Card className="glass-card group hover:border-foreground/40">
                 <CardContent className="p-4">
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
                     <div className="flex items-start gap-3 min-w-0">
@@ -352,7 +355,7 @@ export default function Portfolio() {
             <SectionHeader>Research</SectionHeader>
             <div className="space-y-3">
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+              <Card className="glass-card group hover:border-foreground/40">
                 <CardContent className="p-5">
                   <div className="flex flex-col gap-3">
                     <div>
@@ -376,7 +379,7 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+              <Card className="glass-card group hover:border-foreground/40">
                 <CardContent className="p-5">
                   <div className="flex flex-col gap-3">
                     <div>
@@ -413,7 +416,7 @@ export default function Portfolio() {
           <section id="achievements" className="mb-16 scroll-mt-20 snap-start">
             <SectionHeader>Achievements & Recognition</SectionHeader>
             <div className="space-y-3">
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+              <Card className="glass-card group hover:border-foreground/40">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
@@ -430,7 +433,7 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+              <Card className="glass-card group hover:border-foreground/40">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
@@ -447,7 +450,7 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+              <Card className="glass-card group hover:border-foreground/40">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
@@ -464,7 +467,7 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+              <Card className="glass-card group hover:border-foreground/40">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
@@ -481,7 +484,7 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+              <Card className="glass-card group hover:border-foreground/40">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
@@ -498,7 +501,7 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+              <Card className="glass-card group hover:border-foreground/40">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
@@ -514,7 +517,7 @@ export default function Portfolio() {
                   </div>
                 </CardContent>
               </Card>
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+              <Card className="glass-card group hover:border-foreground/40">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
@@ -530,7 +533,7 @@ export default function Portfolio() {
                   </div>
                 </CardContent>
               </Card>
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+              <Card className="glass-card group hover:border-foreground/40">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
@@ -554,7 +557,7 @@ export default function Portfolio() {
             <SectionHeader>Blogs</SectionHeader>
             <div className="space-y-4">
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+              <Card className="glass-card group hover:border-foreground/40">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
@@ -586,7 +589,7 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card group hover:border-foreground/40 transition-all duration-300">
+              <Card className="glass-card group hover:border-foreground/40">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-5">
                     <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">

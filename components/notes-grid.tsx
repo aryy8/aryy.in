@@ -5,7 +5,7 @@ export function NotesGrid() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Deep Learning Note */}
       <div className="cursor-pointer" onClick={() => window.open('https://www.notion.so/Deep-Learning-2e951d8d6c098023bae4e3a8d2907e3d?source=copy_link', '_blank')}>
-        <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
+        <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
           {/* Cover Image Section */}
           <div className="relative h-28 overflow-hidden">
             <img 
@@ -34,7 +34,7 @@ export function NotesGrid() {
 
       {/* Python Note */}
       <div className="cursor-pointer" onClick={() => window.open('https://www.notion.so/Python-2eb51d8d6c09809b9f67cfeb30e1a8e4', '_blank')}>
-        <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
+        <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
           {/* Cover Image Section */}
           <div className="relative h-28 overflow-hidden">
             <img 
@@ -63,7 +63,7 @@ export function NotesGrid() {
 
       {/* NLP */}
       <div className="cursor-pointer" onClick={() => window.open('https://www.notion.so/Python-https://www.notion.so/NLP-2f151d8d6c0980d5bacee05184720543', '_blank')}>
-        <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
+        <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
           {/* Cover Image Section */}
           <div className="relative h-28 overflow-hidden">
             <img 
@@ -92,7 +92,7 @@ export function NotesGrid() {
 
       {/* Leetcode */}
       <div className="cursor-pointer" onClick={() => window.open('https://www.notion.so/leetcode-2ec51d8d6c09808cb9e3d86dc8d4365c', '_blank')}>
-        <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
+        <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
           {/* Cover Image Section */}
           <div className="relative h-28 overflow-hidden">
             <img 

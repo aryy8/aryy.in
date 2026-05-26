@@ -11,7 +11,7 @@ export function HackathonBuilds() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Roadeye Project */}
         <div className="cursor-pointer">
-          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
+          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
@@ -46,7 +46,7 @@ export function HackathonBuilds() {
 
         {/* Prompt2Plugin Project */}
         <div className="cursor-pointer">
-          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
+          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
@@ -81,7 +81,7 @@ export function HackathonBuilds() {
 
         {/* Uniway Project */}
         <div className="cursor-pointer">
-          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
+          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
@@ -116,7 +116,7 @@ export function HackathonBuilds() {
 
         {/* janconnectai Project */}
         <div className="cursor-pointer">
-          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
+          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
@@ -151,7 +151,7 @@ export function HackathonBuilds() {
 
         {/* Silvercircle Project */}
         <div className="cursor-pointer">
-          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
+          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
@@ -186,7 +186,7 @@ export function HackathonBuilds() {
 
         {/* Geoverse Project */}
         <div className="cursor-pointer">
-          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 transition-all duration-300 hover:shadow-lg">
+          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
