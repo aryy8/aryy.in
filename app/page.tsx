@@ -371,8 +371,17 @@ export default function Portfolio() {
                       <p className="text-xs text-muted-foreground leading-relaxed italic">
                         Taxonomy-guided label denoising outperforms model scale — a 66M DistilBERT on filtered data beats a 774M baseline on safety classification.
                       </p>
-                      <div className="mt-2">
+                      <div className="mt-2 flex items-center gap-2">
                         <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-muted/50 text-muted-foreground border border-border/30">Under Review / Preprint</span>
+                        <a
+                          href="/safealign-6.pdf"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground hover:border-foreground hover:text-foreground"
+                        >
+                          <FileText className="size-3.5" />
+                          PDF
+                        </a>
                       </div>
                     </div>
                   </div>
