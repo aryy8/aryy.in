@@ -47,7 +47,7 @@ function TypewriterAnimation() {
   }, [charIndex, currentPhraseIndex, phrases])
 
   return (
-    <span className="text-base sm:text-lg lg:text-xl text-primary font-medium">
+    <span className="text-base sm:text-lg lg:text-xl text-primary font-medium inline-block min-h-[3.5em]">
       <span key={currentPhraseIndex} className="transition-all duration-300 ease-in-out roll-in">{currentText}</span>
       <span className="animate-pulse">|</span>
     </span>
@@ -97,7 +97,7 @@ export default function Portfolio() {
                         <img src="/verified.webp" alt="Verified" className="relative size-5 sm:size-6" />
                       </div>
                     </div>
-                    <p className="mb-3 [text-shadow:0_1px_1px_rgba(255,255,255,1)] dark:[text-shadow:none]"><TypewriterAnimation /></p>
+                    <p className="mb-1 [text-shadow:0_1px_1px_rgba(255,255,255,1)] dark:[text-shadow:none]"><TypewriterAnimation /></p>
 
                     <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-6 text-sm text-muted-foreground mb-4">
                       <div className="flex items-center gap-2">
@@ -170,7 +170,7 @@ export default function Portfolio() {
               </p>
 
               <p>
-                I am a computer science engineering student working on <span className="text-primary font-medium">machine learning</span>, <span className="text-primary font-medium">NLP</span>, and <span className="text-primary font-medium">applied AI systems</span>. I run <a href="https://www.aryyandco.studio" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">Aryy & Co</a>, a tech agency helping early-stage teams build and ship products. I create tech content at <a href="https://www.instagram.com/aryy.in_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">@aryy.in_</a> (coming soon).
+                I am a computer science engineering student working on <span className="text-primary font-medium">machine learning</span>, <span className="text-primary font-medium">NLP</span>, and <span className="text-primary font-medium">applied AI systems</span>. I run <a href="https://www.aryyandco.studio" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">Aryy & Co</a>, a tech agency helping early-stage teams build and ship products. I create tech content at <a href="https://www.instagram.com/aryy.in_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">@aryy.in_</a>.
                 I craft effective prompts, build <span className="text-primary font-medium">clean frontends</span>, and work comfortably across <span className="text-primary font-medium">backend</span> systems.
               </p>
 
