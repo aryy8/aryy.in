@@ -260,6 +260,27 @@ export default function Portfolio() {
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
                     <div className="flex items-start gap-3 min-w-0">
                       <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                        <img src="/amazon_logo.jpeg" alt="Amazon" className="w-full h-full object-cover" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base font-semibold mb-1">Amazon ML Summer School</h3>
+                        <p className="text-xs text-muted-foreground mb-2">Amazon  •  2026</p>
+                        <p className="text-xs text-muted-foreground/80 leading-relaxed">
+                          Selected for the prestigious Amazon ML Summer School 2026 program, an intensive machine learning education initiative by Amazon. One of 3,000 students selected from over 1.4 lakh applicants nationwide.</p>
+                      </div>
+                    </div>
+                    <div className="text-left sm:text-right shrink-0">
+                      <p className="text-xs text-muted-foreground">Jul 2026 - Present</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="glass-card group hover:border-foreground/40">
+                <CardContent className="p-4">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
+                    <div className="flex items-start gap-3 min-w-0">
+                      <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
                         <img src="/sylusai.webp" alt="SfedU" className="w-full h-full object-cover" />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -371,17 +392,8 @@ export default function Portfolio() {
                       <p className="text-xs text-muted-foreground leading-relaxed italic">
                         Taxonomy-guided label denoising outperforms model scale — a 66M DistilBERT on filtered data beats a 774M baseline on safety classification.
                       </p>
-                      <div className="mt-2 flex items-center gap-2">
+                      <div className="mt-2">
                         <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-muted/50 text-muted-foreground border border-border/30">Under Review / Preprint</span>
-                        <a
-                          href="/safeAlign-6.pdf"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground hover:border-foreground hover:text-foreground"
-                        >
-                          <FileText className="size-3.5" />
-                          PDF
-                        </a>
                       </div>
                     </div>
                   </div>
