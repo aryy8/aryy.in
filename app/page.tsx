@@ -146,7 +146,7 @@ export default function Portfolio() {
                     X
                   </a>
                   <a
-                    href="RESUME_ARYANRASTOGI.pdf"
+                    href="/aryan_resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground hover:border-foreground hover:text-foreground"
