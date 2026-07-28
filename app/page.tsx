@@ -18,9 +18,7 @@ import { useState, useEffect } from "react"
 function TypewriterAnimation() {
   const phrases = [
     "AI Engineer · Applied AI × Research",
-    "ML · NLP · AI Safety", 
-    "CS @ Manipal",
-    "Building @ Aryy & Co."
+    "CS @ Manipal"
   ]
   
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
@@ -170,13 +168,15 @@ export default function Portfolio() {
               </p>
 
               <p>
-                I am a computer science engineering student working on <span className="text-primary font-medium">machine learning</span>, <span className="text-primary font-medium">NLP</span>, and <span className="text-primary font-medium">applied AI systems</span>. I run <a href="https://www.aryyandco.studio" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">Aryy & Co</a>, a tech agency helping early-stage teams build and ship products. I create tech content at <a href="https://www.instagram.com/aryy.in_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">@aryy.in_</a>.
+                I am a computer science engineering student working on <span className="text-primary font-medium">machine learning</span>, <span className="text-primary font-medium">NLP</span>, and <span className="text-primary font-medium">applied AI systems</span>.
+                 {/* I run <a href="https://www.aryyandco.studio" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">Aryy & Co</a>, a tech agency helping early-stage teams build and ship products. */}
+                 {/* I create tech content at <a href="https://www.instagram.com/aryy.in_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">@aryy.in_</a>. */}
                 I craft effective prompts, build <span className="text-primary font-medium">clean frontends</span>, and work comfortably across <span className="text-primary font-medium">backend</span> systems.
               </p>
 
-              <p>
+              {/* <p>
                 Beyond work, I make food edits at <a href="https://www.instagram.com/nomnomsss_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">@nomnomsss_</a>.
-              </p>
+              </p> */}
 
             </div>
           </section>
@@ -587,6 +587,38 @@ export default function Portfolio() {
                     <div className="flex-1">
                       <h3 className="text-sm font-semibold text-foreground mb-1">
                         <a
+                          href="https://medium.com/@aryanfeb17/building-an-ai-that-draws-diagrams-taught-me-nothing-about-ai-and-everything-about-systems-design-c3f87185de7d?sharedUserId=aryanfeb17"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-primary transition-colors"
+                        >
+                           Building an AI That Draws Diagrams Taught Me Nothing About AI and Everything About Systems Design
+
+                        </a>
+                      </h3>
+                      <p className="text-xs text-muted-foreground mb-2">Medium • Published 2026</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        Tried to build a text-to-TikZ diagram generator. Got it wrong twice before figuring out why.
+                      </p>
+                      <div className="flex flex-wrap gap-1 mt-3">
+                        <TechBadge className="scale-90">System Design</TechBadge>
+                        <TechBadge className="scale-90">Prompt Engineering</TechBadge>
+                        <TechBadge className="scale-90">AI Tools</TechBadge>
+
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="glass-card group hover:border-foreground/40">
+                <CardContent className="p-5">
+                  <div className="flex items-start gap-5">
+                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
+                      <img src="/medium.webp" alt="Medium" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-sm font-semibold text-foreground mb-1">
+                        <a
                           href="https://medium.com/@aryanfeb17/implementing-deep-learning-by-diving-deep-into-the-black-box-c26b28678309"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -671,9 +703,9 @@ export default function Portfolio() {
         <footer className="text-center text-sm text-muted-foreground pb-12">
           <p>
             © 2026 Aryan Rastogi · 
-            <a href="https://www.aryyandco.studio" target="_blank" rel="noopener noreferrer" className="text-accent-cold hover:text-accent-cold/80 transition-colors">Aryy & Co</a> · 
+            {/* <a href="https://www.aryyandco.studio" target="_blank" rel="noopener noreferrer" className="text-accent-cold hover:text-accent-cold/80 transition-colors">Aryy & Co</a> · 
             <a href="https://www.instagram.com/aryy.in_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold hover:text-accent-cold/80 transition-colors">aryy.in_</a> · 
-            <a href="https://www.instagram.com/nomnomsss_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold hover:text-accent-cold/80 transition-colors">nomnomsss_</a>
+            <a href="https://www.instagram.com/nomnomsss_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold hover:text-accent-cold/80 transition-colors">nomnomsss_</a> */}
           </p>
         </footer>
       </div>
