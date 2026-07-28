@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
+import { Bot } from "lucide-react"
 
 const navItems = [
   { id: "about", label: "About" },
@@ -15,7 +16,12 @@ const navItems = [
 
 ]
 
-export function Navbar() {
+interface NavbarProps {
+  onToggleAgentic?: () => void
+  isAgenticMode?: boolean
+}
+
+export function Navbar({ onToggleAgentic, isAgenticMode }: NavbarProps) {
   const [activeSection, setActiveSection] = useState("about")
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
@@ -69,51 +75,77 @@ export function Navbar() {
       {/* Bottom border for definition */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
-        <div className="text-xl font-bold tracking-tight text-foreground/90 cursor-pointer hover:text-foreground transition-colors" onClick={scrollToTop}>aryy.in</div>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-14 flex items-center justify-between">
+        <div className="text-lg sm:text-xl font-bold tracking-tight text-foreground/90 cursor-pointer hover:text-foreground transition-colors shrink-0 font-mono" onClick={scrollToTop}>
+          aryy.in
+        </div>
 
         <div
-          className="hidden lg:grid absolute left-1/2 -translate-x-1/2 w-full max-w-2xl px-8"
+          className="hidden lg:grid absolute left-1/2 -translate-x-1/2 w-full max-w-xl px-8 items-center"
           style={{ gridTemplateColumns: `repeat(${navItems.length}, minmax(0, 1fr))` }}
         >
           {navItems.map(({ id, label }) => (
             <button
               key={id}
               onClick={() => scrollToSection(id)}
-              className="group relative flex flex-col items-center gap-2 cursor-pointer justify-center"
+              className="group relative flex items-center justify-center cursor-pointer py-2"
+              title={label}
             >
               <div
                 className={cn(
-                  "w-2 h-2 rounded-full transition-all duration-300",
-                  activeSection === id ? "bg-foreground scale-150" : "bg-foreground/30 group-hover:bg-foreground/60",
+                  "w-1.5 h-1.5 rounded-full transition-all duration-300",
+                  activeSection === id ? "bg-foreground scale-150" : "bg-foreground/30 group-hover:bg-foreground/70",
                 )}
               />
-              <span className="text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-foreground/50 whitespace-nowrap">
-                {label}
-              </span>
             </button>
           ))}
         </div>
 
-        {/* Theme toggle button */}
-        <button
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="flex items-center justify-center w-9 h-9"
-          aria-label="Toggle theme"
-        >
-          <div
-            className="transition-transform duration-500"
-            style={{
-              transform: mounted && theme === "light" ? "rotate(180deg)" : "rotate(0deg)",
-              transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)",
-            }}
+        {/* Right side controls: Minimal human | agent toggle + Theme toggle */}
+        <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+          {onToggleAgentic && (
+            <div className="inline-flex items-center p-0.5 rounded-full border border-border/70 bg-secondary/30 backdrop-blur-xs">
+              <button
+                onClick={() => isAgenticMode && onToggleAgentic()}
+                className={cn(
+                  "px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-mono transition-all cursor-pointer",
+                  !isAgenticMode ? "bg-foreground text-background font-medium shadow-2xs" : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                human
+              </button>
+              <button
+                onClick={() => !isAgenticMode && onToggleAgentic()}
+                className={cn(
+                  "px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-mono transition-all cursor-pointer",
+                  isAgenticMode ? "bg-foreground text-background font-medium shadow-2xs" : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                agent
+              </button>
+            </div>
+          )}
+
+          {/* Theme toggle button */}
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted/50 transition-colors cursor-pointer"
+            aria-label="Toggle theme"
           >
-            <svg viewBox="0 0 48 48" width="18" height="18" className="fill-foreground">
-              <path d="M14,24A10,10,0,0,0,24,34V14A10,10,0,0,0,14,24Z"/>
-              <path d="M24,2A22,22,0,1,0,46,24,21.9,21.9,0,0,0,24,2ZM6,24A18.1,18.1,0,0,1,24,6v8a10,10,0,0,1,0,20v8A18.1,18.1,0,0,1,6,24Z"/>
-            </svg>
-          </div>
-        </button>
+            <div
+              className="transition-transform duration-500"
+              style={{
+                transform: mounted && theme === "light" ? "rotate(180deg)" : "rotate(0deg)",
+                transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+              }}
+            >
+              <svg viewBox="0 0 48 48" width="17" height="17" className="fill-foreground">
+                <path d="M14,24A10,10,0,0,0,24,34V14A10,10,0,0,0,14,24Z"/>
+                <path d="M24,2A22,22,0,1,0,46,24,21.9,21.9,0,0,0,24,2ZM6,24A18.1,18.1,0,0,1,24,6v8a10,10,0,0,1,0,20v8A18.1,18.1,0,0,1,6,24Z"/>
+              </svg>
+            </div>
+          </button>
+        </div>
       </div>
     </nav>
   )

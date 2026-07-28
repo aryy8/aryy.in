@@ -61,8 +61,8 @@ export const metadata: Metadata = {
     images: ["/favicon.png"],
   },
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/kfcsnoopy.jpg",
+    apple: "/kfcsnoopy.jpg",
   },
 }
 

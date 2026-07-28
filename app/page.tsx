@@ -13,12 +13,15 @@ import { HackathonBuilds } from "@/components/hackathon-builds"
 import { NotesGrid } from "@/components/notes-grid"
 import { Mail, MapPin, Award } from "lucide-react"
 import { Github, Linkedin, FileText, Twitter } from "lucide-react"
+import { cn } from "@/lib/utils"
 import { useState, useEffect } from "react"
+import { AgenticView } from "@/components/agentic-view"
+import { Bot } from "lucide-react"
 
 function TypewriterAnimation() {
   const phrases = [
     "AI Engineer · Applied AI × Research",
-    "CS @ Manipal"
+    "CS @ Manipal",
   ]
   
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
@@ -53,114 +56,155 @@ function TypewriterAnimation() {
 }
 
 export default function Portfolio() {
+  const [isAgenticMode, setIsAgenticMode] = useState(false)
+
   return (
     <div className="min-h-screen bg-background text-foreground relative">
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-background to-background pointer-events-none" />
 
-      <Navbar />
+      <Navbar onToggleAgentic={() => setIsAgenticMode(!isAgenticMode)} isAgenticMode={isAgenticMode} />
 
       <div className="relative z-10 flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-20 gap-10 sm:gap-12 pt-24 sm:pt-32 scroll-smooth">
-        <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto snap-y snap-mandatory">
-          {/* Hero Section */}
-          <section className="mb-16 snap-start">
-            {/* Cover Photo - Full Width */}
-            <div className="relative w-full h-40 sm:h-52 lg:h-64 overflow-hidden -mt-12 sm:-mt-20">
+        <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto">
+          {/* Hero Section - LinkedIn & Twitter Inspired Senior UI Design */}
+          <section className="mb-16">
+            {/* Cover Photo Banner - Crisp & Clear */}
+            <div className="relative w-full h-44 sm:h-56 lg:h-64 overflow-hidden rounded-2xl -mt-12 sm:-mt-20 border border-border/40">
               <img 
-                src="/cover_snoopy.webp" 
+                src="/surfing.png" 
                 alt="Cover Photo"
-                className="w-full h-full object-cover object-bottom"
+                className="w-full h-full object-cover object-center scale-x-[-1]"
               />
-              {/* Fade into page (bottom + sides) */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/80 dark:from-background/85 via-background/20 dark:via-transparent to-transparent" />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/10 dark:from-background/35 via-transparent to-background/10 dark:to-background/35" />
             </div>
 
-            {/* Profile Content - Left aligned */}
-            <div className="relative -mt-16 sm:-mt-20 lg:-mt-24 px-4 sm:px-6 lg:px-8">
-              <div className="max-w-4xl mx-auto">
-                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
-                  {/* Profile Picture */}
-                  <div className="relative">
-                    <div className="size-24 sm:size-28 lg:size-32 rounded-xl border-4 border-background shadow-lg overflow-hidden bg-muted/ backdrop-blur-sm">
-                      <img src="/snoopypfp.webp" alt="Aryan Rastogi" className="w-full h-full object-cover" />
+            {/* Profile Content Area */}
+            <div className="relative -mt-16 sm:-mt-20 lg:-mt-22 px-2 sm:px-4">
+              {/* Avatar and Top Actions Header Row */}
+              <div className="flex flex-row items-end justify-between mb-4 gap-4">
+                {/* Profile Picture (Circular, Twitter/LinkedIn style) */}
+                <div className="relative shrink-0">
+                  <div className="size-28 sm:size-36 lg:size-40 rounded-full border-4 sm:border-[5px] border-background bg-card shadow-xl overflow-hidden shrink-0 ring-1 ring-border/20 transition-transform duration-300 hover:scale-[1.02]">
+                    <img 
+                      src="/profilepic.jpg" 
+                      alt="Aryan Rastogi" 
+                      className="w-full h-full object-cover object-center" 
+                    />
+                  </div>
+                </div>
+
+                {/* Top Action Row: Logo Badges */}
+                <div className="flex items-center gap-2.5 sm:gap-3 pb-1 flex-wrap justify-end">
+                  {/* Clean Round Logo Badges */}
+                  <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                    <div className="size-8 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Sylus AI">
+                      <img src="/sylusai.webp" alt="Sylus AI" className="w-full h-full object-contain rounded-full" />
+                    </div>
+                    <div className="size-8 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Amazon ML Summer School">
+                      <img src="/amazon_logo.jpeg" alt="Amazon" className="w-full h-full object-contain rounded-full" />
+                    </div>
+                    <div className="size-8 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Southern Federal University (ICTIS) Russia">
+                      <img src="/sfedu.webp" alt="SfedU" className="w-full h-full object-contain rounded-full" />
+                    </div>
+                    <div className="size-8 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Elumina Street Solutions">
+                      <img src="/elumina.webp" alt="Elumina" className="w-full h-full object-contain rounded-full" />
+                    </div>
+                    <div className="size-8 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="AI²: Computational Linguistics & Vision Lab">
+                      <img src="/ai2.webp" alt="AI² Lab" className="w-full h-full object-contain rounded-full" />
+                    </div>
+                    <div className="size-8 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Manipal University Jaipur">
+                      <img src="/muj.webp" alt="Manipal University Jaipur" className="w-full h-full object-contain rounded-full" />
                     </div>
                   </div>
+                </div>
+              </div>
 
-                  {/* Text Content */}
-                  <div className="flex-1 text-left pb-2">
-                    <div className="flex items-center gap-2 mb-2">
-                      <h1 className="text-3xl sm:text-4xl lg:text-5xl font text-foreground tracking-tight [text-shadow:0_1px_1px_rgba(255,255,255,1)] dark:[text-shadow:none]" style={{fontFamily: "'Georgia', serif"}}>Aryan Rastogi</h1>
-                      <div className="relative flex items-center justify-center">
-                        <div className="absolute inset-0 bg-white rounded-full scale-75 dark:hidden" />
-                        <img src="/verified.webp" alt="Verified" className="relative size-5 sm:size-6" />
-                      </div>
-                    </div>
-                    <p className="mb-1 [text-shadow:0_1px_1px_rgba(255,255,255,1)] dark:[text-shadow:none]"><TypewriterAnimation /></p>
+              {/* Main Bio Info - Full Width */}
+              <div className="w-full space-y-3.5">
+                {/* Name & Blue Tick */}
+                <div className="flex items-center gap-2.5 flex-wrap">
+                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-foreground tracking-tight" style={{ fontFamily: "'Georgia', serif" }}>
+                    Aryan Rastogi
+                  </h1>
+                  <div className="relative flex items-center justify-center shrink-0">
+                    <div className="absolute inset-0 bg-white rounded-full scale-75 dark:hidden" />
+                    <img src="/verified.webp" alt="Verified" className="relative size-5 sm:size-6" />
+                  </div>
+                </div>
 
-                    <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-6 text-sm text-muted-foreground mb-4">
-                      <div className="flex items-center gap-2">
-                        <MapPin className="size-4" />
-                        <span>Jaipur, India</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Mail className="size-4" />
-                        <a
-                          href="mailto:aryanfeb17@gmail.com"
-                          className="hover:text-primary hover:underline underline-offset-4"
-                        >
-                          aryanfeb17@gmail.com
-                        </a>
-                      </div>
-                    </div>
+                {/* Clean Headline - Applied AI × Research on new line */}
+                <p className="text-sm sm:text-base text-foreground/90 font-medium leading-relaxed">
+                  AI Engineer @ Sylus AI <span className="text-muted-foreground/60">·</span> Amazon MLSS'26 <span className="text-muted-foreground/60">·</span> CPP-2 @ HPE
+                  <br />
+                  Applied AI × Research
+                </p>
 
-                    <div className="flex flex-wrap justify-start gap-2">
+                {/* Location & Email Meta */}
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm text-muted-foreground pt-0.5">
+                  <div className="flex items-center gap-1.5">
+                    <MapPin className="size-3.5 text-muted-foreground/80 shrink-0" />
+                    <span>Jaipur, India</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Mail className="size-3.5 text-muted-foreground/80 shrink-0" />
+                    <a href="mailto:aryanfeb17@gmail.com" className="text-foreground/90 hover:text-primary hover:underline underline-offset-4 font-medium transition-colors">
+                      aryanfeb17@gmail.com
+                    </a>
+                  </div>
+                </div>
+
+                {/* Premium Action Pill Buttons */}
+                <div className="flex flex-wrap items-center gap-2 pt-2">
                   <a
                     href="https://github.com/aryy8"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground hover:border-foreground hover:text-foreground"
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium border border-border/70 bg-secondary/40 text-foreground hover:border-foreground dark:hover:border-white transition-colors duration-200 shadow-2xs group"
                   >
-                    <Github className="size-3.5" />
-                    GitHub
+                    <Github className="size-3.5 transition-transform group-hover:scale-110" />
+                    <span>GitHub</span>
                   </a>
                   <a
                     href="https://linkedin.com/in/aryy8"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground hover:border-foreground hover:text-foreground"
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium border border-border/70 bg-secondary/40 text-foreground hover:border-foreground dark:hover:border-white transition-colors duration-200 shadow-2xs group"
                   >
-                    <Linkedin className="size-3.5" />
-                    LinkedIn
+                    <Linkedin className="size-3.5 transition-transform group-hover:scale-110" />
+                    <span>LinkedIn</span>
                   </a>
                   <a
                     href="https://x.com/aryyann8"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground hover:border-foreground hover:text-foreground"
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium border border-border/70 bg-secondary/40 text-foreground hover:border-foreground dark:hover:border-white transition-colors duration-200 shadow-2xs group"
                   >
-                    <svg className="size-3.5" viewBox="0 0 24 24" fill="currentColor">
+                    <svg className="size-3.5 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
-                    X
+                    <span>X</span>
                   </a>
                   <a
                     href="/aryan_resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-3 h-8 text-xs border border-border/50 rounded-md text-foreground hover:border-foreground hover:text-foreground"
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium border border-border/70 bg-secondary/40 text-foreground hover:border-foreground dark:hover:border-white transition-colors duration-200 shadow-2xs group"
                   >
-                    <FileText className="size-3.5" />
-                    Resume
+                    <FileText className="size-3.5 transition-transform group-hover:scale-110" />
+                    <span>Resume</span>
                   </a>
-                </div>
-                  </div>
                 </div>
               </div>
             </div>
           </section>
 
+          {/* Conditional Agentic View or Standard Human Sections */}
+          {isAgenticMode ? (
+            <AgenticView />
+          ) : (
+            <>
+
           {/* About Section */}
-          <section id="about" className="mb-16 scroll-mt-20 snap-start">
+          <section id="about" className="mb-16 scroll-mt-20">
             <SectionHeader>About Me</SectionHeader>
             <div className="space-y-5 text-muted-foreground leading-relaxed text-base">
               <p className="border-l-4 border-primary/30 pl-4 italic text-muted-foreground">
@@ -182,7 +226,7 @@ export default function Portfolio() {
           </section>
 
           {/* Tech Stack */}
-          <section className="mb-16 snap-start">
+          <section className="mb-16">
             <SectionHeader>Tech Stack</SectionHeader>
             <div className="space-y-6">
               <div>
@@ -239,19 +283,19 @@ export default function Portfolio() {
           </section>
 
           {/* GitHub Contributions */}
-          <section className="mb-16 snap-start">
+          <section className="mb-16">
             <SectionHeader>GitHub Activity</SectionHeader>
             <GitHubContributionGrid />
           </section>
 
           {/* LeetCode Stats */}
-          <section id="leetcode" className="mb-16 scroll-mt-20 snap-start">
+          <section id="leetcode" className="mb-16 scroll-mt-20">
             <SectionHeader>LeetCode Stats</SectionHeader>
             <LeetCodeStats />
           </section>
 
           {/* Experience Section */}
-          <section id="experience" className="mb-16 scroll-mt-20 snap-start">
+          <section id="experience" className="mb-16 scroll-mt-20">
             <SectionHeader>Work Experience</SectionHeader>
             <div className="space-y-2">
 
@@ -372,7 +416,7 @@ export default function Portfolio() {
           </section>
 
           {/* Research Section */}
-          <section id="research" className="mb-16 scroll-mt-20 snap-start">
+          <section id="research" className="mb-16 scroll-mt-20">
             <SectionHeader>Research</SectionHeader>
             <div className="space-y-3">
 
@@ -434,7 +478,7 @@ export default function Portfolio() {
           <HackathonBuilds />
 
           {/* Achievements Section */}
-          <section id="achievements" className="mb-16 scroll-mt-20 snap-start">
+          <section id="achievements" className="mb-16 scroll-mt-20">
             <SectionHeader>Achievements & Recognition</SectionHeader>
             <div className="space-y-3">
               <Card className="glass-card group hover:border-foreground/40">
@@ -574,7 +618,7 @@ export default function Portfolio() {
           </section>
 
           {/* Blog Section */}
-          <section id="blog" className="mb-16 scroll-mt-20 snap-start">
+          <section id="blog" className="mb-16 scroll-mt-20">
             <SectionHeader>Blogs</SectionHeader>
             <div className="space-y-4">
 
@@ -687,16 +731,18 @@ export default function Portfolio() {
           </section>
 
           {/* Notes Section */}
-          <section id="notes" className="mb-16 scroll-mt-20 snap-start">
+          <section id="notes" className="mb-16 scroll-mt-20">
             <SectionHeader>Knowledge Base</SectionHeader>
             <NotesGrid />
           </section>
 
           {/* Live ML Playground */}
-          <section className="mb-16 snap-start">
+          <section className="mb-16">
             <SectionHeader>Live ML Playground</SectionHeader>
             <JupyterCell />
           </section>
+          </>
+          )}
         </main>
 
         {/* Footer */}

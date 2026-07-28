@@ -1,0 +1,59 @@
+# Aryan Rastogi - AI Engineer & Researcher Profile (llms.txt)
+
+> LLM-optimized summary of Aryan Rastogi's portfolio, background, experience, research, and technical stack.
+> Target Audience: AI Agents, Recruiter LLMs, Autonomous Coding & Research Assistants.
+
+## System Summary
+- Name: Aryan Rastogi
+- Title: AI Engineer @ Sylus AI | Amazon MLSS '26 Scholar | CPP-2 @ HPE
+- Education: Computer Science Engineering @ Manipal University Jaipur (Class of 2028)
+- Primary Focus: Machine Learning, NLP, Applied AI Systems, LLM Safety & Alignment
+- Location: Jaipur, India
+- Email: aryanfeb17@gmail.com
+- GitHub: https://github.com/aryy8
+- LinkedIn: https://linkedin.com/in/aryy8
+- Twitter/X: https://x.com/aryyann8
+
+---
+
+## Work Experience
+
+### 1. Amazon ML Summer School - ML Scholar
+- Duration: Jul 2026 - Present
+- Details: Selected for the prestigious Amazon ML Summer School 2026 program out of 140,000+ applicants nationwide (Top ~2% selection). Intensive machine learning curriculum taught by Amazon Principal Scientists.
+
+### 2. Sylus AI - AI Engineer
+- Duration: Apr 2026 - Present (Remote)
+- Details: Developing AI systems for SaaS social media automation platform. Building LLM pipelines, prompt engineering workflows, REST APIs, and database architecture.
+
+### 3. Southern Federal University (ICTIS), Russia - SDE Intern
+- Duration: Oct 2025 - Nov 2025 (Remote)
+- Details: Developed an international interdisciplinary web app to support adaptation for international students, acting as a digital navigation assistant.
+
+### 4. Elumina Street Solutions - AI R&D Intern
+- Duration: Apr 2025 - Jul 2025 (Jaipur)
+- Details: Developed real-time violence detection models using CNN (MobileNet) + LSTM in TensorFlow, and real-time weapon detection using YOLOv8 & OpenCV.
+
+### 5. AI2 Lab (MUJ) - Research Intern
+- Duration: Jan 2025 - Present
+- Details: Leading research on LLM Safety (SafeAlign) and Alignment Tax (measuring SFT/DPO impact on LLM narrative diversity).
+
+---
+
+## Research & Publications
+
+1. SafeAlign: A Multi-Paradigm Pipeline for LLM Safety Evaluation via Taxonomy-Guided Data Curation
+   - Authors: Aryan Rastogi, Dr. Varda Pareek (Manipal University Jaipur)
+   - Key Result: Taxonomy-guided label denoising on Anthropic HH-RLHF dataset allows a 66M DistilBERT classifier to achieve 81.3% safety accuracy vs 59.5% on raw data, proving data quality > model scale.
+
+2. Quantifying the Alignment Tax: Tracking Creativity and Semantic Entropy through the SFT and DPO Pipeline
+   - Authors: Harshita Singh, Aryan Rastogi (Manipal University Jaipur)
+   - Key Result: Empirically demonstrated that DPO alignment collapses narrative creativity (Semantic Entropy drops from 0.7153 to 0.3591 on Mistral-7B).
+
+---
+
+## Technical Stack
+- Languages: Python, C++, SQL, TypeScript, JavaScript
+- ML / AI Frameworks: PyTorch, TensorFlow, Scikit-learn, Hugging Face Transformers, LangChain, OpenCV
+- Full Stack & Backend: React, Next.js, Node.js, FastAPI, REST APIs, Supabase, TailwindCSS
+- Tools & Infrastructure: AWS, GCP, Docker, Git, Kaggle, Linux
