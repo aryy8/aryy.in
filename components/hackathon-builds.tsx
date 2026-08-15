@@ -50,7 +50,7 @@ export function HackathonBuilds() {
         </div>
 
         {/* Uniway Project */}
-        <div className="cursor-pointer flex">
+        <div className="cursor-pointer flex" onClick={() => window.open('https://uniway.aryy.in', '_blank')}>
           <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
