@@ -122,7 +122,7 @@ export function HackathonBuilds() {
               <img 
                 src="/janconnectai.webp" 
                 alt="JanConnectAI Project"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-cover"
               />
             </div>
             
