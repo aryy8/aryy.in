@@ -440,6 +440,12 @@ export default function Portfolio() {
             </div>
           </section>
 
+          {/* Live Projects Section */}
+          <LiveProjects />
+
+          {/* Hackathon Builds Section */}
+          <HackathonBuilds />
+
           {/* Research Section */}
           <section id="research" className="mb-16 scroll-mt-20">
             <SectionHeader>Research</SectionHeader>
@@ -495,12 +501,6 @@ export default function Portfolio() {
 
             </div>
           </section>
-
-          {/* Live Projects Section */}
-          <LiveProjects />
-
-          {/* Hackathon Builds Section */}
-          <HackathonBuilds />
 
           {/* Achievements Section */}
           <section id="achievements" className="mb-16 scroll-mt-20">
