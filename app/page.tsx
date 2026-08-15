@@ -76,7 +76,7 @@ export default function Portfolio() {
                 {/* Cover Photo Banner - Crisp & Clear */}
                 <div className="relative w-full h-44 sm:h-56 lg:h-64 overflow-hidden rounded-2xl -mt-12 sm:-mt-20 border border-border/40">
                   <img 
-                    src="/surfing.png" 
+                    src="/surfing.webp" 
                     alt="Cover Photo"
                     className="w-full h-full object-cover object-center scale-x-[-1]"
                   />
@@ -90,7 +90,7 @@ export default function Portfolio() {
                     <div className="relative shrink-0">
                       <div className="size-24 sm:size-36 lg:size-40 rounded-full border-4 sm:border-[5px] border-background bg-card shadow-xl overflow-hidden shrink-0 ring-1 ring-border/20 transition-transform duration-300 hover:scale-[1.02]">
                         <img 
-                          src="/profilepic.jpg" 
+                          src="/profilepic.webp" 
                           alt="Aryan Rastogi" 
                           className="w-full h-full object-cover object-center" 
                         />
@@ -102,8 +102,11 @@ export default function Portfolio() {
                       <div className="size-7 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Sylus AI">
                         <img src="/sylusai.webp" alt="Sylus AI" className="w-full h-full object-contain rounded-full" />
                       </div>
+                      <div className="size-7 sm:size-9 rounded-full overflow-hidden bg-white border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Hewlett Packard Enterprise">
+                        <img src="/hpe.webp" alt="HPE" className="w-full h-full object-contain rounded-full" />
+                      </div>
                       <div className="size-7 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Amazon ML Summer School">
-                        <img src="/amazon_logo.jpeg" alt="Amazon" className="w-full h-full object-contain rounded-full" />
+                        <img src="/amazon_logo.webp" alt="Amazon" className="w-full h-full object-contain rounded-full" />
                       </div>
                       <div className="size-7 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Southern Federal University (ICTIS) Russia">
                         <img src="/sfedu.webp" alt="SfedU" className="w-full h-full object-contain rounded-full" />
@@ -186,7 +189,7 @@ export default function Portfolio() {
                         <span>X</span>
                       </a>
                       <a
-                        href="/aryan_resume.pdf"
+                        href="/Aryan_Rastogi_resume.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium border border-border/70 bg-secondary/40 text-foreground hover:border-foreground dark:hover:border-white transition-colors duration-200 shadow-2xs group"
@@ -299,8 +302,29 @@ export default function Portfolio() {
                 <CardContent className="p-4">
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
                     <div className="flex items-start gap-3 min-w-0">
+                      <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 bg-white flex-shrink-0 p-1 flex items-center justify-center">
+                        <img src="/hpe.webp" alt="HPE" className="w-full h-full object-contain" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base font-semibold mb-1">CPP-2</h3>
+                        <p className="text-xs text-muted-foreground mb-2">Hewlett Packard Enterprise  •  India</p>
+                        <p className="text-xs text-muted-foreground/80 leading-relaxed">
+                          Shortlisted for the CPP-2 cohort and collaborating on an enterprise project with HPE.</p>
+                      </div>
+                    </div>
+                    <div className="text-left sm:text-right shrink-0">
+                      <p className="text-xs text-muted-foreground">Aug 2026 - Present</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="glass-card group hover:border-foreground/40">
+                <CardContent className="p-4">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
+                    <div className="flex items-start gap-3 min-w-0">
                       <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                        <img src="/amazon_logo.jpeg" alt="Amazon" className="w-full h-full object-cover" />
+                        <img src="/amazon_logo.webp" alt="Amazon" className="w-full h-full object-cover" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-base font-semibold mb-1">Amazon ML Summer School</h3>
@@ -326,8 +350,12 @@ export default function Portfolio() {
                       <div className="flex-1 min-w-0">
                         <h3 className="text-base font-semibold mb-1">AI Engineer</h3>
                         <p className="text-xs text-muted-foreground mb-2">Sylus AI  •  (remote)</p>
-                        <p className="text-xs text-muted-foreground/80 leading-relaxed">
-                          Developing and maintaining AI systems for a SaaS-based social media automation platform, Sylus AI. Building and integrating APIs, managing databases, and contributing to system architecture. Developing AI-driven features, while debugging, testing, and optimizing applications in collaboration with the team.</p>
+                        <ul className="text-xs text-muted-foreground/80 leading-relaxed list-disc pl-4 space-y-1.5 mt-2">
+                          <li>Engineered the platform end-to-end from a greenfield repository to production, owning auth, database schema, and core architecture through 180+ commits, then scaling it into a multi-tenant AI content platform.</li>
+                          <li>Designed and shipped a 9-phase agency system (RBAC, approval workflows, client portal, invites, real-time collaboration) from scratch, taking the product from single-user to multi-brand agency-ready.</li>
+                          <li>Built the AI content engine (multi-model LLM copywriting, live Google News trend discovery, AI image generation) and a document intelligence pipeline auto-extracting and scheduling posts from PDFs, Excel, and Word docs.</li>
+                          <li>Hardened the platform for production: patched security vulnerabilities across auth, API endpoints, and middleware (SSRF, CORS), and stabilized deployment across Cloud Run and Docker.</li>
+                        </ul>
                       </div>
                     </div>
                     <div className="text-left sm:text-right shrink-0">
@@ -394,10 +422,11 @@ export default function Portfolio() {
                       <div className="flex-1 min-w-0">
                         <h3 className="text-base font-semibold mb-1">Research Intern</h3>
                         <p className="text-xs text-muted-foreground mb-2">AI²: computAtional linguIstics & vIsion Lab • MUJ</p>
-                        <p className="text-xs text-muted-foreground/80 leading-relaxed">
-                          Leading two concurrent research workstreams: (1) SafeAlign — a multi-arm experimental pipeline for LLM safety evaluation using taxonomy-guided data curation on the Anthropic HH-RLHF dataset, training a RoBERTa-based reward model (Arm A), a QLoRA+DPO-aligned Qwen2.5-1.5B generative model (Arm B), and a MiniLM contrastive safety encoder (Arm C). Key finding: a 66M DistilBERT classifier trained on taxonomy-filtered data achieves 81.3% accuracy vs 59.5% on raw data — showing label quality outweighs model scale. 
-                          ,(2) Quantifying the Alignment Tax — empirically measuring how SFT and DPO degrade LLM creativity using DAT, AUT, and TTCT benchmarks with Semantic Entropy metrics across Mistral-7B and Llama-3.1-8B.
-                        </p>
+                        <ul className="text-xs text-muted-foreground/80 leading-relaxed list-disc pl-4 space-y-1.5 mt-2">
+                          <li><strong>SafeAlign:</strong> Leading a multi-arm experimental pipeline for LLM safety evaluation using taxonomy-guided data curation on the Anthropic HH-RLHF dataset, training a RoBERTa-based reward model, a QLoRA+DPO-aligned Qwen2.5-1.5B generative model, and a MiniLM contrastive safety encoder.</li>
+                          <li><strong>Key Finding:</strong> Discovered that a 66M DistilBERT classifier trained on taxonomy-filtered data achieves 81.3% accuracy vs 59.5% on raw data, proving label quality outweighs model scale.</li>
+                          <li><strong>Quantifying the Alignment Tax:</strong> Empirically measuring how SFT and DPO degrade LLM creativity using DAT, AUT, and TTCT benchmarks with Semantic Entropy metrics across Mistral-7B and Llama-3.1-8B.</li>
+                        </ul>
                       </div>
                     </div>
                     <div className="text-left sm:text-right shrink-0">
