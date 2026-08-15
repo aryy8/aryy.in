@@ -7,10 +7,10 @@ export function LiveProjects() {
   return (
     <section id="live-projects" className="mb-16 scroll-mt-20 snap-start">
       <SectionHeader>Live Projects</SectionHeader>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
         {/* teXlab Project */}
-        <div className="cursor-pointer" onClick={() => window.open('https://texlab.aryy.in', '_blank')}>
-          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
+        <div className="cursor-pointer flex" onClick={() => window.open('https://texlab.aryy.in', '_blank')}>
+          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
@@ -21,14 +21,16 @@ export function LiveProjects() {
             </div>
             
             {/* Description Section - Minimal */}
-            <div className="p-4">
-              <h3 className="text-lg font-semibold text-foreground mb-2">teXlab</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed mb-3">
-                Converts natural language and NLP outputs into professional LaTeX diagrams and tables with intelligent formatting.
-              </p>
+            <div className="p-4 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-foreground mb-2">teXlab</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+                  Converts natural language and NLP outputs into professional LaTeX diagrams and tables with intelligent formatting.
+                </p>
+              </div>
               
               {/* Tech Badges */}
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-1.5 mt-auto pt-2 border-t border-border/20">
                 <TechBadge className="scale-90">NLP</TechBadge>
                 <TechBadge className="scale-90">LaTeX</TechBadge>
                 <TechBadge className="scale-90">React</TechBadge>
@@ -39,8 +41,8 @@ export function LiveProjects() {
         </div>
 
         {/* Perplex Project */}
-        <div className="cursor-pointer" onClick={() => window.open('https://perplex.aryy.in', '_blank')}>
-          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
+        <div className="cursor-pointer flex" onClick={() => window.open('https://perplex.aryy.in', '_blank')}>
+          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
@@ -51,14 +53,16 @@ export function LiveProjects() {
             </div>
             
             {/* Description Section - Minimal */}
-            <div className="p-4">
-              <h3 className="text-lg font-semibold text-foreground mb-2">perpleX</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed mb-3">
-                AI-powered text humanizer that transforms AI-generated content into natural, human-like text.
-              </p>
+            <div className="p-4 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-foreground mb-2">perpleX</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+                  AI-powered text humanizer that transforms AI-generated content into natural, human-like text.
+                </p>
+              </div>
               
               {/* Tech Badges */}
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-1.5 mt-auto pt-2 border-t border-border/20">
                 <TechBadge className="scale-90">AI</TechBadge>
                 <TechBadge className="scale-90">NLP</TechBadge>
                 <TechBadge className="scale-90">React</TechBadge>

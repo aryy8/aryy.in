@@ -11,10 +11,10 @@ export function HackathonBuilds() {
       <div className="mb-8">
         <h2 className="text-xs uppercase tracking-widest text-muted-foreground/80 mb-8 font-mono font-semibold">Hackathon Builds</h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
         {/* Roadeye Project */}
-        <div className="cursor-pointer">
-          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
+        <div className="cursor-pointer flex">
+          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
@@ -25,22 +25,24 @@ export function HackathonBuilds() {
             </div>
             
             {/* Description Section - Minimal */}
-            <div className="p-4">
-              <h3 className="text-lg font-semibold text-foreground mb-2">RoadEye</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed mb-3">
-                AI-powered road audit system using deep learning and computer vision to detect road defects and generate professional audit reports.
-              </p>
-              
-              {/* Tech Badges */}
-              <div className="flex flex-wrap gap-1.5 mb-3">
-                <TechBadge className="scale-90">Python</TechBadge>
-                <TechBadge className="scale-90">PyTorch</TechBadge>
-                <TechBadge className="scale-90">OpenCV</TechBadge>
-                <TechBadge className="scale-90">FastAPI</TechBadge>
+            <div className="p-4 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-foreground mb-2">RoadEye</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+                  AI-powered road audit system using deep learning and computer vision to detect road defects and generate professional audit reports.
+                </p>
+                
+                {/* Tech Badges */}
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  <TechBadge className="scale-90">Python</TechBadge>
+                  <TechBadge className="scale-90">PyTorch</TechBadge>
+                  <TechBadge className="scale-90">OpenCV</TechBadge>
+                  <TechBadge className="scale-90">FastAPI</TechBadge>
+                </div>
               </div>
               
               {/* Hackathon Info */}
-              <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground/70 mt-auto pt-2 border-t border-border/20">
                 Finalist @ National Road Safety Hackathon 2025, IIT Madras
               </div>
             </div>
@@ -48,8 +50,8 @@ export function HackathonBuilds() {
         </div>
 
         {/* Uniway Project */}
-        <div className="cursor-pointer">
-          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
+        <div className="cursor-pointer flex">
+          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
               <img 
@@ -60,22 +62,24 @@ export function HackathonBuilds() {
             </div>
             
             {/* Description Section - Minimal */}
-            <div className="p-4">
-              <h3 className="text-lg font-semibold text-foreground mb-2">Uniway</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed mb-3">
-                Campus navigation platform featuring interactive maps, smart search, route guidance, and student services with AI-ready extensions.
-              </p>
-              
-              {/* Tech Badges */}
-              <div className="flex flex-wrap gap-1.5 mb-3">
-                <TechBadge className="scale-90">React</TechBadge>
-                <TechBadge className="scale-90">OSRM</TechBadge>
-                <TechBadge className="scale-90">Google APIs</TechBadge>
-                <TechBadge className="scale-90">Leaflet</TechBadge>
+            <div className="p-4 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-foreground mb-2">Uniway</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+                  Campus navigation platform featuring interactive maps, smart search, route guidance, and student services with AI-ready extensions.
+                </p>
+                
+                {/* Tech Badges */}
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  <TechBadge className="scale-90">React</TechBadge>
+                  <TechBadge className="scale-90">OSRM</TechBadge>
+                  <TechBadge className="scale-90">Google APIs</TechBadge>
+                  <TechBadge className="scale-90">Leaflet</TechBadge>
+                </div>
               </div>
               
               {/* Hackathon Info */}
-              <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground/70 mt-auto pt-2 border-t border-border/20">
                 Winner @ Uniway Hackathon 2025
               </div>
             </div>
@@ -85,8 +89,8 @@ export function HackathonBuilds() {
         {showAll && (
           <>
             {/* Prompt2Plugin Project */}
-            <div className="cursor-pointer">
-              <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
+            <div className="cursor-pointer flex">
+              <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
                 {/* Cover Image Section - Full height */}
                 <div className="relative h-48 sm:h-64 overflow-hidden">
                   <img 
@@ -97,22 +101,24 @@ export function HackathonBuilds() {
                 </div>
                 
                 {/* Description Section - Minimal */}
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-foreground mb-2">Prompt2Plugin</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed mb-3">
-                    AI-powered Chrome extension generator that transforms natural language prompts into functional extensions and n8n automation workflows.
-                  </p>
-                  
-                  {/* Tech Badges */}
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    <TechBadge className="scale-90">React</TechBadge>
-                    <TechBadge className="scale-90">TypeScript</TechBadge>
-                    <TechBadge className="scale-90">n8n</TechBadge>
-                    <TechBadge className="scale-90">Chrome API</TechBadge>
+                <div className="p-4 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">Prompt2Plugin</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+                      AI-powered Chrome extension generator that transforms natural language prompts into functional extensions and n8n automation workflows.
+                    </p>
+                    
+                    {/* Tech Badges */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      <TechBadge className="scale-90">React</TechBadge>
+                      <TechBadge className="scale-90">TypeScript</TechBadge>
+                      <TechBadge className="scale-90">n8n</TechBadge>
+                      <TechBadge className="scale-90">Chrome API</TechBadge>
+                    </div>
                   </div>
                   
                   {/* Hackathon Info */}
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70 mt-auto pt-2 border-t border-border/20">
                     Project @ CodeClash 2025
                   </div>
                 </div>
@@ -120,8 +126,8 @@ export function HackathonBuilds() {
             </div>
 
             {/* janconnectai Project */}
-            <div className="cursor-pointer">
-              <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
+            <div className="cursor-pointer flex">
+              <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
                 {/* Cover Image Section - Full height */}
                 <div className="relative h-48 sm:h-64 overflow-hidden">
                   <img 
@@ -132,22 +138,24 @@ export function HackathonBuilds() {
                 </div>
                 
                 {/* Description Section - Minimal */}
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-foreground mb-2">JanConnectAI</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed mb-3">
-                    AI-powered election management platform with voter knowledge graphs, booth-level analytics, fraud detection, and intelligent voter engagement. 
-                  </p>
-                  
-                  {/* Tech Badges */}
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    <TechBadge className="scale-90">React</TechBadge>
-                    <TechBadge className="scale-90">Knowledge Graphs</TechBadge>
-                    <TechBadge className="scale-90">NLP</TechBadge>
-                    <TechBadge className="scale-90">Anomaly Detection</TechBadge>
+                <div className="p-4 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">JanConnectAI</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+                      AI-powered election management platform with voter knowledge graphs, booth-level analytics, fraud detection, and intelligent voter engagement. 
+                    </p>
+                    
+                    {/* Tech Badges */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      <TechBadge className="scale-90">React</TechBadge>
+                      <TechBadge className="scale-90">Knowledge Graphs</TechBadge>
+                      <TechBadge className="scale-90">NLP</TechBadge>
+                      <TechBadge className="scale-90">Anomaly Detection</TechBadge>
+                    </div>
                   </div>
                   
                   {/* Hackathon Info */}
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70 mt-auto pt-2 border-t border-border/20">
                     Finalist @ India Innovates 2026
                   </div>
                 </div>
@@ -155,8 +163,8 @@ export function HackathonBuilds() {
             </div>
 
             {/* Silvercircle Project */}
-            <div className="cursor-pointer">
-              <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
+            <div className="cursor-pointer flex">
+              <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
                 {/* Cover Image Section - Full height */}
                 <div className="relative h-48 sm:h-64 overflow-hidden">
                   <img 
@@ -167,22 +175,24 @@ export function HackathonBuilds() {
                 </div>
                 
                 {/* Description Section - Minimal */}
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-foreground mb-2">Silvercircle</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed mb-3">
-                    A social networking and community platform designed for old age people, featuring VR Memory lanes, games, hobby circles and many more. Judged by the expert panel of engineers from Google, Microsoft etc.
-                  </p>
-                  
-                  {/* Tech Badges */}
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    <TechBadge className="scale-90">React</TechBadge>
-                    <TechBadge className="scale-90">Framer Motion</TechBadge>
-                    <TechBadge className="scale-90">Tailwind</TechBadge>
-                    <TechBadge className="scale-90">Shadcn</TechBadge>
+                <div className="p-4 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">Silvercircle</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+                      A social networking and community platform designed for old age people, featuring VR Memory lanes, games, hobby circles and many more. Judged by the expert panel of engineers from Google, Microsoft etc.
+                    </p>
+                    
+                    {/* Tech Badges */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      <TechBadge className="scale-90">React</TechBadge>
+                      <TechBadge className="scale-90">Framer Motion</TechBadge>
+                      <TechBadge className="scale-90">Tailwind</TechBadge>
+                      <TechBadge className="scale-90">Shadcn</TechBadge>
+                    </div>
                   </div>
                   
                   {/* Hackathon Info */}
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70 mt-auto pt-2 border-t border-border/20">
                     Winner @ Brandit 2.0 2025
                   </div>
                 </div>
@@ -190,8 +200,8 @@ export function HackathonBuilds() {
             </div>
 
             {/* Geoverse Project */}
-            <div className="cursor-pointer">
-              <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
+            <div className="cursor-pointer flex">
+              <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
                 {/* Cover Image Section - Full height */}
                 <div className="relative h-48 sm:h-64 overflow-hidden">
                   <img 
@@ -202,22 +212,24 @@ export function HackathonBuilds() {
                 </div>
                 
                 {/* Description Section - Minimal */}
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-foreground mb-2">Geoverse</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed mb-3">
-                    AI-powered conversational system that transforms complex satellite data into instant, contextual answers using NLP and knowledge graphs.
-                  </p>
-                  
-                  {/* Tech Badges */}
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    <TechBadge className="scale-90">Python</TechBadge>
-                    <TechBadge className="scale-90">NLP</TechBadge>
-                    <TechBadge className="scale-90">Knowledge Graphs</TechBadge>
-                    <TechBadge className="scale-90">FastAPI</TechBadge>
+                <div className="p-4 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">Geoverse</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+                      AI-powered conversational system that transforms complex satellite data into instant, contextual answers using NLP and knowledge graphs.
+                    </p>
+                    
+                    {/* Tech Badges */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      <TechBadge className="scale-90">Python</TechBadge>
+                      <TechBadge className="scale-90">NLP</TechBadge>
+                      <TechBadge className="scale-90">Knowledge Graphs</TechBadge>
+                      <TechBadge className="scale-90">FastAPI</TechBadge>
+                    </div>
                   </div>
                   
                   {/* Hackathon Info */}
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground/70 mt-auto pt-2 border-t border-border/20">
                     Project @ BAH ISRO, 2025
                   </div>
                 </div>
