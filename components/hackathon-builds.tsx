@@ -27,6 +27,15 @@ export function HackathonBuilds() {
   const [uniwayIndex, setUniwayIndex] = useState<number | null>(null)
   const [uniwayProgress, setUniwayProgress] = useState(0)
 
+  // Preload all slideshow images on mount for instant loading
+  useEffect(() => {
+    const allPhotos = [...ROADEYE_PHOTOS, ...UNIWAY_PHOTOS]
+    allPhotos.forEach((src) => {
+      const img = new Image()
+      img.src = src
+    })
+  }, [])
+
   useEffect(() => {
     if (roadeyeIndex === null) {
       setProgress(0)
