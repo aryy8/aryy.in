@@ -189,19 +189,24 @@ export function LeetCodeStats({ username = "aryy8" }) {
             {/* Top Info: Badges count */}
             <div>
               <div className="text-xs text-muted-foreground font-medium">Badges</div>
-              <div className="text-2xl font-bold text-foreground leading-tight">2</div>
+              <div className="text-2xl font-bold text-foreground leading-tight">3</div>
             </div>
 
             {/* Center: Badges row */}
             <div className="flex flex-row items-center justify-center gap-4 py-1">
               <img
-                src="/feb_lc.webp"
-                alt="LeetCode February Badge"
+                src="/50_lc.webp"
+                alt="LeetCode 50 Badge"
                 className="size-14 sm:size-16 object-contain opacity-95 transition-transform hover:scale-105"
               />
               <img
-                src="/50_lc.webp"
-                alt="LeetCode 50 Badge"
+                src="/100_lc.webp"
+                alt="LeetCode 100 Badge"
+                className="size-16 sm:size-20 object-contain opacity-95 transition-transform hover:scale-105"
+              />
+              <img
+                src="/feb_lc.webp"
+                alt="LeetCode February Badge"
                 className="size-14 sm:size-16 object-contain opacity-95 transition-transform hover:scale-105"
               />
             </div>
@@ -209,7 +214,7 @@ export function LeetCodeStats({ username = "aryy8" }) {
             {/* Bottom Info: Most Recent Badge */}
             <div>
               <div className="text-xs text-muted-foreground font-medium">Most Recent Badge</div>
-              <div className="text-xs sm:text-sm font-semibold text-foreground">50 Days Badge 2026</div>
+              <div className="text-xs sm:text-sm font-semibold text-foreground">100 Days Badge 2026</div>
             </div>
           </div>
         </div>
