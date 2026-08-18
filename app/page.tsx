@@ -83,7 +83,7 @@ export default function Portfolio() {
                 </div>
 
                 {/* Profile Content Area */}
-                <div className="relative -mt-16 sm:-mt-20 lg:-mt-22 px-2 sm:px-4">
+                <div className="relative -mt-12 sm:-mt-20 lg:-mt-22 px-2 sm:px-4">
                   {/* Avatar and Top Actions Header Row */}
                   <div className="flex flex-row items-end justify-between mb-3 sm:mb-4 gap-2 sm:gap-4">
                     {/* Profile Picture (Circular, Twitter/LinkedIn style) */}
@@ -98,26 +98,26 @@ export default function Portfolio() {
                     </div>
 
                     {/* Top Action Row: Logo Badges */}
-                    <div className="flex items-center gap-1 sm:gap-2 flex-wrap pb-1 justify-end shrink-0 max-w-[190px] sm:max-w-none">
-                      <div className="size-7 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Sylus AI">
+                    <div className="flex items-center gap-1 sm:gap-2 flex-wrap pb-1 justify-end shrink-0 max-w-[200px] sm:max-w-none">
+                      <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Sylus AI">
                         <img src="/sylusai.webp" alt="Sylus AI" className="w-full h-full object-contain rounded-full" />
                       </div>
-                      <div className="size-7 sm:size-9 rounded-full overflow-hidden bg-white border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Hewlett Packard Enterprise">
+                      <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-white border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Hewlett Packard Enterprise">
                         <img src="/hpe.webp" alt="HPE" className="w-full h-full object-contain rounded-full" />
                       </div>
-                      <div className="size-7 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Amazon ML Summer School">
+                      <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Amazon ML Summer School">
                         <img src="/amazon_logo.webp" alt="Amazon" className="w-full h-full object-contain rounded-full" />
                       </div>
-                      <div className="size-7 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Southern Federal University (ICTIS) Russia">
+                      <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Southern Federal University (ICTIS) Russia">
                         <img src="/sfedu.webp" alt="SfedU" className="w-full h-full object-contain rounded-full" />
                       </div>
-                      <div className="size-7 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Elumina Street Solutions">
+                      <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Elumina Street Solutions">
                         <img src="/elumina.webp" alt="Elumina" className="w-full h-full object-contain rounded-full" />
                       </div>
-                      <div className="size-7 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="AI²: Computational Linguistics & Vision Lab">
+                      <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="AI²: Computational Linguistics & Vision Lab">
                         <img src="/ai2.webp" alt="AI² Lab" className="w-full h-full object-contain rounded-full" />
                       </div>
-                      <div className="size-7 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Manipal University Jaipur">
+                      <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Manipal University Jaipur">
                         <img src="/muj.webp" alt="Manipal University Jaipur" className="w-full h-full object-contain rounded-full" />
                       </div>
                     </div>
