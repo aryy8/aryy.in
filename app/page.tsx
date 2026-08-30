@@ -23,14 +23,14 @@ function TypewriterAnimation() {
     "AI Engineer · Applied AI × Research",
     "CS @ Manipal",
   ]
-  
+
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
   const [currentText, setCurrentText] = useState("")
   const [charIndex, setCharIndex] = useState(0)
 
   useEffect(() => {
     const currentPhrase = phrases[currentPhraseIndex]
-    
+
     const timeout = setTimeout(() => {
       if (charIndex < currentPhrase.length) {
         setCurrentText(currentPhrase.substring(0, charIndex + 1))
@@ -75,8 +75,8 @@ export default function Portfolio() {
               <section className="mb-16">
                 {/* Cover Photo Banner - Crisp & Clear */}
                 <div className="relative w-full h-44 sm:h-56 lg:h-64 overflow-hidden rounded-2xl -mt-12 sm:-mt-20 border border-border/40">
-                  <img 
-                    src="/surfing.webp" 
+                  <img
+                    src="/surfing.webp"
                     alt="Cover Photo"
                     className="w-full h-full object-cover object-center scale-x-[-1]"
                   />
@@ -89,10 +89,10 @@ export default function Portfolio() {
                     {/* Profile Picture (Circular, Twitter/LinkedIn style) */}
                     <div className="relative shrink-0">
                       <div className="size-24 sm:size-36 lg:size-40 rounded-full border-4 sm:border-[5px] border-background bg-card shadow-xl overflow-hidden shrink-0 ring-1 ring-border/20 transition-transform duration-300 hover:scale-[1.02]">
-                        <img 
-                          src="/profilepic.webp" 
-                          alt="Aryan Rastogi" 
-                          className="w-full h-full object-cover object-center" 
+                        <img
+                          src="/profilepic.webp"
+                          alt="Aryan Rastogi"
+                          className="w-full h-full object-cover object-center"
                         />
                       </div>
                     </div>
@@ -202,548 +202,549 @@ export default function Portfolio() {
                 </div>
               </section>
 
-          {/* About Section */}
-          <section id="about" className="mb-16 scroll-mt-20">
-            <SectionHeader>About Me</SectionHeader>
-            <div className="space-y-5 text-muted-foreground leading-relaxed text-base">
-              <p className="border-l-4 border-primary/30 pl-4 italic text-muted-foreground">
-                I train models to learn &amp; they teach me patience.
-              </p>
+              {/* About Section */}
+              <section id="about" className="mb-16 scroll-mt-20">
+                <SectionHeader>About Me</SectionHeader>
+                <div className="space-y-5 text-muted-foreground leading-relaxed text-base">
 
-              <p>
-                I am a computer science engineering student working on <span className="text-primary font-medium">machine learning</span>, <span className="text-primary font-medium">NLP</span>, and <span className="text-primary font-medium">applied AI systems</span>.
-                 {/* I run <a href="https://www.aryyandco.studio" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">Aryy & Co</a>, a tech agency helping early-stage teams build and ship products. */}
-                 {/* I create tech content at <a href="https://www.instagram.com/aryy.in_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">@aryy.in_</a>. */}
-                I craft effective prompts, build <span className="text-primary font-medium">clean frontends</span>, and work comfortably across <span className="text-primary font-medium">backend</span> systems.
-              </p>
 
-              {/* <p>
+                  <p>
+                    I am a computer science engineering student working on <span className="text-primary font-medium">machine learning</span>, <span className="text-primary font-medium">NLP</span>, and <span className="text-primary font-medium">applied AI systems</span>.
+                    {/* I run <a href="https://www.aryyandco.studio" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">Aryy & Co</a>, a tech agency helping early-stage teams build and ship products. */}
+                    {/* I create tech content at <a href="https://www.instagram.com/aryy.in_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">@aryy.in_</a>. */}
+                    I craft effective prompts, build <span className="text-primary font-medium">clean frontends</span>, and work comfortably across <span className="text-primary font-medium">backend</span> systems.
+                  </p>
+                  <p className="border-l-4 border-primary/30 pl-4 italic text-muted-foreground">
+                    I train models to learn &amp; they teach me patience.
+                  </p>
+
+                  {/* <p>
                 Beyond work, I make food edits at <a href="https://www.instagram.com/nomnomsss_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold font-medium hover:underline">@nomnomsss_</a>.
               </p> */}
 
-            </div>
-          </section>
+                </div>
+              </section>
 
-          {/* Tech Stack */}
-          <section className="mb-16">
-            <SectionHeader>Tech Stack</SectionHeader>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">Languages</h3>
-                <div className="flex flex-wrap gap-2.5">
-                  <TechBadge>Python</TechBadge>
-                  <TechBadge>Cpp</TechBadge>
-                  <TechBadge>SQL</TechBadge>
-                  <TechBadge>Typescript</TechBadge>
+              {/* Tech Stack */}
+              <section className="mb-16">
+                <SectionHeader>Tech Stack</SectionHeader>
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">Languages</h3>
+                    <div className="flex flex-wrap gap-2.5">
+                      <TechBadge>Python</TechBadge>
+                      <TechBadge>Cpp</TechBadge>
+                      <TechBadge>SQL</TechBadge>
+                      <TechBadge>Typescript</TechBadge>
+
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+                      ML/AI Frameworks
+                    </h3>
+                    <div className="flex flex-wrap gap-2.5">
+                      <TechBadge>PyTorch</TechBadge>
+                      <TechBadge>TensorFlow</TechBadge>
+                      <TechBadge>Scikit-learn</TechBadge>
+                      <TechBadge>Hugging Face</TechBadge>
+                      <TechBadge>LangChain</TechBadge>
+                      <TechBadge>OpenCV</TechBadge>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+                      Full Stack
+                    </h3>
+                    <div className="flex flex-wrap gap-2.5">
+                      <TechBadge>React</TechBadge>
+                      <TechBadge>Next.js</TechBadge>
+                      <TechBadge>Node.js</TechBadge>
+                      <TechBadge>REST APIs</TechBadge>
+                      <TechBadge>Supabase</TechBadge>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+                      Tools & Platforms
+                    </h3>
+                    <div className="flex flex-wrap gap-2.5">
+                      <TechBadge>FastAPI</TechBadge>
+                      <TechBadge>AWS</TechBadge>
+                      <TechBadge>GCP</TechBadge>
+                      <TechBadge>Docker</TechBadge>
+                      <TechBadge>Kaggle</TechBadge>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* GitHub Contributions */}
+              <section className="mb-16">
+                <SectionHeader>GitHub Activity</SectionHeader>
+                <GitHubContributionGrid />
+              </section>
+
+              {/* LeetCode Stats */}
+              <section id="leetcode" className="mb-16 scroll-mt-20">
+                <SectionHeader>LeetCode Stats</SectionHeader>
+                <LeetCodeStats />
+              </section>
+
+              {/* Experience Section */}
+              <section id="experience" className="mb-16 scroll-mt-20">
+                <SectionHeader>Work Experience</SectionHeader>
+                <div className="space-y-2">
+
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-4">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
+                        <div className="flex items-start gap-3 min-w-0">
+                          <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 bg-white flex-shrink-0 p-1 flex items-center justify-center">
+                            <img src="/hpe.webp" alt="HPE" className="w-full h-full object-contain" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-base font-semibold mb-1">CPP-2</h3>
+                            <p className="text-xs text-muted-foreground mb-2">Hewlett Packard Enterprise  •  India</p>
+                            <p className="text-xs text-muted-foreground/80 leading-relaxed">
+                              Shortlisted for the CPP-2 cohort and collaborating on an enterprise project with HPE.</p>
+                          </div>
+                        </div>
+                        <div className="text-left sm:text-right shrink-0">
+                          <p className="text-xs text-muted-foreground">Aug 2026 - Present</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-4">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
+                        <div className="flex items-start gap-3 min-w-0">
+                          <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                            <img src="/amazon_logo.webp" alt="Amazon" className="w-full h-full object-cover" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-base font-semibold mb-1">Amazon ML Summer School</h3>
+                            <p className="text-xs text-muted-foreground mb-2">Amazon  •  2026</p>
+                            <p className="text-xs text-muted-foreground/80 leading-relaxed">
+                              Selected for the prestigious Amazon ML Summer School 2026 program, an intensive machine learning education initiative by Amazon. One of 3,000 students selected from over 1.4 lakh applicants nationwide.</p>
+                          </div>
+                        </div>
+                        <div className="text-left sm:text-right shrink-0">
+                          <p className="text-xs text-muted-foreground">Jul 2026 - Present</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-4">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
+                        <div className="flex items-start gap-3 min-w-0">
+                          <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                            <img src="/sylusai.webp" alt="SfedU" className="w-full h-full object-cover" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-base font-semibold mb-1">AI Engineer</h3>
+                            <p className="text-xs text-muted-foreground mb-2">Sylus AI  •  (remote)</p>
+                            <ul className="text-xs text-muted-foreground/80 leading-relaxed list-disc pl-4 space-y-1.5 mt-2">
+                              <li>Engineered the platform end-to-end from a greenfield repository to production, owning auth, database schema, and core architecture through 180+ commits, then scaling it into a multi-tenant AI content platform.</li>
+                              <li>Designed and shipped a 9-phase agency system (RBAC, approval workflows, client portal, invites, real-time collaboration) from scratch, taking the product from single-user to multi-brand agency-ready.</li>
+                              <li>Built the AI content engine (multi-model LLM copywriting, live Google News trend discovery, AI image generation) and a document intelligence pipeline auto-extracting and scheduling posts from PDFs, Excel, and Word docs.</li>
+                              <li>Hardened the platform for production: patched security vulnerabilities across auth, API endpoints, and middleware (SSRF, CORS), and stabilized deployment across Cloud Run and Docker.</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="text-left sm:text-right shrink-0">
+                          <p className="text-xs text-muted-foreground">April 2026 - Present</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-4">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
+                        <div className="flex items-start gap-3 min-w-0">
+                          <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                            <img src="/sfedu.webp" alt="SfedU" className="w-full h-full object-cover" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-base font-semibold mb-1">SDE Intern</h3>
+                            <p className="text-xs text-muted-foreground mb-2">Southern Federal University, ICTIS • Russia (remote)</p>
+                            <p className="text-xs text-muted-foreground/80 leading-relaxed">
+                              Developed a web application as an international interdisciplinary project in collaboration with Southern Federal University (ICTIS) & MUJ to support the adaptation of international students. The platform acts as a digital assistant that helps to explore, understand and navigate the campus facilities and improves accessibility for new international students.</p>
+                          </div>
+                        </div>
+                        <div className="text-left sm:text-right shrink-0">
+                          <p className="text-xs text-muted-foreground">Oct - Nov 2025</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-4">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
+                        <div className="flex items-start gap-3 min-w-0">
+                          <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                            <img src="/elumina.webp" alt="Elumina Street Solutions" className="w-full h-full object-cover" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-base font-semibold mb-1">AI R&D Intern</h3>
+                            <p className="text-xs text-muted-foreground mb-2">Elumina Street Solutions • Jaipur</p>
+                            <p className="text-xs text-muted-foreground/80 leading-relaxed">
+                              Developed a violence detection model using CNN (MobileNet) and LSTM in TensorFlow for video-based behavior
+                              recognition; improved accuracy with focal loss and class weighting.
+                              Implemented and evaluated a real-time weapon detection system using YOLOv8 and OpenCV.
+                              Collaborated with the AI research team to analyze model performance, optimize hyperparameters, and enhance detection.
+                            </p>
+                          </div>
+                        </div>
+                        <div className="text-left sm:text-right shrink-0">
+                          <p className="text-xs text-muted-foreground">April - July 2025</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-4">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
+                        <div className="flex items-start gap-3 min-w-0">
+                          <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                            <img src="/ai2.webp" alt="AI² Lab" className="w-full h-full object-cover" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-base font-semibold mb-1">Research Intern</h3>
+                            <p className="text-xs text-muted-foreground mb-2">AI²: computAtional linguIstics & vIsion Lab • MUJ</p>
+                            <ul className="text-xs text-muted-foreground/80 leading-relaxed list-disc pl-4 space-y-1.5 mt-2">
+                              <li><strong>SafeAlign:</strong> Leading a multi-arm experimental pipeline for LLM safety evaluation using taxonomy-guided data curation on the Anthropic HH-RLHF dataset, training a RoBERTa-based reward model, a QLoRA+DPO-aligned Qwen2.5-1.5B generative model, and a MiniLM contrastive safety encoder.</li>
+                              <li><strong>Key Finding:</strong> Discovered that a 66M DistilBERT classifier trained on taxonomy-filtered data achieves 81.3% accuracy vs 59.5% on raw data, proving label quality outweighs model scale.</li>
+                              <li><strong>Quantifying the Alignment Tax:</strong> Empirically measuring how SFT and DPO degrade LLM creativity using DAT, AUT, and TTCT benchmarks with Semantic Entropy metrics across Mistral-7B and Llama-3.1-8B.</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="text-left sm:text-right shrink-0">
+                          <p className="text-xs text-muted-foreground">Jan 2025 - Present</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
 
                 </div>
-              </div>
+              </section>
 
-              <div>
-                <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-                  ML/AI Frameworks
-                </h3>
-                <div className="flex flex-wrap gap-2.5">
-                  <TechBadge>PyTorch</TechBadge>
-                  <TechBadge>TensorFlow</TechBadge>
-                  <TechBadge>Scikit-learn</TechBadge>
-                  <TechBadge>Hugging Face</TechBadge>
-                  <TechBadge>LangChain</TechBadge>
-                  <TechBadge>OpenCV</TechBadge>
+              {/* Live Projects Section */}
+              <LiveProjects />
+
+              {/* Hackathon Builds Section */}
+              <HackathonBuilds />
+
+              {/* Research Section */}
+              <section id="research" className="mb-16 scroll-mt-20">
+                <SectionHeader>Research</SectionHeader>
+                <div className="space-y-3">
+
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-5">
+                      <div className="flex flex-col gap-3">
+                        <div>
+                          <h3 className="text-sm font-semibold text-foreground mb-1">SafeAlign: A Multi-Paradigm Pipeline for LLM Safety Evaluation via Taxonomy-Guided Data Curation</h3>
+                          <p className="text-xs text-muted-foreground mb-2">Aryan Rastogi, Dr. Varda Pareek — Manipal University Jaipur</p>
+                          <div className="flex flex-wrap gap-1 mb-2">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">LLM Safety</span>
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">RLHF</span>
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">DPO</span>
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Data Curation</span>
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">HH-RLHF</span>
+                          </div>
+                          <p className="text-xs text-muted-foreground leading-relaxed italic">
+                            Taxonomy-guided label denoising outperforms model scale — a 66M DistilBERT on filtered data beats a 774M baseline on safety classification.
+                          </p>
+                          <div className="mt-2">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-muted/50 text-muted-foreground border border-border/30">Under Review / Preprint</span>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-5">
+                      <div className="flex flex-col gap-3">
+                        <div>
+                          <h3 className="text-sm font-semibold text-foreground mb-1">Quantifying the Alignment Tax: Tracking Creativity and Semantic Entropy through the SFT and DPO Pipeline</h3>
+                          <p className="text-xs text-muted-foreground mb-2">Harshita Singh, Aryan Rastogi — Manipal University Jaipur</p>
+                          <div className="flex flex-wrap gap-1 mb-2">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Alignment Tax</span>
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Semantic Entropy</span>
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">DPO</span>
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Creativity</span>
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">LLMs</span>
+                          </div>
+                          <p className="text-xs text-muted-foreground leading-relaxed italic">
+                            DPO systematically collapses semantic diversity — creative narrative divergence drops from 0.7153 (base) to 0.3591 (post-DPO) on Mistral-7B.
+                          </p>
+                          <div className="mt-2">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-muted/50 text-muted-foreground border border-border/30">Under Review / Preprint</span>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
                 </div>
-              </div>
+              </section>
 
-              <div>
-                <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-                  Full Stack
-                </h3>
-                <div className="flex flex-wrap gap-2.5">
-                  <TechBadge>React</TechBadge>
-                  <TechBadge>Next.js</TechBadge>
-                  <TechBadge>Node.js</TechBadge>
-                  <TechBadge>REST APIs</TechBadge>
-                  <TechBadge>Supabase</TechBadge>
+              {/* Achievements Section */}
+              <section id="achievements" className="mb-16 scroll-mt-20">
+                <SectionHeader>Achievements & Recognition</SectionHeader>
+                <div className="space-y-3">
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-5">
+                      <div className="flex items-start gap-5">
+                        <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                          <img src="/HN logo-2.webp" alt="Uniway" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-sm font-semibold text-foreground mb-1">India Innovates 2026 Finalist</h3>
+                          <p className="text-xs text-muted-foreground mb-2">India Innovates 2026, BHARAT MANDAPAM, NEW DELHI</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            Shortlisted as the finalist from 25k+ participants in the World's Largest Civic Tech Hackathon at Bharat Mandapam, New Delhi organised by BYHN x MCD, in collaboration with DDU, IIT KGP, DTC, NSUT, GGSIPU.
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-5">
+                      <div className="flex items-start gap-5">
+                        <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                          <img src="/iitm.webp" alt="IIT Madras" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-sm font-semibold text-foreground mb-1">National Road Safety Hackathon Finalist</h3>
+                          <p className="text-xs text-muted-foreground mb-2">National Road Safety Hackathon 2025, IIT Madras</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            Shortlisted among the top 10 finalist teams nationwide from 3.6k+ participants & presented at the National Road Safety Hackathon organised by COERs, IIT Madras.
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-5">
+                      <div className="flex items-start gap-5">
+                        <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                          <img src="/uniway.webp" alt="Uniway" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-sm font-semibold text-foreground mb-1">UniWay Hackathon Winner</h3>
+                          <p className="text-xs text-muted-foreground mb-2">Uniway MUJ Hackathon 2025</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            Secured 1st place, won a cash prize, and earned an opportunity to collaborate on a project with Southern Federal University, Russia.
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-5">
+                      <div className="flex items-start gap-5">
+                        <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                          <img src="/muj.webp" alt="Manipal University Jaipur" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-sm font-semibold text-foreground mb-1">Student Excellence Awardee</h3>
+                          <p className="text-xs text-muted-foreground mb-2">Manipal University Jaipur, CSE dept 2025</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            Awarded for outstanding technical performance, hackathon achievements, and project based innovation during the 3rd & 4th semester.
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-5">
+                      <div className="flex items-start gap-5">
+                        <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                          <img src="/superteam.webp" alt="Superteam" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-sm font-semibold text-foreground mb-1">Solana Bounty Winner</h3>
+                          <p className="text-xs text-muted-foreground mb-2">Superteam India, 2025</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            Won a Solana bounty and became a Global Superteam Contributor within the Solana ecosystem.
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-5">
+                      <div className="flex items-start gap-5">
+                        <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                          <img src="/muj.webp" alt="Manipal University Jaipur" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-sm font-semibold text-foreground mb-1">Dean's List Awardee</h3>
+                          <p className="text-xs text-muted-foreground mb-2">Manipal University Jaipur, CSE dept 2025</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            Named to the Dean's List in the 2nd semester for academic excellence.
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-5">
+                      <div className="flex items-start gap-5">
+                        <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                          <img src="/ieeewie.webp" alt="IEEE WIE" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-sm font-semibold text-foreground mb-1">BrandIT 2.0 Winner</h3>
+                          <p className="text-xs text-muted-foreground mb-2">IEEE WIE MUJ, JUN 2025</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            A social networking and community platform built for older adults, featuring VR Memory Lanes to relive personal memories, curated hobby circles, companion matching, and accessible games. Designed for emotional connection and digital inclusion — built and presented at BrandIT 2.0.
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-5">
+                      <div className="flex items-start gap-5">
+                        <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
+                          <img src="/180dc.webp" alt="IEEE WIE" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-sm font-semibold text-foreground mb-1">Consultathon Winner</h3>
+                          <p className="text-xs text-muted-foreground mb-2">180 DC MUJ, April 2025</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            Won the Consultathon organized by 180 DC MUJ — presented a scaling strategy for a vocational training social enterprise facing the challenge of expanding impact across India while preserving quality and financial sustainability.
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
-              </div>
+              </section>
 
-              <div>
-                <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-                  Tools & Platforms
-                </h3>
-                <div className="flex flex-wrap gap-2.5">
-                  <TechBadge>FastAPI</TechBadge>
-                  <TechBadge>AWS</TechBadge>
-                  <TechBadge>GCP</TechBadge>
-                  <TechBadge>Docker</TechBadge>
-                  <TechBadge>Kaggle</TechBadge>
-                </div>
-              </div>
-            </div>
-          </section>
+              {/* Blog Section */}
+              <section id="blog" className="mb-16 scroll-mt-20">
+                <SectionHeader>Blogs</SectionHeader>
+                <div className="space-y-4">
 
-          {/* GitHub Contributions */}
-          <section className="mb-16">
-            <SectionHeader>GitHub Activity</SectionHeader>
-            <GitHubContributionGrid />
-          </section>
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-5">
+                      <div className="flex items-start gap-5">
+                        <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
+                          <img src="/medium.webp" alt="Medium" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-sm font-semibold text-foreground mb-1">
+                            <a
+                              href="https://medium.com/@aryanfeb17/building-an-ai-that-draws-diagrams-taught-me-nothing-about-ai-and-everything-about-systems-design-c3f87185de7d?sharedUserId=aryanfeb17"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hover:text-primary transition-colors"
+                            >
+                              Building an AI That Draws Diagrams Taught Me Nothing About AI and Everything About Systems Design
 
-          {/* LeetCode Stats */}
-          <section id="leetcode" className="mb-16 scroll-mt-20">
-            <SectionHeader>LeetCode Stats</SectionHeader>
-            <LeetCodeStats />
-          </section>
+                            </a>
+                          </h3>
+                          <p className="text-xs text-muted-foreground mb-2">Medium • Published 2026</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            Tried to build a text-to-TikZ diagram generator. Got it wrong twice before figuring out why.
+                          </p>
+                          <div className="flex flex-wrap gap-1 mt-3">
+                            <TechBadge className="scale-90">System Design</TechBadge>
+                            <TechBadge className="scale-90">Prompt Engineering</TechBadge>
+                            <TechBadge className="scale-90">AI Tools</TechBadge>
 
-          {/* Experience Section */}
-          <section id="experience" className="mb-16 scroll-mt-20">
-            <SectionHeader>Work Experience</SectionHeader>
-            <div className="space-y-2">
-
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-4">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
-                    <div className="flex items-start gap-3 min-w-0">
-                      <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 bg-white flex-shrink-0 p-1 flex items-center justify-center">
-                        <img src="/hpe.webp" alt="HPE" className="w-full h-full object-contain" />
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-base font-semibold mb-1">CPP-2</h3>
-                        <p className="text-xs text-muted-foreground mb-2">Hewlett Packard Enterprise  •  India</p>
-                        <p className="text-xs text-muted-foreground/80 leading-relaxed">
-                          Shortlisted for the CPP-2 cohort and collaborating on an enterprise project with HPE.</p>
+                    </CardContent>
+                  </Card>
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-5">
+                      <div className="flex items-start gap-5">
+                        <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
+                          <img src="/medium.webp" alt="Medium" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-sm font-semibold text-foreground mb-1">
+                            <a
+                              href="https://medium.com/@aryanfeb17/implementing-deep-learning-by-diving-deep-into-the-black-box-c26b28678309"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hover:text-primary transition-colors"
+                            >
+                              Implementing Deep Learning by Diving Deep into the Black Box
+                            </a>
+                          </h3>
+                          <p className="text-xs text-muted-foreground mb-2">Medium • Published 2026</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            An Implementation of deep learning in three stages: building a neural network from scratch using NumPy, predicting customer churn with an ANN, and classifying images with a CNN.
+                          </p>
+                          <div className="flex flex-wrap gap-1 mt-3">
+                            <TechBadge className="scale-90">Deep Learning</TechBadge>
+                            <TechBadge className="scale-90">CNN</TechBadge>
+                            <TechBadge className="scale-90">ANN</TechBadge>
+
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="text-left sm:text-right shrink-0">
-                      <p className="text-xs text-muted-foreground">Aug 2026 - Present</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                    </CardContent>
+                  </Card>
 
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-4">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
-                    <div className="flex items-start gap-3 min-w-0">
-                      <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                        <img src="/amazon_logo.webp" alt="Amazon" className="w-full h-full object-cover" />
+                  <Card className="glass-card group hover:border-foreground/40">
+                    <CardContent className="p-5">
+                      <div className="flex items-start gap-5">
+                        <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
+                          <img src="/medium.webp" alt="Medium" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-sm font-semibold text-foreground mb-1">
+                            <a
+                              href="https://medium.com/@aryanfeb17/a-cursor-and-google-colab-workflow-for-machine-learning-replacing-jupyter-and-chatgpt-e7c47b39179e"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hover:text-primary transition-colors"
+                            >
+                              A Cursor and Google Colab Workflow for Machine Learning: Replacing Jupyter and ChatGPT
+                            </a>
+                          </h3>
+                          <p className="text-xs text-muted-foreground mb-2">Medium • Published 2026</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            Exploring how to leverage Cursor and Google Colab together to create an efficient machine learning workflow that combines the best of both worlds - replacing traditional Jupyter notebooks and ChatGPT interactions with a more integrated development experience.
+                          </p>
+                          <div className="flex flex-wrap gap-1 mt-3">
+                            <TechBadge className="scale-90">Machine Learning</TechBadge>
+                            <TechBadge className="scale-90">Cursor</TechBadge>
+                            <TechBadge className="scale-90">Google Colab</TechBadge>
+                            <TechBadge className="scale-90">Workflow</TechBadge>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-base font-semibold mb-1">Amazon ML Summer School</h3>
-                        <p className="text-xs text-muted-foreground mb-2">Amazon  •  2026</p>
-                        <p className="text-xs text-muted-foreground/80 leading-relaxed">
-                          Selected for the prestigious Amazon ML Summer School 2026 program, an intensive machine learning education initiative by Amazon. One of 3,000 students selected from over 1.4 lakh applicants nationwide.</p>
-                      </div>
-                    </div>
-                    <div className="text-left sm:text-right shrink-0">
-                      <p className="text-xs text-muted-foreground">Jul 2026 - Present</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                    </CardContent>
+                  </Card>
 
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-4">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
-                    <div className="flex items-start gap-3 min-w-0">
-                      <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                        <img src="/sylusai.webp" alt="SfedU" className="w-full h-full object-cover" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-base font-semibold mb-1">AI Engineer</h3>
-                        <p className="text-xs text-muted-foreground mb-2">Sylus AI  •  (remote)</p>
-                        <ul className="text-xs text-muted-foreground/80 leading-relaxed list-disc pl-4 space-y-1.5 mt-2">
-                          <li>Engineered the platform end-to-end from a greenfield repository to production, owning auth, database schema, and core architecture through 180+ commits, then scaling it into a multi-tenant AI content platform.</li>
-                          <li>Designed and shipped a 9-phase agency system (RBAC, approval workflows, client portal, invites, real-time collaboration) from scratch, taking the product from single-user to multi-brand agency-ready.</li>
-                          <li>Built the AI content engine (multi-model LLM copywriting, live Google News trend discovery, AI image generation) and a document intelligence pipeline auto-extracting and scheduling posts from PDFs, Excel, and Word docs.</li>
-                          <li>Hardened the platform for production: patched security vulnerabilities across auth, API endpoints, and middleware (SSRF, CORS), and stabilized deployment across Cloud Run and Docker.</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div className="text-left sm:text-right shrink-0">
-                      <p className="text-xs text-muted-foreground">April 2026 - Present</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-4">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
-                    <div className="flex items-start gap-3 min-w-0">
-                      <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                        <img src="/sfedu.webp" alt="SfedU" className="w-full h-full object-cover" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-base font-semibold mb-1">SDE Intern</h3>
-                        <p className="text-xs text-muted-foreground mb-2">Southern Federal University, ICTIS • Russia (remote)</p>
-                        <p className="text-xs text-muted-foreground/80 leading-relaxed">
-                          Developed a web application as an international interdisciplinary project in collaboration with Southern Federal University (ICTIS) & MUJ to support the adaptation of international students. The platform acts as a digital assistant that helps to explore, understand and navigate the campus facilities and improves accessibility for new international students.</p>
-                      </div>
-                    </div>
-                    <div className="text-left sm:text-right shrink-0">
-                      <p className="text-xs text-muted-foreground">Oct - Nov 2025</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-4">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
-                    <div className="flex items-start gap-3 min-w-0">
-                      <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                        <img src="/elumina.webp" alt="Elumina Street Solutions" className="w-full h-full object-cover" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-base font-semibold mb-1">AI R&D Intern</h3>
-                        <p className="text-xs text-muted-foreground mb-2">Elumina Street Solutions • Jaipur</p>
-                        <p className="text-xs text-muted-foreground/80 leading-relaxed">
-                          Developed a violence detection model using CNN (MobileNet) and LSTM in TensorFlow for video-based behavior
-                          recognition; improved accuracy with focal loss and class weighting.
-                          Implemented and evaluated a real-time weapon detection system using YOLOv8 and OpenCV.
-                          Collaborated with the AI research team to analyze model performance, optimize hyperparameters, and enhance detection.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="text-left sm:text-right shrink-0">
-                      <p className="text-xs text-muted-foreground">April - July 2025</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-4">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3">
-                    <div className="flex items-start gap-3 min-w-0">
-                      <div className="w-10 h-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                        <img src="/ai2.webp" alt="AI² Lab" className="w-full h-full object-cover" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-base font-semibold mb-1">Research Intern</h3>
-                        <p className="text-xs text-muted-foreground mb-2">AI²: computAtional linguIstics & vIsion Lab • MUJ</p>
-                        <ul className="text-xs text-muted-foreground/80 leading-relaxed list-disc pl-4 space-y-1.5 mt-2">
-                          <li><strong>SafeAlign:</strong> Leading a multi-arm experimental pipeline for LLM safety evaluation using taxonomy-guided data curation on the Anthropic HH-RLHF dataset, training a RoBERTa-based reward model, a QLoRA+DPO-aligned Qwen2.5-1.5B generative model, and a MiniLM contrastive safety encoder.</li>
-                          <li><strong>Key Finding:</strong> Discovered that a 66M DistilBERT classifier trained on taxonomy-filtered data achieves 81.3% accuracy vs 59.5% on raw data, proving label quality outweighs model scale.</li>
-                          <li><strong>Quantifying the Alignment Tax:</strong> Empirically measuring how SFT and DPO degrade LLM creativity using DAT, AUT, and TTCT benchmarks with Semantic Entropy metrics across Mistral-7B and Llama-3.1-8B.</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div className="text-left sm:text-right shrink-0">
-                      <p className="text-xs text-muted-foreground">Jan 2025 - Present</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-
-            </div>
-          </section>
-
-          {/* Live Projects Section */}
-          <LiveProjects />
-
-          {/* Hackathon Builds Section */}
-          <HackathonBuilds />
-
-          {/* Research Section */}
-          <section id="research" className="mb-16 scroll-mt-20">
-            <SectionHeader>Research</SectionHeader>
-            <div className="space-y-3">
-
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-5">
-                  <div className="flex flex-col gap-3">
-                    <div>
-                      <h3 className="text-sm font-semibold text-foreground mb-1">SafeAlign: A Multi-Paradigm Pipeline for LLM Safety Evaluation via Taxonomy-Guided Data Curation</h3>
-                      <p className="text-xs text-muted-foreground mb-2">Aryan Rastogi, Dr. Varda Pareek — Manipal University Jaipur</p>
-                      <div className="flex flex-wrap gap-1 mb-2">
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">LLM Safety</span>
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">RLHF</span>
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">DPO</span>
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Data Curation</span>
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">HH-RLHF</span>
-                      </div>
-                      <p className="text-xs text-muted-foreground leading-relaxed italic">
-                        Taxonomy-guided label denoising outperforms model scale — a 66M DistilBERT on filtered data beats a 774M baseline on safety classification.
-                      </p>
-                      <div className="mt-2">
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-muted/50 text-muted-foreground border border-border/30">Under Review / Preprint</span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-5">
-                  <div className="flex flex-col gap-3">
-                    <div>
-                      <h3 className="text-sm font-semibold text-foreground mb-1">Quantifying the Alignment Tax: Tracking Creativity and Semantic Entropy through the SFT and DPO Pipeline</h3>
-                      <p className="text-xs text-muted-foreground mb-2">Harshita Singh, Aryan Rastogi — Manipal University Jaipur</p>
-                      <div className="flex flex-wrap gap-1 mb-2">
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Alignment Tax</span>
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Semantic Entropy</span>
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">DPO</span>
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Creativity</span>
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">LLMs</span>
-                      </div>
-                      <p className="text-xs text-muted-foreground leading-relaxed italic">
-                        DPO systematically collapses semantic diversity — creative narrative divergence drops from 0.7153 (base) to 0.3591 (post-DPO) on Mistral-7B.
-                      </p>
-                      <div className="mt-2">
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-muted/50 text-muted-foreground border border-border/30">Under Review / Preprint</span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-            </div>
-          </section>
-
-          {/* Achievements Section */}
-          <section id="achievements" className="mb-16 scroll-mt-20">
-            <SectionHeader>Achievements & Recognition</SectionHeader>
-            <div className="space-y-3">
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-5">
-                  <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                      <img src="/HN logo-2.webp" alt="Uniway" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold text-foreground mb-1">India Innovates 2026 Finalist</h3>
-                      <p className="text-xs text-muted-foreground mb-2">India Innovates 2026, BHARAT MANDAPAM, NEW DELHI</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        Shortlisted as the finalist from 25k+ participants in the World's Largest Civic Tech Hackathon at Bharat Mandapam, New Delhi organised by BYHN x MCD, in collaboration with DDU, IIT KGP, DTC, NSUT, GGSIPU.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-5">
-                  <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                      <img src="/iitm.webp" alt="IIT Madras" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold text-foreground mb-1">National Road Safety Hackathon Finalist</h3>
-                      <p className="text-xs text-muted-foreground mb-2">National Road Safety Hackathon 2025, IIT Madras</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        Shortlisted among the top 10 finalist teams nationwide from 3.6k+ participants & presented at the National Road Safety Hackathon organised by COERs, IIT Madras.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-5">
-                  <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                      <img src="/uniway.webp" alt="Uniway" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold text-foreground mb-1">UniWay Hackathon Winner</h3>
-                      <p className="text-xs text-muted-foreground mb-2">Uniway MUJ Hackathon 2025</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        Secured 1st place, won a cash prize, and earned an opportunity to collaborate on a project with Southern Federal University, Russia.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-5">
-                  <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                      <img src="/muj.webp" alt="Manipal University Jaipur" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold text-foreground mb-1">Student Excellence Awardee</h3>
-                      <p className="text-xs text-muted-foreground mb-2">Manipal University Jaipur, CSE dept 2025</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        Awarded for outstanding technical performance, hackathon achievements, and project based innovation during the 3rd & 4th semester.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-5">
-                  <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                      <img src="/superteam.webp" alt="Superteam" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold text-foreground mb-1">Solana Bounty Winner</h3>
-                      <p className="text-xs text-muted-foreground mb-2">Superteam India, 2025</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        Won a Solana bounty and became a Global Superteam Contributor within the Solana ecosystem.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-5">
-                  <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                      <img src="/muj.webp" alt="Manipal University Jaipur" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold text-foreground mb-1">Dean's List Awardee</h3>
-                      <p className="text-xs text-muted-foreground mb-2">Manipal University Jaipur, CSE dept 2025</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        Named to the Dean's List in the 2nd semester for academic excellence.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-5">
-                  <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                      <img src="/ieeewie.webp" alt="IEEE WIE" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold text-foreground mb-1">BrandIT 2.0 Winner</h3>
-                      <p className="text-xs text-muted-foreground mb-2">IEEE WIE MUJ, JUN 2025</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        A social networking and community platform built for older adults, featuring VR Memory Lanes to relive personal memories, curated hobby circles, companion matching, and accessible games. Designed for emotional connection and digital inclusion — built and presented at BrandIT 2.0.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-5">
-                  <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
-                      <img src="/180dc.webp" alt="IEEE WIE" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold text-foreground mb-1">Consultathon Winner</h3>
-                      <p className="text-xs text-muted-foreground mb-2">180 DC MUJ, April 2025</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        Won the Consultathon organized by 180 DC MUJ — presented a scaling strategy for a vocational training social enterprise facing the challenge of expanding impact across India while preserving quality and financial sustainability.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-
-          {/* Blog Section */}
-          <section id="blog" className="mb-16 scroll-mt-20">
-            <SectionHeader>Blogs</SectionHeader>
-            <div className="space-y-4">
-
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-5">
-                  <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
-                      <img src="/medium.webp" alt="Medium" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold text-foreground mb-1">
-                        <a
-                          href="https://medium.com/@aryanfeb17/building-an-ai-that-draws-diagrams-taught-me-nothing-about-ai-and-everything-about-systems-design-c3f87185de7d?sharedUserId=aryanfeb17"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="hover:text-primary transition-colors"
-                        >
-                           Building an AI That Draws Diagrams Taught Me Nothing About AI and Everything About Systems Design
-
-                        </a>
-                      </h3>
-                      <p className="text-xs text-muted-foreground mb-2">Medium • Published 2026</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        Tried to build a text-to-TikZ diagram generator. Got it wrong twice before figuring out why.
-                      </p>
-                      <div className="flex flex-wrap gap-1 mt-3">
-                        <TechBadge className="scale-90">System Design</TechBadge>
-                        <TechBadge className="scale-90">Prompt Engineering</TechBadge>
-                        <TechBadge className="scale-90">AI Tools</TechBadge>
-
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-5">
-                  <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
-                      <img src="/medium.webp" alt="Medium" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold text-foreground mb-1">
-                        <a
-                          href="https://medium.com/@aryanfeb17/implementing-deep-learning-by-diving-deep-into-the-black-box-c26b28678309"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="hover:text-primary transition-colors"
-                        >
-                          Implementing Deep Learning by Diving Deep into the Black Box
-                        </a>
-                      </h3>
-                      <p className="text-xs text-muted-foreground mb-2">Medium • Published 2026</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        An Implementation of deep learning in three stages: building a neural network from scratch using NumPy, predicting customer churn with an ANN, and classifying images with a CNN.
-                      </p>
-                      <div className="flex flex-wrap gap-1 mt-3">
-                        <TechBadge className="scale-90">Deep Learning</TechBadge>
-                        <TechBadge className="scale-90">CNN</TechBadge>
-                        <TechBadge className="scale-90">ANN</TechBadge>
-
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-card group hover:border-foreground/40">
-                <CardContent className="p-5">
-                  <div className="flex items-start gap-5">
-                    <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
-                      <img src="/medium.webp" alt="Medium" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-sm font-semibold text-foreground mb-1">
-                        <a
-                          href="https://medium.com/@aryanfeb17/a-cursor-and-google-colab-workflow-for-machine-learning-replacing-jupyter-and-chatgpt-e7c47b39179e"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="hover:text-primary transition-colors"
-                        >
-                          A Cursor and Google Colab Workflow for Machine Learning: Replacing Jupyter and ChatGPT
-                        </a>
-                      </h3>
-                      <p className="text-xs text-muted-foreground mb-2">Medium • Published 2026</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        Exploring how to leverage Cursor and Google Colab together to create an efficient machine learning workflow that combines the best of both worlds - replacing traditional Jupyter notebooks and ChatGPT interactions with a more integrated development experience.
-                      </p>
-                      <div className="flex flex-wrap gap-1 mt-3">
-                        <TechBadge className="scale-90">Machine Learning</TechBadge>
-                        <TechBadge className="scale-90">Cursor</TechBadge>
-                        <TechBadge className="scale-90">Google Colab</TechBadge>
-                        <TechBadge className="scale-90">Workflow</TechBadge>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 opacity-60">
+                  {/* <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 opacity-60">
                 <CardContent className="p-5">
                   <div className="flex items-center justify-center text-center">
                     <div className="flex flex-col items-center gap-2 text-muted-foreground">
@@ -752,28 +753,28 @@ export default function Portfolio() {
                   </div>
                 </CardContent>
               </Card> */}
-            </div>
-          </section>
+                </div>
+              </section>
 
-          {/* Notes Section */}
-          <section id="notes" className="mb-16 scroll-mt-20">
-            <SectionHeader>Knowledge Base</SectionHeader>
-            <NotesGrid />
-          </section>
+              {/* Notes Section */}
+              <section id="notes" className="mb-16 scroll-mt-20">
+                <SectionHeader>Knowledge Base</SectionHeader>
+                <NotesGrid />
+              </section>
 
-          {/* Live ML Playground */}
-          <section className="mb-16">
-            <SectionHeader>Live ML Playground</SectionHeader>
-            <JupyterCell />
-          </section>
-          </>
+              {/* Live ML Playground */}
+              <section className="mb-16">
+                <SectionHeader>Live ML Playground</SectionHeader>
+                <JupyterCell />
+              </section>
+            </>
           )}
         </main>
 
         {/* Footer */}
         <footer className="text-center text-sm text-muted-foreground pb-12">
           <p>
-            © 2026 Aryan Rastogi · 
+            © 2026 Aryan Rastogi ·
             {/* <a href="https://www.aryyandco.studio" target="_blank" rel="noopener noreferrer" className="text-accent-cold hover:text-accent-cold/80 transition-colors">Aryy & Co</a> · 
             <a href="https://www.instagram.com/aryy.in_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold hover:text-accent-cold/80 transition-colors">aryy.in_</a> · 
             <a href="https://www.instagram.com/nomnomsss_/" target="_blank" rel="noopener noreferrer" className="text-accent-cold hover:text-accent-cold/80 transition-colors">nomnomsss_</a> */}
