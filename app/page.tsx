@@ -11,6 +11,7 @@ import { JupyterCell } from "@/components/jupyter-cell"
 import { LiveProjects } from "@/components/live-projects"
 import { HackathonBuilds } from "@/components/hackathon-builds"
 import { NotesGrid } from "@/components/notes-grid"
+import { SnoopyHero } from "@/components/snoopy-hero"
 import { Mail, MapPin, Award } from "lucide-react"
 import { Github, Linkedin, FileText, Twitter } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -75,11 +76,7 @@ export default function Portfolio() {
               <section className="mb-16">
                 {/* Cover Photo Banner - Crisp & Clear */}
                 <div className="relative w-full h-44 sm:h-56 lg:h-64 overflow-hidden rounded-2xl -mt-12 sm:-mt-20 border border-border/40">
-                  <img
-                    src="/surfing.webp"
-                    alt="Cover Photo"
-                    className="w-full h-full object-cover object-center scale-x-[-1]"
-                  />
+                  <SnoopyHero />
                 </div>
 
                 {/* Profile Content Area */}
