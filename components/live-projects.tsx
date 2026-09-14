@@ -2,12 +2,13 @@
 
 import { SectionHeader } from "@/components/section-header"
 import { TechBadge } from "@/components/tech-badge"
+import { SleepingSnoopy } from "@/components/sleeping-snoopy"
 
 export function LiveProjects() {
   return (
-    <section id="live-projects" className="mb-16 scroll-mt-20 snap-start">
+    <section id="live-projects" className="mb-16 scroll-mt-20 snap-section">
       <SectionHeader>Live Projects</SectionHeader>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
         {/* teXlab Project */}
         <div className="cursor-pointer flex" onClick={() => window.open('https://texlab.aryy.in', '_blank')}>
           <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
@@ -40,8 +41,15 @@ export function LiveProjects() {
           </div>
         </div>
 
-        {/* Perplex Project */}
-        <div className="cursor-pointer flex" onClick={() => window.open('https://perplex.aryy.in', '_blank')}>
+        {/* Perplex Project — with Sleeping Snoopy on top */}
+        <div className="relative cursor-pointer flex" onClick={() => window.open('https://perplex.aryy.in', '_blank')}>
+          {/* Snoopy sitting on the top edge of the card */}
+          <div 
+            className="absolute top-0 right-4 sm:right-6 z-10"
+            style={{ transform: "translateY(calc(-100% + 6px))" }}
+          >
+            <SleepingSnoopy />
+          </div>
           <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden">
