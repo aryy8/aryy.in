@@ -85,7 +85,7 @@ export function HackathonBuilds() {
   }, [uniwayIndex])
 
   return (
-    <section id="projects" className="mb-16 scroll-mt-20 snap-start">
+    <section id="projects" className="mb-16 scroll-mt-20 snap-section">
       <div className="mb-8">
         <h2 className="text-xs uppercase tracking-widest text-muted-foreground/80 mb-8 font-mono font-semibold">Hackathon Builds</h2>
       </div>

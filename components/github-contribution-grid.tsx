@@ -20,8 +20,8 @@ export function GitHubContributionGrid() {
         const response = await fetch(`https://github-contributions-api.jogruber.de/v4/aryy8?y=last`)
         const data = await response.json()
 
-        setContributions(data.contributions)
-        setTotalCount(data.total.lastYear || 0)
+        setContributions(data.contributions ?? [])
+        setTotalCount(data?.total?.lastYear ?? data?.total?.["lastYear"] ?? 0)
         setLoading(false)
       } catch (error) {
         console.error("Error fetching GitHub data:", error)
@@ -40,7 +40,7 @@ export function GitHubContributionGrid() {
     requestAnimationFrame(() => {
       el.scrollLeft = Math.max(0, el.scrollWidth - el.clientWidth)
     })
-  }, [loading, contributions.length])
+  }, [loading, contributions?.length])
 
   const getLevelColor = (level: number) => {
     switch (level) {

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 import { Bot } from "lucide-react"
@@ -25,6 +25,23 @@ export function Navbar({ onToggleAgentic, isAgenticMode }: NavbarProps) {
   const [activeSection, setActiveSection] = useState("about")
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
+  const humanBtnRef = useRef<HTMLButtonElement>(null)
+  const agentBtnRef = useRef<HTMLButtonElement>(null)
+  const [pillStyle, setPillStyle] = useState({ left: 0, width: 0 })
+
+  const measurePill = useCallback(() => {
+    const activeBtn = isAgenticMode ? agentBtnRef.current : humanBtnRef.current
+    if (activeBtn) {
+      setPillStyle({
+        left: activeBtn.offsetLeft,
+        width: activeBtn.offsetWidth,
+      })
+    }
+  }, [isAgenticMode])
+
+  useEffect(() => {
+    measurePill()
+  }, [measurePill])
 
   useEffect(() => {
     setMounted(true)
@@ -104,21 +121,34 @@ export function Navbar({ onToggleAgentic, isAgenticMode }: NavbarProps) {
         {/* Right side controls: Minimal human | agent toggle + Theme toggle */}
         <div className="flex items-center gap-3 sm:gap-4 shrink-0">
           {onToggleAgentic && (
-            <div className="inline-flex items-center p-0.5 rounded-full border border-border/70 bg-secondary/30 backdrop-blur-xs">
+            <div className="relative inline-flex items-center p-0.5 rounded-full border border-border/70 bg-secondary/30 backdrop-blur-xs">
+              {/* Sliding pill indicator */}
+              <div
+                className="absolute top-0.5 bottom-0.5 rounded-full bg-foreground shadow-lg"
+                style={{
+                  left: pillStyle.left,
+                  width: pillStyle.width,
+                  transition: 'left 400ms cubic-bezier(0.34, 1.56, 0.64, 1), width 400ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+                }}
+              />
               <button
+                ref={humanBtnRef}
                 onClick={() => isAgenticMode && onToggleAgentic()}
                 className={cn(
-                  "px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-mono transition-all cursor-pointer",
-                  !isAgenticMode ? "bg-foreground text-background font-medium shadow-2xs" : "text-muted-foreground hover:text-foreground"
+                  "relative z-10 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-mono cursor-pointer select-none",
+                  "transition-colors duration-300 ease-out",
+                  !isAgenticMode ? "text-background font-medium" : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 human
               </button>
               <button
+                ref={agentBtnRef}
                 onClick={() => !isAgenticMode && onToggleAgentic()}
                 className={cn(
-                  "px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-mono transition-all cursor-pointer",
-                  isAgenticMode ? "bg-foreground text-background font-medium shadow-2xs" : "text-muted-foreground hover:text-foreground"
+                  "relative z-10 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-mono cursor-pointer select-none",
+                  "transition-colors duration-300 ease-out",
+                  isAgenticMode ? "text-background font-medium" : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 agent
