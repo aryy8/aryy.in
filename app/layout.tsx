@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { MicrosoftClarity } from "@/components/clarity"
 import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
@@ -125,6 +126,7 @@ export default function RootLayout({
           />
           {children}
           <Analytics />
+          <MicrosoftClarity />
         </ThemeProvider>
       </body>
     </html>
