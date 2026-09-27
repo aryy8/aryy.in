@@ -17,7 +17,7 @@ export function LiveProjects() {
               <img 
                 src="/texlab.webp" 
                 alt="teXlab Project"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover scale-[1.03]"
               />
             </div>
             
