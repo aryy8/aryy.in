@@ -62,8 +62,8 @@ export function AgenticView() {
           </div>
           <div className="py-2.5 flex items-center justify-between">
             <span className="text-muted-foreground w-32 shrink-0 font-mono text-xs">resume</span>
-            <a href="/Aryan_Rastogi_resume.pdf" target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline flex-1 truncate">
-              Aryan_Rastogi_resume.pdf
+            <a href="/aryan_resume.pdf" target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline flex-1 truncate">
+              aryan_resume.pdf
             </a>
           </div>
           <div className="py-2.5 flex items-center justify-between">
