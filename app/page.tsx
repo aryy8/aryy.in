@@ -99,8 +99,10 @@ export default function Portfolio() {
                       <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Sylus AI">
                         <img src="/sylusai.webp" alt="Sylus AI" className="w-full h-full object-contain rounded-full" />
                       </div>
-                      <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-white border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Hewlett Packard Enterprise">
-                        <img src="/hpe.webp" alt="HPE" className="w-full h-full object-contain rounded-full" />
+                      <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Hewlett Packard Enterprise">
+                        <div className="size-full rounded-full bg-white flex items-center justify-center p-0.5 sm:p-1">
+                          <img src="/hpe_logo.webp" alt="HPE" className="w-full h-full object-contain" />
+                        </div>
                       </div>
                       <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Amazon ML Summer School">
                         <img src="/amazon_logo.webp" alt="Amazon" className="w-full h-full object-contain rounded-full" />
