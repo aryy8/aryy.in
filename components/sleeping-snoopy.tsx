@@ -42,6 +42,8 @@ export function SleepingSnoopy() {
   const [dots, setDots] = useState<TrailDot[]>([])
 
   const woodstockRef = useRef<HTMLDivElement>(null)
+  const flyingImgRef = useRef<HTMLImageElement>(null)
+  const sittingImgRef = useRef<HTMLImageElement>(null)
   const animFrameRef = useRef<number>(0)
 
   // Flight state refs
@@ -123,6 +125,9 @@ export function SleepingSnoopy() {
       let targetAngle = angleRef.current
       let targetScaleX = scaleXRef.current
 
+      // Calculate continuous sitOpacity (0 = flying, 1 = sitting) for seamless morph
+      let sitOpacity = 0
+
       if (isSittingRef.current) {
         // LANDING MODE (Unhurried, peaceful 2.6s glide)
         if (landingRef.current) {
@@ -155,11 +160,20 @@ export function SleepingSnoopy() {
           targetScaleX = dx > 0 ? -1 : 1
           targetAngle = (dy / (Math.abs(dx) + 10)) * 20 * (1 - p) // Wings level out as he lands
 
+          // Smoothly cross-fade from flying to sitting in the final 25% of the landing arc
+          if (rawP >= 0.75) {
+            const morphT = (rawP - 0.75) / 0.25
+            sitOpacity = morphT * morphT * (3 - 2 * morphT)
+          } else {
+            sitOpacity = 0
+          }
+
           if (rawP >= 1.0) {
             currX = landingTarget.x
             currY = landingTarget.y
             targetAngle = 0
             targetScaleX = 1
+            sitOpacity = 1
             landingRef.current = null
             setIsLanded(true)
           }
@@ -169,6 +183,7 @@ export function SleepingSnoopy() {
           currY = landingTarget.y
           targetAngle = 0
           targetScaleX = 1
+          sitOpacity = 1
         }
       } else {
         // FREE GLIDING FLIGHT MODE across expansive sky
@@ -185,9 +200,18 @@ export function SleepingSnoopy() {
           targetScaleX = -1 // Faces right as he climbs into the sky
           targetAngle = -20 * (1 - p)
 
+          // Smoothly cross-fade from sitting to flying in the first 35% of takeoff
+          if (p <= 0.35) {
+            const morphT = p / 0.35
+            sitOpacity = 1 - morphT * morphT * (3 - 2 * morphT)
+          } else {
+            sitOpacity = 0
+          }
+
           if (p >= 1.0) {
             takeoffRef.current = null
             distProgressRef.current = 0
+            sitOpacity = 0
           }
         } else {
           // Smooth continuous progression along equidistant flight path
@@ -211,6 +235,7 @@ export function SleepingSnoopy() {
           targetScaleX = vx > 0 ? -1 : 1
           const rawAngle = Math.atan2(vy, Math.abs(vx)) * (180 / Math.PI)
           targetAngle = Math.max(-30, Math.min(30, rawAngle))
+          sitOpacity = 0
         }
       }
 
@@ -225,10 +250,18 @@ export function SleepingSnoopy() {
         woodstockRef.current.style.transform = `translate3d(${currX}px, ${currY}px, 0) scaleX(${scaleXRef.current}) rotate(${angleRef.current}deg)`
       }
 
-      // Spawn discrete Peanuts-style elliptical trail dots at steady distance intervals
+      // Seamlessly cross-fade flying and sitting sprites at 60 FPS
+      if (sittingImgRef.current) {
+        sittingImgRef.current.style.opacity = sitOpacity.toFixed(3)
+      }
+      if (flyingImgRef.current) {
+        flyingImgRef.current.style.opacity = (1 - sitOpacity).toFixed(3)
+      }
+
+      // Spawn discrete Peanuts-style elliptical trail dots when in flight
       const distFromLastDot = Math.hypot(currX - lastDotPosRef.current.x, currY - lastDotPosRef.current.y)
 
-      if (!isLanded && distFromLastDot >= 22 && nowMs - lastDotSpawnTime > 80) {
+      if (sitOpacity < 0.5 && distFromLastDot >= 22 && nowMs - lastDotSpawnTime > 80) {
         lastDotSpawnTime = nowMs
         lastDotPosRef.current = { x: currX, y: currY }
         const dotAngle = angleRef.current * (scaleXRef.current < 0 ? -1 : 1)
@@ -253,7 +286,7 @@ export function SleepingSnoopy() {
 
     animFrameRef.current = requestAnimationFrame(loop)
     return () => cancelAnimationFrame(animFrameRef.current)
-  }, [isLanded])
+  }, [])
 
   // Periodic cleanup of expired dots
   useEffect(() => {
@@ -309,7 +342,8 @@ export function SleepingSnoopy() {
         ref={woodstockRef}
         className="absolute top-0 left-0 z-20 pointer-events-auto cursor-pointer"
         style={{
-          width: isLanded ? "24px" : "28px",
+          width: "28px",
+          height: "32px",
           willChange: "transform",
         }}
         onClick={handleToggle}
@@ -319,11 +353,23 @@ export function SleepingSnoopy() {
             : "Click to call Woodstock to Snoopy!"
         }
       >
-        <div>
+        <div className="relative w-full h-full select-none pointer-events-none">
+          {/* Flying Woodstock Sprite */}
           <img
-            src={isLanded ? "/woodstock-sitting.png" : "/woodstock-flying.png"}
-            alt={isLanded ? "Woodstock sitting on Snoopy" : "Woodstock flying"}
-            className="block w-full h-auto drop-shadow-sm select-none pointer-events-none transition-all duration-300"
+            ref={flyingImgRef}
+            src="/woodstock-flying.png"
+            alt="Woodstock flying"
+            className="absolute top-0 left-0 w-[27px] h-auto drop-shadow-sm select-none pointer-events-none"
+            style={{ opacity: isSitting ? 0 : 1 }}
+            draggable={false}
+          />
+          {/* Sitting Woodstock Sprite (proportional scale & aligned eye/head anchor) */}
+          <img
+            ref={sittingImgRef}
+            src="/woodstock-sitting.png"
+            alt="Woodstock sitting on Snoopy"
+            className="absolute top-[4px] left-[2px] w-[22px] h-auto drop-shadow-sm select-none pointer-events-none"
+            style={{ opacity: isSitting ? 1 : 0 }}
             draggable={false}
           />
           {/* Animated chirp note when sitting on Snoopy */}
