@@ -96,9 +96,9 @@ export function NotesGrid() {
           {/* Cover Image Section */}
           <div className="relative h-28 overflow-hidden">
             <img 
-              src="/lc_notion.webp" 
+              src="/lc_cover.webp" 
               alt="lc cover"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-[center_30%]"
             />
           </div>
           
