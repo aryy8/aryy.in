@@ -10,4 +10,3 @@ I wanted this to look like my personal brand... hehe
 
 - Project card images live in `public/projects/` (WebP + AVIF). Regenerate with `node scripts/frame-project-shots.mjs` after capturing 2x screenshots into `scripts/raw/`.
 - Press `Cmd/Ctrl + K` anywhere for the command menu.
-- Known: the NLP notes link points at a Notion page that currently asks visitors to log in.
