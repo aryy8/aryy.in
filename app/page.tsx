@@ -232,7 +232,7 @@ export default function Portfolio() {
                     <CardContent className="p-5">
                       <div className="flex flex-col gap-3">
                         <div>
-                          <h3 className="text-sm font-semibold text-foreground mb-1">SafeAlign: A Multi-Paradigm Pipeline for LLM Safety Evaluation via Taxonomy-Guided Data Curation</h3>
+                          <h3 className="text-base font-semibold text-foreground leading-snug mb-1.5">SafeAlign: A Multi-Paradigm Pipeline for LLM Safety Evaluation via Taxonomy-Guided Data Curation</h3>
                           <p className="text-xs text-muted-foreground mb-2">Aryan Rastogi, Dr. Varda Pareek — Manipal University Jaipur</p>
                           <div className="flex flex-wrap gap-1 mb-2">
                             <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">LLM Safety</span>
@@ -256,7 +256,7 @@ export default function Portfolio() {
                     <CardContent className="p-5">
                       <div className="flex flex-col gap-3">
                         <div>
-                          <h3 className="text-sm font-semibold text-foreground mb-1">Quantifying the Alignment Tax: Tracking Creativity and Semantic Entropy through the SFT and DPO Pipeline</h3>
+                          <h3 className="text-base font-semibold text-foreground leading-snug mb-1.5">Quantifying the Alignment Tax: Tracking Creativity and Semantic Entropy through the SFT and DPO Pipeline</h3>
                           <p className="text-xs text-muted-foreground mb-2">Harshita Singh, Aryan Rastogi — Manipal University Jaipur</p>
                           <div className="flex flex-wrap gap-1 mb-2">
                             <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Alignment Tax</span>
@@ -297,7 +297,7 @@ export default function Portfolio() {
                           <img src="/medium.webp" alt="Medium" className="w-full h-full object-cover" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-sm font-semibold text-foreground mb-1">
+                          <h3 className="text-base font-semibold text-foreground leading-snug mb-1.5">
                             <a
                               href="https://medium.com/@aryanfeb17/building-an-ai-that-draws-diagrams-taught-me-nothing-about-ai-and-everything-about-systems-design-c3f87185de7d?sharedUserId=aryanfeb17"
                               target="_blank"
@@ -329,7 +329,7 @@ export default function Portfolio() {
                           <img src="/medium.webp" alt="Medium" className="w-full h-full object-cover" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-sm font-semibold text-foreground mb-1">
+                          <h3 className="text-base font-semibold text-foreground leading-snug mb-1.5">
                             <a
                               href="https://medium.com/@aryanfeb17/implementing-deep-learning-by-diving-deep-into-the-black-box-c26b28678309"
                               target="_blank"
@@ -361,7 +361,7 @@ export default function Portfolio() {
                           <img src="/medium.webp" alt="Medium" className="w-full h-full object-cover" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-sm font-semibold text-foreground mb-1">
+                          <h3 className="text-base font-semibold text-foreground leading-snug mb-1.5">
                             <a
                               href="https://medium.com/@aryanfeb17/a-cursor-and-google-colab-workflow-for-machine-learning-replacing-jupyter-and-chatgpt-e7c47b39179e"
                               target="_blank"
