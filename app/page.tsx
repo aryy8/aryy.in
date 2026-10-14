@@ -20,6 +20,7 @@ import { Github, Linkedin, FileText } from "lucide-react"
 import { useState } from "react"
 import { AgenticView } from "@/components/agentic-view"
 import { useSectionReveal } from "@/components/reveal"
+import { CommandMenu } from "@/components/command-menu"
 
 export default function Portfolio() {
   const [isAgenticMode, setIsAgenticMode] = useState(false)
@@ -29,6 +30,7 @@ export default function Portfolio() {
     <div className="min-h-screen bg-background text-foreground relative">
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-background to-background pointer-events-none" />
 
+      <CommandMenu onBeforeNavigate={() => setIsAgenticMode(false)} />
       <Navbar onToggleAgentic={() => setIsAgenticMode(!isAgenticMode)} isAgenticMode={isAgenticMode} />
 
       <div className="relative z-10 flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-20 gap-10 sm:gap-12 pt-24 sm:pt-32 scroll-smooth">
