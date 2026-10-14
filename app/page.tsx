@@ -19,9 +19,11 @@ import { Mail, MapPin } from "lucide-react"
 import { Github, Linkedin, FileText } from "lucide-react"
 import { useState } from "react"
 import { AgenticView } from "@/components/agentic-view"
+import { useSectionReveal } from "@/components/reveal"
 
 export default function Portfolio() {
   const [isAgenticMode, setIsAgenticMode] = useState(false)
+  useSectionReveal([isAgenticMode])
 
   return (
     <div className="min-h-screen bg-background text-foreground relative">
