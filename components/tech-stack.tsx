@@ -8,7 +8,7 @@ import { FaAws } from "react-icons/fa"
 import { Database, Braces } from "lucide-react"
 import type { ComponentType, CSSProperties } from "react"
 
-type Tech = { name: string; icon: IconType | ComponentType<{ className?: string }>; color: string }
+type Tech = { name: string; icon: IconType | ComponentType<{ className?: string }>; color: string; mono?: boolean }
 
 const GROUPS: { title: string; items: Tech[] }[] = [
   {
@@ -34,9 +34,9 @@ const GROUPS: { title: string; items: Tech[] }[] = [
     title: "Full Stack",
     items: [
       { name: "React", icon: SiReact, color: "#61DAFB" },
-      { name: "Next.js", icon: SiNextdotjs, color: "#FFFFFF" },
+      { name: "Next.js", icon: SiNextdotjs, color: "#FFFFFF", mono: true },
       { name: "Node.js", icon: SiNodedotjs, color: "#5FA04E" },
-      { name: "REST APIs", icon: Braces, color: "#E5E7EB" },
+      { name: "REST APIs", icon: Braces, color: "#E5E7EB", mono: true },
       { name: "Supabase", icon: SiSupabase, color: "#3ECF8E" },
     ],
   },
@@ -60,13 +60,13 @@ export function TechStack() {
         <div key={g.title}>
           <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">{g.title}</h3>
           <ul className="flex flex-wrap gap-2">
-            {g.items.map(({ name, icon: Icon, color }) => (
+            {g.items.map(({ name, icon: Icon, color, mono }) => (
               <li
                 key={name}
                 style={{ "--brand": color } as CSSProperties}
-                className="tech-chip group inline-flex items-center gap-2 h-9 px-3 rounded-lg border border-border/60 bg-secondary/30 text-sm text-foreground/85 transition-colors duration-200 hover:text-foreground"
+                className="tech-chip group inline-flex items-center gap-2 h-9 px-3 rounded-lg border border-border/60 bg-secondary/30 text-sm text-foreground/90 transition-colors duration-200 hover:text-foreground"
               >
-                <Icon aria-hidden className="size-4 shrink-0 text-muted-foreground transition-colors duration-200 group-hover:text-[color:var(--brand)]" />
+                <Icon aria-hidden className={`size-4 shrink-0 ${mono ? "text-foreground" : "text-[color:var(--brand)]"}`} />
                 <span>{name}</span>
               </li>
             ))}
