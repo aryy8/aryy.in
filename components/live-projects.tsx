@@ -11,7 +11,6 @@ type Project = {
   url: string
   outcome: string
   tags?: string[]
-  featured?: boolean
   metric?: string
   snoopy?: boolean
 }
@@ -24,7 +23,6 @@ const PROJECTS: Project[] = [
     url: "https://petal.aryy.in",
     outcome: "Intent-to-execution PDF engine: plain-English prompts compile into validated workflows across 35+ PDF operations.",
     tags: ["GCP Cloud Run", "Supabase", "LLMs"],
-    featured: true,
   },
   {
     name: "Lattice",
@@ -33,7 +31,6 @@ const PROJECTS: Project[] = [
     metric: "400+ users · 52 countries",
     outcome: "Makes any text sound natural. Your words travel through a chain of languages and come back in a simple, human voice.",
     tags: ["NMT", "TypeScript", "Next.js"],
-    featured: true,
     snoopy: true,
   },
   {
@@ -42,7 +39,6 @@ const PROJECTS: Project[] = [
     url: "https://mingraph.aryy.in",
     outcome: "Pathfinding visualizer over Jaipur's road network (257,620 nodes), comparing Dijkstra, A*, BFS and Bidirectional Dijkstra live.",
     tags: ["C++17", "Web Workers", "deck.gl"],
-    featured: true,
   },
   {
     name: "teXlab",
@@ -91,11 +87,6 @@ export function LiveProjects() {
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-muted/20">
                 <ProjectShot slug={p.slug} alt={`${p.name} live app screenshot`} />
-                {p.featured && (
-                  <span className="absolute top-3 left-3 px-2 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-background/70 border border-border/40 backdrop-blur-sm text-foreground/80">
-                    Featured
-                  </span>
-                )}
               </div>
               <div className="p-4 flex-1 flex flex-col gap-3">
                 <div className="flex items-center justify-between gap-2">
