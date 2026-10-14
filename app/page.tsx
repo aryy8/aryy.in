@@ -230,7 +230,7 @@ export default function Portfolio() {
                 <SectionHeader>Research</SectionHeader>
                 <div className="space-y-3">
 
-                  <Card className="glass-card group hover:border-foreground/40">
+                  <Card className="glass-card group project-card">
                     <CardContent className="p-5">
                       <div className="flex flex-col gap-3">
                         <div>
@@ -254,7 +254,7 @@ export default function Portfolio() {
                     </CardContent>
                   </Card>
 
-                  <Card className="glass-card group hover:border-foreground/40">
+                  <Card className="glass-card group project-card">
                     <CardContent className="p-5">
                       <div className="flex flex-col gap-3">
                         <div>
@@ -292,7 +292,7 @@ export default function Portfolio() {
                 <SectionHeader>Blogs</SectionHeader>
                 <div className="space-y-4">
 
-                  <Card className="glass-card group hover:border-foreground/40">
+                  <Card className="glass-card group project-card">
                     <CardContent className="p-5">
                       <div className="flex items-start gap-5">
                         <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
@@ -324,7 +324,7 @@ export default function Portfolio() {
                       </div>
                     </CardContent>
                   </Card>
-                  <Card className="glass-card group hover:border-foreground/40">
+                  <Card className="glass-card group project-card">
                     <CardContent className="p-5">
                       <div className="flex items-start gap-5">
                         <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
@@ -356,7 +356,7 @@ export default function Portfolio() {
                     </CardContent>
                   </Card>
 
-                  <Card className="glass-card group hover:border-foreground/40">
+                  <Card className="glass-card group project-card">
                     <CardContent className="p-5">
                       <div className="flex items-start gap-5">
                         <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
