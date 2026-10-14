@@ -12,29 +12,33 @@ type Project = {
   outcome: string
   tags?: string[]
   featured?: boolean
+  metric?: string
   snoopy?: boolean
 }
 
-// Copy comes from this repo or from each live app's own landing page.
+// Copy comes from this repo and the resume in /public.
 const PROJECTS: Project[] = [
   {
     name: "Petal",
     slug: "petal",
     url: "https://petal.aryy.in",
-    outcome: "Your personal PDF editor with AI. Tell it what to change, add or create, and Petal does the rest.",
+    outcome: "Intent-to-execution PDF engine: plain-English prompts compile into validated workflows across 35+ PDF operations.",
+    tags: ["GCP Cloud Run", "Supabase", "LLMs"],
     featured: true,
   },
   {
     name: "MinGraph",
     slug: "mingraph",
     url: "https://mingraph.aryy.in",
-    outcome: "Road-network pathfinding on a real city map. Simulate and compare Dijkstra, A*, BFS and bidirectional Dijkstra.",
+    outcome: "Pathfinding visualizer over Jaipur's road network (257,620 nodes), comparing Dijkstra, A*, BFS and Bidirectional Dijkstra live.",
+    tags: ["C++17", "Web Workers", "deck.gl"],
     featured: true,
   },
   {
     name: "Lattice",
     slug: "lattice",
     url: "https://lattice.aryy.in",
+    metric: "400+ users · 52 countries",
     outcome: "Makes any text sound natural. Your words travel through a chain of languages and come back in a simple, human voice.",
     tags: ["NMT", "TypeScript", "Next.js"],
     featured: true,
@@ -98,6 +102,7 @@ export function LiveProjects() {
                   <h3 className="text-lg font-semibold text-foreground">{p.name}</h3>
                   <ArrowUpRight aria-hidden className="size-4 text-muted-foreground transition-transform duration-200 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5 group-hover:text-foreground" />
                 </div>
+                {p.metric && <p className="text-xs font-mono text-primary -mt-1">{p.metric}</p>}
                 <p className="text-sm text-muted-foreground leading-relaxed">{p.outcome}</p>
                 {p.tags && (
                   <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-border/20">
