@@ -68,7 +68,7 @@ export function ProjectShot({ slug, alt }: { slug: string; alt: string }) {
 
 export function LiveProjects() {
   return (
-    <section id="live-projects" className="mb-16 scroll-mt-20 snap-section">
+    <section id="live-projects" className="mb-12 scroll-mt-20 snap-section">
       <SectionHeader>Live Projects</SectionHeader>
       <div className="relative grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
         {PROJECTS.map((p) => (

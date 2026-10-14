@@ -41,7 +41,7 @@ export default function Portfolio() {
           ) : (
             <>
               {/* Hero Section - LinkedIn & Twitter Inspired Senior UI Design */}
-              <section className="mb-16 snap-section">
+              <section className="mb-12 snap-section">
                 {/* Cover Photo Banner - Crisp & Clear */}
                 <div className="relative w-full h-44 sm:h-56 lg:h-64 overflow-hidden rounded-2xl -mt-12 sm:-mt-20 border border-border/40">
                   <SnoopyHero />
@@ -175,7 +175,7 @@ export default function Portfolio() {
               </section>
 
               {/* About Section */}
-              <section id="about" className="mb-16 scroll-mt-20 snap-section">
+              <section id="about" className="mb-12 scroll-mt-20 snap-section">
                 <SectionHeader>About Me</SectionHeader>
                 <div className="space-y-5 text-muted-foreground leading-relaxed text-base">
 
@@ -198,25 +198,25 @@ export default function Portfolio() {
               </section>
 
               {/* Tech Stack */}
-              <section className="mb-16 snap-section">
+              <section className="mb-12 snap-section">
                 <SectionHeader>Tech Stack</SectionHeader>
                 <TechStack />
               </section>
 
               {/* GitHub Contributions */}
-              <section className="mb-16 snap-section">
+              <section className="mb-12 snap-section">
                 <SectionHeader>GitHub Activity</SectionHeader>
                 <GitHubContributionGrid />
               </section>
 
               {/* LeetCode Stats */}
-              <section id="leetcode" className="mb-16 scroll-mt-20 snap-section">
+              <section id="leetcode" className="mb-12 scroll-mt-20 snap-section">
                 <SectionHeader>LeetCode Stats</SectionHeader>
                 <LeetCodeStats />
               </section>
 
               {/* Experience Section */}
-              <section id="experience" className="mb-16 scroll-mt-20 snap-section">
+              <section id="experience" className="mb-12 scroll-mt-20 snap-section">
                 <SectionHeader>Work Experience</SectionHeader>
                 <WorkExperience />
               </section>
@@ -228,7 +228,7 @@ export default function Portfolio() {
               <HackathonBuilds />
 
               {/* Research Section */}
-              <section id="research" className="mb-16 scroll-mt-20 snap-section">
+              <section id="research" className="mb-12 scroll-mt-20 snap-section">
                 <SectionHeader>Research</SectionHeader>
                 <div className="space-y-3">
 
@@ -284,13 +284,13 @@ export default function Portfolio() {
               </section>
 
               {/* Achievements Section */}
-              <section id="achievements" className="mb-16 scroll-mt-20 snap-section">
+              <section id="achievements" className="mb-12 scroll-mt-20 snap-section">
                 <SectionHeader>Achievements & Recognition</SectionHeader>
                 <Achievements />
               </section>
 
               {/* Blog Section */}
-              <section id="blog" className="mb-16 scroll-mt-20 snap-section">
+              <section id="blog" className="mb-12 scroll-mt-20 snap-section">
                 <SectionHeader>Blogs</SectionHeader>
                 <div className="space-y-4">
 
@@ -403,13 +403,13 @@ export default function Portfolio() {
               </section>
 
               {/* Notes Section */}
-              <section id="notes" className="mb-16 scroll-mt-20 snap-section">
+              <section id="notes" className="mb-12 scroll-mt-20 snap-section">
                 <SectionHeader>Knowledge Base</SectionHeader>
                 <NotesGrid />
               </section>
 
               {/* Live ML Playground */}
-              <section className="mb-16 snap-section">
+              <section className="mb-12 snap-section">
                 <SectionHeader>Live ML Playground</SectionHeader>
                 <JupyterCell />
               </section>
@@ -417,7 +417,7 @@ export default function Portfolio() {
           )}
         </main>
 
-        <footer className="text-center pt-16 pb-12">
+        <footer className="text-center pt-8 pb-10">
           <p className="font-mono text-xs text-muted-foreground">aryan rastogi · 2026</p>
         </footer>
       </div>

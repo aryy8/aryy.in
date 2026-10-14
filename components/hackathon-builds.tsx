@@ -86,7 +86,7 @@ export function HackathonBuilds() {
   }, [uniwayIndex])
 
   return (
-    <section id="projects" className="mb-16 scroll-mt-20 snap-section">
+    <section id="projects" className="mb-12 scroll-mt-20 snap-section">
       <SectionHeader>Hackathon Builds</SectionHeader>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
         {/* Roadeye Project */}
