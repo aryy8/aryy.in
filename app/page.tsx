@@ -22,6 +22,7 @@ import { AgenticView } from "@/components/agentic-view"
 import { useSectionReveal } from "@/components/reveal"
 import { CommandMenu } from "@/components/command-menu"
 import { ResearchList } from "@/components/research-list"
+import { BlogList } from "@/components/blog-list"
 
 export default function Portfolio() {
   const [isAgenticMode, setIsAgenticMode] = useState(false)
@@ -243,114 +244,7 @@ export default function Portfolio() {
               {/* Blog Section */}
               <section id="blog" className="mb-12 scroll-mt-20 snap-section">
                 <SectionHeader>Blogs</SectionHeader>
-                <div className="space-y-4">
-
-                  <Card className="glass-card group project-card">
-                    <CardContent className="p-5">
-                      <div className="flex items-start gap-5">
-                        <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
-                          <img src="/medium.webp" alt="Medium" className="w-full h-full object-cover" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-base font-semibold text-foreground leading-snug mb-1.5">
-                            <a
-                              href="https://medium.com/@aryanfeb17/building-an-ai-that-draws-diagrams-taught-me-nothing-about-ai-and-everything-about-systems-design-c3f87185de7d?sharedUserId=aryanfeb17"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="hover:text-primary transition-colors"
-                            >
-                              Building an AI That Draws Diagrams Taught Me Nothing About AI and Everything About Systems Design
-
-                            </a>
-                          </h3>
-                          <p className="text-xs text-muted-foreground mb-2">Medium • Published 2026</p>
-                          <p className="text-sm text-muted-foreground leading-relaxed">
-                            Tried to build a text-to-TikZ diagram generator. Got it wrong twice before figuring out why.
-                          </p>
-                          <div className="flex flex-wrap gap-1 mt-3">
-                            <TechBadge className="scale-90">System Design</TechBadge>
-                            <TechBadge className="scale-90">Prompt Engineering</TechBadge>
-                            <TechBadge className="scale-90">AI Tools</TechBadge>
-
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  <Card className="glass-card group project-card">
-                    <CardContent className="p-5">
-                      <div className="flex items-start gap-5">
-                        <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
-                          <img src="/medium.webp" alt="Medium" className="w-full h-full object-cover" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-base font-semibold text-foreground leading-snug mb-1.5">
-                            <a
-                              href="https://medium.com/@aryanfeb17/implementing-deep-learning-by-diving-deep-into-the-black-box-c26b28678309"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="hover:text-primary transition-colors"
-                            >
-                              Implementing Deep Learning by Diving Deep into the Black Box
-                            </a>
-                          </h3>
-                          <p className="text-xs text-muted-foreground mb-2">Medium • Published 2026</p>
-                          <p className="text-sm text-muted-foreground leading-relaxed">
-                            An Implementation of deep learning in three stages: building a neural network from scratch using NumPy, predicting customer churn with an ANN, and classifying images with a CNN.
-                          </p>
-                          <div className="flex flex-wrap gap-1 mt-3">
-                            <TechBadge className="scale-90">Deep Learning</TechBadge>
-                            <TechBadge className="scale-90">CNN</TechBadge>
-                            <TechBadge className="scale-90">ANN</TechBadge>
-
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="glass-card group project-card">
-                    <CardContent className="p-5">
-                      <div className="flex items-start gap-5">
-                        <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0 bg-white flex items-center justify-center">
-                          <img src="/medium.webp" alt="Medium" className="w-full h-full object-cover" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-base font-semibold text-foreground leading-snug mb-1.5">
-                            <a
-                              href="https://medium.com/@aryanfeb17/a-cursor-and-google-colab-workflow-for-machine-learning-replacing-jupyter-and-chatgpt-e7c47b39179e"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="hover:text-primary transition-colors"
-                            >
-                              A Cursor and Google Colab Workflow for Machine Learning: Replacing Jupyter and ChatGPT
-                            </a>
-                          </h3>
-                          <p className="text-xs text-muted-foreground mb-2">Medium • Published 2026</p>
-                          <p className="text-sm text-muted-foreground leading-relaxed">
-                            Exploring how to leverage Cursor and Google Colab together to create an efficient machine learning workflow that combines the best of both worlds - replacing traditional Jupyter notebooks and ChatGPT interactions with a more integrated development experience.
-                          </p>
-                          <div className="flex flex-wrap gap-1 mt-3">
-                            <TechBadge className="scale-90">Machine Learning</TechBadge>
-                            <TechBadge className="scale-90">Cursor</TechBadge>
-                            <TechBadge className="scale-90">Google Colab</TechBadge>
-                            <TechBadge className="scale-90">Workflow</TechBadge>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* <Card className="glass-card group hover:border-foreground/40 transition-all duration-300 opacity-60">
-                <CardContent className="p-5">
-                  <div className="flex items-center justify-center text-center">
-                    <div className="flex flex-col items-center gap-2 text-muted-foreground">
-                      <p className="text-xs">More blog posts coming soon...</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card> */}
-                </div>
+                <BlogList />
               </section>
 
               {/* Notes Section */}
