@@ -27,14 +27,6 @@ const PROJECTS: Project[] = [
     featured: true,
   },
   {
-    name: "MinGraph",
-    slug: "mingraph",
-    url: "https://mingraph.aryy.in",
-    outcome: "Pathfinding visualizer over Jaipur's road network (257,620 nodes), comparing Dijkstra, A*, BFS and Bidirectional Dijkstra live.",
-    tags: ["C++17", "Web Workers", "deck.gl"],
-    featured: true,
-  },
-  {
     name: "Lattice",
     slug: "lattice",
     url: "https://lattice.aryy.in",
@@ -43,6 +35,14 @@ const PROJECTS: Project[] = [
     tags: ["NMT", "TypeScript", "Next.js"],
     featured: true,
     snoopy: true,
+  },
+  {
+    name: "MinGraph",
+    slug: "mingraph",
+    url: "https://mingraph.aryy.in",
+    outcome: "Pathfinding visualizer over Jaipur's road network (257,620 nodes), comparing Dijkstra, A*, BFS and Bidirectional Dijkstra live.",
+    tags: ["C++17", "Web Workers", "deck.gl"],
+    featured: true,
   },
   {
     name: "teXlab",
@@ -79,7 +79,7 @@ export function LiveProjects() {
           <div key={p.slug} className="relative flex">
             {p.snoopy && (
               <div className="absolute top-0 right-4 sm:right-6 z-10" style={{ transform: "translateY(calc(-100% + 6px))" }}>
-                <SleepingSnoopy />
+                <SleepingSnoopy flyDirection="left" />
               </div>
             )}
             <a
