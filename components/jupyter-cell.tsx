@@ -11,6 +11,30 @@ declare global {
     }
 }
 
+// Matches ANSI/VT100 escape sequences (CSI and simple ESC codes).
+// eslint-disable-next-line no-control-regex
+const ANSI_RE = /\x1b\[[0-9;?]*[A-Za-z]|\x1b[()][A-Za-z0-9]|\x1b[=>]/g;
+// eslint-disable-next-line no-control-regex
+const CLEAR_RE = /\x1b\[[0-3]?J|\x1bc/;
+
+/** Appends a stdout line, treating "clear screen" escapes as a redraw. */
+function writeTerminal(el: HTMLElement | null, text: string) {
+    if (!el) return;
+    let rest = text;
+    const m = rest.match(CLEAR_RE);
+    if (m && m.index !== undefined) {
+        // Anything after the last clear belongs to the new frame.
+        const parts = rest.split(CLEAR_RE);
+        rest = parts[parts.length - 1];
+        el.innerHTML = '';
+    }
+    rest = rest.replace(ANSI_RE, '');
+    const line = document.createElement('div');
+    line.className = 'text-sm font-mono whitespace-pre';
+    line.textContent = rest;
+    el.appendChild(line);
+}
+
 export function JupyterCell() {
     const outputRef = useRef<HTMLDivElement>(null);
     const codeRef = useRef<HTMLTextAreaElement>(null);
@@ -26,6 +50,7 @@ export function JupyterCell() {
     // Initial code content
     const initialCode = `#start session & press shift+enter to execute cell
 
+import asyncio
 import time
 import sys
 import random
@@ -85,7 +110,7 @@ for step in range(5):
     m -= lr * dm
     b -= lr * db
 
-    time.sleep(0.3)
+    await asyncio.sleep(0.3)  # yields so the browser can repaint each frame
 
 print("\\n...where learning begins!")
 
@@ -122,14 +147,7 @@ print("\\n...where learning begins!")
                 // Load Pyodide
                 const pyodide = await window.loadPyodide({
                     indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.23.4/full/',
-                    stdout: (text: string) => {
-                        if (outputRef.current) {
-                            const output = document.createElement('div');
-                            output.className = 'text-sm font-mono whitespace-pre';
-                            output.textContent = text;
-                            outputRef.current.appendChild(output);
-                        }
-                    },
+                    stdout: (text: string) => writeTerminal(outputRef.current, text),
                 });
 
                 // Load required packages
