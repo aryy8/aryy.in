@@ -87,10 +87,10 @@ export default function Portfolio() {
                   </div>
 
                   {/* Main Bio Info - Full Width */}
-                  <div className="w-full space-y-3.5">
+                  <div className="w-full space-y-3">
                     {/* Name & Blue Tick */}
                     <div className="flex items-center gap-2.5 flex-wrap">
-                      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-foreground tracking-tight" style={{ fontFamily: "'Georgia', serif" }}>
+                      <h1 className="text-[2rem] leading-none sm:text-5xl font-serif text-foreground tracking-tight" style={{ fontFamily: "'Georgia', serif" }}>
                         Aryan Rastogi
                       </h1>
                       <div className="relative flex items-center justify-center shrink-0">
@@ -100,10 +100,11 @@ export default function Portfolio() {
                     </div>
 
                     {/* Clean Headline - Applied AI × Research on new line */}
-                    <p className="text-sm sm:text-base text-foreground/90 font-medium leading-relaxed">
-                      AI Engineer @ Sylus AI <span className="text-muted-foreground/60">·</span> Amazon MLSS'26 <span className="text-muted-foreground/60">·</span> CPP-2 @ HPE
-                      <br />
+                    <p className="text-base sm:text-lg text-foreground font-medium leading-snug text-balance">
                       Applied AI × Research
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      AI Engineer @ Sylus AI <span className="text-muted-foreground/50">·</span> Amazon MLSS'26 <span className="text-muted-foreground/50">·</span> CPP-2 @ HPE
                     </p>
 
                     {/* Location & Email Meta */}
