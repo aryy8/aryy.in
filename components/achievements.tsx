@@ -95,18 +95,18 @@ export function Achievements() {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {/* Top 3 Achievements: IIT Madras, India Innovates, UniWay */}
       {PRIMARY_ACHIEVEMENTS.map((item) => (
         <Card key={item.id} className="glass-card group hover:border-foreground/40">
-          <CardContent className="p-5">
-            <div className="flex items-start gap-5">
+          <CardContent className="p-4">
+            <div className="flex items-start gap-4">
               <div className="size-10 rounded-md overflow-hidden border border-border/30 flex-shrink-0">
                 <img src={item.image} alt={item.alt} className="w-full h-full object-cover" />
               </div>
               <div className="flex-1">
                 <h3 className="text-sm font-semibold text-foreground mb-1">{item.title}</h3>
-                <p className="text-xs text-muted-foreground mb-2">{item.subtitle}</p>
+                <p className="text-xs text-muted-foreground mb-1.5">{item.subtitle}</p>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   {item.description}
                 </p>
@@ -159,7 +159,7 @@ export function Achievements() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-sm font-semibold text-foreground mb-1">{item.title}</h3>
-                    <p className="text-xs text-muted-foreground mb-2">{item.subtitle}</p>
+                    <p className="text-xs text-muted-foreground mb-1.5">{item.subtitle}</p>
                     <p className="text-xs text-muted-foreground leading-relaxed">
                       {item.description}
                     </p>
