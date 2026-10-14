@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { TechBadge } from "@/components/tech-badge"
+import { SectionHeader } from "@/components/section-header"
 import { Images, X } from "lucide-react"
 
 const ROADEYE_PHOTOS = [
@@ -86,13 +87,11 @@ export function HackathonBuilds() {
 
   return (
     <section id="projects" className="mb-16 scroll-mt-20 snap-section">
-      <div className="mb-8">
-        <h2 className="text-xs uppercase tracking-widest text-muted-foreground/80 mb-8 font-mono font-semibold">Hackathon Builds</h2>
-      </div>
+      <SectionHeader>Hackathon Builds</SectionHeader>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
         {/* Roadeye Project */}
         <div className="flex">
-          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
+          <div className="bg-background rounded-xl border border-border/50 overflow-hidden shadow-sm project-card flex flex-col w-full">
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden select-none bg-muted/20">
               {roadeyeIndex === null ? (
@@ -191,7 +190,7 @@ export function HackathonBuilds() {
 
         {/* Uniway Project */}
         <div className="cursor-pointer flex" onClick={() => window.open('https://uniway.aryy.in', '_blank')}>
-          <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
+          <div className="bg-background rounded-xl border border-border/50 overflow-hidden shadow-sm project-card flex flex-col w-full">
             {/* Cover Image Section - Full height */}
             <div className="relative h-48 sm:h-64 overflow-hidden select-none bg-muted/20">
               {uniwayIndex === null ? (
@@ -289,7 +288,7 @@ export function HackathonBuilds() {
           <>
             {/* Prompt2Plugin Project */}
             <div className="cursor-pointer flex">
-              <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
+              <div className="bg-background rounded-xl border border-border/50 overflow-hidden shadow-sm project-card flex flex-col w-full">
                 {/* Cover Image Section - Full height */}
                 <div className="relative h-48 sm:h-64 overflow-hidden">
                   <img 
@@ -326,7 +325,7 @@ export function HackathonBuilds() {
 
             {/* janconnectai Project */}
             <div className="cursor-pointer flex">
-              <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
+              <div className="bg-background rounded-xl border border-border/50 overflow-hidden shadow-sm project-card flex flex-col w-full">
                 {/* Cover Image Section - Full height */}
                 <div className="relative h-48 sm:h-64 overflow-hidden">
                   <img 
@@ -363,7 +362,7 @@ export function HackathonBuilds() {
 
             {/* Silvercircle Project */}
             <div className="cursor-pointer flex">
-              <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
+              <div className="bg-background rounded-xl border border-border/50 overflow-hidden shadow-sm project-card flex flex-col w-full">
                 {/* Cover Image Section - Full height */}
                 <div className="relative h-48 sm:h-64 overflow-hidden">
                   <img 
@@ -400,7 +399,7 @@ export function HackathonBuilds() {
 
             {/* Geoverse Project */}
             <div className="cursor-pointer flex">
-              <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg flex flex-col w-full">
+              <div className="bg-background rounded-xl border border-border/50 overflow-hidden shadow-sm project-card flex flex-col w-full">
                 {/* Cover Image Section - Full height */}
                 <div className="relative h-48 sm:h-64 overflow-hidden">
                   <img 
