@@ -36,7 +36,12 @@ const FLIGHT_PTS: [number, number][] = [
   [170.7, -70.9], [165.1, -64.9], [158.7, -59.8], [151.7, -55.5], [144.3, -51.9], [136.6, -49.0],
 ]
 
-export function SleepingSnoopy() {
+const FLIGHT_PTS_LEFT: [number, number][] = FLIGHT_PTS.map(([x, y]) => [72 - x, y])
+
+export function SleepingSnoopy({ flyDirection = "right" }: { flyDirection?: "left" | "right" } = {}) {
+  // Mirror the loop across Snoopy (100px wide, Woodstock 28px) when the open sky is on the left.
+  const pts = flyDirection === "left" ? FLIGHT_PTS_LEFT : FLIGHT_PTS
+
   const [isSitting, setIsSitting] = useState(false)
   const [isLanded, setIsLanded] = useState(false)
   const [dots, setDots] = useState<TrailDot[]>([])
@@ -47,11 +52,11 @@ export function SleepingSnoopy() {
   const animFrameRef = useRef<number>(0)
 
   // Flight state refs
-  const posRef = useRef({ x: FLIGHT_PTS[0][0], y: FLIGHT_PTS[0][1] })
+  const posRef = useRef({ x: pts[0][0], y: pts[0][1] })
   const velRef = useRef({ x: 1, y: 0 })
   const angleRef = useRef(0)
   const scaleXRef = useRef(1)
-  const lastDotPosRef = useRef({ x: FLIGHT_PTS[0][0], y: FLIGHT_PTS[0][1] })
+  const lastDotPosRef = useRef({ x: pts[0][0], y: pts[0][1] })
   const dotIdRef = useRef(0)
   const distProgressRef = useRef(0)
 
@@ -193,11 +198,11 @@ export function SleepingSnoopy() {
           const p = Math.min(elapsed / duration, 1.0)
           const ease = p * p * (3 - 2 * p)
 
-          const targetX = FLIGHT_PTS[0][0]
-          const targetY = FLIGHT_PTS[0][1]
+          const targetX = pts[0][0]
+          const targetY = pts[0][1]
           currX = (1 - ease) * takeoffRef.current.startX + ease * targetX
           currY = (1 - ease) * takeoffRef.current.startY + ease * targetY
-          targetScaleX = -1 // Faces right as he climbs into the sky
+          targetScaleX = flyDirection === "left" ? 1 : -1 // Faces the open sky as he climbs
           targetAngle = -20 * (1 - p)
 
           // Smoothly cross-fade from sitting to flying in the first 35% of takeoff
@@ -218,18 +223,18 @@ export function SleepingSnoopy() {
           const flightSpeed = 82 // 82 pixels per second: steady, unhurried, graceful gliding
           distProgressRef.current = (distProgressRef.current + dt * flightSpeed) % FLIGHT_TOTAL_LEN
 
-          const numPts = FLIGHT_PTS.length
+          const numPts = pts.length
           const indexFloat = (distProgressRef.current / FLIGHT_TOTAL_LEN) * numPts
           const i0 = Math.floor(indexFloat) % numPts
           const i1 = (i0 + 1) % numPts
           const frac = indexFloat - Math.floor(indexFloat)
 
-          currX = FLIGHT_PTS[i0][0] + (FLIGHT_PTS[i1][0] - FLIGHT_PTS[i0][0]) * frac
-          currY = FLIGHT_PTS[i0][1] + (FLIGHT_PTS[i1][1] - FLIGHT_PTS[i0][1]) * frac
+          currX = pts[i0][0] + (pts[i1][0] - pts[i0][0]) * frac
+          currY = pts[i0][1] + (pts[i1][1] - pts[i0][1]) * frac
 
           // Heading direction directly from the path derivative
-          const vx = FLIGHT_PTS[i1][0] - FLIGHT_PTS[i0][0]
-          const vy = FLIGHT_PTS[i1][1] - FLIGHT_PTS[i0][1]
+          const vx = pts[i1][0] - pts[i0][0]
+          const vy = pts[i1][1] - pts[i0][1]
           velRef.current = { x: vx, y: vy }
 
           targetScaleX = vx > 0 ? -1 : 1
@@ -309,8 +314,8 @@ export function SleepingSnoopy() {
       onClick={handleToggle}
       title={
         isSitting
-          ? "Click Snoopy: Woodstock flies freely! 🐥"
-          : "Click Snoopy: Woodstock comes and sits on him! 🐥"
+          ? "Click Snoopy: Woodstock flies freely!"
+          : "Click Snoopy: Woodstock comes and sits on him!"
       }
     >
       {/* Discrete Peanuts Hand-Drawn Dotted Flight Trail */}
