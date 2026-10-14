@@ -357,6 +357,7 @@ function RatingDistribution({ histogram, userRating, topPercentage }: RatingDist
 export function LeetCodeStats({ username = "aryy8" }) {
   const [data, setData] = useState<LeetCodeData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showHeatmap, setShowHeatmap] = useState(false);
 
   useEffect(() => {
     const key = `lc-${username}`;
@@ -637,8 +638,17 @@ export function LeetCodeStats({ username = "aryy8" }) {
           </div>
         </div>
 
-        {/* Heatmap Section */}
-        <LeetCodeHeatmap submissionCalendar={data.submissionCalendar} />
+        {/* Heatmap Section (collapsed by default to keep the page short) */}
+        {showHeatmap ? (
+          <LeetCodeHeatmap submissionCalendar={data.submissionCalendar} />
+        ) : (
+          <button
+            onClick={() => setShowHeatmap(true)}
+            className="w-full py-2 rounded-lg border border-border/40 text-xs font-mono text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors cursor-pointer"
+          >
+            show submission activity
+          </button>
+        )}
       </div>
     </div>
   );
