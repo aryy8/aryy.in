@@ -156,6 +156,17 @@ export function Navbar({ onToggleAgentic, isAgenticMode }: NavbarProps) {
             </div>
           )}
 
+          {/* Command menu trigger */}
+          <button
+            onClick={() => window.dispatchEvent(new Event("open-command-menu"))}
+            className="inline-flex items-center gap-1.5 h-8 px-2 rounded-md border border-border/60 text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors cursor-pointer"
+            aria-label="Open command menu"
+            title="Command menu (Ctrl/Cmd + K)"
+          >
+            <Search className="size-3.5" aria-hidden />
+            <kbd className="hidden sm:inline text-[10px] font-mono">⌘K</kbd>
+          </button>
+
           {/* Resume (desktop) */}
           <a
             href="/Aryan_Rastogi_Resume.pdf"
