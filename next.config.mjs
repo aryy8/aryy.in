@@ -7,10 +7,10 @@ const nextConfig = {
     unoptimized: true,
   },
   async redirects() {
-    // Old resume URLs keep working after the rename.
+    // Old resume URL keeps working. Next.js matches redirect sources case-insensitively,
+    // so never add a source that differs from the real file only by letter case (it loops).
     return [
       { source: "/aryan_resume.pdf", destination: "/Aryan_Rastogi_Resume.pdf", permanent: true },
-      { source: "/Aryan_Rastogi_resume.pdf", destination: "/Aryan_Rastogi_Resume.pdf", permanent: true },
     ]
   },
   turbopack: {
