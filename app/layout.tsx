@@ -47,19 +47,20 @@ export const metadata: Metadata = {
     siteName: "Aryan Rastogi",
     images: [
       {
-        url: "/favicon.png",
-        width: 512,
-        height: 512,
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
         alt: "Aryan Rastogi — Portfolio",
       },
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
+    creator: "@aryyann8",
     title: "Aryan Rastogi",
     description:
       "AI Engineer · Researcher · Founder — portfolio featuring research, projects, experience, and writing.",
-    images: ["/favicon.png"],
+    images: ["/og-image.png"],
   },
   icons: {
     icon: [
@@ -71,6 +72,10 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+  ],
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
