@@ -191,7 +191,7 @@ export default function Portfolio() {
                         <span>X</span>
                       </a>
                       <a
-                        href="/aryan_resume.pdf"
+                        href="/Aryan_Rastogi_Resume.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium border border-border/70 bg-secondary/40 text-foreground hover:border-foreground dark:hover:border-white transition-colors duration-200 shadow-2xs group"
