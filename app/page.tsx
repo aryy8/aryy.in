@@ -6,6 +6,7 @@ import { SectionHeader } from "@/components/section-header"
 import { GitHubContributionGrid } from "@/components/github-contribution-grid"
 import { LeetCodeStats } from "@/components/leetcode-stats"
 import { TechBadge } from "@/components/tech-badge"
+import { TechStack } from "@/components/tech-stack"
 import { Navbar } from "@/components/navbar"
 import { JupyterCell } from "@/components/jupyter-cell"
 import { LiveProjects } from "@/components/live-projects"
@@ -229,57 +230,7 @@ export default function Portfolio() {
               {/* Tech Stack */}
               <section className="mb-16 snap-section">
                 <SectionHeader>Tech Stack</SectionHeader>
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">Languages</h3>
-                    <div className="flex flex-wrap gap-2.5">
-                      <TechBadge>Python</TechBadge>
-                      <TechBadge>Cpp</TechBadge>
-                      <TechBadge>SQL</TechBadge>
-                      <TechBadge>Typescript</TechBadge>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-                      Tools & Platforms
-                    </h3>
-                    <div className="flex flex-wrap gap-2.5">
-                      <TechBadge>FastAPI</TechBadge>
-                      <TechBadge>AWS</TechBadge>
-                      <TechBadge>GCP</TechBadge>
-                      <TechBadge>Docker</TechBadge>
-                      <TechBadge>Kaggle</TechBadge>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-                      Full Stack
-                    </h3>
-                    <div className="flex flex-wrap gap-2.5">
-                      <TechBadge>React</TechBadge>
-                      <TechBadge>Next.js</TechBadge>
-                      <TechBadge>Node.js</TechBadge>
-                      <TechBadge>REST APIs</TechBadge>
-                      <TechBadge>Supabase</TechBadge>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-                      ML/AI Frameworks
-                    </h3>
-                    <div className="flex flex-wrap gap-2.5">
-                      <TechBadge>PyTorch</TechBadge>
-                      <TechBadge>TensorFlow</TechBadge>
-                      <TechBadge>Scikit-learn</TechBadge>
-                      <TechBadge>Hugging Face</TechBadge>
-                      <TechBadge>LangChain</TechBadge>
-                      <TechBadge>OpenCV</TechBadge>
-                    </div>
-                  </div>
-                </div>
+                <TechStack />
               </section>
 
               {/* GitHub Contributions */}

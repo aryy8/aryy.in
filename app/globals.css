@@ -171,3 +171,9 @@
     }
   }
 }
+
+/* Tech stack chips: monochrome by default, brand colour on hover */
+.tech-chip:hover {
+  border-color: color-mix(in srgb, var(--brand) 45%, transparent);
+  background-color: color-mix(in srgb, var(--brand) 8%, transparent);
+}
