@@ -124,6 +124,15 @@ export default function Portfolio() {
                     {/* Premium Action Pill Buttons */}
                     <div className="flex flex-wrap items-center gap-2 pt-2">
                       <a
+                        href="/Aryan_Rastogi_Resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-foreground text-background hover:opacity-90 transition-opacity duration-200 shadow-2xs group"
+                      >
+                        <FileText className="size-3.5 transition-transform group-hover:scale-110" />
+                        <span>Resume</span>
+                      </a>
+                      <a
                         href="https://github.com/aryy8"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -152,15 +161,7 @@ export default function Portfolio() {
                         </svg>
                         <span>X</span>
                       </a>
-                      <a
-                        href="/Aryan_Rastogi_Resume.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium border border-border/70 bg-secondary/40 text-foreground hover:border-foreground dark:hover:border-white transition-colors duration-200 shadow-2xs group"
-                      >
-                        <FileText className="size-3.5 transition-transform group-hover:scale-110" />
-                        <span>Resume</span>
-                      </a>
+
                     </div>
                   </div>
                 </div>
