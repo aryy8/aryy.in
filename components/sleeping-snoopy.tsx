@@ -37,10 +37,13 @@ const FLIGHT_PTS: [number, number][] = [
 ]
 
 const FLIGHT_PTS_LEFT: [number, number][] = FLIGHT_PTS.map(([x, y]) => [72 - x, y])
+// Narrower loop for phones so Woodstock stays on screen.
+const FLIGHT_PTS_LEFT_COMPACT: [number, number][] = FLIGHT_PTS.map(([x, y]) => [72 - (130 + (x - 130) * 0.55), y])
 
 export function SleepingSnoopy({ flyDirection = "right" }: { flyDirection?: "left" | "right" } = {}) {
   // Mirror the loop across Snoopy (100px wide, Woodstock 28px) when the open sky is on the left.
-  const pts = flyDirection === "left" ? FLIGHT_PTS_LEFT : FLIGHT_PTS
+  const [compact] = useState(() => typeof window !== "undefined" && window.innerWidth < 640)
+  const pts = flyDirection === "left" ? (compact ? FLIGHT_PTS_LEFT_COMPACT : FLIGHT_PTS_LEFT) : FLIGHT_PTS
 
   const [isSitting, setIsSitting] = useState(false)
   const [isLanded, setIsLanded] = useState(false)
