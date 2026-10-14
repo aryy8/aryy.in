@@ -206,3 +206,13 @@
 
 /* Mobile: never allow decorative elements (Woodstock, Zs) to cause sideways scroll */
 html, body { overflow-x: clip; }
+
+/* Hero cover video: never show native controls or the big play overlay (Safari/iOS) */
+.snoopy-video::-webkit-media-controls,
+.snoopy-video::-webkit-media-controls-panel,
+.snoopy-video::-webkit-media-controls-overlay-play-button,
+.snoopy-video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+  opacity: 0 !important;
+}
