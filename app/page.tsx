@@ -21,6 +21,7 @@ import { useState } from "react"
 import { AgenticView } from "@/components/agentic-view"
 import { useSectionReveal } from "@/components/reveal"
 import { CommandMenu } from "@/components/command-menu"
+import { ResearchList } from "@/components/research-list"
 
 export default function Portfolio() {
   const [isAgenticMode, setIsAgenticMode] = useState(false)
@@ -230,57 +231,7 @@ export default function Portfolio() {
               {/* Research Section */}
               <section id="research" className="mb-12 scroll-mt-20 snap-section">
                 <SectionHeader>Research</SectionHeader>
-                <div className="space-y-3">
-
-                  <Card className="glass-card group project-card">
-                    <CardContent className="p-5">
-                      <div className="flex flex-col gap-3">
-                        <div>
-                          <h3 className="text-base font-semibold text-foreground leading-snug mb-1.5">SafeAlign: A Multi-Paradigm Pipeline for LLM Safety Evaluation via Taxonomy-Guided Data Curation</h3>
-                          <p className="text-xs text-muted-foreground mb-2">Aryan Rastogi, Dr. Varda Pareek — Manipal University Jaipur</p>
-                          <div className="flex flex-wrap gap-1 mb-2">
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">LLM Safety</span>
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">RLHF</span>
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">DPO</span>
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Data Curation</span>
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">HH-RLHF</span>
-                          </div>
-                          <p className="text-sm text-muted-foreground leading-relaxed italic">
-                            Taxonomy-guided label denoising outperforms model scale — a 66M DistilBERT on filtered data beats a 774M baseline on safety classification.
-                          </p>
-                          <div className="mt-2">
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-muted/50 text-muted-foreground border border-border/30">Under Review / Preprint</span>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="glass-card group project-card">
-                    <CardContent className="p-5">
-                      <div className="flex flex-col gap-3">
-                        <div>
-                          <h3 className="text-base font-semibold text-foreground leading-snug mb-1.5">Quantifying the Alignment Tax: Tracking Creativity and Semantic Entropy through the SFT and DPO Pipeline</h3>
-                          <p className="text-xs text-muted-foreground mb-2">Harshita Singh, Aryan Rastogi — Manipal University Jaipur</p>
-                          <div className="flex flex-wrap gap-1 mb-2">
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Alignment Tax</span>
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Semantic Entropy</span>
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">DPO</span>
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Creativity</span>
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">LLMs</span>
-                          </div>
-                          <p className="text-sm text-muted-foreground leading-relaxed italic">
-                            DPO systematically collapses semantic diversity — creative narrative divergence drops from 0.7153 (base) to 0.3591 (post-DPO) on Mistral-7B.
-                          </p>
-                          <div className="mt-2">
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-muted/50 text-muted-foreground border border-border/30">Under Review / Preprint</span>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                </div>
+                <ResearchList />
               </section>
 
               {/* Achievements Section */}
