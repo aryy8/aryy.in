@@ -93,7 +93,7 @@ export function HackathonBuilds() {
         <div className="flex">
           <div className="bg-background rounded-xl border border-border/50 overflow-hidden shadow-sm project-card flex flex-col w-full">
             {/* Cover Image Section - Full height */}
-            <div className="relative h-48 sm:h-64 overflow-hidden select-none bg-muted/20">
+            <div className="relative aspect-[16/10] overflow-hidden select-none bg-muted/20">
               {roadeyeIndex === null ? (
                 <img 
                   src="/roadeye.webp"
@@ -192,7 +192,7 @@ export function HackathonBuilds() {
         <div className="cursor-pointer flex" onClick={() => window.open('https://uniway.aryy.in', '_blank')}>
           <div className="bg-background rounded-xl border border-border/50 overflow-hidden shadow-sm project-card flex flex-col w-full">
             {/* Cover Image Section - Full height */}
-            <div className="relative h-48 sm:h-64 overflow-hidden select-none bg-muted/20">
+            <div className="relative aspect-[16/10] overflow-hidden select-none bg-muted/20">
               {uniwayIndex === null ? (
                 <img 
                   src="/uniway_project.webp"
@@ -290,7 +290,7 @@ export function HackathonBuilds() {
             <div className="cursor-pointer flex">
               <div className="bg-background rounded-xl border border-border/50 overflow-hidden shadow-sm project-card flex flex-col w-full">
                 {/* Cover Image Section - Full height */}
-                <div className="relative h-48 sm:h-64 overflow-hidden">
+                <div className="relative aspect-[16/10] overflow-hidden">
                   <img 
                     src="/p2p.webp" 
                     alt="Prompt2Plugin Project"
@@ -327,7 +327,7 @@ export function HackathonBuilds() {
             <div className="cursor-pointer flex">
               <div className="bg-background rounded-xl border border-border/50 overflow-hidden shadow-sm project-card flex flex-col w-full">
                 {/* Cover Image Section - Full height */}
-                <div className="relative h-48 sm:h-64 overflow-hidden">
+                <div className="relative aspect-[16/10] overflow-hidden">
                   <img 
                     src="/janconnectai.webp" 
                     alt="JanConnectAI Project"
@@ -364,7 +364,7 @@ export function HackathonBuilds() {
             <div className="cursor-pointer flex">
               <div className="bg-background rounded-xl border border-border/50 overflow-hidden shadow-sm project-card flex flex-col w-full">
                 {/* Cover Image Section - Full height */}
-                <div className="relative h-48 sm:h-64 overflow-hidden">
+                <div className="relative aspect-[16/10] overflow-hidden">
                   <img 
                     src="/silvercircle.webp" 
                     alt="Silvercircle Project"
@@ -401,7 +401,7 @@ export function HackathonBuilds() {
             <div className="cursor-pointer flex">
               <div className="bg-background rounded-xl border border-border/50 overflow-hidden shadow-sm project-card flex flex-col w-full">
                 {/* Cover Image Section - Full height */}
-                <div className="relative h-48 sm:h-64 overflow-hidden">
+                <div className="relative aspect-[16/10] overflow-hidden">
                   <img 
                     src="/geoverse.webp" 
                     alt="Geoverse Project"
