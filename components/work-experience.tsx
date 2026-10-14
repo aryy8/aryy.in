@@ -4,8 +4,16 @@ import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { ChevronDown, ChevronUp } from "lucide-react"
 
+const SYLUS_POINTS = [
+  'Engineered the platform end-to-end from a greenfield repository to production, owning auth, database schema, and core architecture through 180+ commits, then scaling it into a multi-tenant AI content platform.',
+  'Designed and shipped a 9-phase agency system (RBAC, approval workflows, client portal, invites, real-time collaboration) from scratch, taking the product from single-user to multi-brand agency-ready.',
+  'Built the AI content engine (multi-model LLM copywriting, live Google News trend discovery, AI image generation) and a document intelligence pipeline auto-extracting and scheduling posts from PDFs, Excel, and Word docs.',
+  'Hardened the platform for production: patched security vulnerabilities across auth, API endpoints, and middleware (SSRF, CORS), and stabilized deployment across Cloud Run and Docker.',
+]
+
 export function WorkExperience() {
   const [isExpanded, setIsExpanded] = useState(false)
+  const [showAllSylus, setShowAllSylus] = useState(false)
 
   return (
     <div className="space-y-2">
@@ -65,11 +73,17 @@ export function WorkExperience() {
                 <h3 className="text-base font-semibold mb-1">AI Engineer</h3>
                 <p className="text-xs text-muted-foreground mb-2">Sylus AI  •  (remote)</p>
                 <ul className="text-xs text-muted-foreground/80 leading-relaxed list-disc pl-4 space-y-1.5 mt-2">
-                  <li>Engineered the platform end-to-end from a greenfield repository to production, owning auth, database schema, and core architecture through 180+ commits, then scaling it into a multi-tenant AI content platform.</li>
-                  <li>Designed and shipped a 9-phase agency system (RBAC, approval workflows, client portal, invites, real-time collaboration) from scratch, taking the product from single-user to multi-brand agency-ready.</li>
-                  <li>Built the AI content engine (multi-model LLM copywriting, live Google News trend discovery, AI image generation) and a document intelligence pipeline auto-extracting and scheduling posts from PDFs, Excel, and Word docs.</li>
-                  <li>Hardened the platform for production: patched security vulnerabilities across auth, API endpoints, and middleware (SSRF, CORS), and stabilized deployment across Cloud Run and Docker.</li>
+                  {(showAllSylus ? SYLUS_POINTS : SYLUS_POINTS.slice(0, 2)).map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
                 </ul>
+                <button
+                  onClick={() => setShowAllSylus((v) => !v)}
+                  className="mt-2 text-[11px] font-mono text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  aria-expanded={showAllSylus}
+                >
+                  {showAllSylus ? "show less" : `+${SYLUS_POINTS.length - 2} more`}
+                </button>
               </div>
             </div>
             <div className="text-left sm:text-right shrink-0">
