@@ -15,49 +15,10 @@ import { NotesGrid } from "@/components/notes-grid"
 import { Achievements } from "@/components/achievements"
 import { WorkExperience } from "@/components/work-experience"
 import { SnoopyHero } from "@/components/snoopy-hero"
-import { Mail, MapPin, Award } from "lucide-react"
-import { Github, Linkedin, FileText, Twitter } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { useState, useEffect } from "react"
+import { Mail, MapPin } from "lucide-react"
+import { Github, Linkedin, FileText } from "lucide-react"
+import { useState } from "react"
 import { AgenticView } from "@/components/agentic-view"
-import { Bot } from "lucide-react"
-
-function TypewriterAnimation() {
-  const phrases = [
-    "AI Engineer · Applied AI × Research",
-    "CS @ Manipal",
-  ]
-
-  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
-  const [currentText, setCurrentText] = useState("")
-  const [charIndex, setCharIndex] = useState(0)
-
-  useEffect(() => {
-    const currentPhrase = phrases[currentPhraseIndex]
-
-    const timeout = setTimeout(() => {
-      if (charIndex < currentPhrase.length) {
-        setCurrentText(currentPhrase.substring(0, charIndex + 1))
-        setCharIndex(charIndex + 1)
-      } else {
-        setTimeout(() => {
-          setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length)
-          setCurrentText("")
-          setCharIndex(0)
-        }, 1500)
-      }
-    }, 100)
-
-    return () => clearTimeout(timeout)
-  }, [charIndex, currentPhraseIndex, phrases])
-
-  return (
-    <span className="text-base sm:text-lg lg:text-xl text-primary font-medium inline-block min-h-[3.5em]">
-      <span key={currentPhraseIndex} className="transition-all duration-300 ease-in-out roll-in">{currentText}</span>
-      <span className="animate-pulse">|</span>
-    </span>
-  )
-}
 
 export default function Portfolio() {
   const [isAgenticMode, setIsAgenticMode] = useState(false)
