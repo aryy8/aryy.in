@@ -241,7 +241,7 @@ export default function Portfolio() {
                             <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Data Curation</span>
                             <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">HH-RLHF</span>
                           </div>
-                          <p className="text-xs text-muted-foreground leading-relaxed italic">
+                          <p className="text-sm text-muted-foreground leading-relaxed italic">
                             Taxonomy-guided label denoising outperforms model scale — a 66M DistilBERT on filtered data beats a 774M baseline on safety classification.
                           </p>
                           <div className="mt-2">
@@ -265,7 +265,7 @@ export default function Portfolio() {
                             <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">Creativity</span>
                             <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-cold/10 text-accent-cold border border-accent-cold/20">LLMs</span>
                           </div>
-                          <p className="text-xs text-muted-foreground leading-relaxed italic">
+                          <p className="text-sm text-muted-foreground leading-relaxed italic">
                             DPO systematically collapses semantic diversity — creative narrative divergence drops from 0.7153 (base) to 0.3591 (post-DPO) on Mistral-7B.
                           </p>
                           <div className="mt-2">
@@ -309,7 +309,7 @@ export default function Portfolio() {
                             </a>
                           </h3>
                           <p className="text-xs text-muted-foreground mb-2">Medium • Published 2026</p>
-                          <p className="text-xs text-muted-foreground leading-relaxed">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
                             Tried to build a text-to-TikZ diagram generator. Got it wrong twice before figuring out why.
                           </p>
                           <div className="flex flex-wrap gap-1 mt-3">
@@ -340,7 +340,7 @@ export default function Portfolio() {
                             </a>
                           </h3>
                           <p className="text-xs text-muted-foreground mb-2">Medium • Published 2026</p>
-                          <p className="text-xs text-muted-foreground leading-relaxed">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
                             An Implementation of deep learning in three stages: building a neural network from scratch using NumPy, predicting customer churn with an ANN, and classifying images with a CNN.
                           </p>
                           <div className="flex flex-wrap gap-1 mt-3">
@@ -372,7 +372,7 @@ export default function Portfolio() {
                             </a>
                           </h3>
                           <p className="text-xs text-muted-foreground mb-2">Medium • Published 2026</p>
-                          <p className="text-xs text-muted-foreground leading-relaxed">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
                             Exploring how to leverage Cursor and Google Colab together to create an efficient machine learning workflow that combines the best of both worlds - replacing traditional Jupyter notebooks and ChatGPT interactions with a more integrated development experience.
                           </p>
                           <div className="flex flex-wrap gap-1 mt-3">
