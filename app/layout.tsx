@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   },
   description:
     "Aryan Rastogi — AI Engineer, Researcher & Founder. Building at the intersection of AI safety, applied ML, and product. Founder of Aryy & Co.",
+  authors: [{ name: "Aryan Rastogi", url: "https://www.aryy.in" }],
+  creator: "Aryan Rastogi",
+  robots: { index: true, follow: true },
   alternates: {
     canonical: "https://www.aryy.in/",
   },
@@ -36,7 +39,6 @@ export const metadata: Metadata = {
     "alignment tax",
     "RLHF",
     "DPO",
-    "NLP",
   ],
   openGraph: {
     type: "website",
