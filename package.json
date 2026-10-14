@@ -2,6 +2,7 @@
   "name": "my-v0-project",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "npm@11.4.1",
   "scripts": {
     "build": "next build",
     "convert:webp": "node convert-images.js",
