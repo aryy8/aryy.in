@@ -62,7 +62,7 @@ export function NotesGrid() {
       </div>
 
       {/* NLP */}
-      <div className="cursor-pointer" onClick={() => window.open('https://www.notion.so/Python-https://www.notion.so/NLP-2f151d8d6c0980d5bacee05184720543', '_blank')}>
+      <div className="cursor-pointer" onClick={() => window.open('https://app.notion.com/p/NLP-2f151d8d6c0980d5bacee05184720543', '_blank')}>
         <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm hover:border-foreground/40 hover:shadow-lg">
           {/* Cover Image Section */}
           <div className="relative h-28 overflow-hidden">
