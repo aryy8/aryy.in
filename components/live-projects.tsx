@@ -70,7 +70,7 @@ export function LiveProjects() {
   return (
     <section id="live-projects" className="mb-12 scroll-mt-20 snap-section">
       <SectionHeader>Live Projects</SectionHeader>
-      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
         {PROJECTS.map((p) => (
           <div key={p.slug} className="relative flex">
             {p.snoopy && (
@@ -88,7 +88,7 @@ export function LiveProjects() {
               <div className="relative aspect-[16/10] overflow-hidden bg-muted/20">
                 <ProjectShot slug={p.slug} alt={`${p.name} live app screenshot`} />
               </div>
-              <div className="p-4 flex-1 flex flex-col gap-3">
+              <div className="p-4 flex-1 flex flex-col gap-2">
                 <div className="flex items-center justify-between gap-2">
                   <h3 className="text-lg font-semibold text-foreground">{p.name}</h3>
                   <ArrowUpRight aria-hidden className="size-4 text-muted-foreground transition-transform duration-200 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5 group-hover:text-foreground" />

@@ -88,7 +88,7 @@ export function HackathonBuilds() {
   return (
     <section id="projects" className="mb-12 scroll-mt-20 snap-section">
       <SectionHeader>Hackathon Builds</SectionHeader>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
         {/* Roadeye Project */}
         <div className="flex">
           <div className="bg-background rounded-xl border border-border/50 overflow-hidden shadow-sm project-card flex flex-col w-full">
