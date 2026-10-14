@@ -134,7 +134,7 @@ export default function Portfolio() {
                         href="/Aryan_Rastogi_Resume.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold bg-foreground text-background hover:opacity-90 transition-opacity duration-200 shadow-2xs group"
+                        className="inline-flex items-center gap-1 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-full text-xs font-medium border border-border/70 bg-secondary/40 text-foreground hover:border-foreground dark:hover:border-white transition-colors duration-200 shadow-2xs group"
                       >
                         <FileText className="size-3.5 transition-transform group-hover:scale-110" />
                         <span>Resume</span>
