@@ -97,7 +97,9 @@ export function HackathonBuilds() {
             <div className="relative h-48 sm:h-64 overflow-hidden select-none bg-muted/20">
               {roadeyeIndex === null ? (
                 <img 
-                  src="/roadeye.webp" 
+                  src="/roadeye.webp"
+                  loading="lazy"
+                  decoding="async" 
                   alt="Roadeye Project"
                   className="w-full h-full object-cover"
                 />
@@ -148,7 +150,10 @@ export function HackathonBuilds() {
             <div className="p-4 flex-1 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between mb-2 gap-2">
-                  <h3 className="text-lg font-semibold text-foreground">RoadEye</h3>
+                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                    RoadEye
+                    <span className="px-1.5 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider border border-border/50 text-muted-foreground">Under NDA</span>
+                  </h3>
                   {roadeyeIndex === null && (
                     <button
                       onClick={(e) => {
@@ -191,7 +196,9 @@ export function HackathonBuilds() {
             <div className="relative h-48 sm:h-64 overflow-hidden select-none bg-muted/20">
               {uniwayIndex === null ? (
                 <img 
-                  src="/uniway_project.webp" 
+                  src="/uniway_project.webp"
+                  loading="lazy"
+                  decoding="async" 
                   alt="Uniway Project"
                   className="w-full h-full object-cover"
                 />
