@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
-import { Bot } from "lucide-react"
+import { Bot, FileText, Search } from "lucide-react"
 
 const navItems = [
   { id: "about", label: "About" },
@@ -155,6 +155,17 @@ export function Navbar({ onToggleAgentic, isAgenticMode }: NavbarProps) {
               </button>
             </div>
           )}
+
+          {/* Resume (desktop) */}
+          <a
+            href="/Aryan_Rastogi_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <FileText className="size-3.5" aria-hidden />
+            resume
+          </a>
 
           {/* Theme toggle button */}
           <button
