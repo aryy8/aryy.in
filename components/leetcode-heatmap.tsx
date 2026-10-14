@@ -1,5 +1,7 @@
 "use client"
 
+import { Skeleton } from "@/components/skeleton";
+
 import { useEffect, useRef, useState } from 'react';
 
 interface HeatmapDay {
@@ -70,7 +72,7 @@ export function LeetCodeHeatmap({ submissionCalendar }: { submissionCalendar?: R
   };
 
   if (loading) return (
-    <div className="text-xs text-muted-foreground font-mono">Generating heatmap...</div>
+    <Skeleton className="h-[104px] w-full" />
   );
 
   if (!weeks.length) {

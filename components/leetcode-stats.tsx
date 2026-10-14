@@ -1,5 +1,7 @@
 "use client"
 
+import { Skeleton, readCache, writeCache } from "@/components/skeleton";
+
 import { useEffect, useState, useId } from 'react';
 import { LeetCodeHeatmap } from './leetcode-heatmap';
 import { Check, ArrowRight } from 'lucide-react';
@@ -357,9 +359,17 @@ export function LeetCodeStats({ username = "aryy8" }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const key = `lc-${username}`;
+    const cached = readCache<LeetCodeData>(key);
+    if (cached) {
+      setData(cached);
+      setLoading(false);
+      return;
+    }
     fetch(`/api/leetcode?username=${encodeURIComponent(username)}`)
       .then((res) => res.json())
       .then((data: LeetCodeData) => {
+        if (data && data.status !== "error") writeCache(key, data);
         setData(data);
         setLoading(false);
       })
@@ -371,8 +381,16 @@ export function LeetCodeStats({ username = "aryy8" }) {
 
   if (loading) return (
     <div className="bg-background rounded-lg border border-border/50 overflow-hidden shadow-sm">
-      <div className="p-4">
-        <p className="text-sm text-muted-foreground font-mono">Loading...</p>
+      <div className="p-4 space-y-4" aria-busy="true" aria-label="Loading LeetCode stats">
+        <div className="flex gap-4">
+          <Skeleton className="size-24 rounded-full" />
+          <div className="flex-1 space-y-3 pt-2">
+            <Skeleton className="h-3 w-full" />
+            <Skeleton className="h-3 w-5/6" />
+            <Skeleton className="h-3 w-2/3" />
+          </div>
+        </div>
+        <Skeleton className="h-28 w-full" />
       </div>
     </div>
   );
@@ -585,6 +603,8 @@ export function LeetCodeStats({ username = "aryy8" }) {
               <div className="relative group/badge" title="50 Days Badge 2026">
                 <img
                   src="/50_lc.webp"
+                  loading="lazy"
+                  decoding="async"
                   alt="LeetCode 50 Badge"
                   className="size-13 sm:size-15 object-contain opacity-95 transition-transform duration-200 group-hover:scale-110"
                 />
@@ -592,6 +612,8 @@ export function LeetCodeStats({ username = "aryy8" }) {
               <div className="relative group/badge" title="100 Days Badge 2026">
                 <img
                   src="/100_lc.webp"
+                  loading="lazy"
+                  decoding="async"
                   alt="LeetCode 100 Badge"
                   className="size-16 sm:size-18 object-contain opacity-95 transition-transform duration-200 group-hover:scale-110"
                 />
@@ -599,6 +621,8 @@ export function LeetCodeStats({ username = "aryy8" }) {
               <div className="relative group/badge" title="Sep LeetCoding Challenge">
                 <img
                   src="/sep_lc.png"
+                  loading="lazy"
+                  decoding="async"
                   alt="Sep LeetCoding Challenge Badge"
                   className="size-13 sm:size-15 object-contain opacity-95 transition-transform duration-200 group-hover:scale-110"
                 />

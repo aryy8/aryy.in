@@ -1,5 +1,7 @@
 "use client"
 
+import { Skeleton, readCache, writeCache } from "@/components/skeleton"
+
 import { useEffect, useRef, useState } from "react"
 
 interface ContributionDay {
@@ -17,8 +19,9 @@ export function GitHubContributionGrid() {
   useEffect(() => {
     async function fetchGitHubData() {
       try {
-        const response = await fetch(`https://github-contributions-api.jogruber.de/v4/aryy8?y=last`)
-        const data = await response.json()
+        const cached = readCache<any>("gh-contrib")
+        const data = cached ?? (await (await fetch(`https://github-contributions-api.jogruber.de/v4/aryy8?y=last`)).json())
+        if (!cached) writeCache("gh-contrib", data)
 
         setContributions(data.contributions ?? [])
         setTotalCount(data?.total?.lastYear ?? data?.total?.["lastYear"] ?? 0)
@@ -66,8 +69,9 @@ export function GitHubContributionGrid() {
 
   if (loading) {
     return (
-      <div className="glass-card p-6 rounded-xl">
-        <p className="text-sm text-muted-foreground">Loading GitHub activity...</p>
+      <div className="glass-card p-6 rounded-xl" aria-busy="true" aria-label="Loading GitHub activity">
+        <Skeleton className="h-4 w-48 mb-4" />
+        <Skeleton className="h-[104px] w-full" />
       </div>
     )
   }
