@@ -23,6 +23,7 @@ import { useSectionReveal } from "@/components/reveal"
 import { CommandMenu } from "@/components/command-menu"
 import { ResearchList } from "@/components/research-list"
 import { BlogList } from "@/components/blog-list"
+import { SnoopyAsciiPond } from "@/components/snoopy-ascii-pond"
 
 export default function Portfolio() {
   const [isAgenticMode, setIsAgenticMode] = useState(false)
@@ -35,8 +36,16 @@ export default function Portfolio() {
       <CommandMenu onBeforeNavigate={() => setIsAgenticMode(false)} />
       <Navbar onToggleAgentic={() => setIsAgenticMode(!isAgenticMode)} isAgenticMode={isAgenticMode} />
 
-      <div className="relative z-10 flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-20 gap-10 sm:gap-12 pt-24 sm:pt-32 scroll-smooth">
-        <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto">
+      {/* Interactive ASCII Ripple Pond & Snoopy Gutters (inspired by aetosdios.xyz) */}
+      <SnoopyAsciiPond />
+
+      <div className="relative z-10 flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 scroll-smooth">
+        {/* Full-height continuous dashed guide rails */}
+        <div className="absolute inset-y-0 left-4 sm:left-6 lg:left-12 right-4 sm:right-6 lg:right-12 pointer-events-none">
+          <div className="max-w-3xl mx-auto h-full border-x-[1.5px] border-dashed border-foreground/25" />
+        </div>
+
+        <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto relative px-4 sm:px-8 pt-24 sm:pt-32 pb-16 sm:pb-24">
           {/* Conditional Agentic View or Standard Human Sections */}
           {isAgenticMode ? (
             <AgenticView />
@@ -45,7 +54,7 @@ export default function Portfolio() {
               {/* Hero Section - LinkedIn & Twitter Inspired Senior UI Design */}
               <section className="mb-12 snap-section">
                 {/* Cover Photo Banner - Crisp & Clear */}
-                <div className="relative w-full h-44 sm:h-56 lg:h-64 overflow-hidden rounded-2xl -mt-12 sm:-mt-20 border border-border/40">
+                <div className="relative w-full h-32 sm:h-40 lg:h-44 overflow-hidden rounded-2xl border border-border/40">
                   <SnoopyHero />
                 </div>
 
@@ -199,11 +208,15 @@ export default function Portfolio() {
                 </div>
               </section>
 
+              <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
+
               {/* Tech Stack */}
               <section className="mb-12 snap-section">
                 <SectionHeader>Tech Stack</SectionHeader>
                 <TechStack />
               </section>
+
+              <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
 
               {/* GitHub Contributions */}
               <section className="mb-12 snap-section">
@@ -211,11 +224,13 @@ export default function Portfolio() {
                 <GitHubContributionGrid />
               </section>
 
+              <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
+
               {/* LeetCode Stats */}
-              <section id="leetcode" className="mb-12 scroll-mt-20 snap-section">
+              {/* <section id="leetcode" className="mb-12 scroll-mt-20 snap-section">
                 <SectionHeader>LeetCode Stats</SectionHeader>
                 <LeetCodeStats />
-              </section>
+              </section> */}
 
               {/* Experience Section */}
               <section id="experience" className="mb-12 scroll-mt-20 snap-section">
@@ -223,17 +238,21 @@ export default function Portfolio() {
                 <WorkExperience />
               </section>
 
+              <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
+
               {/* Live Projects Section */}
               <LiveProjects />
 
+              <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
+
               {/* Hackathon Builds Section */}
-              <HackathonBuilds />
+              {/* <HackathonBuilds /> */}
 
               {/* Research Section */}
-              <section id="research" className="mb-12 scroll-mt-20 snap-section">
+              {/* <section id="research" className="mb-12 scroll-mt-20 snap-section">
                 <SectionHeader>Research</SectionHeader>
                 <ResearchList />
-              </section>
+              </section> */}
 
               {/* Achievements Section */}
               <section id="achievements" className="mb-12 scroll-mt-20 snap-section">
@@ -241,11 +260,15 @@ export default function Portfolio() {
                 <Achievements />
               </section>
 
+              <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
+
               {/* Blog Section */}
               <section id="blog" className="mb-12 scroll-mt-20 snap-section">
                 <SectionHeader>Blogs</SectionHeader>
                 <BlogList />
               </section>
+
+              <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
 
               {/* Notes Section */}
               <section id="notes" className="mb-12 scroll-mt-20 snap-section">
@@ -254,17 +277,14 @@ export default function Portfolio() {
               </section>
 
               {/* Live ML Playground */}
+              {/* <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
               <section className="mb-12 snap-section">
                 <SectionHeader>Live ML Playground</SectionHeader>
                 <JupyterCell />
-              </section>
+              </section> */}
             </>
           )}
         </main>
-
-        <footer className="text-center pt-8 pb-10">
-          <p className="font-mono text-xs text-muted-foreground">aryan rastogi · 2026</p>
-        </footer>
       </div>
     </div>
   )
