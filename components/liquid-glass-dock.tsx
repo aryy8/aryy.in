@@ -13,12 +13,27 @@ interface LiquidGlassDockProps {
 export function LiquidGlassDock({ onToggleAgentic, isAgenticMode }: LiquidGlassDockProps) {
   const [mounted, setMounted] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const { theme, setTheme } = useTheme()
   const dockRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  // Smooth tooltip overflow delay: keeps overflow hidden during expansion,
+  // then enables visible overflow so floating tooltips are unclipped once fully open.
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>
+    if (isHovered) {
+      timer = setTimeout(() => {
+        setIsOpen(true)
+      }, 360)
+    } else {
+      setIsOpen(false)
+    }
+    return () => clearTimeout(timer)
+  }, [isHovered])
 
   // Collapse on mobile scroll or tap outside
   useEffect(() => {
@@ -64,9 +79,13 @@ export function LiquidGlassDock({ onToggleAgentic, isAgenticMode }: LiquidGlassD
           "border border-foreground/15 dark:border-white/20",
           "shadow-[0_16px_40px_-8px_rgba(0,0,0,0.18),inset_0_1px_1px_rgba(255,255,255,0.45)] dark:shadow-[0_20px_45px_-8px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,255,255,0.22)]",
           "ring-1 ring-black/5 dark:ring-white/10",
-          "transition-all duration-300 ease-out",
+          "transition-[box-shadow,border-color,background-color] duration-380",
+          "will-change-[max-width,transform]",
           isHovered && "shadow-[0_20px_48px_-8px_rgba(0,0,0,0.25),inset_0_1px_1px_rgba(255,255,255,0.55)] dark:shadow-[0_24px_52px_-8px_rgba(0,0,0,0.75),inset_0_1px_1px_rgba(255,255,255,0.3)]"
         )}
+        style={{
+          transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
       >
         {/* Core items (Always visible): X, GitHub, LinkedIn, Resume */}
         <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
@@ -132,20 +151,28 @@ export function LiquidGlassDock({ onToggleAgentic, isAgenticMode }: LiquidGlassD
         {/* Expandable Section: Revealed on hover (Switch, Darkmode, Profile Icon) */}
         <div
           className={cn(
-            "flex items-center shrink-0 transition-all duration-300 ease-out",
+            "flex items-center shrink-0 transition-[max-width,opacity,margin] duration-380",
             isHovered
-              ? "max-w-[200px] opacity-100 ml-1 sm:ml-1.5"
-              : "max-w-0 opacity-0 ml-0 pointer-events-none group-hover:max-w-[200px] group-hover:opacity-100 group-hover:ml-1.5 group-hover:pointer-events-auto"
+              ? "max-w-[150px] sm:max-w-[160px] opacity-100 ml-1 sm:ml-1.5"
+              : "max-w-0 opacity-0 ml-0 pointer-events-none"
           )}
           style={{
-            overflow: isHovered ? "visible" : "hidden",
-            transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+            overflow: isOpen ? "visible" : "hidden",
+            transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         >
           {/* Separator Hairline */}
           <div className="h-4 w-px bg-foreground/15 dark:bg-white/15 mx-0.5 shrink-0" />
 
-          <div className="flex items-center gap-1 sm:gap-1.5 shrink-0 pl-1">
+          <div
+            className={cn(
+              "flex items-center gap-1 sm:gap-1.5 shrink-0 pl-1 transition-transform duration-380",
+              isHovered ? "translate-x-0" : "translate-x-2"
+            )}
+            style={{
+              transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+            }}
+          >
             {/* iOS Small Switch: Agent / Human mode */}
             {onToggleAgentic && (
               <button
