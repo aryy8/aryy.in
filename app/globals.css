@@ -138,14 +138,12 @@
   }
   html {
     scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
     @apply overflow-x-hidden;
   }
 }
 
-/* Section snap target — gentle proximity-based snapping */
+/* Section target — scroll offset for sticky header and reveal animation selector */
 .snap-section {
-  scroll-snap-align: start;
   scroll-margin-top: 5rem;
 }
 
