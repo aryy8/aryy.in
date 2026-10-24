@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef, useCallback } from "react"
+import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
 import { FileText, Github, Linkedin, Mail } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -14,27 +14,9 @@ export function LiquidGlassDock({ onToggleAgentic, isAgenticMode }: LiquidGlassD
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
 
-  const humanBtnRef = useRef<HTMLButtonElement>(null)
-  const agentBtnRef = useRef<HTMLButtonElement>(null)
-  const [pillStyle, setPillStyle] = useState({ left: 2, width: 52 })
-
   useEffect(() => {
     setMounted(true)
   }, [])
-
-  const measurePill = useCallback(() => {
-    const activeBtn = isAgenticMode ? agentBtnRef.current : humanBtnRef.current
-    if (activeBtn) {
-      setPillStyle({
-        left: activeBtn.offsetLeft,
-        width: activeBtn.offsetWidth,
-      })
-    }
-  }, [isAgenticMode])
-
-  useEffect(() => {
-    measurePill()
-  }, [measurePill, mounted])
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -60,45 +42,37 @@ export function LiquidGlassDock({ onToggleAgentic, isAgenticMode }: LiquidGlassD
           "ring-1 ring-black/5 dark:ring-white/10"
         )}
       >
-        {/* iOS Spring Sliding Toggle: human | agent */}
+        {/* iOS Small Switch: Agent / Human mode */}
         {onToggleAgentic && (
-          <div className="relative flex items-center p-0.5 rounded-full bg-foreground/8 dark:bg-white/10 border border-foreground/10 dark:border-white/10 backdrop-blur-xs">
-            {/* Liquid shifting indicator */}
+          <button
+            type="button"
+            role="switch"
+            aria-checked={isAgenticMode}
+            onClick={onToggleAgentic}
+            className="group relative flex items-center justify-center size-8 sm:size-9 rounded-full hover:bg-foreground/10 dark:hover:bg-white/10 active:scale-95 transition-all duration-200 cursor-pointer"
+            aria-label={isAgenticMode ? "Switch to Human View" : "Switch to Agent View"}
+          >
             <div
-              className="absolute top-0.5 bottom-0.5 rounded-full bg-foreground shadow-sm"
-              style={{
-                left: pillStyle.left,
-                width: pillStyle.width,
-                transition: "left 380ms cubic-bezier(0.34, 1.56, 0.64, 1), width 380ms cubic-bezier(0.34, 1.56, 0.64, 1)",
-              }}
-            />
-
-            <button
-              ref={humanBtnRef}
-              onClick={() => isAgenticMode && onToggleAgentic()}
               className={cn(
-                "relative z-10 px-2.5 sm:px-3 py-1 rounded-full text-[11px] font-mono cursor-pointer select-none",
-                "transition-colors duration-250 ease-out",
-                !isAgenticMode ? "text-background font-medium" : "text-foreground/60 hover:text-foreground"
+                "relative w-7 h-4 rounded-full p-0.5 transition-colors duration-300 ease-out border border-black/10 dark:border-white/10",
+                isAgenticMode ? "bg-[#34C759] dark:bg-[#30D158]" : "bg-neutral-300 dark:bg-neutral-700/80"
               )}
-              aria-label="Human View"
             >
-              human
-            </button>
-
-            <button
-              ref={agentBtnRef}
-              onClick={() => !isAgenticMode && onToggleAgentic()}
-              className={cn(
-                "relative z-10 px-2.5 sm:px-3 py-1 rounded-full text-[11px] font-mono cursor-pointer select-none",
-                "transition-colors duration-250 ease-out",
-                isAgenticMode ? "text-background font-medium" : "text-foreground/60 hover:text-foreground"
-              )}
-              aria-label="Agent View"
-            >
-              agent
-            </button>
-          </div>
+              <div
+                className={cn(
+                  "size-3 rounded-full bg-white shadow-xs transition-transform duration-300",
+                  isAgenticMode ? "translate-x-3" : "translate-x-0"
+                )}
+                style={{
+                  transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+                }}
+              />
+            </div>
+            {/* Tooltip */}
+            <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-md text-[10px] font-mono tracking-wide bg-background/95 dark:bg-neutral-900/95 text-foreground border border-border/40 opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none whitespace-nowrap shadow-md">
+              {isAgenticMode ? "Agent Mode" : "Human Mode"}
+            </span>
+          </button>
         )}
 
         {/* Separator Hairline */}
