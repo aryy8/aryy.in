@@ -7,7 +7,7 @@ import { GitHubContributionGrid } from "@/components/github-contribution-grid"
 import { LeetCodeStats } from "@/components/leetcode-stats"
 import { TechBadge } from "@/components/tech-badge"
 import { TechStack } from "@/components/tech-stack"
-import { Navbar } from "@/components/navbar"
+import { LiquidGlassDock } from "@/components/liquid-glass-dock"
 import { JupyterCell } from "@/components/jupyter-cell"
 import { LiveProjects } from "@/components/live-projects"
 import { HackathonBuilds } from "@/components/hackathon-builds"
@@ -34,7 +34,7 @@ export default function Portfolio() {
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-background to-background pointer-events-none" />
 
       <CommandMenu onBeforeNavigate={() => setIsAgenticMode(false)} />
-      <Navbar onToggleAgentic={() => setIsAgenticMode(!isAgenticMode)} isAgenticMode={isAgenticMode} />
+      <LiquidGlassDock onToggleAgentic={() => setIsAgenticMode(!isAgenticMode)} isAgenticMode={isAgenticMode} />
 
       {/* Interactive ASCII Ripple Pond & Snoopy Gutters (inspired by aetosdios.xyz) */}
       <SnoopyAsciiPond />
@@ -45,7 +45,7 @@ export default function Portfolio() {
           <div className="max-w-3xl mx-auto h-full border-x-[1.5px] border-dashed border-foreground/25" />
         </div>
 
-        <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto relative px-4 sm:px-8 pt-24 sm:pt-32 pb-16 sm:pb-24">
+        <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto relative px-4 sm:px-8 pt-8 sm:pt-14 pb-28 sm:pb-36">
           {/* Conditional Agentic View or Standard Human Sections */}
           {isAgenticMode ? (
             <AgenticView />
