@@ -3,17 +3,15 @@
 import { useEffect, useRef } from "react"
 
 /**
- * SnoopyAsciiPond – Continuous Fluid Wave Movements (Gutters & Margins)
+ * SnoopyAsciiPond – Silky Fluid Wave Streamlines (Gutters & Margins)
  *
- * Inspired by aetosdios.xyz:
- * - Continuous organic traveling wave currents running down the side margins
- * - Pure wave movements (NO circular ripple patches / drop blobs)
- * - Fluid cursor tracking: waves smoothly flow, deflect, and follow the cursor
+ * Inspired by high-end generative design:
+ * - Ultra-fine, flowing fluid wave streamlines (no blocky text clumps or oval patches)
+ * - Continuous, soothing sinusoidal ocean/wind currents traveling down the gutters
+ * - Interactive magnetic cursor follow: streamlines dynamically bend, swell, and ripple around the cursor
  * - Automatic soft fade mask protecting the central reading column
- * - 60 FPS HTML5 Canvas with high-DPI retina scaling
+ * - 60 FPS Canvas with Retina DPI scaling
  */
-
-const WAVE_CHARS = ["·", "~", "≈", "≋"]
 
 export function SnoopyAsciiPond() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -28,31 +26,26 @@ export function SnoopyAsciiPond() {
     let animId = 0
     let width = window.innerWidth
     let height = window.innerHeight
-
-    // Character grid dimensions
-    const cellW = 9
-    const cellH = 14
-    let cols = Math.ceil(width / cellW)
-    let rows = Math.ceil(height / cellH)
+    let dpr = 1
 
     // Main content column boundaries
     let colLeft = width / 2 - 390
     let colRight = width / 2 + 390
-    const fadeWidth = 72
+    const fadeWidth = 80
 
     const updateColumnBounds = () => {
       const main = document.querySelector("main")
       if (main) {
         const rect = main.getBoundingClientRect()
-        colLeft = rect.left - 24
-        colRight = rect.right + 24
+        colLeft = rect.left - 20
+        colRight = rect.right + 20
       } else {
         colLeft = window.innerWidth / 2 - 390
         colRight = window.innerWidth / 2 + 390
       }
     }
 
-    // Pointer state with smooth exponential interpolation for fluid tracking
+    // Pointer state with smooth interpolation
     const pointer = {
       x: -1000,
       y: -1000,
@@ -64,19 +57,25 @@ export function SnoopyAsciiPond() {
       y: -1000,
     }
 
+    // Ripple click shockwaves
+    interface Pulse {
+      x: number
+      y: number
+      radius: number
+      maxRadius: number
+      alpha: number
+    }
+    const pulses: Pulse[] = []
+
     const handleResize = () => {
       width = window.innerWidth
       height = window.innerHeight
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      dpr = Math.min(window.devicePixelRatio || 1, 2)
       canvas.width = Math.round(width * dpr)
       canvas.height = Math.round(height * dpr)
       canvas.style.width = `${width}px`
       canvas.style.height = `${height}px`
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-
-      cols = Math.ceil(width / cellW)
-      rows = Math.ceil(height / cellH)
-
       updateColumnBounds()
     }
 
@@ -93,11 +92,23 @@ export function SnoopyAsciiPond() {
       }
     }
 
+    const handlePointerDown = (e: PointerEvent) => {
+      // Trigger smooth fluid wave impulse
+      pulses.push({
+        x: e.clientX,
+        y: e.clientY,
+        radius: 0,
+        maxRadius: 220,
+        alpha: 0.8,
+      })
+    }
+
     const handlePointerLeave = () => {
       pointer.active = false
     }
 
     window.addEventListener("pointermove", handlePointerMove, { passive: true })
+    window.addEventListener("pointerdown", handlePointerDown, { passive: true })
     document.documentElement.addEventListener("pointerleave", handlePointerLeave)
 
     let lastBoundSync = 0
@@ -106,12 +117,12 @@ export function SnoopyAsciiPond() {
       animId = requestAnimationFrame(render)
 
       // Periodic column alignment
-      if (time - lastBoundSync > 400) {
+      if (time - lastBoundSync > 500) {
         updateColumnBounds()
         lastBoundSync = time
       }
 
-      // Smooth mouse tracking for organic fluid movements
+      // Smooth mouse tracking for organic fluid curves
       if (pointer.active) {
         smoothMouse.x += (pointer.x - smoothMouse.x) * 0.12
         smoothMouse.y += (pointer.y - smoothMouse.y) * 0.12
@@ -120,89 +131,133 @@ export function SnoopyAsciiPond() {
         smoothMouse.y += (-1000 - smoothMouse.y) * 0.05
       }
 
+      // Clear Canvas
       ctx.clearRect(0, 0, width, height)
-      ctx.font = '10px "Geist Mono", "Courier New", monospace'
-      ctx.textAlign = "center"
-      ctx.textBaseline = "middle"
 
       const isDark = document.documentElement.classList.contains("dark")
-      const t = time * 0.0013
+      const t = time * 0.0012
       const isOverSides = pointer.active && (pointer.x < colLeft || pointer.x > colRight)
 
-      // Render Continuous Flowing Wave Streams (Margins Only)
-      for (let c = 0; c < cols; c++) {
-        const px = (c + 0.5) * cellW
-        if (px >= colLeft && px <= colRight) continue
-
-        let fade = 1.0
-        if (px < colLeft) {
-          fade = Math.max(0, Math.min(1, (colLeft - px) / fadeWidth))
-        } else if (px > colRight) {
-          fade = Math.max(0, Math.min(1, (px - colRight) / fadeWidth))
+      // Update shockwave pulses
+      for (let i = pulses.length - 1; i >= 0; i--) {
+        const p = pulses[i]
+        p.radius += 3.5
+        p.alpha = Math.max(0, 1 - p.radius / p.maxRadius)
+        if (p.alpha <= 0.01) {
+          pulses.splice(i, 1)
         }
-        if (fade <= 0.02) continue
+      }
 
-        for (let r = 0; r < rows; r++) {
-          const py = (r + 0.5) * cellH
+      // Calculate number of streamlines for left and right gutters
+      const leftGutterWidth = Math.max(0, colLeft)
+      const rightGutterWidth = Math.max(0, width - colRight)
 
-          // Continuous multi-harmonic fluid waves rolling along the sides
-          const wave1 = Math.sin(r * 0.13 - t * 2.4 + c * 0.16)
-          const wave2 = Math.cos(r * 0.08 + t * 1.5 - c * 0.2)
-          const wave3 = Math.sin((r + c) * 0.07 - t * 1.8)
-          let waveVal = wave1 * 0.44 + wave2 * 0.36 + wave3 * 0.2
+      const lineSpacing = 32 // Spacing between wave streams
 
-          // Smooth cursor following fluid flow (smooth movements, no patches!)
-          if (isOverSides) {
-            const dx = px - smoothMouse.x
-            const dy = py - smoothMouse.y
-            const distToCursor = Math.hypot(dx, dy)
-            const maxRadius = 170
+      const renderGutter = (side: "left" | "right", gutterW: number, startX: number) => {
+        if (gutterW < 30) return
 
-            if (distToCursor < maxRadius) {
-              const influence = Math.pow(1 - distToCursor / maxRadius, 1.7)
-              const angle = Math.atan2(dy, dx)
-              // Fluid wave stream that bends and flows towards the cursor
-              const flowSwell = Math.sin(distToCursor * 0.045 - t * 3.8 + angle * 1.8)
-              waveVal += influence * flowSwell * 0.65
+        const lineCount = Math.min(14, Math.floor(gutterW / lineSpacing))
+
+        for (let l = 0; l < lineCount; l++) {
+          // Base X position for this streamline
+          const distFromContent = (l + 0.6) * lineSpacing
+          const baseX = side === "left" ? colLeft - distFromContent : colRight + distFromContent
+
+          // Alpha fade factor: gracefully fades out towards the center content boundary
+          const fade = Math.min(1.0, Math.max(0, distFromContent / fadeWidth))
+          if (fade <= 0.03) continue
+
+          ctx.beginPath()
+
+          const stepY = 10
+          let firstPoint = true
+
+          for (let y = -20; y <= height + 20; y += stepY) {
+            // Harmonic wave traveling down
+            const freq1 = 0.007
+            const freq2 = 0.014
+            const speed1 = 2.0
+            const speed2 = 1.3
+
+            // Wave undulation
+            const w1 = Math.sin(y * freq1 - t * speed1 + l * 0.5) * 14
+            const w2 = Math.cos(y * freq2 + t * speed2 + l * 0.35) * 8
+            let currentX = baseX + w1 + w2
+
+            // Interactive cursor follow and fluid deflection
+            if (isOverSides) {
+              const dx = currentX - smoothMouse.x
+              const dy = y - smoothMouse.y
+              const dist = Math.hypot(dx, dy)
+              const maxRadius = 180
+
+              if (dist < maxRadius) {
+                const influence = Math.pow(1 - dist / maxRadius, 2.0)
+                // Pull lines toward cursor and ripple in its wake
+                const pullTowardCursor = (smoothMouse.x - currentX) * influence * 0.35
+                const waveWake = Math.sin(dist * 0.05 - t * 4.5) * influence * 12
+                currentX += pullTowardCursor + waveWake
+              }
+            }
+
+            // Click shockwave displacement
+            for (let pIdx = 0; pIdx < pulses.length; pIdx++) {
+              const p = pulses[pIdx]
+              const dx = currentX - p.x
+              const dy = y - p.y
+              const d = Math.hypot(dx, dy)
+              const ringDist = Math.abs(d - p.radius)
+              if (ringDist < 40) {
+                const pulseInf = (1 - ringDist / 40) * p.alpha * 15
+                currentX += (dx / (d || 1)) * pulseInf
+              }
+            }
+
+            if (firstPoint) {
+              ctx.moveTo(currentX, y)
+              firstPoint = false
+            } else {
+              ctx.lineTo(currentX, y)
             }
           }
 
-          const absVal = Math.abs(waveVal)
-          let char = ""
-          let color = ""
+          // Line styling: delicate, luminous, zero clutter
+          const streamAlpha = (0.16 + (l % 2 === 0 ? 0.08 : 0)) * fade
 
-          if (absVal > 0.52) {
-            char = WAVE_CHARS[3] // "≋"
-            color = isDark
-              ? `rgba(255, 255, 255, ${(0.82 * fade).toFixed(3)})`
-              : `rgba(15, 23, 42, ${(0.82 * fade).toFixed(3)})`
-          } else if (absVal > 0.32) {
-            char = WAVE_CHARS[2] // "≈"
-            color = isDark
-              ? `rgba(186, 230, 253, ${(0.62 * fade).toFixed(3)})`
-              : `rgba(30, 41, 59, ${(0.6 * fade).toFixed(3)})`
-          } else if (absVal > 0.13) {
-            char = WAVE_CHARS[1] // "~"
-            color = isDark
-              ? `rgba(125, 211, 252, ${(0.38 * fade).toFixed(3)})`
-              : `rgba(51, 65, 85, ${(0.38 * fade).toFixed(3)})`
+          ctx.lineWidth = 1.1
+          if (isDark) {
+            ctx.strokeStyle = l % 3 === 0 
+              ? `rgba(186, 230, 253, ${(streamAlpha * 1.3).toFixed(3)})` 
+              : `rgba(125, 211, 252, ${streamAlpha.toFixed(3)})`
           } else {
-            // Subtle ambient starlight/droplet dots in the low-tide troughs
-            const seed = (c * 17 + r * 31) % 73
-            if (seed === 7 || seed === 31) {
-              char = WAVE_CHARS[0] // "·"
-              color = isDark
-                ? `rgba(148, 163, 184, ${(0.18 * fade).toFixed(3)})`
-                : `rgba(100, 116, 139, ${(0.22 * fade).toFixed(3)})`
-            }
+            ctx.strokeStyle = l % 3 === 0 
+              ? `rgba(30, 41, 59, ${(streamAlpha * 1.3).toFixed(3)})` 
+              : `rgba(71, 85, 105, ${streamAlpha.toFixed(3)})`
           }
 
-          if (char) {
-            ctx.fillStyle = color
-            ctx.fillText(char, px, py)
+          ctx.stroke()
+
+          // Draw rare, subtle sparkling stipple dots along the crests
+          const dotInterval = 140
+          for (let y = 60 + (l * 47) % 80; y < height; y += dotInterval) {
+            const w1 = Math.sin(y * 0.007 - t * 2.0 + l * 0.5) * 14
+            const w2 = Math.cos(y * 0.014 + t * 1.3 + l * 0.35) * 8
+            const dotX = baseX + w1 + w2
+
+            ctx.beginPath()
+            ctx.arc(dotX, y, 1.2, 0, Math.PI * 2)
+            ctx.fillStyle = isDark
+              ? `rgba(224, 242, 254, ${(streamAlpha * 1.6).toFixed(3)})`
+              : `rgba(15, 23, 42, ${(streamAlpha * 1.5).toFixed(3)})`
+            ctx.fill()
           }
         }
       }
+
+      // Render Left & Right Wave Streams
+      renderGutter("left", leftGutterWidth, 0)
+      renderGutter("right", rightGutterWidth, colRight)
     }
 
     animId = requestAnimationFrame(render)
@@ -211,6 +266,7 @@ export function SnoopyAsciiPond() {
       cancelAnimationFrame(animId)
       window.removeEventListener("resize", handleResize)
       window.removeEventListener("pointermove", handlePointerMove)
+      window.removeEventListener("pointerdown", handlePointerDown)
       document.documentElement.removeEventListener("pointerleave", handlePointerLeave)
     }
   }, [])
