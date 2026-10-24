@@ -133,6 +133,22 @@
   * {
     @apply border-border outline-ring/50;
   }
+  ::selection {
+    background-color: rgba(56, 189, 248, 0.28);
+    color: inherit;
+  }
+  ::-moz-selection {
+    background-color: rgba(56, 189, 248, 0.28);
+    color: inherit;
+  }
+  .dark ::selection {
+    background-color: rgba(56, 189, 248, 0.32);
+    color: inherit;
+  }
+  .dark ::-moz-selection {
+    background-color: rgba(56, 189, 248, 0.32);
+    color: inherit;
+  }
   body {
     @apply bg-background text-foreground overflow-x-hidden;
   }
