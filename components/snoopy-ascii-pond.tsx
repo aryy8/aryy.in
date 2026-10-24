@@ -65,7 +65,10 @@ export function SnoopyAsciiPond() {
       active: false,
       prevX: -1000,
       prevY: -1000,
+      prevRippleX: -1000,
+      prevRippleY: -1000,
     }
+    let lastHoverRippleTime = 0
 
     // Web Audio gentle bloop synthesis
     let audioCtx: AudioContext | null = null
@@ -99,12 +102,12 @@ export function SnoopyAsciiPond() {
       }
     }
 
-    // Drop wave disturbance
-    const dropRipple = (px: number, py: number, strength: number, radius = 2) => {
+    // Drop wave disturbance into the physical equation
+    const dropRipple = (px: number, py: number, strength: number, radius = 2.5) => {
       const gx = Math.floor(px / cellW)
       const gy = Math.floor(py / cellH)
-      for (let dy = -radius; dy <= radius; dy++) {
-        for (let dx = -radius; dx <= radius; dx++) {
+      for (let dy = -Math.ceil(radius); dy <= radius; dy++) {
+        for (let dx = -Math.ceil(radius); dx <= radius; dx++) {
           const nx = gx + dx
           const ny = gy + dy
           if (nx >= 1 && nx < cols - 1 && ny >= 1 && ny < rows - 1) {
@@ -144,16 +147,28 @@ export function SnoopyAsciiPond() {
       pointer.y = e.clientY
       pointer.active = true
 
+      // If hovering over the lateral side margins, actively spawn follow waves
+      const isOverSides = pointer.x < colLeft || pointer.x > colRight
       const distMoved = Math.hypot(pointer.x - pointer.prevX, pointer.y - pointer.prevY)
-      if (distMoved > 8) {
-        dropRipple(pointer.x, pointer.y, Math.min(1.2, 0.35 + distMoved / 50), 2)
+
+      if (isOverSides) {
+        if (distMoved > 4) {
+          dropRipple(pointer.x, pointer.y, Math.min(1.4, 0.45 + distMoved / 35), 3)
+          pointer.prevX = pointer.x
+          pointer.prevY = pointer.y
+          pointer.prevRippleX = pointer.x
+          pointer.prevRippleY = pointer.y
+        }
+      } else if (distMoved > 14) {
+        // In the center reading area, keep ripples very subtle so text stays clear
+        dropRipple(pointer.x, pointer.y, 0.2, 1.8)
         pointer.prevX = pointer.x
         pointer.prevY = pointer.y
       }
     }
 
     const handlePointerDown = (e: PointerEvent) => {
-      dropRipple(e.clientX, e.clientY, 2.6, 3.8)
+      dropRipple(e.clientX, e.clientY, 2.8, 4.2)
       playBloop(360 + Math.random() * 140)
     }
 
@@ -176,8 +191,17 @@ export function SnoopyAsciiPond() {
         updateColumnBounds()
       }
 
+      // Continuous gentle pulse when hovering stationary over the sides
+      const isOverSides = pointer.active && (pointer.x < colLeft || pointer.x > colRight)
+      if (isOverSides) {
+        if (time - lastHoverRippleTime > 110) {
+          dropRipple(pointer.x, pointer.y, 0.4, 2.8)
+          lastHoverRippleTime = time
+        }
+      }
+
       // 1. Solve Wave Equation
-      const damping = 0.962
+      const damping = 0.965
       for (let y = 1; y < rows - 1; y++) {
         const rowOffset = y * cols
         for (let x = 1; x < cols - 1; x++) {
@@ -199,7 +223,9 @@ export function SnoopyAsciiPond() {
       // Check current theme (dark or light)
       const isDark = document.documentElement.classList.contains("dark")
 
-      // 3. RENDER BACKGROUND WAVE MATRIX (Gutters Only)
+      // 3. RENDER BACKGROUND WAVE MATRIX (Gutters & Margins)
+      const waveTime = time * 0.0015
+
       for (let c = 0; c < cols; c++) {
         const px = (c + 0.5) * cellW
         if (px >= colLeft && px <= colRight) continue
@@ -214,47 +240,72 @@ export function SnoopyAsciiPond() {
 
         for (let r = 0; r < rows; r++) {
           const idx = r * cols + c
-          const h = h0[idx]
-          const absH = Math.abs(h)
+          const py = (r + 0.5) * cellH
 
+          // Ambient undulating light wave moment running continuously on the sides
+          const phase1 = waveTime + r * 0.14 + c * 0.18
+          const phase2 = waveTime * 0.8 - r * 0.09 + c * 0.12
+          const ambientWave = (Math.sin(phase1) * 0.55 + Math.cos(phase2) * 0.45) * 0.16
+
+          // Physical wave height from disturbances
+          let totalH = h0[idx] + ambientWave
+
+          // Real-time cursor following swell when hovering on the sides
+          if (isOverSides) {
+            const dx = px - pointer.x
+            const dy = py - pointer.y
+            const distToCursor = Math.hypot(dx, dy)
+            if (distToCursor < 140) {
+              const cursorFactor = (1 - distToCursor / 140) * 0.38
+              // Concentric ripples radiating directly outward from cursor
+              totalH += cursorFactor * Math.sin(distToCursor * 0.18 - time * 0.007)
+            }
+          }
+
+          const absH = Math.abs(totalH)
           let char = ""
           let color = ""
 
-          if (absH > 0.04) {
-            const charIdx = Math.min(WAVE_CHARS.length - 1, Math.floor(absH * 7.2))
+          if (absH > 0.035) {
+            const charIdx = Math.min(WAVE_CHARS.length - 1, Math.floor(absH * 7.5))
             char = WAVE_CHARS[charIdx]
 
             if (isDark) {
-              if (absH > 0.35) {
-                color = `rgba(255, 255, 255, ${(0.85 * fade).toFixed(3)})`
+              if (absH > 0.32) {
+                color = `rgba(255, 255, 255, ${(0.88 * fade).toFixed(3)})`
               } else if (absH > 0.16) {
-                color = `rgba(186, 230, 253, ${(0.6 * fade).toFixed(3)})`
+                color = `rgba(186, 230, 253, ${(0.68 * fade).toFixed(3)})`
+              } else if (absH > 0.08) {
+                color = `rgba(125, 211, 252, ${(0.45 * fade).toFixed(3)})`
               } else {
-                color = `rgba(148, 163, 184, ${(0.32 * fade).toFixed(3)})`
+                color = `rgba(148, 163, 184, ${(0.25 * fade).toFixed(3)})`
               }
             } else {
               // Light mode (dark slate and charcoal ink glyphs)
-              if (absH > 0.35) {
+              if (absH > 0.32) {
                 color = `rgba(15, 23, 42, ${(0.85 * fade).toFixed(3)})`
               } else if (absH > 0.16) {
                 color = `rgba(30, 41, 59, ${(0.65 * fade).toFixed(3)})`
+              } else if (absH > 0.08) {
+                color = `rgba(51, 65, 85, ${(0.45 * fade).toFixed(3)})`
               } else {
-                color = `rgba(71, 85, 105, ${(0.45 * fade).toFixed(3)})`
+                color = `rgba(100, 116, 139, ${(0.26 * fade).toFixed(3)})`
               }
             }
           } else {
+            // Subtle ambient backdrop dots for fluid continuity
             const seed = (c * 17 + r * 31) % 97
-            if (seed === 7) {
+            if (seed === 7 || seed === 37) {
               char = "·"
               color = isDark
-                ? `rgba(148, 163, 184, ${(0.16 * fade).toFixed(3)})`
-                : `rgba(100, 116, 139, ${(0.32 * fade).toFixed(3)})`
+                ? `rgba(148, 163, 184, ${(0.18 * fade).toFixed(3)})`
+                : `rgba(100, 116, 139, ${(0.28 * fade).toFixed(3)})`
             }
           }
 
           if (char) {
             ctx.fillStyle = color
-            ctx.fillText(char, px, (r + 0.5) * cellH)
+            ctx.fillText(char, px, py)
           }
         }
       }
@@ -278,7 +329,8 @@ export function SnoopyAsciiPond() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="fixed inset-0 pointer-events-none z-0 hidden lg:block select-none"
+      className="fixed inset-0 pointer-events-none z-0 hidden md:block select-none"
     />
   )
 }
+
