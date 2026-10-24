@@ -33,6 +33,7 @@ const PROJECTS: Project[] = [
     tags: ["NMT", "TypeScript", "Next.js"],
     snoopy: true,
   },
+  /*
   {
     name: "MinGraph",
     slug: "mingraph",
@@ -47,6 +48,7 @@ const PROJECTS: Project[] = [
     outcome: "Converts natural language and NLP outputs into professional LaTeX diagrams and tables with intelligent formatting.",
     tags: ["NLP", "LaTeX", "React", "Next.js"],
   },
+  */
 ]
 
 export function ProjectShot({ slug, alt }: { slug: string; alt: string }) {
@@ -75,7 +77,7 @@ export function LiveProjects() {
           <div key={p.slug} className="relative flex">
             {p.snoopy && (
               <div className="absolute top-0 right-4 sm:right-6 z-10" style={{ transform: "translateY(calc(-100% + 6px))" }}>
-                <SleepingSnoopy flyDirection="left" />
+                <SleepingSnoopy flyDirection="right" />
               </div>
             )}
             <a
@@ -83,25 +85,28 @@ export function LiveProjects() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${p.name}, open live app`}
-              className="project-card group bg-background rounded-xl border border-border/50 overflow-hidden shadow-sm flex flex-col w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+              className="project-card group bg-card/60 hover:bg-card/90 rounded-xl border border-border/40 hover:border-border/80 overflow-hidden shadow-xs hover:shadow-md flex flex-col w-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-muted/20">
+              <div className="relative aspect-[16/10] overflow-hidden bg-muted/20 border-b border-border/30">
                 <ProjectShot slug={p.slug} alt={`${p.name} live app screenshot`} />
               </div>
-              <div className="p-4 flex-1 flex flex-col gap-2">
-                <div className="flex items-center justify-between gap-2">
-                  <h3 className="text-lg font-semibold text-foreground">{p.name}</h3>
-                  <ArrowUpRight aria-hidden className="size-4 text-muted-foreground transition-transform duration-200 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5 group-hover:text-foreground" />
-                </div>
-                {p.metric && <p className="text-xs font-mono text-primary -mt-1">{p.metric}</p>}
-                <p className="text-sm text-muted-foreground leading-relaxed">{p.outcome}</p>
-                {p.tags && (
-                  <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-border/20">
-                    {p.tags.map((t) => (
-                      <TechBadge key={t} className="scale-90">{t}</TechBadge>
-                    ))}
+              <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between gap-3">
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-base sm:text-lg font-medium text-foreground tracking-tight group-hover:text-primary transition-colors">
+                      {p.name}
+                    </h3>
+                    <ArrowUpRight aria-hidden className="size-4 text-muted-foreground/60 transition-transform duration-200 motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:-translate-y-0.5 group-hover:text-primary" />
                   </div>
-                )}
+                  {p.metric && (
+                    <p className="text-xs font-mono text-muted-foreground/75 font-normal">
+                      {p.metric}
+                    </p>
+                  )}
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed pt-1">
+                    {p.outcome}
+                  </p>
+                </div>
               </div>
             </a>
           </div>
@@ -110,3 +115,4 @@ export function LiveProjects() {
     </section>
   )
 }
+
