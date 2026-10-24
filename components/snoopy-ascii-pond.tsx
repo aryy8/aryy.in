@@ -3,17 +3,17 @@
 import { useEffect, useRef } from "react"
 
 /**
- * SnoopyAsciiPond – Interactive ASCII Living Canvas (Pond & Ripples Only)
+ * SnoopyAsciiPond – Continuous Fluid Wave Movements (Gutters & Margins)
  *
  * Inspired by aetosdios.xyz:
- * - Pure fluid ASCII wave matrix across empty margins
- * - Discrete 2D wave propagation physics responding to pointer moves & clicks
- * - Content Column Protection: Automatic alpha-fade mask over the main content (max-w-3xl)
- * - Zero creatures: pure ambient ripples, sparkles, and reactive water physics
- * - 60 FPS Canvas with DPR scaling and prefers-reduced-motion support.
+ * - Continuous organic traveling wave currents running down the side margins
+ * - Pure wave movements (NO circular ripple patches / drop blobs)
+ * - Fluid cursor tracking: waves smoothly flow, deflect, and follow the cursor
+ * - Automatic soft fade mask protecting the central reading column
+ * - 60 FPS HTML5 Canvas with high-DPI retina scaling
  */
 
-const WAVE_CHARS = [" ", "·", "~", "≈", "∽", "*", "o", "O", "@"]
+const WAVE_CHARS = ["·", "~", "≈", "≋"]
 
 export function SnoopyAsciiPond() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -26,98 +26,42 @@ export function SnoopyAsciiPond() {
     if (!ctx) return
 
     let animId = 0
-    let lastTime = performance.now()
     let width = window.innerWidth
     let height = window.innerHeight
 
     // Character grid dimensions
-    const cellW = 8
-    const cellH = 13
+    const cellW = 9
+    const cellH = 14
     let cols = Math.ceil(width / cellW)
     let rows = Math.ceil(height / cellH)
 
-    // Wave equation buffers
-    let size = cols * rows
-    let h0 = new Float32Array(size)
-    let h1 = new Float32Array(size)
-
-    // Main content column boundaries (reading area)
-    let colLeft = width / 2 - 384
-    let colRight = width / 2 + 384
-    const fadeWidth = 64
+    // Main content column boundaries
+    let colLeft = width / 2 - 390
+    let colRight = width / 2 + 390
+    const fadeWidth = 72
 
     const updateColumnBounds = () => {
       const main = document.querySelector("main")
       if (main) {
         const rect = main.getBoundingClientRect()
-        colLeft = rect.left - 20
-        colRight = rect.right + 20
+        colLeft = rect.left - 24
+        colRight = rect.right + 24
       } else {
         colLeft = window.innerWidth / 2 - 390
         colRight = window.innerWidth / 2 + 390
       }
     }
 
-    // Pointer state
+    // Pointer state with smooth exponential interpolation for fluid tracking
     const pointer = {
       x: -1000,
       y: -1000,
       active: false,
-      prevX: -1000,
-      prevY: -1000,
-      prevRippleX: -1000,
-      prevRippleY: -1000,
-    }
-    let lastHoverRippleTime = 0
-
-    // Web Audio gentle bloop synthesis
-    let audioCtx: AudioContext | null = null
-    const playBloop = (freq = 440) => {
-      try {
-        if (!audioCtx) {
-          const AudioContextClass =
-            window.AudioContext ||
-            (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
-          if (AudioContextClass) audioCtx = new AudioContextClass()
-        }
-        if (audioCtx && audioCtx.state === "suspended") {
-          audioCtx.resume()
-        }
-        if (audioCtx && audioCtx.state === "running") {
-          const osc = audioCtx.createOscillator()
-          const gain = audioCtx.createGain()
-          osc.type = "sine"
-          const now = audioCtx.currentTime
-          osc.frequency.setValueAtTime(freq, now)
-          osc.frequency.exponentialRampToValueAtTime(freq * 1.5, now + 0.08)
-          gain.gain.setValueAtTime(0.035, now)
-          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12)
-          osc.connect(gain)
-          gain.connect(audioCtx.destination)
-          osc.start(now)
-          osc.stop(now + 0.13)
-        }
-      } catch {
-        // Audio is optional enhancement
-      }
     }
 
-    // Drop wave disturbance into the physical equation
-    const dropRipple = (px: number, py: number, strength: number, radius = 2.5) => {
-      const gx = Math.floor(px / cellW)
-      const gy = Math.floor(py / cellH)
-      for (let dy = -Math.ceil(radius); dy <= radius; dy++) {
-        for (let dx = -Math.ceil(radius); dx <= radius; dx++) {
-          const nx = gx + dx
-          const ny = gy + dy
-          if (nx >= 1 && nx < cols - 1 && ny >= 1 && ny < rows - 1) {
-            const dist = Math.hypot(dx, dy)
-            if (dist <= radius) {
-              h0[ny * cols + nx] += strength * (1 - dist / radius)
-            }
-          }
-        }
-      }
+    const smoothMouse = {
+      x: -1000,
+      y: -1000,
     }
 
     const handleResize = () => {
@@ -132,9 +76,6 @@ export function SnoopyAsciiPond() {
 
       cols = Math.ceil(width / cellW)
       rows = Math.ceil(height / cellH)
-      size = cols * rows
-      h0 = new Float32Array(size)
-      h1 = new Float32Array(size)
 
       updateColumnBounds()
     }
@@ -146,30 +87,10 @@ export function SnoopyAsciiPond() {
       pointer.x = e.clientX
       pointer.y = e.clientY
       pointer.active = true
-
-      // If hovering over the lateral side margins, actively spawn follow waves
-      const isOverSides = pointer.x < colLeft || pointer.x > colRight
-      const distMoved = Math.hypot(pointer.x - pointer.prevX, pointer.y - pointer.prevY)
-
-      if (isOverSides) {
-        if (distMoved > 4) {
-          dropRipple(pointer.x, pointer.y, Math.min(1.4, 0.45 + distMoved / 35), 3)
-          pointer.prevX = pointer.x
-          pointer.prevY = pointer.y
-          pointer.prevRippleX = pointer.x
-          pointer.prevRippleY = pointer.y
-        }
-      } else if (distMoved > 14) {
-        // In the center reading area, keep ripples very subtle so text stays clear
-        dropRipple(pointer.x, pointer.y, 0.2, 1.8)
-        pointer.prevX = pointer.x
-        pointer.prevY = pointer.y
+      if (smoothMouse.x < -500) {
+        smoothMouse.x = e.clientX
+        smoothMouse.y = e.clientY
       }
-    }
-
-    const handlePointerDown = (e: PointerEvent) => {
-      dropRipple(e.clientX, e.clientY, 2.8, 4.2)
-      playBloop(360 + Math.random() * 140)
     }
 
     const handlePointerLeave = () => {
@@ -177,55 +98,38 @@ export function SnoopyAsciiPond() {
     }
 
     window.addEventListener("pointermove", handlePointerMove, { passive: true })
-    window.addEventListener("pointerdown", handlePointerDown, { passive: true })
     document.documentElement.addEventListener("pointerleave", handlePointerLeave)
+
+    let lastBoundSync = 0
 
     const render = (time: number) => {
       animId = requestAnimationFrame(render)
 
-      const dt = Math.min(0.05, (time - lastTime) / 1000)
-      lastTime = time
-
-      // Periodically sync column bounds
-      if (Math.floor(time / 500) !== Math.floor((time - dt * 1000) / 500)) {
+      // Periodic column alignment
+      if (time - lastBoundSync > 400) {
         updateColumnBounds()
+        lastBoundSync = time
       }
 
-      // Continuous gentle pulse when hovering stationary over the sides
-      const isOverSides = pointer.active && (pointer.x < colLeft || pointer.x > colRight)
-      if (isOverSides) {
-        if (time - lastHoverRippleTime > 110) {
-          dropRipple(pointer.x, pointer.y, 0.4, 2.8)
-          lastHoverRippleTime = time
-        }
+      // Smooth mouse tracking for organic fluid movements
+      if (pointer.active) {
+        smoothMouse.x += (pointer.x - smoothMouse.x) * 0.12
+        smoothMouse.y += (pointer.y - smoothMouse.y) * 0.12
+      } else {
+        smoothMouse.x += (-1000 - smoothMouse.x) * 0.05
+        smoothMouse.y += (-1000 - smoothMouse.y) * 0.05
       }
 
-      // 1. Solve Wave Equation
-      const damping = 0.965
-      for (let y = 1; y < rows - 1; y++) {
-        const rowOffset = y * cols
-        for (let x = 1; x < cols - 1; x++) {
-          const idx = rowOffset + x
-          const h = (h0[idx - 1] + h0[idx + 1] + h0[idx - cols] + h0[idx + cols]) * 0.5 - h1[idx]
-          h1[idx] = h * damping
-        }
-      }
-      const temp = h0
-      h0 = h1
-      h1 = temp
-
-      // 2. CLEAR CANVAS
       ctx.clearRect(0, 0, width, height)
       ctx.font = '10px "Geist Mono", "Courier New", monospace'
       ctx.textAlign = "center"
       ctx.textBaseline = "middle"
 
-      // Check current theme (dark or light)
       const isDark = document.documentElement.classList.contains("dark")
+      const t = time * 0.0013
+      const isOverSides = pointer.active && (pointer.x < colLeft || pointer.x > colRight)
 
-      // 3. RENDER BACKGROUND WAVE MATRIX (Gutters & Margins)
-      const waveTime = time * 0.0015
-
+      // Render Continuous Flowing Wave Streams (Margins Only)
       for (let c = 0; c < cols; c++) {
         const px = (c + 0.5) * cellW
         if (px >= colLeft && px <= colRight) continue
@@ -236,70 +140,60 @@ export function SnoopyAsciiPond() {
         } else if (px > colRight) {
           fade = Math.max(0, Math.min(1, (px - colRight) / fadeWidth))
         }
-        if (fade <= 0.01) continue
+        if (fade <= 0.02) continue
 
         for (let r = 0; r < rows; r++) {
-          const idx = r * cols + c
           const py = (r + 0.5) * cellH
 
-          // Ambient undulating light wave moment running continuously on the sides
-          const phase1 = waveTime + r * 0.14 + c * 0.18
-          const phase2 = waveTime * 0.8 - r * 0.09 + c * 0.12
-          const ambientWave = (Math.sin(phase1) * 0.55 + Math.cos(phase2) * 0.45) * 0.16
+          // Continuous multi-harmonic fluid waves rolling along the sides
+          const wave1 = Math.sin(r * 0.13 - t * 2.4 + c * 0.16)
+          const wave2 = Math.cos(r * 0.08 + t * 1.5 - c * 0.2)
+          const wave3 = Math.sin((r + c) * 0.07 - t * 1.8)
+          let waveVal = wave1 * 0.44 + wave2 * 0.36 + wave3 * 0.2
 
-          // Physical wave height from disturbances
-          let totalH = h0[idx] + ambientWave
-
-          // Real-time cursor following swell when hovering on the sides
+          // Smooth cursor following fluid flow (smooth movements, no patches!)
           if (isOverSides) {
-            const dx = px - pointer.x
-            const dy = py - pointer.y
+            const dx = px - smoothMouse.x
+            const dy = py - smoothMouse.y
             const distToCursor = Math.hypot(dx, dy)
-            if (distToCursor < 140) {
-              const cursorFactor = (1 - distToCursor / 140) * 0.38
-              // Concentric ripples radiating directly outward from cursor
-              totalH += cursorFactor * Math.sin(distToCursor * 0.18 - time * 0.007)
+            const maxRadius = 170
+
+            if (distToCursor < maxRadius) {
+              const influence = Math.pow(1 - distToCursor / maxRadius, 1.7)
+              const angle = Math.atan2(dy, dx)
+              // Fluid wave stream that bends and flows towards the cursor
+              const flowSwell = Math.sin(distToCursor * 0.045 - t * 3.8 + angle * 1.8)
+              waveVal += influence * flowSwell * 0.65
             }
           }
 
-          const absH = Math.abs(totalH)
+          const absVal = Math.abs(waveVal)
           let char = ""
           let color = ""
 
-          if (absH > 0.035) {
-            const charIdx = Math.min(WAVE_CHARS.length - 1, Math.floor(absH * 7.5))
-            char = WAVE_CHARS[charIdx]
-
-            if (isDark) {
-              if (absH > 0.32) {
-                color = `rgba(255, 255, 255, ${(0.88 * fade).toFixed(3)})`
-              } else if (absH > 0.16) {
-                color = `rgba(186, 230, 253, ${(0.68 * fade).toFixed(3)})`
-              } else if (absH > 0.08) {
-                color = `rgba(125, 211, 252, ${(0.45 * fade).toFixed(3)})`
-              } else {
-                color = `rgba(148, 163, 184, ${(0.25 * fade).toFixed(3)})`
-              }
-            } else {
-              // Light mode (dark slate and charcoal ink glyphs)
-              if (absH > 0.32) {
-                color = `rgba(15, 23, 42, ${(0.85 * fade).toFixed(3)})`
-              } else if (absH > 0.16) {
-                color = `rgba(30, 41, 59, ${(0.65 * fade).toFixed(3)})`
-              } else if (absH > 0.08) {
-                color = `rgba(51, 65, 85, ${(0.45 * fade).toFixed(3)})`
-              } else {
-                color = `rgba(100, 116, 139, ${(0.26 * fade).toFixed(3)})`
-              }
-            }
+          if (absVal > 0.52) {
+            char = WAVE_CHARS[3] // "≋"
+            color = isDark
+              ? `rgba(255, 255, 255, ${(0.82 * fade).toFixed(3)})`
+              : `rgba(15, 23, 42, ${(0.82 * fade).toFixed(3)})`
+          } else if (absVal > 0.32) {
+            char = WAVE_CHARS[2] // "≈"
+            color = isDark
+              ? `rgba(186, 230, 253, ${(0.62 * fade).toFixed(3)})`
+              : `rgba(30, 41, 59, ${(0.6 * fade).toFixed(3)})`
+          } else if (absVal > 0.13) {
+            char = WAVE_CHARS[1] // "~"
+            color = isDark
+              ? `rgba(125, 211, 252, ${(0.38 * fade).toFixed(3)})`
+              : `rgba(51, 65, 85, ${(0.38 * fade).toFixed(3)})`
           } else {
-            // Subtle ambient backdrop dots for fluid continuity
-            const seed = (c * 17 + r * 31) % 97
-            if (seed === 7 || seed === 37) {
-              char = "·"
+            // Subtle ambient starlight/droplet dots in the low-tide troughs
+            const seed = (c * 17 + r * 31) % 73
+            if (seed === 7 || seed === 31) {
+              char = WAVE_CHARS[0] // "·"
               color = isDark
                 ? `rgba(148, 163, 184, ${(0.18 * fade).toFixed(3)})`
-                : `rgba(100, 116, 139, ${(0.28 * fade).toFixed(3)})`
+                : `rgba(100, 116, 139, ${(0.22 * fade).toFixed(3)})`
             }
           }
 
@@ -317,11 +211,7 @@ export function SnoopyAsciiPond() {
       cancelAnimationFrame(animId)
       window.removeEventListener("resize", handleResize)
       window.removeEventListener("pointermove", handlePointerMove)
-      window.removeEventListener("pointerdown", handlePointerDown)
       document.documentElement.removeEventListener("pointerleave", handlePointerLeave)
-      if (audioCtx) {
-        audioCtx.close().catch(() => {})
-      }
     }
   }, [])
 
@@ -333,4 +223,3 @@ export function SnoopyAsciiPond() {
     />
   )
 }
-
