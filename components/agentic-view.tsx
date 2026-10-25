@@ -2,7 +2,7 @@
 
 export function AgenticView() {
   return (
-    <div className="w-full font-mono text-sm space-y-10 animate-in fade-in duration-300">
+    <div className="w-full font-mono text-sm space-y-10 animate-in fade-in duration-300 pb-28 sm:pb-36">
       {/* IDENTITY SECTION */}
       <div className="space-y-4">
         <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground border-b border-border/40 pb-2">

@@ -35,7 +35,7 @@ export default function Portfolio() {
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-background to-background pointer-events-none" />
 
       <CommandMenu onBeforeNavigate={() => setIsAgenticMode(false)} />
-      <LiquidGlassDock onToggleAgentic={() => setIsAgenticMode(!isAgenticMode)} isAgenticMode={isAgenticMode} />
+      <LiquidGlassDock />
 
       {/* Interactive ASCII Ripple Pond & Snoopy Gutters (inspired by aetosdios.xyz) */}
       <SnoopyAsciiPond />
@@ -46,7 +46,7 @@ export default function Portfolio() {
           <div className="max-w-3xl mx-auto h-full border-x-[1.5px] border-dashed border-foreground/25" />
         </div>
 
-        <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto relative px-4 sm:px-8 pt-8 sm:pt-14 pb-28 sm:pb-36">
+        <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto relative px-4 sm:px-8 pt-8 sm:pt-14 pb-0">
           {/* Conditional Agentic View or Standard Human Sections */}
           {isAgenticMode ? (
             <AgenticView />
