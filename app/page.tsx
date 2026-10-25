@@ -229,14 +229,12 @@ export default function Portfolio() {
               <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
 
               {/* Notes Section */}
-              <section id="notes" className="mb-8 scroll-mt-20 snap-section">
+              <section id="notes" className="mb-0 scroll-mt-20 snap-section">
                 <SectionHeader>Knowledge Base</SectionHeader>
                 <NotesGrid />
               </section>
 
-              <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-8" />
-
-              {/* Interactive Satin Silk ASCII Water Footer */}
+              {/* Interactive Blue ASCII Water Footer */}
               <AsciiWaterFooter />
             </>
           )}

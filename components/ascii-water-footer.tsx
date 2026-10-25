@@ -10,8 +10,8 @@ interface Ripple {
   maxRadius: number
 }
 
-// Gentle, organic water glyphs (no harsh double-lines or geometric symbols)
-const WATER_CHARS = [" ", "·", "~", "∼", "≈", "≋"]
+// Gentle, organic water glyphs — every cell participates in the fluid surface
+const WATER_CHARS = ["·", "~", "∼", "≈", "≋"]
 
 export function AsciiWaterFooter() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -29,11 +29,13 @@ export function AsciiWaterFooter() {
     let width = container.clientWidth
     let height = container.clientHeight
 
-    // Cell size for clean, liquid-smooth text water matrix
+    // Monospace cell dimensions tuned for cohesive liquid surface density
     const cellW = 8
     const cellH = 13
-    let cols = Math.ceil(width / cellW)
-    let rows = Math.ceil(height / cellH)
+    let cols = Math.floor(width / cellW)
+    let rows = Math.floor(height / cellH)
+    let offsetX = (width - cols * cellW) / 2
+    let offsetY = (height - rows * cellH) / 2
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
 
@@ -47,8 +49,10 @@ export function AsciiWaterFooter() {
       canvas.style.height = `${height}px`
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-      cols = Math.ceil(width / cellW)
-      rows = Math.ceil(height / cellH)
+      cols = Math.floor(width / cellW)
+      rows = Math.floor(height / cellH)
+      offsetX = (width - cols * cellW) / 2
+      offsetY = (height - rows * cellH) / 2
     }
 
     updateSize()
@@ -70,7 +74,7 @@ export function AsciiWaterFooter() {
     // Active expanding ripples
     const ripples: Ripple[] = []
 
-    const addRipple = (x: number, y: number, strength = 0.85, maxRadius = 260) => {
+    const addRipple = (x: number, y: number, strength = 0.85, maxRadius = 240) => {
       if (ripples.length > 18) ripples.shift()
       ripples.push({
         x,
@@ -94,7 +98,7 @@ export function AsciiWaterFooter() {
         // Trailing ripples as cursor moves through water
         if (dist > 10) {
           const strength = Math.min(dist * 0.04, 1.2)
-          addRipple(px, py, strength, 180)
+          addRipple(px, py, strength, 160)
           pointer.prevX = px
           pointer.prevY = py
         }
@@ -102,7 +106,7 @@ export function AsciiWaterFooter() {
         pointer.prevX = px
         pointer.prevY = py
         pointer.active = true
-        addRipple(px, py, 0.7, 150)
+        addRipple(px, py, 0.7, 140)
       }
 
       pointer.x = px
@@ -114,7 +118,7 @@ export function AsciiWaterFooter() {
       const px = e.clientX - rect.left
       const py = e.clientY - rect.top
       // Resonant splash on click or tap
-      addRipple(px, py, 1.6, 320)
+      addRipple(px, py, 1.5, 300)
     }
 
     const handlePointerLeave = () => {
@@ -147,7 +151,7 @@ export function AsciiWaterFooter() {
 
       // Clean dead ripples
       for (let i = ripples.length - 1; i >= 0; i--) {
-        if (now - ripples[i].time > 2500) {
+        if (now - ripples[i].time > 2400) {
           ripples.splice(i, 1)
         }
       }
@@ -156,22 +160,22 @@ export function AsciiWaterFooter() {
 
       const isDark = document.documentElement.classList.contains("dark")
 
-      // --- Subtle Ambient Blue Water Glow ---
+      // --- Soft Ambient Deep Blue Water Glow ---
       const glowGrad = ctx.createRadialGradient(
         width * 0.5,
-        height * 0.65,
-        20,
+        height * 0.6,
+        15,
         width * 0.5,
-        height * 0.65,
+        height * 0.6,
         width * 0.65
       )
       if (isDark) {
-        glowGrad.addColorStop(0, "rgba(2, 132, 199, 0.12)")
-        glowGrad.addColorStop(0.5, "rgba(3, 105, 161, 0.06)")
+        glowGrad.addColorStop(0, "rgba(2, 132, 199, 0.14)")
+        glowGrad.addColorStop(0.6, "rgba(3, 105, 161, 0.07)")
         glowGrad.addColorStop(1, "rgba(0, 0, 0, 0)")
       } else {
-        glowGrad.addColorStop(0, "rgba(14, 165, 233, 0.09)")
-        glowGrad.addColorStop(0.5, "rgba(56, 189, 248, 0.04)")
+        glowGrad.addColorStop(0, "rgba(14, 165, 233, 0.12)")
+        glowGrad.addColorStop(0.6, "rgba(56, 189, 248, 0.05)")
         glowGrad.addColorStop(1, "rgba(255, 255, 255, 0)")
       }
       ctx.fillStyle = glowGrad
@@ -181,52 +185,30 @@ export function AsciiWaterFooter() {
       ctx.textAlign = "center"
       ctx.textBaseline = "middle"
 
-      // Orbital wave centers that create organic, curving circular caustics (like a real pond/pool)
-      const c1x = width * 0.32 + Math.cos(t * 0.55) * 85
-      const c1y = height * 0.35 + Math.sin(t * 0.7) * 45
-
-      const c2x = width * 0.68 + Math.sin(t * 0.6) * 90
-      const c2y = height * 0.6 + Math.cos(t * 0.75) * 50
-
-      const c3x = width * 0.5 + Math.cos(t * 0.45) * 110
-      const c3y = height * 0.8 + Math.sin(t * 0.5) * 45
-
       for (let c = 0; c < cols; c++) {
-        const px = (c + 0.5) * cellW
-
-        // Soft horizontal feather at guide-rail borders
-        const leftFeather = Math.min(1, px / 28)
-        const rightFeather = Math.min(1, (width - px) / 28)
-        const horizFade = Math.sin(leftFeather * Math.PI * 0.5) * Math.sin(rightFeather * Math.PI * 0.5)
-        if (horizFade <= 0.02) continue
+        const px = offsetX + (c + 0.5) * cellW
 
         for (let r = 0; r < rows; r++) {
-          const py = (r + 0.5) * cellH
+          const py = offsetY + (r + 0.5) * cellH
 
-          // --- 1. Organic Caustic Water Interference ---
-          const d1 = Math.hypot(px - c1x, py - c1y)
-          const d2 = Math.hypot(px - c2x, py - c2y)
-          const d3 = Math.hypot(px - c3x, py - c3y)
+          // --- 1. Multi-Harmonic Oceanic Fluid Swell Simulation ---
+          // Continuous harmonic plane wave interference (no fake circular holes)
+          const w1 = Math.sin(px * 0.024 + py * 0.009 - t * 1.5) * 0.32
+          const w2 = Math.sin(px * 0.016 - py * 0.022 - t * 1.2) * 0.28
+          const w3 = Math.cos(px * 0.032 + py * 0.016 + t * 1.4) * 0.22
+          const w4 = Math.sin(px * 0.011 + py * 0.028 - t * 1.0) * 0.18
+          const w5 = Math.cos(px * 0.042 - py * 0.012 - t * 1.9) * 0.14
 
-          const w1 = Math.sin(d1 * 0.034 - t * 1.5)
-          const w2 = Math.sin(d2 * 0.028 - t * 1.3)
-          const w3 = Math.cos(d3 * 0.04 - t * 1.6)
-
-          // Gentle cross-current swells
-          const current =
-            Math.sin(px * 0.014 + py * 0.008 - t * 1.1) *
-            Math.cos(px * 0.007 - py * 0.012 + t * 0.8)
-
-          let h = w1 * 0.34 + w2 * 0.3 + w3 * 0.18 + current * 0.28
+          let h = w1 + w2 + w3 + w4 + w5
 
           // --- 2. Interactive Pointer Wake & Hover Disturbance ---
           if (pointer.active) {
             const dx = px - pointer.x
             const dy = py - pointer.y
             const dist = Math.hypot(dx, dy)
-            if (dist < 130) {
-              const falloff = Math.exp(-(dist * dist) / (2 * 48 * 48))
-              const pointerWave = Math.cos(dist * 0.15 - t * 5.5) * falloff * 0.95
+            if (dist < 110) {
+              const falloff = Math.exp(-(dist * dist) / (2 * 42 * 42))
+              const pointerWave = Math.cos(dist * 0.16 - t * 5.8) * falloff * 0.95
               h += pointerWave
             }
           }
@@ -235,7 +217,7 @@ export function AsciiWaterFooter() {
           for (let i = 0; i < ripples.length; i++) {
             const rip = ripples[i]
             const age = (now - rip.time) * 0.001
-            const currentRadius = age * 140
+            const currentRadius = age * 135
             if (currentRadius > rip.maxRadius) continue
 
             const dx = px - rip.x
@@ -243,23 +225,23 @@ export function AsciiWaterFooter() {
             const dist = Math.hypot(dx, dy)
             const ringDist = Math.abs(dist - currentRadius)
 
-            if (ringDist < 40) {
-              const decay = Math.exp(-age / 0.7)
-              const envelope = Math.exp(-(ringDist * ringDist) / (2 * 14 * 14))
-              const wave = Math.cos(ringDist * 0.26 - age * 7.0) * envelope * decay * rip.strength
+            if (ringDist < 34) {
+              const decay = Math.exp(-age / 0.65)
+              const envelope = Math.exp(-(ringDist * ringDist) / (2 * 12 * 12))
+              const wave = Math.cos(ringDist * 0.28 - age * 7.0) * envelope * decay * rip.strength
               h += wave
             }
           }
 
           // --- 4. Normalized Water Luminance L in [0, 1] ---
-          const lum = Math.max(0, Math.min(1, 0.5 + h * 0.48))
+          const lum = Math.max(0, Math.min(1, 0.5 + h * 0.52))
 
-          // --- 5. Soft Vertical Feather Envelope ---
-          const topFeather = Math.min(1, py / 32)
-          const vertFade = Math.sin(topFeather * Math.PI * 0.5)
+          // --- 5. Gentle Edge Feather Envelope ---
+          const topFeather = Math.min(1, py / 16)
+          const bottomFeather = Math.min(1, (height - py) / 16)
+          const fade = Math.sin(topFeather * Math.PI * 0.5) * Math.sin(bottomFeather * Math.PI * 0.5)
 
-          const totalFade = vertFade * horizFade
-          if (totalFade <= 0.03) continue
+          if (fade <= 0.02) continue
 
           // Map luminance to water character
           const charIdx = Math.min(
@@ -268,38 +250,36 @@ export function AsciiWaterFooter() {
           )
           const char = WATER_CHARS[charIdx]
 
-          if (!char || char === " ") continue
-
-          // --- 6. Rich Blue Water Color Palette ---
+          // --- 6. Vibrant Ocean Blue Water Palette ---
           if (isDark) {
             if (lum > 0.8) {
               // Glistening crest sparkle: radiant cyan-white
-              ctx.fillStyle = `rgba(224, 242, 254, ${(0.96 * totalFade).toFixed(3)})`
+              ctx.fillStyle = `rgba(224, 242, 254, ${(0.96 * fade).toFixed(3)})`
             } else if (lum > 0.6) {
-              // Bright crest: electric sky blue
-              ctx.fillStyle = `rgba(125, 211, 252, ${(0.88 * totalFade).toFixed(3)})`
+              // Bright wave crest: electric sky blue
+              ctx.fillStyle = `rgba(125, 211, 252, ${(0.88 * fade).toFixed(3)})`
             } else if (lum > 0.4) {
               // Flowing water body: vivid cerulean blue
-              ctx.fillStyle = `rgba(56, 189, 248, ${(0.65 * totalFade).toFixed(3)})`
+              ctx.fillStyle = `rgba(56, 189, 248, ${(0.68 * fade).toFixed(3)})`
             } else if (lum > 0.22) {
               // Deep water current: ocean sapphire blue
-              ctx.fillStyle = `rgba(14, 165, 233, ${(0.42 * totalFade).toFixed(3)})`
+              ctx.fillStyle = `rgba(14, 165, 233, ${(0.46 * fade).toFixed(3)})`
             } else {
-              // Quiet trough: deep navy blue
-              ctx.fillStyle = `rgba(3, 105, 161, ${(0.22 * totalFade).toFixed(3)})`
+              // Calm trough: deep navy blue dot
+              ctx.fillStyle = `rgba(3, 105, 161, ${(0.32 * fade).toFixed(3)})`
             }
           } else {
             // Light mode: deep marine, indigo-cyan water
             if (lum > 0.8) {
-              ctx.fillStyle = `rgba(8, 47, 73, ${(0.92 * totalFade).toFixed(3)})`
+              ctx.fillStyle = `rgba(8, 47, 73, ${(0.92 * fade).toFixed(3)})`
             } else if (lum > 0.6) {
-              ctx.fillStyle = `rgba(14, 116, 144, ${(0.85 * totalFade).toFixed(3)})`
+              ctx.fillStyle = `rgba(14, 116, 144, ${(0.85 * fade).toFixed(3)})`
             } else if (lum > 0.4) {
-              ctx.fillStyle = `rgba(2, 132, 199, ${(0.68 * totalFade).toFixed(3)})`
+              ctx.fillStyle = `rgba(2, 132, 199, ${(0.7 * fade).toFixed(3)})`
             } else if (lum > 0.22) {
-              ctx.fillStyle = `rgba(3, 105, 161, ${(0.45 * totalFade).toFixed(3)})`
+              ctx.fillStyle = `rgba(3, 105, 161, ${(0.5 * fade).toFixed(3)})`
             } else {
-              ctx.fillStyle = `rgba(125, 211, 252, ${(0.28 * totalFade).toFixed(3)})`
+              ctx.fillStyle = `rgba(56, 189, 248, ${(0.35 * fade).toFixed(3)})`
             }
           }
 
@@ -323,9 +303,9 @@ export function AsciiWaterFooter() {
   return (
     <footer
       ref={containerRef}
-      className="relative w-full -mx-4 sm:-mx-8 h-80 sm:h-96 lg:h-[420px] select-none overflow-hidden"
+      className="relative w-full -mx-4 sm:-mx-8 h-48 sm:h-56 lg:h-60 mt-12 border-t-[1.5px] border-dashed border-foreground/25 select-none overflow-hidden"
     >
-      {/* Pure Living Blue ASCII Water Canvas (No Text) */}
+      {/* Pure Living Blue ASCII Water Canvas (Flush to dashed borders, zero text) */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full cursor-crosshair touch-none"
