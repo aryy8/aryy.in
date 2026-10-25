@@ -283,18 +283,16 @@ export function AsciiWaterFooter() {
 
       const palette = isDark ? darkPalette : lightPalette
 
-      // 7 Distinct Diagonal Sunray Lines across the scene (NOT a round sun!)
+      // 5 Sleek Diagonal Sunray Lines across the scene (refined, subtle spacing)
       const rayCenters = [
-        width * 0.05,
-        width * 0.20,
-        width * 0.36,
-        width * 0.52,
+        width * 0.10,
+        width * 0.28,
+        width * 0.48,
         width * 0.68,
-        width * 0.82,
-        width * 0.96,
+        width * 0.88,
       ]
-      const rayWidths = [22, 28, 20, 30, 24, 26, 20]
-      const rayIntensities = [0.65, 0.85, 0.70, 0.90, 0.75, 0.80, 0.60]
+      const rayWidths = [15, 20, 18, 22, 16]
+      const rayIntensities = [0.65, 0.85, 0.75, 0.85, 0.70]
 
       // Helper to evaluate diagonal ray line intensity at any screen position (px, py)
       const getRayLineIntensity = (px: number, py: number) => {
@@ -303,10 +301,10 @@ export function AsciiWaterFooter() {
         let total = 0
 
         for (let i = 0; i < rayCenters.length; i++) {
-          const sway = Math.sin(t * 0.35 + i * 1.6) * 8
+          const sway = Math.sin(t * 0.35 + i * 1.6) * 6
           const dist = Math.abs(u - (rayCenters[i] + sway))
           const w = rayWidths[i]
-          if (dist < w * 2.0) {
+          if (dist < w * 1.8) {
             total += Math.exp(-Math.pow(dist / w, 2.0)) * rayIntensities[i]
           }
         }
@@ -372,12 +370,11 @@ export function AsciiWaterFooter() {
           // 4x4 Bayer Dithering for authentic retro pixel gradients
           const bayerVal = BAYER_4X4[r % 4][c % 4] / 16.0
 
-          // Delicate single-pixel diamond glints: only on peaked wave crests inside a sunray line
-          // (Requires high wave crest + strong ray line + high Bayer threshold to prevent solid clustering)
+          // Rare single-pixel diamond glints: only on sharpest wave crest peaks inside core ray
           const isSinglePixelGlint =
-            h > 0.38 &&
-            rayIntensity > 0.65 &&
-            bayerVal > 0.86 &&
+            h > 0.42 &&
+            rayIntensity > 0.75 &&
+            bayerVal > 0.92 &&
             topFade > 0.3
 
           if (isSinglePixelGlint) {
@@ -387,12 +384,12 @@ export function AsciiWaterFooter() {
           }
 
           // Retro pixelated sunray line beam stippling:
-          // In the beam lines, illuminated water pixels take on a luminous azure/golden sheen
-          const inRayLine = rayIntensity > 0.45 && bayerVal > 0.72 && topFade > 0.25
-          if (inRayLine && h > 0.02) {
+          // Sparser, more subtle golden highlights (higher threshold + wave crest focus)
+          const inRayLine = rayIntensity > 0.60 && bayerVal > 0.86 && topFade > 0.25
+          if (inRayLine && h > 0.12) {
             ctx.fillStyle = isDark
-              ? "rgba(125, 211, 252, 0.45)" // Luminous sky-cyan pixel in dark mode
-              : "rgba(253, 224, 71, 0.45)"  // Warm golden sunray pixel in light mode
+              ? "rgba(125, 211, 252, 0.40)" // Luminous sky-cyan pixel in dark mode
+              : "rgba(254, 240, 138, 0.40)" // Soft pale sun-gold pixel in light mode (subtle & sparse)
             ctx.fillRect(px, py, pixelSize, pixelSize)
             continue
           }
@@ -441,7 +438,7 @@ export function AsciiWaterFooter() {
 
           ctx.fillStyle = isDark
             ? `rgba(224, 242, 254, ${alpha.toFixed(3)})`
-            : `rgba(217, 119, 6, ${alpha.toFixed(3)})`
+            : `rgba(255, 255, 255, ${alpha.toFixed(3)})`
           // Discrete 1x1 or 2x2 retro pixel mote
           ctx.fillRect(pixelX, pixelY, pixelSize, pixelSize)
         }
