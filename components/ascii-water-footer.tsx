@@ -2,7 +2,16 @@
 
 import { useEffect, useRef, useState } from "react"
 
-interface Ripple {
+interface Sparkle {
+  xRatio: number
+  yRatio: number
+  baseSize: number
+  speed: number
+  phase: number
+  flareLen: number
+}
+
+interface WaveRipple {
   x: number
   y: number
   time: number
@@ -10,13 +19,20 @@ interface Ripple {
   maxRadius: number
 }
 
-// Gentle, organic water glyphs — wave contours from calm swell to foaming crest
-const WATER_CHARS = ["·", "~", "∼", "≈", "≋"]
+interface TrailSparkle {
+  x: number
+  y: number
+  vx: number
+  vy: number
+  time: number
+  life: number
+  size: number
+}
 
 export function AsciiWaterFooter() {
   const containerRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [snoopyHovered, setSnoopyHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -30,11 +46,6 @@ export function AsciiWaterFooter() {
     let width = container.clientWidth
     let height = container.clientHeight
 
-    const cellW = 8
-    const cellH = 13
-    let cols = Math.ceil(width / cellW)
-    let rows = Math.ceil(height / cellH)
-
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
 
     const updateSize = () => {
@@ -46,9 +57,6 @@ export function AsciiWaterFooter() {
       canvas.style.width = `${width}px`
       canvas.style.height = `${height}px`
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-
-      cols = Math.ceil(width / cellW)
-      rows = Math.ceil(height / cellH)
     }
 
     updateSize()
@@ -58,7 +66,21 @@ export function AsciiWaterFooter() {
     })
     resizeObserver.observe(container)
 
-    // Pointer state
+    // Pre-generate organic ambient sunlight sparkles matching wave crest reflections
+    const sparkles: Sparkle[] = []
+    const SPARKLE_COUNT = 90
+    for (let i = 0; i < SPARKLE_COUNT; i++) {
+      sparkles.push({
+        xRatio: Math.random(),
+        yRatio: Math.random(),
+        baseSize: 0.8 + Math.random() * 1.8,
+        speed: 1.5 + Math.random() * 3.5,
+        phase: Math.random() * Math.PI * 2,
+        flareLen: 3 + Math.random() * 6,
+      })
+    }
+
+    // Interactive pointer state
     const pointer = {
       x: -1000,
       y: -1000,
@@ -67,10 +89,11 @@ export function AsciiWaterFooter() {
       active: false,
     }
 
-    // Active expanding ripples
-    const ripples: Ripple[] = []
+    // Active wave ripple shockwaves
+    const ripples: WaveRipple[] = []
+    const trailSparkles: TrailSparkle[] = []
 
-    const addRipple = (x: number, y: number, strength = 0.85, maxRadius = 240) => {
+    const addRipple = (x: number, y: number, strength = 0.8, maxRadius = 260) => {
       if (ripples.length > 20) ripples.shift()
       ripples.push({
         x,
@@ -78,6 +101,19 @@ export function AsciiWaterFooter() {
         time: performance.now(),
         strength,
         maxRadius,
+      })
+    }
+
+    const addTrailSparkle = (x: number, y: number) => {
+      if (trailSparkles.length > 40) trailSparkles.shift()
+      trailSparkles.push({
+        x: x + (Math.random() - 0.5) * 16,
+        y: y + (Math.random() - 0.5) * 16,
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: (Math.random() - 0.5) * 1.5 - 0.5,
+        time: performance.now(),
+        life: 1200 + Math.random() * 600,
+        size: 1.2 + Math.random() * 2.2,
       })
     }
 
@@ -91,10 +127,11 @@ export function AsciiWaterFooter() {
         const dy = py - pointer.prevY
         const dist = Math.hypot(dx, dy)
 
-        // Trailing ripples as cursor moves through surfing waves
-        if (dist > 10) {
-          const strength = Math.min(dist * 0.04, 1.2)
+        if (dist > 8) {
+          const strength = Math.min(dist * 0.045, 1.2)
           addRipple(px, py, strength, 180)
+          addTrailSparkle(px, py)
+          if (dist > 16) addTrailSparkle(px, py)
           pointer.prevX = px
           pointer.prevY = py
         }
@@ -114,6 +151,9 @@ export function AsciiWaterFooter() {
       const px = e.clientX - rect.left
       const py = e.clientY - rect.top
       addRipple(px, py, 1.6, 320)
+      for (let i = 0; i < 6; i++) {
+        addTrailSparkle(px, py)
+      }
     }
 
     const handlePointerLeave = () => {
@@ -126,7 +166,7 @@ export function AsciiWaterFooter() {
     canvas.addEventListener("pointerdown", handlePointerDown)
     canvas.addEventListener("pointerleave", handlePointerLeave)
 
-    // Visibility observer to pause animation when scrolled away
+    // Visibility observer to pause animation when scrolled out of view
     let isVisible = true
     const visibilityObserver = new IntersectionObserver(
       ([entry]) => {
@@ -136,7 +176,7 @@ export function AsciiWaterFooter() {
     )
     visibilityObserver.observe(container)
 
-    // 60 FPS Fluid Blue Surfing Waves Render Loop
+    // 60 FPS Render Loop: Sunlit Water Caustics & Shimmer
     const render = () => {
       animId = requestAnimationFrame(render)
       if (!isVisible) return
@@ -144,151 +184,151 @@ export function AsciiWaterFooter() {
       const now = performance.now()
       const t = now * 0.001
 
-      // Clean dead ripples
-      for (let i = ripples.length - 1; i >= 0; i--) {
-        if (now - ripples[i].time > 2400) {
-          ripples.splice(i, 1)
-        }
-      }
-
       ctx.clearRect(0, 0, width, height)
 
       const isDark = document.documentElement.classList.contains("dark")
 
-      // --- Ambient Deep Blue Water Glow ---
-      const glowGrad = ctx.createRadialGradient(
-        width * 0.5,
-        height * 0.6,
-        15,
-        width * 0.5,
-        height * 0.6,
-        width * 0.65
-      )
-      if (isDark) {
-        glowGrad.addColorStop(0, "rgba(2, 132, 199, 0.16)")
-        glowGrad.addColorStop(0.6, "rgba(3, 105, 161, 0.08)")
-        glowGrad.addColorStop(1, "rgba(0, 0, 0, 0)")
-      } else {
-        // High visibility in light mode: rich aquamarine & ocean sky wash
-        glowGrad.addColorStop(0, "rgba(2, 132, 199, 0.12)")
-        glowGrad.addColorStop(0.6, "rgba(14, 165, 233, 0.06)")
-        glowGrad.addColorStop(1, "rgba(255, 255, 255, 0)")
+      // Clean dead ripples & trail sparkles
+      for (let i = ripples.length - 1; i >= 0; i--) {
+        if (now - ripples[i].time > 2600) ripples.splice(i, 1)
       }
-      ctx.fillStyle = glowGrad
-      ctx.fillRect(0, 0, width, height)
+      for (let i = trailSparkles.length - 1; i >= 0; i--) {
+        if (now - trailSparkles[i].time > trailSparkles[i].life) trailSparkles.splice(i, 1)
+      }
 
-      ctx.font = '11px "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace'
-      ctx.textAlign = "center"
-      ctx.textBaseline = "middle"
+      // --- 1. Draw Active Wave Ripples (Golden & Cyan Refraction Rings) ---
+      for (let i = 0; i < ripples.length; i++) {
+        const rip = ripples[i]
+        const age = (now - rip.time) * 0.001
+        const currentRadius = age * 135
+        if (currentRadius > rip.maxRadius) continue
 
-      for (let c = 0; c < cols; c++) {
-        const px = (c + 0.5) * cellW
+        const alpha = Math.exp(-age / 0.8) * 0.65 * rip.strength
+        if (alpha <= 0.01) continue
 
-        for (let r = 0; r < rows; r++) {
-          const py = (r + 0.5) * cellH
+        ctx.save()
+        // Outer refraction ring
+        ctx.strokeStyle = isDark
+          ? `rgba(253, 224, 71, ${(alpha * 0.8).toFixed(3)})` // Golden sunset glint
+          : `rgba(2, 132, 199, ${(alpha * 0.9).toFixed(3)})` // Crisp azure water ripple
+        ctx.lineWidth = 1.6
+        ctx.beginPath()
+        ctx.arc(rip.x, rip.y, currentRadius, 0, Math.PI * 2)
+        ctx.stroke()
 
-          // --- 1. Surfing Wave Physics (Peaked Gerstner Rollers) ---
-          // Directional rolling ocean swells traveling across the canvas
-          const wavePhase1 = px * 0.022 - py * 0.006 - t * 2.2
-          const wave1 = Math.pow((Math.sin(wavePhase1) + 1) * 0.5, 2.4) * 0.55
-
-          const wavePhase2 = px * 0.034 + py * 0.012 - t * 1.8
-          const wave2 = Math.pow((Math.cos(wavePhase2) + 1) * 0.5, 2.0) * 0.3
-
-          // Counter swell creating natural surface foam/choppiness
-          const counter = Math.sin(px * 0.012 + py * 0.024 + t * 1.2) * 0.18
-
-          let h = wave1 + wave2 + counter - 0.35
-
-          // --- 2. Interactive Pointer Wake & Hover Disturbance ---
-          if (pointer.active) {
-            const dx = px - pointer.x
-            const dy = py - pointer.y
-            const dist = Math.hypot(dx, dy)
-            if (dist < 115) {
-              const falloff = Math.exp(-(dist * dist) / (2 * 42 * 42))
-              const pointerWave = Math.cos(dist * 0.16 - t * 6.0) * falloff * 0.95
-              h += pointerWave
-            }
-          }
-
-          // --- 3. Expanding Shockwave Ripples ---
-          for (let i = 0; i < ripples.length; i++) {
-            const rip = ripples[i]
-            const age = (now - rip.time) * 0.001
-            const currentRadius = age * 135
-            if (currentRadius > rip.maxRadius) continue
-
-            const dx = px - rip.x
-            const dy = py - rip.y
-            const dist = Math.hypot(dx, dy)
-            const ringDist = Math.abs(dist - currentRadius)
-
-            if (ringDist < 34) {
-              const decay = Math.exp(-age / 0.65)
-              const envelope = Math.exp(-(ringDist * ringDist) / (2 * 12 * 12))
-              const wave = Math.cos(ringDist * 0.28 - age * 7.0) * envelope * decay * rip.strength
-              h += wave
-            }
-          }
-
-          // --- 4. Normalized Water Luminance L in [0, 1] ---
-          const lum = Math.max(0, Math.min(1, 0.48 + h * 0.55))
-
-          // --- 5. Gentle Edge Feather Envelope (Top & Bottom only, sides flush) ---
-          const topFeather = Math.min(1, py / 14)
-          const bottomFeather = Math.min(1, (height - py) / 14)
-          const fade = Math.sin(topFeather * Math.PI * 0.5) * Math.sin(bottomFeather * Math.PI * 0.5)
-
-          if (fade <= 0.02) continue
-
-          // Map luminance to water character
-          const charIdx = Math.min(
-            WATER_CHARS.length - 1,
-            Math.floor(lum * WATER_CHARS.length)
-          )
-          const char = WATER_CHARS[charIdx]
-
-          // --- 6. Rich Blue Water Palette (High Visibility in Light & Dark Mode) ---
-          if (isDark) {
-            if (lum > 0.78) {
-              // Surfing crest foam: radiant electric cyan-white
-              ctx.fillStyle = `rgba(224, 242, 254, ${(0.96 * fade).toFixed(3)})`
-            } else if (lum > 0.58) {
-              // Surfing wave barrel: electric sky blue
-              ctx.fillStyle = `rgba(125, 211, 252, ${(0.88 * fade).toFixed(3)})`
-            } else if (lum > 0.38) {
-              // Wave face: vivid cerulean blue
-              ctx.fillStyle = `rgba(56, 189, 248, ${(0.7 * fade).toFixed(3)})`
-            } else if (lum > 0.2) {
-              // Ocean body: deep sapphire blue
-              ctx.fillStyle = `rgba(14, 165, 233, ${(0.48 * fade).toFixed(3)})`
-            } else {
-              // Quiet trough: ocean navy dot
-              ctx.fillStyle = `rgba(3, 105, 161, ${(0.35 * fade).toFixed(3)})`
-            }
-          } else {
-            // Light Mode: High-contrast rich marine and azure ocean water
-            if (lum > 0.78) {
-              // Foam crest: deep nautical blue-black for crisp visibility
-              ctx.fillStyle = `rgba(7, 89, 133, ${(0.95 * fade).toFixed(3)})`
-            } else if (lum > 0.58) {
-              // Wave curl: rich royal blue
-              ctx.fillStyle = `rgba(3, 105, 161, ${(0.9 * fade).toFixed(3)})`
-            } else if (lum > 0.38) {
-              // Wave face: vibrant ocean azure
-              ctx.fillStyle = `rgba(2, 132, 199, ${(0.8 * fade).toFixed(3)})`
-            } else if (lum > 0.2) {
-              // Mid water: clear sky blue
-              ctx.fillStyle = `rgba(14, 165, 233, ${(0.65 * fade).toFixed(3)})`
-            } else {
-              // Calm trough: soft azure dot
-              ctx.fillStyle = `rgba(56, 189, 248, ${(0.45 * fade).toFixed(3)})`
-            }
-          }
-
-          ctx.fillText(char, px, py)
+        // Inner caustic ring
+        if (currentRadius > 14) {
+          ctx.strokeStyle = isDark
+            ? `rgba(186, 230, 253, ${(alpha * 0.6).toFixed(3)})`
+            : `rgba(14, 165, 233, ${(alpha * 0.6).toFixed(3)})`
+          ctx.lineWidth = 1.0
+          ctx.beginPath()
+          ctx.arc(rip.x, rip.y, currentRadius - 10, 0, Math.PI * 2)
+          ctx.stroke()
         }
+        ctx.restore()
+      }
+
+      // --- 2. Interactive Cursor Sunlight Halo ---
+      if (pointer.active) {
+        const haloGrad = ctx.createRadialGradient(
+          pointer.x,
+          pointer.y,
+          2,
+          pointer.x,
+          pointer.y,
+          75
+        )
+        if (isDark) {
+          haloGrad.addColorStop(0, "rgba(253, 224, 71, 0.28)") // Warm golden glint
+          haloGrad.addColorStop(0.4, "rgba(56, 189, 248, 0.15)") // Cyan water glow
+          haloGrad.addColorStop(1, "rgba(0, 0, 0, 0)")
+        } else {
+          haloGrad.addColorStop(0, "rgba(14, 165, 233, 0.35)")
+          haloGrad.addColorStop(0.5, "rgba(253, 224, 71, 0.2)")
+          haloGrad.addColorStop(1, "rgba(255, 255, 255, 0)")
+        }
+        ctx.fillStyle = haloGrad
+        ctx.beginPath()
+        ctx.arc(pointer.x, pointer.y, 75, 0, Math.PI * 2)
+        ctx.fill()
+      }
+
+      // --- 3. Ambient Sparkling Sun Reflections (Diamond Glints on Waves) ---
+      for (let i = 0; i < sparkles.length; i++) {
+        const sp = sparkles[i]
+        // Subtle drift following the ocean swell
+        const driftX = Math.sin(t * 0.6 + sp.phase) * 6
+        const driftY = Math.cos(t * 0.8 + sp.phase) * 4
+        const sx = sp.xRatio * width + driftX
+        const sy = sp.yRatio * height + driftY
+
+        // Natural non-linear twinkling (diamond glint curve)
+        const rawTwinkle = Math.sin(t * sp.speed + sp.phase)
+        const twinkle = Math.pow(Math.max(0, rawTwinkle), 3.5)
+
+        if (twinkle < 0.05) continue
+
+        const size = sp.baseSize * (0.8 + twinkle * 0.9)
+        const alpha = Math.min(1, twinkle * 0.95)
+
+        ctx.save()
+        // Core diamond glint
+        ctx.fillStyle = isDark
+          ? `rgba(255, 255, 255, ${alpha.toFixed(3)})`
+          : `rgba(255, 255, 255, ${alpha.toFixed(3)})`
+        ctx.beginPath()
+        ctx.arc(sx, sy, size, 0, Math.PI * 2)
+        ctx.fill()
+
+        // 4-point golden sun flare cross
+        if (twinkle > 0.4) {
+          const flare = sp.flareLen * twinkle
+          ctx.strokeStyle = isDark
+            ? `rgba(254, 240, 138, ${(alpha * 0.85).toFixed(3)})` // Warm golden glint
+            : `rgba(253, 224, 71, ${(alpha * 0.9).toFixed(3)})`
+          ctx.lineWidth = 1.0
+
+          ctx.beginPath()
+          ctx.moveTo(sx - flare, sy)
+          ctx.lineTo(sx + flare, sy)
+          ctx.moveTo(sx, sy - flare)
+          ctx.lineTo(sx, sy + flare)
+          ctx.stroke()
+        }
+        ctx.restore()
+      }
+
+      // --- 4. Interactive Trail Sparkles (Trailing Wake) ---
+      for (let i = 0; i < trailSparkles.length; i++) {
+        const tsp = trailSparkles[i]
+        const age = now - tsp.time
+        const progress = age / tsp.life
+        if (progress >= 1) continue
+
+        tsp.x += tsp.vx
+        tsp.y += tsp.vy
+
+        const alpha = (1 - progress) * 0.9
+        const size = tsp.size * (1 - progress * 0.4)
+
+        ctx.save()
+        ctx.fillStyle = `rgba(255, 255, 255, ${alpha.toFixed(3)})`
+        ctx.beginPath()
+        ctx.arc(tsp.x, tsp.y, size, 0, Math.PI * 2)
+        ctx.fill()
+
+        // Soft golden halo
+        ctx.strokeStyle = `rgba(253, 224, 71, ${(alpha * 0.7).toFixed(3)})`
+        ctx.lineWidth = 0.8
+        const flare = size * 2.5
+        ctx.beginPath()
+        ctx.moveTo(tsp.x - flare, tsp.y)
+        ctx.lineTo(tsp.x + flare, tsp.y)
+        ctx.moveTo(tsp.x, tsp.y - flare)
+        ctx.lineTo(tsp.x, tsp.y + flare)
+        ctx.stroke()
+        ctx.restore()
       }
     }
 
@@ -307,44 +347,45 @@ export function AsciiWaterFooter() {
   return (
     <footer
       ref={containerRef}
-      className="relative w-[calc(100%+2rem)] -mx-4 sm:w-[calc(100%+4rem)] sm:-mx-8 h-48 sm:h-56 lg:h-60 mt-12 border-t-[1.5px] border-dashed border-foreground/25 select-none overflow-hidden"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative w-[calc(100%+2rem)] -mx-4 sm:w-[calc(100%+4rem)] sm:-mx-8 h-48 sm:h-56 lg:h-64 mt-12 border-t-[1.5px] border-dashed border-foreground/25 select-none overflow-hidden"
     >
-      {/* Pure Living Blue ASCII Water Canvas (Flush to both dashed side rails) */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full cursor-crosshair touch-none"
-      />
-
-      {/* Non-ASCII Snoopy Surfing on the Waves */}
-      <div
-        onMouseEnter={() => setSnoopyHovered(true)}
-        onMouseLeave={() => setSnoopyHovered(false)}
-        className="absolute right-5 sm:right-12 bottom-6 sm:bottom-10 z-20 pointer-events-auto cursor-pointer select-none transition-transform duration-300 hover:scale-110 active:scale-95"
-        style={{
-          animation: "snoopy-surf 3.6s ease-in-out infinite",
-        }}
-        title="Snoopy Surfing the ASCII Waves!"
-      >
+      {/* Cinematic Deep Blue Ocean Sea Surface */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
         <img
-          src="/snoopy-surfer.webp"
-          alt="Snoopy Surfing on Waves"
-          width={110}
-          height={98}
-          className="w-20 sm:w-24 lg:w-28 h-auto drop-shadow-[0_8px_16px_rgba(2,132,199,0.35)] dark:drop-shadow-[0_8px_20px_rgba(56,189,248,0.45)] pointer-events-none select-none"
+          src="/ocean-sea-water.webp"
+          alt="Deep ocean sea water with sunlight sparkles"
+          width={1376}
+          height={768}
+          className="w-full h-full object-cover object-center select-none"
+          style={{
+            animation: "ocean-swell 14s ease-in-out infinite",
+            filter: "contrast(1.08) saturate(1.15)",
+          }}
         />
+
+        {/* Soft atmospheric gradient masks: blends into page top & enhances water depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-black/25 pointer-events-none" />
+
+        {/* Light mode marine azure overlay for high contrast & radiant sea color */}
+        <div className="absolute inset-0 bg-sky-500/10 dark:bg-transparent mix-blend-overlay pointer-events-none" />
       </div>
 
-      {/* Keyframe animation for Snoopy wave-riding tilt & float */}
+      {/* Living Interactive Sunlight Caustics & Diamond Sparkles Canvas */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full cursor-crosshair touch-none z-10"
+      />
+
+      {/* Fluid Ocean Swell Animation */}
       <style jsx>{`
-        @keyframes snoopy-surf {
+        @keyframes ocean-swell {
           0%, 100% {
-            transform: translateY(0px) rotate(-3deg);
+            transform: scale(1.04) translateY(0px) rotate(0deg);
           }
-          35% {
-            transform: translateY(-9px) rotate(4deg);
-          }
-          65% {
-            transform: translateY(-4px) rotate(1deg);
+          50% {
+            transform: scale(1.09) translateY(-6px) rotate(0.35deg);
           }
         }
       `}</style>
