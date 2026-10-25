@@ -210,14 +210,15 @@ export function AsciiWaterFooter() {
 
     const startTime = performance.now()
 
-    // 40 Floating Pixel Sunray Motes that fall gently through the light beams
-    const numMotes = 40
+    // Diagonal sunray slant angle (slanted rays streaming from top-left to bottom-right)
+    const raySlant = 0.65
+
+    // Floating Pixel Light Motes that descend directly down along the diagonal sunray lines
+    const numMotes = 36
     const motes = Array.from({ length: numMotes }, () => ({
       x: Math.random(),
       y: Math.random(),
-      speedY: 0.00035 + Math.random() * 0.0006,
-      driftX: 0.00015 + (Math.random() - 0.4) * 0.0003, // Slight natural angle matching sunbeams
-      size: Math.random() > 0.65 ? 2 : 1,
+      speed: 0.0004 + Math.random() * 0.0006,
       phase: Math.random() * Math.PI * 2,
     }))
 
@@ -255,9 +256,9 @@ export function AsciiWaterFooter() {
       const t = nowSec * 0.36
 
       // ======================================================================
-      // 16-BIT CALM PIXEL OCEAN WITH FALLING PIXEL SUNRAYS
+      // 16-BIT CALM PIXEL OCEAN WITH LINEAR PIXEL SUNRAYS
       // ======================================================================
-      const pixelSize = 4 // 4px retro pixel block size for detailed 16-bit fidelity
+      const pixelSize = 4 // 4px retro pixel block size
       const cols = Math.ceil(width / pixelSize)
       const rows = Math.ceil(height / pixelSize)
 
@@ -282,9 +283,35 @@ export function AsciiWaterFooter() {
 
       const palette = isDark ? darkPalette : lightPalette
 
-      // Sun origin at top-center horizon
-      const sunX = width * 0.49
-      const sunY = -height * 0.25
+      // 7 Distinct Diagonal Sunray Lines across the scene (NOT a round sun!)
+      const rayCenters = [
+        width * 0.05,
+        width * 0.20,
+        width * 0.36,
+        width * 0.52,
+        width * 0.68,
+        width * 0.82,
+        width * 0.96,
+      ]
+      const rayWidths = [22, 28, 20, 30, 24, 26, 20]
+      const rayIntensities = [0.65, 0.85, 0.70, 0.90, 0.75, 0.80, 0.60]
+
+      // Helper to evaluate diagonal ray line intensity at any screen position (px, py)
+      const getRayLineIntensity = (px: number, py: number) => {
+        // Linear diagonal coordinate: straight parallel slanted lines
+        const u = px - py * raySlant
+        let total = 0
+
+        for (let i = 0; i < rayCenters.length; i++) {
+          const sway = Math.sin(t * 0.35 + i * 1.6) * 8
+          const dist = Math.abs(u - (rayCenters[i] + sway))
+          const w = rayWidths[i]
+          if (dist < w * 2.0) {
+            total += Math.exp(-Math.pow(dist / w, 2.0)) * rayIntensities[i]
+          }
+        }
+        return Math.min(1.0, total)
+      }
 
       for (let r = 0; r < rows; r++) {
         const py = r * pixelSize
@@ -339,57 +366,40 @@ export function AsciiWaterFooter() {
             }
           }
 
-          // --- 2. Falling Volumetric Sunrays (Crepuscular Pixel Beams) ---
-          const dx = px - sunX
-          const dy = py - sunY
-          const angle = Math.atan2(dx, dy)
+          // --- 2. Diagonal Sunray Line Intensity at this pixel ---
+          const rayIntensity = getRayLineIntensity(px, py)
 
-          let rays = 0
-          // Central majestic sunbeam
-          rays += Math.exp(-Math.pow(angle * 4.0, 2)) * 0.95
-          // Secondary angled flank rays
-          rays += Math.exp(-Math.pow((angle + 0.22) * 5.4, 2)) * 0.75
-          rays += Math.exp(-Math.pow((angle - 0.20) * 5.0, 2)) * 0.8
-          // Outer subtle shimmering shafts
-          rays += Math.exp(-Math.pow((angle + 0.44) * 6.5, 2)) * 0.55
-          rays += Math.exp(-Math.pow((angle - 0.42) * 6.2, 2)) * 0.58
-          // Broad atmospheric sun cone
-          rays += Math.exp(-Math.pow(angle * 1.5, 2)) * 0.35
-
-          // Gentle breathing and atmospheric shimmer
-          const breath = Math.sin(angle * 6.0 - t * 0.4) * 0.12 + Math.cos(px * 0.008 + t * 0.3) * 0.08
-          const verticalFade = Math.pow(Math.max(0.01, py / height), 0.6)
-          const sunray = Math.max(0, (rays + breath) * verticalFade)
-
-          // --- 3. 4x4 Bayer Dithering for authentic retro pixel gradients ---
+          // 4x4 Bayer Dithering for authentic retro pixel gradients
           const bayerVal = BAYER_4X4[r % 4][c % 4] / 16.0
 
-          // Sunray falling specular glints on calm wave peaks
-          const glint = Math.pow(Math.max(0, h * 1.25 + 0.12), 2.2) * sunray
-          const microTwinkle = Math.sin(seaX * 18.0 + t * 3.2) * Math.cos(seaZ * 16.0 - t * 2.8)
-          const sparkle = glint * (0.7 + 0.3 * Math.max(0, microTwinkle))
+          // Delicate single-pixel diamond glints: only on peaked wave crests inside a sunray line
+          // (Requires high wave crest + strong ray line + high Bayer threshold to prevent solid clustering)
+          const isSinglePixelGlint =
+            h > 0.38 &&
+            rayIntensity > 0.65 &&
+            bayerVal > 0.86 &&
+            topFade > 0.3
 
-          // Twinkling retro sunray specular pixel
-          if (sparkle > 0.45 && topFade > 0.3) {
-            ctx.fillStyle = isDark
-              ? (sparkle > 0.7 ? "#ffffff" : "#fef08a")
-              : (sparkle > 0.7 ? "#ffffff" : "#f59e0b")
+          if (isSinglePixelGlint) {
+            ctx.fillStyle = isDark ? "#ffffff" : "#fef08a"
             ctx.fillRect(px, py, pixelSize, pixelSize)
             continue
           }
 
-          // In-beam falling sunray pixel stippling (retro pixelated light beams)
-          const isSunrayPixel = sunray > 0.48 && bayerVal > 0.75 && topFade > 0.25
-          if (isSunrayPixel && h > -0.05) {
+          // Retro pixelated sunray line beam stippling:
+          // In the beam lines, illuminated water pixels take on a luminous azure/golden sheen
+          const inRayLine = rayIntensity > 0.45 && bayerVal > 0.72 && topFade > 0.25
+          if (inRayLine && h > 0.02) {
             ctx.fillStyle = isDark
-              ? "rgba(254, 240, 138, 0.45)"
-              : "rgba(253, 224, 71, 0.5)"
+              ? "rgba(125, 211, 252, 0.45)" // Luminous sky-cyan pixel in dark mode
+              : "rgba(253, 224, 71, 0.45)"  // Warm golden sunray pixel in light mode
             ctx.fillRect(px, py, pixelSize, pixelSize)
             continue
           }
 
           // Ocean water body color mapping with Bayer dithering
-          const lum = Math.max(0, Math.min(1, 0.42 + h * 0.58 + sunray * 0.12))
+          // Sunray lines gently illuminate the water swells
+          const lum = Math.max(0, Math.min(1, 0.42 + h * 0.58 + rayIntensity * 0.16))
           const rawIndex = lum * (palette.length - 1)
           const baseIndex = Math.floor(rawIndex)
           const frac = rawIndex - baseIndex
@@ -405,35 +415,35 @@ export function AsciiWaterFooter() {
       }
 
       // ======================================================================
-      // FALLING PIXEL LIGHT MOTES (DRIFTING SUNRAY SPARKLES)
+      // FALLING PIXEL LIGHT MOTES (DRIFTING DOWN THE SUNRAY LINES)
       // ======================================================================
       for (let i = 0; i < motes.length; i++) {
         const m = motes[i]
-        m.y += m.speedY
-        m.x += m.driftX
-        if (m.y > 1.0) m.y = 0.0
-        if (m.x < 0.0) m.x = 1.0
+        // Move diagonally along the exact slant of the sunrays
+        m.y += m.speed
+        m.x += m.speed * (raySlant * (height / width))
+        if (m.y > 1.0) {
+          m.y = 0.0
+          m.x = Math.random()
+        }
         if (m.x > 1.0) m.x = 0.0
 
         const mx = m.x * width
         const my = m.y * height
 
-        // Calculate sunray intensity at mote position
-        const dx = mx - sunX
-        const dy = my - sunY
-        const angle = Math.atan2(dx, dy)
-        const ray = Math.exp(-Math.pow(angle * 2.8, 2)) * Math.pow(my / height, 0.5)
+        const rayVal = getRayLineIntensity(mx, my)
 
-        if (ray > 0.2) {
-          const twinkle = (Math.sin(nowSec * 2.8 + m.phase) + 1) * 0.5
-          const alpha = Math.min(1.0, ray * twinkle * 0.95)
+        if (rayVal > 0.3) {
+          const twinkle = (Math.sin(nowSec * 3.0 + m.phase) + 1) * 0.5
+          const alpha = Math.min(1.0, rayVal * twinkle * 0.9)
           const pixelX = Math.round(mx / pixelSize) * pixelSize
           const pixelY = Math.round(my / pixelSize) * pixelSize
 
           ctx.fillStyle = isDark
-            ? `rgba(254, 240, 138, ${alpha.toFixed(3)})`
+            ? `rgba(224, 242, 254, ${alpha.toFixed(3)})`
             : `rgba(217, 119, 6, ${alpha.toFixed(3)})`
-          ctx.fillRect(pixelX, pixelY, m.size * pixelSize, m.size * pixelSize)
+          // Discrete 1x1 or 2x2 retro pixel mote
+          ctx.fillRect(pixelX, pixelY, pixelSize, pixelSize)
         }
       }
     }
@@ -458,7 +468,7 @@ export function AsciiWaterFooter() {
       {/* Background depth tint matching page theme */}
       <div className="absolute inset-0 bg-background/60 pointer-events-none" />
 
-      {/* Living 16-Bit Calm Pixel Ocean with Falling Pixel Sunrays */}
+      {/* Living 16-Bit Calm Pixel Ocean with Diagonal Sunray Lines */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full cursor-crosshair touch-none z-10"
