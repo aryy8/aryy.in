@@ -103,7 +103,7 @@ interface Ripple {
   strength: number
 }
 
-// 4x4 Bayer Dithering Matrix for smooth retro pixel water transitions
+// 4x4 Bayer Dithering Matrix for authentic retro 16-bit pixel gradients
 const BAYER_4X4 = [
   [0, 8, 2, 10],
   [12, 4, 14, 6],
@@ -210,13 +210,15 @@ export function AsciiWaterFooter() {
 
     const startTime = performance.now()
 
-    // Floating water sparkles (light motes that drift calmly across the water surface)
-    const numMotes = 32
+    // Diagonal sunray slant angle (slanted rays streaming from top-left to bottom-right)
+    const raySlant = 0.65
+
+    // Floating Pixel Light Motes that descend directly down along the diagonal sunray lines
+    const numMotes = 36
     const motes = Array.from({ length: numMotes }, () => ({
       x: Math.random(),
       y: Math.random(),
-      speedX: (Math.random() - 0.5) * 0.0002,
-      speedY: 0.00015 + Math.random() * 0.0003,
+      speed: 0.0004 + Math.random() * 0.0006,
       phase: Math.random() * Math.PI * 2,
     }))
 
@@ -254,35 +256,62 @@ export function AsciiWaterFooter() {
       const t = nowSec * 0.36
 
       // ======================================================================
-      // 16-BIT CALM PIXEL OCEAN WITH DIFFUSED & SCATTERED SUNLIGHT
+      // 16-BIT CALM PIXEL OCEAN WITH LINEAR PIXEL SUNRAYS
       // ======================================================================
       const pixelSize = 4 // 4px retro pixel block size
       const cols = Math.ceil(width / pixelSize)
       const rows = Math.ceil(height / pixelSize)
 
-      // Dark Mode 7-Level Gradient Palette (Deep Navy -> Sapphire -> Cyan -> Sunlit Gold -> Foam)
+      // 16-Bit Retro Ocean Palette
       const darkPalette = [
-        "rgba(2, 6, 23, 0.94)",     // 0: Deep abyssal void
-        "rgba(6, 24, 56, 0.95)",     // 1: Midnight ocean navy
-        "rgba(3, 85, 145, 0.96)",    // 2: Oceanic sapphire
-        "rgba(14, 145, 220, 0.98)",  // 3: Calm azure swell
-        "rgba(56, 189, 248, 1.0)",   // 4: Radiant cyan crest (scattered light)
-        "rgba(254, 240, 138, 0.95)", // 5: Warm golden sunlit crest
-        "rgba(255, 255, 255, 1.0)",  // 6: Pure foam diamond glint
+        "rgba(2, 6, 23, 0.92)",     // 0: Deep abyssal void
+        "rgba(7, 28, 62, 0.95)",     // 1: Midnight ocean navy
+        "rgba(3, 95, 150, 0.96)",    // 2: Oceanic sapphire
+        "rgba(2, 132, 199, 0.98)",   // 3: Calm azure swell
+        "rgba(56, 189, 248, 1.0)",   // 4: Radiant cyan crest
+        "rgba(224, 242, 254, 1.0)",  // 5: Foam white
       ]
 
-      // Light Mode 7-Level Gradient Palette (Deep Marine -> Azure -> Turquoise -> Pale Sky -> Sun Glint -> Foam)
       const lightPalette = [
-        "rgba(7, 89, 133, 0.95)",    // 0: Deep marine blue
-        "rgba(2, 132, 199, 0.96)",   // 1: Clear oceanic azure
-        "rgba(14, 165, 233, 0.98)",  // 2: Vibrant azure
-        "rgba(56, 189, 248, 1.0)",   // 3: Sunlit turquoise
-        "rgba(125, 211, 252, 1.0)",  // 4: Luminous sky azure
-        "rgba(254, 240, 138, 0.95)", // 5: Warm sunlit crest
-        "rgba(255, 255, 255, 1.0)",  // 6: Crisp white foam
+        "rgba(240, 249, 255, 0.88)", // 0: Sky reflection trough
+        "rgba(186, 230, 253, 0.92)", // 1: Calm light blue
+        "rgba(56, 189, 248, 0.96)",  // 2: Vibrant cyan
+        "rgba(2, 132, 199, 0.98)",   // 3: Marine azure
+        "rgba(3, 105, 161, 1.0)",    // 4: Deep royal crest
+        "rgba(7, 89, 133, 1.0)",     // 5: Crisp navy crest
       ]
 
       const palette = isDark ? darkPalette : lightPalette
+
+      // 7 Distinct Diagonal Sunray Lines across the scene (NOT a round sun!)
+      const rayCenters = [
+        width * 0.05,
+        width * 0.20,
+        width * 0.36,
+        width * 0.52,
+        width * 0.68,
+        width * 0.82,
+        width * 0.96,
+      ]
+      const rayWidths = [22, 28, 20, 30, 24, 26, 20]
+      const rayIntensities = [0.65, 0.85, 0.70, 0.90, 0.75, 0.80, 0.60]
+
+      // Helper to evaluate diagonal ray line intensity at any screen position (px, py)
+      const getRayLineIntensity = (px: number, py: number) => {
+        // Linear diagonal coordinate: straight parallel slanted lines
+        const u = px - py * raySlant
+        let total = 0
+
+        for (let i = 0; i < rayCenters.length; i++) {
+          const sway = Math.sin(t * 0.35 + i * 1.6) * 8
+          const dist = Math.abs(u - (rayCenters[i] + sway))
+          const w = rayWidths[i]
+          if (dist < w * 2.0) {
+            total += Math.exp(-Math.pow(dist / w, 2.0)) * rayIntensities[i]
+          }
+        }
+        return Math.min(1.0, total)
+      }
 
       for (let r = 0; r < rows; r++) {
         const py = r * pixelSize
@@ -337,34 +366,44 @@ export function AsciiWaterFooter() {
             }
           }
 
-          // --- 2. Natural Sunlight Scattering & Dispersion Across the Sea ---
-          // Fluid organic light streams (flowing along the 3D wave harmonics, NO artificial zebra bars!)
-          const stream1 = Math.sin(seaX * 0.45 - seaZ * 0.35 + t * 0.25) * 0.5 + 0.5
-          const stream2 = Math.cos(seaX * 0.85 + seaZ * 0.28 - t * 0.32) * 0.5 + 0.5
-          const caustic = Math.sin(seaX * 2.4 + t * 0.9) * Math.cos(seaZ * 2.1 - t * 0.8) * 0.5 + 0.5
+          // --- 2. Diagonal Sunray Line Intensity at this pixel ---
+          const rayIntensity = getRayLineIntensity(px, py)
 
-          // Broad central daylight reflection envelope across the ocean
-          const sunEnvelope = Math.exp(-Math.pow(seaX * 0.38, 2.0) * 0.38)
-
-          // Fluid scattered light intensity diffusing through the water
-          const lightScatter = sunEnvelope * (stream1 * 0.42 + stream2 * 0.38 + caustic * 0.20)
-
-          // Waves facing the light catch and scatter sunlight across their crests
-          const crestScatter = Math.pow(Math.max(0, h * 0.85 + 0.22), 1.9) * (0.35 + 0.65 * lightScatter)
-
-          // --- 3. 4x4 Bayer Dithering for organic pixel scatter ---
+          // 4x4 Bayer Dithering for authentic retro pixel gradients
           const bayerVal = BAYER_4X4[r % 4][c % 4] / 16.0
 
-          // Base water tone in [0, 1]
-          const lum = Math.max(0, Math.min(1, 0.40 + h * 0.56))
+          // Delicate single-pixel diamond glints: only on peaked wave crests inside a sunray line
+          // (Requires high wave crest + strong ray line + high Bayer threshold to prevent solid clustering)
+          const isSinglePixelGlint =
+            h > 0.38 &&
+            rayIntensity > 0.65 &&
+            bayerVal > 0.86 &&
+            topFade > 0.3
 
-          // Continuous color blend index: sunlight organically mixes into the palette!
-          // Low light = 0 to 3 (deep navy & sapphire), High light on crests = 4 to 6 (cyan, gold, white foam)
-          const levelVal = lum * 3.8 + crestScatter * 2.4
-          const baseIndex = Math.floor(levelVal)
-          const frac = levelVal - baseIndex
+          if (isSinglePixelGlint) {
+            ctx.fillStyle = isDark ? "#ffffff" : "#fef08a"
+            ctx.fillRect(px, py, pixelSize, pixelSize)
+            continue
+          }
 
-          // Bayer threshold decides the exact pixel color step, creating authentic retro pixel scattering
+          // Retro pixelated sunray line beam stippling:
+          // In the beam lines, illuminated water pixels take on a luminous azure/golden sheen
+          const inRayLine = rayIntensity > 0.45 && bayerVal > 0.72 && topFade > 0.25
+          if (inRayLine && h > 0.02) {
+            ctx.fillStyle = isDark
+              ? "rgba(125, 211, 252, 0.45)" // Luminous sky-cyan pixel in dark mode
+              : "rgba(253, 224, 71, 0.45)"  // Warm golden sunray pixel in light mode
+            ctx.fillRect(px, py, pixelSize, pixelSize)
+            continue
+          }
+
+          // Ocean water body color mapping with Bayer dithering
+          // Sunray lines gently illuminate the water swells
+          const lum = Math.max(0, Math.min(1, 0.42 + h * 0.58 + rayIntensity * 0.16))
+          const rawIndex = lum * (palette.length - 1)
+          const baseIndex = Math.floor(rawIndex)
+          const frac = rawIndex - baseIndex
+
           const finalIndex = Math.min(
             palette.length - 1,
             frac > bayerVal ? baseIndex + 1 : baseIndex
@@ -376,38 +415,34 @@ export function AsciiWaterFooter() {
       }
 
       // ======================================================================
-      // FLOATING WATER SPARKLES (DELICATE SCATTERED LIGHT MOTES)
+      // FALLING PIXEL LIGHT MOTES (DRIFTING DOWN THE SUNRAY LINES)
       // ======================================================================
       for (let i = 0; i < motes.length; i++) {
         const m = motes[i]
-        m.x += m.speedX
-        m.y += m.speedY
+        // Move diagonally along the exact slant of the sunrays
+        m.y += m.speed
+        m.x += m.speed * (raySlant * (height / width))
         if (m.y > 1.0) {
           m.y = 0.0
           m.x = Math.random()
         }
-        if (m.x < 0.0) m.x = 1.0
         if (m.x > 1.0) m.x = 0.0
 
         const mx = m.x * width
         const my = m.y * height
 
-        // 3D position
-        const v = my / height
-        const depth = 2.4 + Math.pow(1.0 - v, 1.8) * 8.0
-        const seaX = ((mx - width * 0.5) / height) * depth * 1.4
+        const rayVal = getRayLineIntensity(mx, my)
 
-        const sunEnvelope = Math.exp(-Math.pow(seaX * 0.4, 2.0) * 0.4)
-        if (sunEnvelope > 0.25) {
-          const twinkle = (Math.sin(nowSec * 2.5 + m.phase) + 1) * 0.5
-          const alpha = Math.min(1.0, sunEnvelope * twinkle * 0.85)
-
+        if (rayVal > 0.3) {
+          const twinkle = (Math.sin(nowSec * 3.0 + m.phase) + 1) * 0.5
+          const alpha = Math.min(1.0, rayVal * twinkle * 0.9)
           const pixelX = Math.round(mx / pixelSize) * pixelSize
           const pixelY = Math.round(my / pixelSize) * pixelSize
 
           ctx.fillStyle = isDark
-            ? `rgba(254, 240, 138, ${alpha.toFixed(3)})`
-            : `rgba(255, 255, 255, ${alpha.toFixed(3)})`
+            ? `rgba(224, 242, 254, ${alpha.toFixed(3)})`
+            : `rgba(217, 119, 6, ${alpha.toFixed(3)})`
+          // Discrete 1x1 or 2x2 retro pixel mote
           ctx.fillRect(pixelX, pixelY, pixelSize, pixelSize)
         }
       }
@@ -433,7 +468,7 @@ export function AsciiWaterFooter() {
       {/* Background depth tint matching page theme */}
       <div className="absolute inset-0 bg-background/60 pointer-events-none" />
 
-      {/* Living 16-Bit Calm Pixel Ocean with Scattered Sunlight */}
+      {/* Living 16-Bit Calm Pixel Ocean with Diagonal Sunray Lines */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full cursor-crosshair touch-none z-10"
