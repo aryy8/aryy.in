@@ -49,54 +49,54 @@ const FRAG_SHADER_SRC = `
   }
 
   // Single directional wave with smooth trochoidal profile
-  float directionalWave(vec2 p, float ang_deg, float wlen, float amp, float speed, float steepness, float time) {
+  float directionalWave(vec2 p, float ang_deg, float wlen, float amp, float omega, float steepness, float time) {
     float rad = ang_deg * 0.01745329;
     vec2 dir = vec2(cos(rad), sin(rad));
     float k = 6.2831853 / wlen;
-    float omega = speed * k;
     float phase = dot(p, dir) * k - time * omega;
     float w = (sin(phase) + 1.0) * 0.5;
     return pow(w, steepness) * amp;
   }
 
-  // 8-Octave Organic Gerstner Fluid Sea Heightfield (Zero Grid, Zero Quilting)
+  // Realistic ocean wave surface with physical dispersion (slow, calm, majestic)
   float sea_height(vec2 p, float time) {
-    // Domain curl distortion to bend and curve wavefronts organically
-    float warpX = 0.38 * gnoise(p * 1.0 + time * 0.18);
-    float warpY = 0.38 * gnoise(p * 1.0 + vec2(4.2, 2.1) - time * 0.15);
+    // Slow gentle time scaling so the sea rolls calmly (period ~8-12 seconds)
+    float slow_t = time * 0.22;
+
+    // Gentle organic domain distortion for curved liquid wavefronts
+    float warpX = 0.25 * gnoise(p * 0.6 + slow_t * 0.20);
+    float warpY = 0.25 * gnoise(p * 0.6 + vec2(3.1, 1.8) - slow_t * 0.15);
     vec2 q = p + vec2(warpX, warpY);
 
     float h = 0.0;
-    // 8 continuous, non-repeating directional wave fronts
-    h += directionalWave(q, 78.0, 1.25, 0.22, 0.85, 1.4, time);   // Main groundswell
-    h += directionalWave(q, 98.0, 0.95, 0.18, 1.00, 1.5, time);   // Cross-swell
-    h += directionalWave(q, 68.0, 0.70, 0.13, 1.20, 1.6, time);   // Wind chop
-    h += directionalWave(q, 112.0, 0.48, 0.09, 1.45, 1.7, time);  // Secondary chop
-    h += directionalWave(q, 85.0, 0.32, 0.055, 1.80, 1.8, time);  // Ripples
-    h += directionalWave(q, 105.0, 0.20, 0.032, 2.25, 2.0, time); // Capillary ripples
-    h += directionalWave(q, 58.0, 0.13, 0.018, 2.80, 2.0, time);  // Capillary wavelets
-    h += directionalWave(q, 125.0, 0.09, 0.010, 3.40, 2.2, time); // Micro shimmer
+    // Natural ocean wave spectrum with physical dispersion (calm, rolling swells)
+    h += directionalWave(q, 85.0,  2.20, 0.32, 0.55, 1.25, slow_t); // Major groundswell (slow period ~11s)
+    h += directionalWave(q, 98.0,  1.50, 0.20, 0.75, 1.35, slow_t); // Cross-sea swell (period ~8s)
+    h += directionalWave(q, 75.0,  0.95, 0.12, 1.05, 1.45, slow_t); // Wind waves (period ~6s)
+    h += directionalWave(q, 105.0, 0.60, 0.07, 1.35, 1.55, slow_t); // Medium chop (period ~4.5s)
+    h += directionalWave(q, 88.0,  0.38, 0.04, 1.75, 1.65, slow_t); // Fine ripples (period ~3.5s)
+    h += directionalWave(q, 72.0,  0.22, 0.02, 2.30, 1.80, slow_t); // Surface capillary wavelets
 
     // Interactive mouse ripples
     for (int i = 0; i < MAX_RIPPLES; i++) {
       if (i >= u_ripple_count) break;
       vec4 rip = u_ripples[i];
       float age = time - rip.z;
-      if (age > 0.0 && age < 3.0) {
+      if (age > 0.0 && age < 3.5) {
         vec2 dPos = p - rip.xy;
         float r = length(dPos);
-        float wavefront = r - age * 2.8;
-        float ripWave = sin(wavefront * 16.0) * exp(-abs(wavefront) * 3.2) * exp(-age * 1.2) * rip.w;
-        h += ripWave * 0.15;
+        float wavefront = r - age * 0.85;
+        float ripWave = sin(wavefront * 12.0) * exp(-abs(wavefront) * 3.0) * exp(-age * 0.9) * rip.w;
+        h += ripWave * 0.14;
       }
     }
 
-    // Continuous pointer wake
+    // Gentle cursor wake
     if (u_mouse_active > 0.5) {
       vec2 dm = p - u_mouse;
       float mr = length(dm);
       if (mr < 1.4) {
-        h += sin(mr * 12.0 - time * 4.0) * exp(-mr * 2.5) * 0.06;
+        h += sin(mr * 10.0 - time * 1.5) * exp(-mr * 2.5) * 0.05;
       }
     }
 
@@ -105,14 +105,13 @@ const FRAG_SHADER_SRC = `
 
   void main() {
     vec2 uv = gl_FragCoord.xy / u_resolution.xy;
-    // Natural top-down / steep view coordinates
     vec2 p = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;
-    p.x *= 1.2;
-    p.y *= 1.1;
+    p.x *= 1.25;
+    p.y *= 1.15;
 
-    float t = u_time * 0.90;
+    float t = u_time;
 
-    // Ocean surface height
+    // Ocean height
     float h = sea_height(p, t);
 
     // Surface normal via central differences
@@ -121,10 +120,10 @@ const FRAG_SHADER_SRC = `
     float hy = (sea_height(p + vec2(0.0, eps), t) - sea_height(p - vec2(0.0, eps), t)) / (2.0 * eps);
 
     vec3 N = normalize(vec3(-hx, -hy, 1.0));
-    vec3 V = normalize(vec3(p.x * 0.06, p.y * 0.10 - 0.15, 1.0));
+    vec3 V = normalize(vec3(p.x * 0.05, p.y * 0.08 - 0.12, 1.0));
 
     // Sun direction: warm golden sunset sun reflecting towards viewer
-    vec3 sun_dir = normalize(vec3(0.06, 0.42, 0.90));
+    vec3 sun_dir = normalize(vec3(0.05, 0.38, 0.92));
 
     // Specular reflection
     vec3 R = reflect(-V, N);
@@ -132,16 +131,16 @@ const FRAG_SHADER_SRC = `
     float fresnel = 0.02 + 0.98 * pow(max(0.0, 1.0 - max(0.001, dot(N, V))), 5.0);
 
     // Golden sun track down the center of the water
-    float sun_col = exp(-pow(p.x * 0.65, 2.0) * 0.65);
+    float sun_col = exp(-pow(p.x * 0.45, 2.0) * 0.45);
 
     // Multi-tier specular highlights
     float sheen = pow(RdotL, 10.0) * (0.2 + 0.8 * sun_col);
-    float crest_glint = pow(RdotL, 38.0) * (0.25 + 0.75 * sun_col);
+    float crest_glint = pow(RdotL, 36.0) * (0.25 + 0.75 * sun_col);
 
     // Micro capillary sparkles
-    float micro = gnoise(p * 28.0 + t * 4.5);
-    float sparkle_active = step(0.15, micro);
-    float diamond_glint = pow(RdotL, 180.0) * (0.35 + 0.65 * sparkle_active) * (0.3 + 0.7 * sun_col);
+    float micro = gnoise(p * 18.0 + t * 0.8);
+    float sparkle_active = step(0.12, micro);
+    float diamond_glint = pow(RdotL, 160.0) * (0.35 + 0.65 * sparkle_active) * (0.3 + 0.7 * sun_col);
 
     // Height normalization
     float h_norm = clamp(h * 0.72 + 0.38, 0.0, 1.0);
@@ -157,11 +156,11 @@ const FRAG_SHADER_SRC = `
       vec3 base = mix(deep_trough, mid_body, h_norm);
       base = mix(base, crest_azure, pow(h_norm, 1.8));
 
-      // Subsurface scattering on crests
+      // Subsurface scattering
       float sss = pow(max(0.0, dot(N, sun_dir)), 2.2) * pow(h_norm, 1.5);
       base += vec3(0.015, 0.20, 0.35) * sss;
 
-      // Sky reflection via Fresnel
+      // Sky reflection
       vec3 sky = vec3(0.038, 0.120, 0.275);
       water_color = mix(base, sky, fresnel * 0.5);
 
@@ -330,13 +329,12 @@ export function AsciiWaterFooter() {
             const resizeObserver = new ResizeObserver(() => updateSize())
             resizeObserver.observe(container)
 
-            // Convert canvas pixel position to shader p coordinate
             const pixelToShaderP = (clientX: number, clientY: number) => {
               const rect = canvas.getBoundingClientRect()
               const cx = clientX - rect.left
               const cy = clientY - rect.top
-              const px = ((cx - 0.5 * rect.width) / rect.height) * 1.2
-              const py = ((rect.height - cy - 0.5 * rect.height) / rect.height) * 1.1
+              const px = ((cx - 0.5 * rect.width) / rect.height) * 1.25
+              const py = ((rect.height - cy - 0.5 * rect.height) / rect.height) * 1.15
               return { x: px, y: py }
             }
 
@@ -394,8 +392,7 @@ export function AsciiWaterFooter() {
               const nowSec = (performance.now() - startTime) * 0.001
               const isDark = document.documentElement.classList.contains("dark") ? 1.0 : 0.0
 
-              // Update active ripples buffer
-              const validRipples = ripples.filter((r) => nowSec - r.time < 3.0)
+              const validRipples = ripples.filter((r) => nowSec - r.time < 3.5)
               ripplesBuffer.fill(0)
               for (let i = 0; i < validRipples.length && i < MAX_RIPPLES; i++) {
                 const r = validRipples[i]
@@ -471,7 +468,6 @@ export function AsciiWaterFooter() {
 
       ctx.clearRect(0, 0, width, height)
 
-      // Base sea gradient
       const bgGrad = ctx.createLinearGradient(0, 0, 0, height)
       if (isDark) {
         bgGrad.addColorStop(0, "rgba(2, 8, 24, 0)")
@@ -485,14 +481,13 @@ export function AsciiWaterFooter() {
       ctx.fillStyle = bgGrad
       ctx.fillRect(0, 0, width, height)
 
-      // 6 Swell ribbons
       const waveLayers = 6
       for (let layer = 0; layer < waveLayers; layer++) {
         const layerRatio = layer / (waveLayers - 1)
         const baseY = height * (0.2 + layerRatio * 0.75)
         const amp = 6 + layerRatio * 14
         const freq = 0.008 - layerRatio * 0.003
-        const speed = 1.2 + layerRatio * 0.6
+        const speed = 0.35 + layerRatio * 0.15 // Calm, slow speed
 
         ctx.beginPath()
         ctx.moveTo(0, height)
