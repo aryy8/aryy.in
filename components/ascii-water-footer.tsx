@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 
 /* ============================================================================
  * [PRESERVED VERSION] - 6-Octave Photorealistic WebGL Ocean Shader (commit 365b4b1)
@@ -103,7 +103,7 @@ interface Ripple {
   strength: number
 }
 
-// 4x4 Bayer Dithering Matrix for smooth retro pixel water gradients
+// 4x4 Bayer Dithering Matrix for authentic retro 16-bit pixel gradients
 const BAYER_4X4 = [
   [0, 8, 2, 10],
   [12, 4, 14, 6],
@@ -114,13 +114,6 @@ const BAYER_4X4 = [
 export function AsciiWaterFooter() {
   const containerRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  // Subtle hybrid mix of ASCII + Pixels with falling sunrays is the default mode
-  const [renderMode, setRenderMode] = useState<"hybrid" | "ascii" | "pixels">("hybrid")
-  const modeRef = useRef<"hybrid" | "ascii" | "pixels">("hybrid")
-
-  useEffect(() => {
-    modeRef.current = renderMode
-  }, [renderMode])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -204,7 +197,7 @@ export function AsciiWaterFooter() {
       const px = e.clientX - rect.left
       const py = e.clientY - rect.top
       const sea = pixelToSea(px, py)
-      addRipple(sea.seaX, sea.seaZ, 1.2)
+      addRipple(sea.seaX, sea.seaZ, 1.3)
     }
 
     const handlePointerLeave = () => {
@@ -217,14 +210,14 @@ export function AsciiWaterFooter() {
 
     const startTime = performance.now()
 
-    // Floating sunray light dust motes
-    const numMotes = 32
+    // 40 Floating Pixel Sunray Motes that fall gently through the light beams
+    const numMotes = 40
     const motes = Array.from({ length: numMotes }, () => ({
       x: Math.random(),
       y: Math.random(),
-      speed: 0.0003 + Math.random() * 0.0005,
-      drift: (Math.random() - 0.5) * 0.0004,
-      size: Math.random() > 0.7 ? 2 : 1,
+      speedY: 0.00035 + Math.random() * 0.0006,
+      driftX: 0.00015 + (Math.random() - 0.4) * 0.0003, // Slight natural angle matching sunbeams
+      size: Math.random() > 0.65 ? 2 : 1,
       phase: Math.random() * Math.PI * 2,
     }))
 
@@ -234,7 +227,6 @@ export function AsciiWaterFooter() {
 
       const nowSec = (performance.now() - startTime) * 0.001
       const isDark = document.documentElement.classList.contains("dark")
-      const currentMode = modeRef.current
 
       // Clean old ripples
       for (let i = ripples.length - 1; i >= 0; i--) {
@@ -245,491 +237,203 @@ export function AsciiWaterFooter() {
 
       ctx.clearRect(0, 0, width, height)
 
-      // Base sea gradient with gentle nocturnal/azure tint
+      // Base sea gradient with calm deep water depth
       const bgGrad = ctx.createLinearGradient(0, 0, 0, height)
       if (isDark) {
         bgGrad.addColorStop(0, "rgba(2, 6, 23, 0)")
-        bgGrad.addColorStop(0.3, "rgba(3, 14, 38, 0.9)")
-        bgGrad.addColorStop(1, "rgba(1, 8, 22, 0.98)")
+        bgGrad.addColorStop(0.3, "rgba(3, 14, 38, 0.92)")
+        bgGrad.addColorStop(1, "rgba(1, 7, 20, 0.98)")
       } else {
         bgGrad.addColorStop(0, "rgba(255, 255, 255, 0)")
-        bgGrad.addColorStop(0.3, "rgba(240, 249, 255, 0.85)")
+        bgGrad.addColorStop(0.3, "rgba(240, 249, 255, 0.88)")
         bgGrad.addColorStop(1, "rgba(224, 242, 254, 0.98)")
       }
       ctx.fillStyle = bgGrad
       ctx.fillRect(0, 0, width, height)
 
       // Calm oceanic wave time scale (peaceful, meditative rolling swells)
-      const t = nowSec * 0.38
+      const t = nowSec * 0.36
 
       // ======================================================================
-      // VOLUMETRIC FALLING SUNRAYS (CREPUSCULAR LIGHT SHAFTS)
+      // 16-BIT CALM PIXEL OCEAN WITH FALLING PIXEL SUNRAYS
       // ======================================================================
-      // Function to calculate falling sunray intensity at any screen point (px, py)
-      const getSunrayIntensity = (px: number, py: number) => {
-        // Sun origin located at top-center horizon
-        const originX = width * 0.49
-        const originY = -height * 0.25
+      const pixelSize = 4 // 4px retro pixel block size for detailed 16-bit fidelity
+      const cols = Math.ceil(width / pixelSize)
+      const rows = Math.ceil(height / pixelSize)
 
-        const dx = px - originX
-        const dy = py - originY
-        const angle = Math.atan2(dx, dy) // angle from vertical downward beam
+      // 16-Bit Retro Ocean Palette
+      const darkPalette = [
+        "rgba(2, 6, 23, 0.92)",     // 0: Deep abyssal void
+        "rgba(7, 28, 62, 0.95)",     // 1: Midnight ocean navy
+        "rgba(3, 95, 150, 0.96)",    // 2: Oceanic sapphire
+        "rgba(2, 132, 199, 0.98)",   // 3: Calm azure swell
+        "rgba(56, 189, 248, 1.0)",   // 4: Radiant cyan crest
+        "rgba(224, 242, 254, 1.0)",  // 5: Foam white
+      ]
 
-        // 7 angled volumetric sunbeams descending across the scene
-        let rays = 0
-        // Central majestic sunbeam
-        rays += Math.exp(-Math.pow(angle * 4.2, 2)) * 0.95
-        // Secondary flank rays
-        rays += Math.exp(-Math.pow((angle + 0.22) * 5.6, 2)) * 0.72
-        rays += Math.exp(-Math.pow((angle - 0.20) * 5.2, 2)) * 0.78
-        // Outer shimmering shafts
-        rays += Math.exp(-Math.pow((angle + 0.44) * 6.8, 2)) * 0.52
-        rays += Math.exp(-Math.pow((angle - 0.42) * 6.5, 2)) * 0.55
-        // Broad atmospheric sun cone
-        rays += Math.exp(-Math.pow(angle * 1.5, 2)) * 0.32
+      const lightPalette = [
+        "rgba(240, 249, 255, 0.88)", // 0: Sky reflection trough
+        "rgba(186, 230, 253, 0.92)", // 1: Calm light blue
+        "rgba(56, 189, 248, 0.96)",  // 2: Vibrant cyan
+        "rgba(2, 132, 199, 0.98)",   // 3: Marine azure
+        "rgba(3, 105, 161, 1.0)",    // 4: Deep royal crest
+        "rgba(7, 89, 133, 1.0)",     // 5: Crisp navy crest
+      ]
 
-        // Serene slow light breathing & gentle atmospheric shimmer
-        const breath = Math.sin(angle * 6.0 - t * 0.4) * 0.12 + Math.cos(px * 0.008 + t * 0.3) * 0.08
-        const verticalFade = Math.pow(Math.max(0.01, py / height), 0.6)
+      const palette = isDark ? darkPalette : lightPalette
 
-        return Math.max(0, (rays + breath) * verticalFade)
-      }
+      // Sun origin at top-center horizon
+      const sunX = width * 0.49
+      const sunY = -height * 0.25
 
-      // ======================================================================
-      // MODE: HYBRID (SUBTLE MIX OF ASCII + PIXELS WITH FALLING SUNRAYS)
-      // ======================================================================
-      if (currentMode === "hybrid") {
-        const cellW = 8
-        const cellH = 13
-        const cols = Math.ceil(width / cellW)
-        const rows = Math.ceil(height / cellH)
+      for (let r = 0; r < rows; r++) {
+        const py = r * pixelSize
+        const v = Math.max(0.01, Math.min(1.0, py / height))
 
-        ctx.font = '11px "JetBrains Mono", "Geist Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace'
-        ctx.textAlign = "center"
-        ctx.textBaseline = "middle"
+        // 3D Perspective depth: horizon (z ~ 10.4) to close foreground (z ~ 2.4)
+        const depth = 2.4 + Math.pow(1.0 - v, 1.8) * 8.0
+        const topFade = Math.sin(Math.min(1.0, py / 22) * Math.PI * 0.5)
 
-        // Step 1: Render Calm Hybrid Sea (Pixel Background Tiles + Monospace ASCII Glyphs)
-        for (let r = 0; r < rows; r++) {
-          const py = (r + 0.5) * cellH
-          const v = Math.max(0.01, Math.min(1.0, py / height))
+        for (let c = 0; c < cols; c++) {
+          const px = c * pixelSize
+          const seaX = ((px - width * 0.5) / height) * depth * 1.4
+          const seaZ = depth
 
-          // 3D Perspective depth: horizon (z ~ 10.4) to close foreground (z ~ 2.4)
-          const depth = 2.4 + Math.pow(1.0 - v, 1.8) * 8.0
-          const topFade = Math.sin(Math.min(1.0, py / 22) * Math.PI * 0.5)
+          // --- 1. Calm Multi-Harmonic Ocean Swell ---
+          const phase1 = seaZ * 0.85 - t * 1.1 + Math.sin(seaX * 0.28) * 0.35
+          const s1 = Math.sin(phase1)
+          const w1 = Math.pow((s1 + 1) * 0.5, 2.2) * 0.48
 
-          for (let c = 0; c < cols; c++) {
-            const px = (c + 0.5) * cellW
-            const seaX = ((px - width * 0.5) / height) * depth * 1.4
-            const seaZ = depth
+          const phase2 = (seaX * 0.38 + seaZ * 0.88) * 1.35 - t * 1.2
+          const s2 = Math.sin(phase2)
+          const w2 = Math.pow((s2 + 1) * 0.5, 2.0) * 0.26
 
-            // --- Calm Rolling Ocean Swell Harmonics ---
-            // Main gentle rolling ocean swell
-            const phase1 = seaZ * 0.85 - t * 1.1 + Math.sin(seaX * 0.28) * 0.35
-            const s1 = Math.sin(phase1)
-            const w1 = Math.pow((s1 + 1) * 0.5, 2.2) * 0.48
+          const phase3 = (seaZ * 1.15 - seaX * 0.45) * 2.2 - t * 1.6
+          const w3 = Math.sin(phase3) * 0.09
 
-            // Soft diagonal cross-swell
-            const phase2 = (seaX * 0.38 + seaZ * 0.88) * 1.35 - t * 1.2
-            const s2 = Math.sin(phase2)
-            const w2 = Math.pow((s2 + 1) * 0.5, 2.0) * 0.26
+          let h = w1 + w2 + w3 - 0.24
 
-            // Gentle surface capillary undulation
-            const phase3 = (seaZ * 1.15 - seaX * 0.45) * 2.2 - t * 1.6
-            const w3 = Math.sin(phase3) * 0.09
+          // Pointer wake disturbance
+          if (pointer.active) {
+            const dx = seaX - pointer.seaX
+            const dz = seaZ - pointer.seaZ
+            const dist = Math.hypot(dx, dz)
+            if (dist < 1.8) {
+              h += Math.sin(dist * 6.5 - t * 4.0) * Math.exp(-dist * 1.5) * 0.18
+            }
+          }
 
-            let h = w1 + w2 + w3 - 0.24
-
-            // Interactive pointer wake (calm disturbance)
-            if (pointer.active) {
-              const dx = seaX - pointer.seaX
-              const dz = seaZ - pointer.seaZ
+          // Expanding shockwave ripples
+          for (let i = 0; i < ripples.length; i++) {
+            const rip = ripples[i]
+            const age = nowSec - rip.time
+            if (age > 0 && age < 3.0) {
+              const dx = seaX - rip.x
+              const dz = seaZ - rip.z
               const dist = Math.hypot(dx, dz)
-              if (dist < 1.8) {
-                h += Math.sin(dist * 6.5 - t * 4.0) * Math.exp(-dist * 1.5) * 0.18
+              const wavefront = dist - age * 3.2
+              if (Math.abs(wavefront) < 1.1) {
+                const wave = Math.sin(wavefront * 10.0) * Math.exp(-Math.abs(wavefront) * 2.5) * Math.exp(-age * 1.0) * rip.strength
+                h += wave * 0.28
               }
             }
-
-            // Expanding ripples
-            for (let i = 0; i < ripples.length; i++) {
-              const rip = ripples[i]
-              const age = nowSec - rip.time
-              if (age > 0 && age < 3.0) {
-                const dx = seaX - rip.x
-                const dz = seaZ - rip.z
-                const dist = Math.hypot(dx, dz)
-                const wavefront = dist - age * 3.2
-                if (Math.abs(wavefront) < 1.1) {
-                  const wave = Math.sin(wavefront * 10.0) * Math.exp(-Math.abs(wavefront) * 2.5) * Math.exp(-age * 1.0) * rip.strength
-                  h += wave * 0.28
-                }
-              }
-            }
-
-            // Calculate falling sunray intensity at this cell
-            const sunray = getSunrayIntensity(px, py)
-
-            // Normalized calm water luminance
-            const lum = Math.max(0, Math.min(1, 0.42 + h * 0.58))
-
-            // --- 1. Subtle Retro Pixel Underlayer (Cell Pixel Block) ---
-            // Bayer 4x4 dither threshold for smooth pixel shading
-            const bayerVal = BAYER_4X4[r % 4][c % 4] / 16.0
-            const ditherLum = lum + (bayerVal - 0.5) * 0.12
-
-            if (isDark) {
-              // Dark Mode: Deep sapphire/navy pixel base with golden sunray warmth
-              if (sunray > 0.38) {
-                // Sunbeam illuminated water: golden amber glow
-                const alpha = (0.08 + sunray * 0.18) * topFade
-                ctx.fillStyle = `rgba(253, 224, 71, ${alpha.toFixed(3)})`
-                ctx.fillRect(px - cellW * 0.5, py - cellH * 0.5, cellW, cellH)
-              } else if (ditherLum > 0.65) {
-                // Crest pixel tint: vibrant sapphire
-                const alpha = (0.12 + (ditherLum - 0.65) * 0.25) * topFade
-                ctx.fillStyle = `rgba(3, 105, 161, ${alpha.toFixed(3)})`
-                ctx.fillRect(px - cellW * 0.5, py - cellH * 0.5, cellW, cellH)
-              } else if (ditherLum > 0.4) {
-                // Ocean body: deep midnight blue
-                const alpha = (0.08 + (ditherLum - 0.4) * 0.15) * topFade
-                ctx.fillStyle = `rgba(7, 29, 64, ${alpha.toFixed(3)})`
-                ctx.fillRect(px - cellW * 0.5, py - cellH * 0.5, cellW, cellH)
-              }
-            } else {
-              // Light Mode: Clear turquoise/azure pixel base with warm sunray wash
-              if (sunray > 0.38) {
-                const alpha = (0.12 + sunray * 0.22) * topFade
-                ctx.fillStyle = `rgba(254, 240, 138, ${alpha.toFixed(3)})`
-                ctx.fillRect(px - cellW * 0.5, py - cellH * 0.5, cellW, cellH)
-              } else if (ditherLum > 0.55) {
-                const alpha = (0.1 + (ditherLum - 0.55) * 0.2) * topFade
-                ctx.fillStyle = `rgba(56, 189, 248, ${alpha.toFixed(3)})`
-                ctx.fillRect(px - cellW * 0.5, py - cellH * 0.5, cellW, cellH)
-              }
-            }
-
-            // --- 2. Monospace ASCII Wave Foreground ---
-            // Sunray glint on wave crests
-            const glint = Math.pow(Math.max(0, h * 1.2 + 0.1), 2.0) * sunray
-            const microTwinkle = Math.sin(seaX * 18.0 + t * 3.2) * Math.cos(seaZ * 16.0 - t * 2.8)
-            const sparkle = glint * (0.7 + 0.3 * Math.max(0, microTwinkle))
-
-            let char = " "
-            let fill = ""
-
-            if (sparkle > 0.32) {
-              // Sunray falling on calm water crest: glowing golden star glints
-              char = sparkle > 0.65 ? "✦" : sparkle > 0.48 ? "✧" : sparkle > 0.36 ? "*" : "°"
-              fill = isDark
-                ? `rgba(254, 240, 138, ${(0.96 * topFade).toFixed(3)})`
-                : `rgba(180, 83, 9, ${(0.95 * topFade).toFixed(3)})`
-            } else if (lum > 0.8) {
-              // Cresting foam roller
-              char = "≋"
-              fill = isDark
-                ? `rgba(224, 242, 254, ${(0.95 * topFade).toFixed(3)})`
-                : `rgba(7, 89, 133, ${(0.95 * topFade).toFixed(3)})`
-            } else if (lum > 0.65) {
-              // Calm swell peak
-              char = "≈"
-              fill = isDark
-                ? `rgba(125, 211, 252, ${(0.88 * topFade).toFixed(3)})`
-                : `rgba(3, 105, 161, ${(0.9 * topFade).toFixed(3)})`
-            } else if (lum > 0.5) {
-              // Rising wave face
-              char = "∼"
-              fill = isDark
-                ? `rgba(56, 189, 248, ${(0.78 * topFade).toFixed(3)})`
-                : `rgba(2, 132, 199, ${(0.82 * topFade).toFixed(3)})`
-            } else if (lum > 0.34) {
-              // Smooth water surface
-              char = "~"
-              fill = isDark
-                ? `rgba(14, 165, 233, ${(0.6 * topFade).toFixed(3)})`
-                : `rgba(14, 165, 233, ${(0.68 * topFade).toFixed(3)})`
-            } else if (lum > 0.2) {
-              // Gentle calm trough
-              char = "·"
-              fill = isDark
-                ? `rgba(3, 105, 161, ${(0.42 * topFade).toFixed(3)})`
-                : `rgba(56, 189, 248, ${(0.48 * topFade).toFixed(3)})`
-            } else {
-              // Quiet deep trough
-              continue
-            }
-
-            ctx.fillStyle = fill
-            ctx.fillText(char, px, py)
-          }
-        }
-
-        // Step 2: Atmospheric Sunbeam Shaft Overlays (Falling Light Cones)
-        const numBeams = 5
-        for (let b = 0; b < numBeams; b++) {
-          const beamOffsets = [-0.25, -0.12, 0.0, 0.12, 0.25]
-          const offset = beamOffsets[b]
-          const originX = width * 0.49
-          const originY = -height * 0.2
-          const targetX = width * (0.5 + offset * 1.8) + Math.sin(t * 0.3 + b) * 15
-          const targetY = height
-
-          const beamGrad = ctx.createLinearGradient(originX, originY, targetX, targetY)
-          if (isDark) {
-            beamGrad.addColorStop(0, "rgba(254, 240, 138, 0.09)")
-            beamGrad.addColorStop(0.4, "rgba(253, 224, 71, 0.05)")
-            beamGrad.addColorStop(0.85, "rgba(253, 224, 71, 0.02)")
-            beamGrad.addColorStop(1, "rgba(0, 0, 0, 0)")
-          } else {
-            beamGrad.addColorStop(0, "rgba(254, 240, 138, 0.18)")
-            beamGrad.addColorStop(0.4, "rgba(253, 224, 71, 0.1)")
-            beamGrad.addColorStop(0.85, "rgba(253, 224, 71, 0.04)")
-            beamGrad.addColorStop(1, "rgba(255, 255, 255, 0)")
           }
 
-          ctx.fillStyle = beamGrad
-          ctx.beginPath()
-          ctx.moveTo(originX - 10, originY)
-          ctx.lineTo(originX + 10, originY)
-          ctx.lineTo(targetX + 45, targetY)
-          ctx.lineTo(targetX - 45, targetY)
-          ctx.closePath()
-          ctx.fill()
-        }
+          // --- 2. Falling Volumetric Sunrays (Crepuscular Pixel Beams) ---
+          const dx = px - sunX
+          const dy = py - sunY
+          const angle = Math.atan2(dx, dy)
 
-        // Step 3: Floating Sunray Dust Motes (Tiny Retro Pixel Light Particles)
-        for (let i = 0; i < motes.length; i++) {
-          const m = motes[i]
-          m.y += m.speed
-          m.x += m.drift
-          if (m.y > 1.0) m.y = 0.0
-          if (m.x < 0.0) m.x = 1.0
-          if (m.x > 1.0) m.x = 0.0
+          let rays = 0
+          // Central majestic sunbeam
+          rays += Math.exp(-Math.pow(angle * 4.0, 2)) * 0.95
+          // Secondary angled flank rays
+          rays += Math.exp(-Math.pow((angle + 0.22) * 5.4, 2)) * 0.75
+          rays += Math.exp(-Math.pow((angle - 0.20) * 5.0, 2)) * 0.8
+          // Outer subtle shimmering shafts
+          rays += Math.exp(-Math.pow((angle + 0.44) * 6.5, 2)) * 0.55
+          rays += Math.exp(-Math.pow((angle - 0.42) * 6.2, 2)) * 0.58
+          // Broad atmospheric sun cone
+          rays += Math.exp(-Math.pow(angle * 1.5, 2)) * 0.35
 
-          const mx = m.x * width
-          const my = m.y * height
-          const ray = getSunrayIntensity(mx, my)
+          // Gentle breathing and atmospheric shimmer
+          const breath = Math.sin(angle * 6.0 - t * 0.4) * 0.12 + Math.cos(px * 0.008 + t * 0.3) * 0.08
+          const verticalFade = Math.pow(Math.max(0.01, py / height), 0.6)
+          const sunray = Math.max(0, (rays + breath) * verticalFade)
 
-          if (ray > 0.25) {
-            const twinkle = (Math.sin(nowSec * 2.5 + m.phase) + 1) * 0.5
-            const alpha = Math.min(1.0, ray * twinkle * 0.85)
+          // --- 3. 4x4 Bayer Dithering for authentic retro pixel gradients ---
+          const bayerVal = BAYER_4X4[r % 4][c % 4] / 16.0
+
+          // Sunray falling specular glints on calm wave peaks
+          const glint = Math.pow(Math.max(0, h * 1.25 + 0.12), 2.2) * sunray
+          const microTwinkle = Math.sin(seaX * 18.0 + t * 3.2) * Math.cos(seaZ * 16.0 - t * 2.8)
+          const sparkle = glint * (0.7 + 0.3 * Math.max(0, microTwinkle))
+
+          // Twinkling retro sunray specular pixel
+          if (sparkle > 0.45 && topFade > 0.3) {
             ctx.fillStyle = isDark
-              ? `rgba(254, 240, 138, ${alpha.toFixed(3)})`
-              : `rgba(217, 119, 6, ${alpha.toFixed(3)})`
-            ctx.fillRect(Math.round(mx), Math.round(my), m.size, m.size)
-          }
-        }
-      }
-
-      // ======================================================================
-      // MODE: PURE ASCII (3D PERSPECTIVE)
-      // ======================================================================
-      else if (currentMode === "ascii") {
-        const cellW = 8.5
-        const cellH = 14
-        const cols = Math.ceil(width / cellW)
-        const rows = Math.ceil(height / cellH)
-
-        ctx.font = '11px "JetBrains Mono", "Geist Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace'
-        ctx.textAlign = "center"
-        ctx.textBaseline = "middle"
-
-        for (let r = 0; r < rows; r++) {
-          const py = (r + 0.5) * cellH
-          const v = Math.max(0.01, Math.min(1.0, py / height))
-          const depth = 2.4 + Math.pow(1.0 - v, 1.8) * 8.0
-          const topFade = Math.sin(Math.min(1.0, py / 24) * Math.PI * 0.5)
-
-          for (let c = 0; c < cols; c++) {
-            const px = (c + 0.5) * cellW
-            const seaX = ((px - width * 0.5) / height) * depth * 1.4
-            const seaZ = depth
-
-            const phase1 = seaZ * 0.85 - t * 1.1 + Math.sin(seaX * 0.28) * 0.35
-            const s1 = Math.sin(phase1)
-            const w1 = Math.pow((s1 + 1) * 0.5, 2.2) * 0.48
-
-            const phase2 = (seaX * 0.38 + seaZ * 0.88) * 1.35 - t * 1.2
-            const s2 = Math.sin(phase2)
-            const w2 = Math.pow((s2 + 1) * 0.5, 2.0) * 0.26
-
-            const phase3 = (seaZ * 1.15 - seaX * 0.45) * 2.2 - t * 1.6
-            const w3 = Math.sin(phase3) * 0.09
-
-            let h = w1 + w2 + w3 - 0.24
-
-            if (pointer.active) {
-              const dx = seaX - pointer.seaX
-              const dz = seaZ - pointer.seaZ
-              const dist = Math.hypot(dx, dz)
-              if (dist < 1.8) {
-                h += Math.sin(dist * 6.5 - t * 4.0) * Math.exp(-dist * 1.5) * 0.18
-              }
-            }
-
-            for (let i = 0; i < ripples.length; i++) {
-              const rip = ripples[i]
-              const age = nowSec - rip.time
-              if (age > 0 && age < 3.0) {
-                const dx = seaX - rip.x
-                const dz = seaZ - rip.z
-                const dist = Math.hypot(dx, dz)
-                const wavefront = dist - age * 3.2
-                if (Math.abs(wavefront) < 1.1) {
-                  const wave = Math.sin(wavefront * 10.0) * Math.exp(-Math.abs(wavefront) * 2.5) * Math.exp(-age * 1.0) * rip.strength
-                  h += wave * 0.28
-                }
-              }
-            }
-
-            const sunray = getSunrayIntensity(px, py)
-            const lum = Math.max(0, Math.min(1, 0.42 + h * 0.58))
-            const glint = Math.pow(Math.max(0, h * 1.2 + 0.1), 2.0) * sunray
-            const microTwinkle = Math.sin(seaX * 18.0 + t * 3.2) * Math.cos(seaZ * 16.0 - t * 2.8)
-            const sparkle = glint * (0.7 + 0.3 * Math.max(0, microTwinkle))
-
-            let char = " "
-            let fill = ""
-
-            if (sparkle > 0.32) {
-              char = sparkle > 0.65 ? "✦" : sparkle > 0.48 ? "✧" : sparkle > 0.36 ? "*" : "°"
-              fill = isDark
-                ? `rgba(254, 240, 138, ${(0.96 * topFade).toFixed(3)})`
-                : `rgba(180, 83, 9, ${(0.95 * topFade).toFixed(3)})`
-            } else if (lum > 0.8) {
-              char = "≋"
-              fill = isDark
-                ? `rgba(224, 242, 254, ${(0.95 * topFade).toFixed(3)})`
-                : `rgba(7, 89, 133, ${(0.95 * topFade).toFixed(3)})`
-            } else if (lum > 0.65) {
-              char = "≈"
-              fill = isDark
-                ? `rgba(125, 211, 252, ${(0.88 * topFade).toFixed(3)})`
-                : `rgba(3, 105, 161, ${(0.9 * topFade).toFixed(3)})`
-            } else if (lum > 0.5) {
-              char = "∼"
-              fill = isDark
-                ? `rgba(56, 189, 248, ${(0.78 * topFade).toFixed(3)})`
-                : `rgba(2, 132, 199, ${(0.82 * topFade).toFixed(3)})`
-            } else if (lum > 0.34) {
-              char = "~"
-              fill = isDark
-                ? `rgba(14, 165, 233, ${(0.6 * topFade).toFixed(3)})`
-                : `rgba(14, 165, 233, ${(0.68 * topFade).toFixed(3)})`
-            } else if (lum > 0.2) {
-              char = "·"
-              fill = isDark
-                ? `rgba(3, 105, 161, ${(0.42 * topFade).toFixed(3)})`
-                : `rgba(56, 189, 248, ${(0.48 * topFade).toFixed(3)})`
-            } else {
-              continue
-            }
-
-            ctx.fillStyle = fill
-            ctx.fillText(char, px, py)
-          }
-        }
-      }
-
-      // ======================================================================
-      // MODE: PURE 16-BIT RETRO PIXELS
-      // ======================================================================
-      else if (currentMode === "pixels") {
-        const pixelSize = 5
-        const cols = Math.ceil(width / pixelSize)
-        const rows = Math.ceil(height / pixelSize)
-
-        const darkPalette = [
-          "rgba(2, 6, 23, 0.9)",     // 0: Deep abyssal
-          "rgba(7, 29, 64, 0.95)",    // 1: Midnight navy
-          "rgba(3, 105, 161, 0.95)",  // 2: Oceanic sapphire
-          "rgba(2, 132, 199, 0.98)",  // 3: Vivid azure
-          "rgba(56, 189, 248, 1.0)",  // 4: Radiant cyan crest
-          "rgba(224, 242, 254, 1.0)", // 5: Foam white
-        ]
-
-        const lightPalette = [
-          "rgba(240, 249, 255, 0.85)", // 0: Sky reflection
-          "rgba(186, 230, 253, 0.9)",  // 1: Light azure
-          "rgba(56, 189, 248, 0.95)",  // 2: Vibrant cyan
-          "rgba(2, 132, 199, 0.98)",   // 3: Marine azure
-          "rgba(3, 105, 161, 1.0)",    // 4: Deep royal crest
-          "rgba(7, 89, 133, 1.0)",     // 5: Crisp navy crest
-        ]
-
-        const palette = isDark ? darkPalette : lightPalette
-
-        for (let r = 0; r < rows; r++) {
-          const py = r * pixelSize
-          const v = Math.max(0.01, Math.min(1.0, py / height))
-          const depth = 2.4 + Math.pow(1.0 - v, 1.8) * 8.0
-          const topFade = Math.sin(Math.min(1.0, py / 20) * Math.PI * 0.5)
-
-          for (let c = 0; c < cols; c++) {
-            const px = c * pixelSize
-            const seaX = ((px - width * 0.5) / height) * depth * 1.4
-            const seaZ = depth
-
-            const phase1 = seaZ * 0.85 - t * 1.1 + Math.sin(seaX * 0.28) * 0.35
-            const s1 = Math.sin(phase1)
-            const w1 = Math.pow((s1 + 1) * 0.5, 2.2) * 0.48
-
-            const phase2 = (seaX * 0.38 + seaZ * 0.88) * 1.35 - t * 1.2
-            const s2 = Math.sin(phase2)
-            const w2 = Math.pow((s2 + 1) * 0.5, 2.0) * 0.26
-
-            const phase3 = (seaZ * 1.15 - seaX * 0.45) * 2.2 - t * 1.6
-            const w3 = Math.sin(phase3) * 0.09
-
-            let h = w1 + w2 + w3 - 0.24
-
-            if (pointer.active) {
-              const dx = seaX - pointer.seaX
-              const dz = seaZ - pointer.seaZ
-              const dist = Math.hypot(dx, dz)
-              if (dist < 1.8) {
-                h += Math.sin(dist * 6.5 - t * 4.0) * Math.exp(-dist * 1.5) * 0.18
-              }
-            }
-
-            for (let i = 0; i < ripples.length; i++) {
-              const rip = ripples[i]
-              const age = nowSec - rip.time
-              if (age > 0 && age < 3.0) {
-                const dx = seaX - rip.x
-                const dz = seaZ - rip.z
-                const dist = Math.hypot(dx, dz)
-                const wavefront = dist - age * 3.2
-                if (Math.abs(wavefront) < 1.1) {
-                  const wave = Math.sin(wavefront * 10.0) * Math.exp(-Math.abs(wavefront) * 2.5) * Math.exp(-age * 1.0) * rip.strength
-                  h += wave * 0.28
-                }
-              }
-            }
-
-            const sunray = getSunrayIntensity(px, py)
-            const glint = Math.pow(Math.max(0, h * 1.2 + 0.1), 2.0) * sunray
-            const microTwinkle = Math.sin(seaX * 18.0 + t * 3.2) * Math.cos(seaZ * 16.0 - t * 2.8)
-            const sparkle = glint * (0.7 + 0.3 * Math.max(0, microTwinkle))
-
-            if (sparkle > 0.46 && topFade > 0.3) {
-              ctx.fillStyle = isDark ? "#fef08a" : "#eab308"
-              ctx.fillRect(px, py, pixelSize, pixelSize)
-              continue
-            }
-
-            const bayerVal = BAYER_4X4[r % 4][c % 4] / 16.0
-            const lum = Math.max(0, Math.min(1, 0.42 + h * 0.58))
-            const rawIndex = lum * (palette.length - 1)
-            const baseIndex = Math.floor(rawIndex)
-            const frac = rawIndex - baseIndex
-
-            const finalIndex = Math.min(
-              palette.length - 1,
-              frac > bayerVal ? baseIndex + 1 : baseIndex
-            )
-
-            ctx.fillStyle = palette[finalIndex]
+              ? (sparkle > 0.7 ? "#ffffff" : "#fef08a")
+              : (sparkle > 0.7 ? "#ffffff" : "#f59e0b")
             ctx.fillRect(px, py, pixelSize, pixelSize)
+            continue
           }
+
+          // In-beam falling sunray pixel stippling (retro pixelated light beams)
+          const isSunrayPixel = sunray > 0.48 && bayerVal > 0.75 && topFade > 0.25
+          if (isSunrayPixel && h > -0.05) {
+            ctx.fillStyle = isDark
+              ? "rgba(254, 240, 138, 0.45)"
+              : "rgba(253, 224, 71, 0.5)"
+            ctx.fillRect(px, py, pixelSize, pixelSize)
+            continue
+          }
+
+          // Ocean water body color mapping with Bayer dithering
+          const lum = Math.max(0, Math.min(1, 0.42 + h * 0.58 + sunray * 0.12))
+          const rawIndex = lum * (palette.length - 1)
+          const baseIndex = Math.floor(rawIndex)
+          const frac = rawIndex - baseIndex
+
+          const finalIndex = Math.min(
+            palette.length - 1,
+            frac > bayerVal ? baseIndex + 1 : baseIndex
+          )
+
+          ctx.fillStyle = palette[finalIndex]
+          ctx.fillRect(px, py, pixelSize, pixelSize)
+        }
+      }
+
+      // ======================================================================
+      // FALLING PIXEL LIGHT MOTES (DRIFTING SUNRAY SPARKLES)
+      // ======================================================================
+      for (let i = 0; i < motes.length; i++) {
+        const m = motes[i]
+        m.y += m.speedY
+        m.x += m.driftX
+        if (m.y > 1.0) m.y = 0.0
+        if (m.x < 0.0) m.x = 1.0
+        if (m.x > 1.0) m.x = 0.0
+
+        const mx = m.x * width
+        const my = m.y * height
+
+        // Calculate sunray intensity at mote position
+        const dx = mx - sunX
+        const dy = my - sunY
+        const angle = Math.atan2(dx, dy)
+        const ray = Math.exp(-Math.pow(angle * 2.8, 2)) * Math.pow(my / height, 0.5)
+
+        if (ray > 0.2) {
+          const twinkle = (Math.sin(nowSec * 2.8 + m.phase) + 1) * 0.5
+          const alpha = Math.min(1.0, ray * twinkle * 0.95)
+          const pixelX = Math.round(mx / pixelSize) * pixelSize
+          const pixelY = Math.round(my / pixelSize) * pixelSize
+
+          ctx.fillStyle = isDark
+            ? `rgba(254, 240, 138, ${alpha.toFixed(3)})`
+            : `rgba(217, 119, 6, ${alpha.toFixed(3)})`
+          ctx.fillRect(pixelX, pixelY, m.size * pixelSize, m.size * pixelSize)
         }
       }
     }
@@ -749,12 +453,12 @@ export function AsciiWaterFooter() {
   return (
     <footer
       ref={containerRef}
-      className="relative w-[calc(100%+2rem)] -mx-4 sm:w-[calc(100%+4rem)] sm:-mx-8 h-48 sm:h-56 lg:h-64 mt-12 select-none overflow-hidden group"
+      className="relative w-[calc(100%+2rem)] -mx-4 sm:w-[calc(100%+4rem)] sm:-mx-8 h-48 sm:h-56 lg:h-64 mt-12 select-none overflow-hidden"
     >
       {/* Background depth tint matching page theme */}
       <div className="absolute inset-0 bg-background/60 pointer-events-none" />
 
-      {/* Living ASCII & Pixel Ocean Surface Canvas */}
+      {/* Living 16-Bit Calm Pixel Ocean with Falling Pixel Sunrays */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full cursor-crosshair touch-none z-10"
@@ -762,46 +466,6 @@ export function AsciiWaterFooter() {
 
       {/* Subtle top edge gradient mask so the sea seamlessly merges into the page background */}
       <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-background via-background/40 to-transparent pointer-events-none z-20" />
-
-      {/* Minimalist Switcher: Toggle between Hybrid (Mix + Sunrays), Pure ASCII, and Pure Pixels */}
-      <div className="absolute right-4 sm:right-6 top-3 z-30 flex items-center gap-1 rounded-full border border-border/50 bg-background/70 px-1 py-0.5 backdrop-blur-md shadow-sm opacity-60 hover:opacity-100 transition-opacity">
-        <button
-          type="button"
-          onClick={() => setRenderMode("hybrid")}
-          className={`px-2.5 py-0.5 text-[10px] font-mono rounded-full font-medium transition-all ${
-            renderMode === "hybrid"
-              ? "bg-foreground text-background shadow-xs"
-              : "text-muted-foreground hover:text-foreground"
-          }`}
-          title="Subtle mix of ASCII + Pixels with falling sunrays"
-        >
-          Mix & Sunrays
-        </button>
-        <button
-          type="button"
-          onClick={() => setRenderMode("ascii")}
-          className={`px-2.5 py-0.5 text-[10px] font-mono rounded-full font-medium transition-all ${
-            renderMode === "ascii"
-              ? "bg-foreground text-background shadow-xs"
-              : "text-muted-foreground hover:text-foreground"
-          }`}
-          title="Pure 3D Perspective ASCII Ocean"
-        >
-          ASCII
-        </button>
-        <button
-          type="button"
-          onClick={() => setRenderMode("pixels")}
-          className={`px-2.5 py-0.5 text-[10px] font-mono rounded-full font-medium transition-all ${
-            renderMode === "pixels"
-              ? "bg-foreground text-background shadow-xs"
-              : "text-muted-foreground hover:text-foreground"
-          }`}
-          title="Pure 16-Bit Retro Dithered Pixel Ocean"
-        >
-          Pixels
-        </button>
-      </div>
     </footer>
   )
 }
