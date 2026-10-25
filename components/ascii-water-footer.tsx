@@ -45,17 +45,17 @@ const FRAG_SHADER_SRC = `
     return pow(max(0.0001, 1.0 - pow(prod, 0.65)), choppy);
   }
 
-  // 5-Octave Ocean Surface Heightfield
+  // 6-Octave Fluid Ocean Surface Heightfield (Natural fluid rolling swells)
   float sea_height(vec2 p, float time) {
-    // Horizontally elongated for natural ocean swells
-    vec2 uv = vec2(p.x * 0.42, p.y * 0.95);
-    float freq = 2.6;
-    float amp = 0.34;
-    float choppy = 3.6;
+    // Horizontally elongated for natural open ocean swells
+    vec2 uv = vec2(p.x * 0.44, p.y * 0.88);
+    float freq = 3.2;
+    float amp = 0.28;
+    float choppy = 2.2; // Smooth fluid swells, avoiding pinched or faceted vertices
     float h = 0.0;
 
-    for (int i = 0; i < 5; i++) {
-      vec2 t_vec = vec2(time * 0.60, time * 0.45);
+    for (int i = 0; i < 6; i++) {
+      vec2 t_vec = vec2(time * 0.62, time * 0.46);
       float d = sea_octave(uv * freq + t_vec, choppy);
       d += sea_octave(uv * freq - t_vec, choppy);
       h += d * amp;
@@ -63,7 +63,7 @@ const FRAG_SHADER_SRC = `
       uv = (m_rot * uv) * 0.55;
       freq *= 1.85;
       amp *= 0.30;
-      choppy = mix(choppy, 1.0, 0.18);
+      choppy = mix(choppy, 1.0, 0.16);
     }
 
     // Physical interactive ripples
@@ -99,8 +99,8 @@ const FRAG_SHADER_SRC = `
     float t = u_time * 0.85;
 
     // Cinematic downward camera angle (~55-60 degrees) looking onto ocean ripples
-    vec3 cam_pos = vec3(0.0, 3.8, 2.5);
-    vec3 forward = normalize(vec3(0.0, -0.72, -0.69));
+    vec3 cam_pos = vec3(0.0, 3.6, 2.8);
+    vec3 forward = normalize(vec3(0.0, -0.68, -0.73));
     vec3 right = vec3(1.0, 0.0, 0.0);
     vec3 up = cross(right, forward);
 
@@ -119,64 +119,65 @@ const FRAG_SHADER_SRC = `
     float h = sea_height(sea_pos, t);
 
     // Surface normal via central differences
-    float eps = 0.008;
+    float eps = 0.006;
     float hx = (sea_height(sea_pos + vec2(eps, 0.0), t) - sea_height(sea_pos - vec2(eps, 0.0), t)) / (2.0 * eps);
     float hz = (sea_height(sea_pos + vec2(0.0, eps), t) - sea_height(sea_pos - vec2(0.0, eps), t)) / (2.0 * eps);
 
     vec3 N = normalize(vec3(-hx, 1.0, -hz));
     vec3 V = -rd;
 
-    // Golden hour sun positioned ahead near horizon
-    vec3 sun_dir = normalize(vec3(0.06, 0.42, -0.90));
+    // Golden hour sun positioned ahead near horizon (Pinterest pins 1 & 5)
+    vec3 sun_dir = normalize(vec3(0.05, 0.38, -0.92));
 
     // Specular reflection vector
     vec3 R = reflect(-V, N);
     float RdotL = max(0.0, dot(R, sun_dir));
 
-    // Fresnel reflectance (Schlick's approximation)
-    float fresnel = 0.02 + 0.98 * pow(max(0.0, 1.0 - max(0.0, dot(N, V))), 4.5);
+    // Fresnel reflectance (dielectric water R0 = 0.02)
+    float fresnel = 0.02 + 0.98 * pow(max(0.0, 1.0 - max(0.0, dot(N, V))), 5.0);
 
     // Golden sun path track down the center of the water
     float sun_col = exp(-pow(sea_pos.x * 0.45, 2.0) * 0.45);
 
     // Specular components:
     // 1. Broad warm golden sheen
-    float broad_sheen = pow(RdotL, 10.0) * (0.2 + 0.8 * sun_col);
+    float broad_sheen = pow(RdotL, 10.0) * (0.15 + 0.85 * sun_col);
     // 2. Sharp crest reflections
-    float crest_glint = pow(RdotL, 45.0) * (0.3 + 0.7 * sun_col);
-    // 3. Micro capillary diamond sparkles
-    float micro_noise = sin(sea_pos.x * 32.0 + t * 4.0) * cos(sea_pos.y * 32.0 - t * 3.0);
-    float sparkle_fac = step(0.2, micro_noise);
-    float diamond_glint = pow(RdotL, 240.0) * (0.3 + 0.7 * sparkle_fac) * (0.35 + 0.65 * sun_col);
+    float crest_glint = pow(RdotL, 48.0) * (0.25 + 0.75 * sun_col);
+    // 3. Micro capillary diamond sparkles (twinkling liquid facets)
+    float micro_noise = sin(sea_pos.x * 44.0 + t * 4.5) * cos(sea_pos.y * 44.0 - t * 3.5);
+    float sparkle_fac = smoothstep(0.1, 0.4, micro_noise);
+    float diamond_glint = pow(RdotL, 220.0) * (0.35 + 0.65 * sparkle_fac) * (0.3 + 0.7 * sun_col);
 
     // Color grading (Pinterest exact tones)
-    float h_norm = clamp(h * 0.65 + 0.35, 0.0, 1.0);
+    float h_norm = clamp(h * 0.68 + 0.36, 0.0, 1.0);
     vec3 water_color;
     vec3 spec_color;
 
     if (u_is_dark > 0.5) {
-      // Deep Nocturnal Atlantic Sea (Pinterest Pins 1, 2, 5)
-      vec3 deep_trough = vec3(0.008, 0.032, 0.095); // Deep midnight navy
-      vec3 mid_body    = vec3(0.020, 0.095, 0.245); // Deep sapphire
-      vec3 crest_azure = vec3(0.048, 0.235, 0.505); // Luminous ocean azure
+      // Deep Nocturnal Atlantic Sea (Pinterest Pins 1, 2, 5):
+      // Rich midnight navy troughs -> Oceanic sapphire body -> Luminous royal azure crests
+      vec3 deep_trough = vec3(0.012, 0.045, 0.125); // Rich deep navy (no muddy black spots)
+      vec3 mid_body    = vec3(0.025, 0.110, 0.285); // Oceanic sapphire depth
+      vec3 crest_azure = vec3(0.062, 0.275, 0.575); // Radiant royal azure crests
 
       vec3 base = mix(deep_trough, mid_body, h_norm);
-      base = mix(base, crest_azure, pow(h_norm, 1.8));
+      base = mix(base, crest_azure, pow(h_norm, 1.7));
 
-      // Subsurface scattering on wave crests
+      // Subsurface scattering on wave crests facing the sun (translucent cyan water glow)
       float sss = pow(max(0.0, dot(N, sun_dir)), 2.2) * pow(h_norm, 1.5);
-      base += vec3(0.01, 0.16, 0.28) * sss;
+      base += vec3(0.015, 0.20, 0.35) * sss;
 
       // Deep sky reflection via Fresnel
-      vec3 sky = vec3(0.06, 0.20, 0.42);
+      vec3 sky = vec3(0.038, 0.125, 0.285);
       water_color = mix(base, sky, fresnel * 0.5);
 
-      // Golden sunset specular highlights
-      spec_color = broad_sheen * vec3(0.98, 0.70, 0.20) +
-                   crest_glint * vec3(1.00, 0.90, 0.50) +
-                   diamond_glint * vec3(1.00, 0.98, 0.95);
+      // Golden sunset specular highlights (HDR intensity matching Pinterest sunset)
+      spec_color = broad_sheen * vec3(1.00, 0.72, 0.22) * 1.1 +
+                   crest_glint * vec3(1.00, 0.92, 0.55) * 1.5 +
+                   diamond_glint * vec3(1.00, 0.98, 0.95) * 2.6;
     } else {
-      // Radiant Mediterranean Coastal Sea (Pinterest Pins 3, 4)
+      // Radiant Mediterranean Coastal Sea (Pinterest Pins 3, 4 - preserved from user feedback)
       vec3 deep_trough = vec3(0.016, 0.205, 0.425); // Deep royal blue
       vec3 mid_body    = vec3(0.032, 0.410, 0.685); // Vibrant azure
       vec3 crest_azure = vec3(0.165, 0.685, 0.905); // Luminous turquoise crest
