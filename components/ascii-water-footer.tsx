@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState } from "react"
 
 interface Ripple {
-  x: number
-  y: number
-  time: number
+  x: number // Sea coordinates X
+  y: number // Sea coordinates Z
+  time: number // Time in seconds
   strength: number
 }
 
@@ -29,70 +29,63 @@ const FRAG_SHADER_SRC = `
   uniform vec4 u_ripples[MAX_RIPPLES];
   uniform int u_ripple_count;
 
-  // 2D Pseudo-Random Hash
-  vec2 hash2(vec2 p) {
-    p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
-    return -1.0 + 2.0 * fract(sin(p) * 43758.5453123);
-  }
+  // 36.87 degree rotation matrix with 2.0 scale to eliminate grid alignment
+  const mat2 m_rot = mat2(1.6, 1.2, -1.2, 1.6);
 
-  // 2D Gradient Noise for seamless, organic water ripples
-  float noise(vec2 p) {
-    vec2 i = floor(p);
-    vec2 f = fract(p);
-    vec2 u = f * f * (3.0 - 2.0 * f);
-    return mix(
-      mix(dot(hash2(i + vec2(0.0, 0.0)), f - vec2(0.0, 0.0)),
-          dot(hash2(i + vec2(1.0, 0.0)), f - vec2(1.0, 0.0)), u.x),
-      mix(dot(hash2(i + vec2(0.0, 1.0)), f - vec2(0.0, 1.0)),
-          dot(hash2(i + vec2(1.0, 1.0)), f - vec2(1.0, 1.0)), u.x),
-      u.y
+  // Alekseev Seascape Octave with domain warping
+  float sea_octave(vec2 uv, float choppy) {
+    vec2 uv_warp = uv + vec2(
+      0.35 * sin(uv.y * 1.4 + uv.x * 0.7),
+      0.35 * cos(uv.x * 1.4 - uv.y * 0.7)
     );
+    vec2 wv = 1.0 - abs(sin(uv_warp));
+    vec2 swv = abs(cos(uv_warp));
+    wv = mix(wv, swv, wv);
+    float prod = max(0.0001, wv.x * wv.y);
+    return pow(max(0.0001, 1.0 - pow(prod, 0.65)), choppy);
   }
 
-  // Rotation matrix: 36.87 degree irrational rotation to eliminate all grid patterns
-  const mat2 m_shift = mat2(0.8, 0.6, -0.6, 0.8);
-
-  // Calm Procedural Sea Heightfield (Based on Shadertoy multi-octave water physics)
+  // 6-Octave Fluid Ocean Surface Heightfield (Natural fluid rolling swells)
   float sea_height(vec2 p, float time) {
-    // Very gentle, calm ocean drift speed (peaceful and relaxing)
-    float slow_time = time * 0.16;
-
-    float freq = 2.6;
-    float amp = 0.24;
+    // Horizontally elongated for natural open ocean swells
+    vec2 uv = vec2(p.x * 0.44, p.y * 0.88);
+    float freq = 3.2;
+    float amp = 0.28;
+    float choppy = 2.2; // Smooth fluid swells, avoiding pinched or faceted vertices
     float h = 0.0;
 
-    vec2 cur = vec2(p.x * 0.95, p.y * 1.35);
+    for (int i = 0; i < 6; i++) {
+      vec2 t_vec = vec2(time * 0.62, time * 0.46);
+      float d = sea_octave(uv * freq + t_vec, choppy);
+      d += sea_octave(uv * freq - t_vec, choppy);
+      h += d * amp;
 
-    for (int i = 0; i < 4; i++) {
-      float fi = float(i);
-      vec2 drift = vec2(slow_time * (0.55 + fi * 0.18), -slow_time * (0.35 - fi * 0.12));
-      h += noise(cur * freq + drift) * amp;
-
-      cur = (m_shift * cur) * 1.15;
+      uv = (m_rot * uv) * 0.55;
       freq *= 1.85;
-      amp *= 0.50;
+      amp *= 0.30;
+      choppy = mix(choppy, 1.0, 0.16);
     }
 
-    // Physical interactive ripples from mouse/touch
+    // Physical interactive ripples
     for (int i = 0; i < MAX_RIPPLES; i++) {
       if (i >= u_ripple_count) break;
       vec4 rip = u_ripples[i];
       float age = time - rip.z;
-      if (age > 0.0 && age < 3.5) {
+      if (age > 0.0 && age < 3.0) {
         vec2 dPos = p - rip.xy;
         float r = length(dPos);
-        float wavefront = r - age * 0.85;
-        float ripWave = sin(wavefront * 14.0) * exp(-abs(wavefront) * 3.2) * exp(-age * 0.9) * rip.w;
-        h += ripWave * 0.14;
+        float wavefront = r - age * 3.2;
+        float ripWave = sin(wavefront * 14.0) * exp(-abs(wavefront) * 2.8) * exp(-age * 1.2) * rip.w;
+        h += ripWave * 0.18;
       }
     }
 
-    // Gentle cursor wake when hovering
+    // Continuous cursor wake
     if (u_mouse_active > 0.5) {
       vec2 dm = p - u_mouse;
       float mr = length(dm);
-      if (mr < 1.4) {
-        h += sin(mr * 10.0 - time * 1.5) * exp(-mr * 2.5) * 0.05;
+      if (mr < 1.6) {
+        h += sin(mr * 12.0 - time * 4.0) * exp(-mr * 2.2) * 0.07;
       }
     }
 
@@ -101,75 +94,90 @@ const FRAG_SHADER_SRC = `
 
   void main() {
     vec2 uv = gl_FragCoord.xy / u_resolution.xy;
-    vec2 p = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;
-    p.x *= 1.25;
-    p.y *= 1.15;
+    vec2 p_ndc = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;
 
-    float t = u_time;
+    float t = u_time * 0.85;
 
-    // Ocean height
-    float h = sea_height(p, t);
+    // Cinematic downward camera angle (~55-60 degrees) looking onto ocean ripples
+    vec3 cam_pos = vec3(0.0, 3.6, 2.8);
+    vec3 forward = normalize(vec3(0.0, -0.68, -0.73));
+    vec3 right = vec3(1.0, 0.0, 0.0);
+    vec3 up = cross(right, forward);
+
+    vec3 rd = normalize(p_ndc.x * right * 1.05 + p_ndc.y * up + forward);
+
+    // Mean water plane intersection (y = 0)
+    float d_plane = 40.0;
+    if (rd.y < -0.01) {
+      d_plane = -cam_pos.y / rd.y;
+    }
+
+    vec3 hit_pos = cam_pos + d_plane * rd;
+    vec2 sea_pos = hit_pos.xz;
+
+    // Ocean surface height
+    float h = sea_height(sea_pos, t);
 
     // Surface normal via central differences
-    float eps = 0.008;
-    float hx = (sea_height(p + vec2(eps, 0.0), t) - sea_height(p - vec2(eps, 0.0), t)) / (2.0 * eps);
-    float hy = (sea_height(p + vec2(0.0, eps), t) - sea_height(p - vec2(0.0, eps), t)) / (2.0 * eps);
+    float eps = 0.006;
+    float hx = (sea_height(sea_pos + vec2(eps, 0.0), t) - sea_height(sea_pos - vec2(eps, 0.0), t)) / (2.0 * eps);
+    float hz = (sea_height(sea_pos + vec2(0.0, eps), t) - sea_height(sea_pos - vec2(0.0, eps), t)) / (2.0 * eps);
 
-    vec3 N = normalize(vec3(-hx, -hy, 1.0));
-    vec3 V = normalize(vec3(p.x * 0.05, p.y * 0.08 - 0.12, 1.0));
+    vec3 N = normalize(vec3(-hx, 1.0, -hz));
+    vec3 V = -rd;
 
-    // Sun direction: warm golden sunset sun reflecting towards camera
-    vec3 sun_dir = normalize(vec3(0.05, 0.40, 0.90));
+    // Golden hour sun positioned ahead near horizon (Pinterest pins 1 & 5)
+    vec3 sun_dir = normalize(vec3(0.05, 0.38, -0.92));
 
-    // Blinn-Phong Half Vector
-    vec3 H = normalize(sun_dir + V);
-    float NdotH = max(0.0, dot(N, H));
-    float NdotV = max(0.001, dot(N, V));
+    // Specular reflection vector
+    vec3 R = reflect(-V, N);
+    float RdotL = max(0.0, dot(R, sun_dir));
 
     // Fresnel reflectance (dielectric water R0 = 0.02)
-    float fresnel = 0.02 + 0.98 * pow(1.0 - NdotV, 4.0);
+    float fresnel = 0.02 + 0.98 * pow(max(0.0, 1.0 - max(0.0, dot(N, V))), 5.0);
 
-    // Golden sun reflection column down center
-    float sun_col = exp(-pow(p.x * 0.45, 2.0) * 0.45);
+    // Golden sun path track down the center of the water
+    float sun_col = exp(-pow(sea_pos.x * 0.45, 2.0) * 0.45);
 
-    // Specular lighting tiers (calm, liquid sun glints)
-    float sheen = pow(NdotH, 14.0) * (0.2 + 0.8 * sun_col);
-    float crest_glint = pow(NdotH, 55.0) * (0.25 + 0.75 * sun_col);
+    // Specular components:
+    // 1. Broad warm golden sheen
+    float broad_sheen = pow(RdotL, 10.0) * (0.15 + 0.85 * sun_col);
+    // 2. Sharp crest reflections
+    float crest_glint = pow(RdotL, 48.0) * (0.25 + 0.75 * sun_col);
+    // 3. Micro capillary diamond sparkles (twinkling liquid facets)
+    float micro_noise = sin(sea_pos.x * 44.0 + t * 4.5) * cos(sea_pos.y * 44.0 - t * 3.5);
+    float sparkle_fac = smoothstep(0.1, 0.4, micro_noise);
+    float diamond_glint = pow(RdotL, 220.0) * (0.35 + 0.65 * sparkle_fac) * (0.3 + 0.7 * sun_col);
 
-    // Micro diamond sparkles
-    float micro = noise(p * 16.0 + vec2(t * 0.8, -t * 0.6));
-    float sparkle_active = step(0.10, micro);
-    float diamond_glint = pow(NdotH, 220.0) * (0.35 + 0.65 * sparkle_active) * (0.3 + 0.7 * sun_col);
-
-    // Height normalization
-    float h_norm = clamp(h * 0.75 + 0.38, 0.0, 1.0);
+    // Color grading (Pinterest exact tones)
+    float h_norm = clamp(h * 0.68 + 0.36, 0.0, 1.0);
     vec3 water_color;
     vec3 spec_color;
 
     if (u_is_dark > 0.5) {
-      // Dark Mode: Deep Nocturnal Atlantic Sea (Pinterest Pins 1, 2, 5)
-      // Midnight navy troughs -> Oceanic sapphire body -> Royal azure crests
-      vec3 deep_trough = vec3(0.008, 0.047, 0.118); // Rich midnight navy
-      vec3 mid_body    = vec3(0.024, 0.102, 0.267); // Oceanic sapphire depth
-      vec3 crest_azure = vec3(0.063, 0.267, 0.541); // Radiant royal azure crests
+      // Deep Nocturnal Atlantic Sea (Pinterest Pins 1, 2, 5):
+      // Rich midnight navy troughs -> Oceanic sapphire body -> Luminous royal azure crests
+      vec3 deep_trough = vec3(0.012, 0.045, 0.125); // Rich deep navy (no muddy black spots)
+      vec3 mid_body    = vec3(0.025, 0.110, 0.285); // Oceanic sapphire depth
+      vec3 crest_azure = vec3(0.062, 0.275, 0.575); // Radiant royal azure crests
 
       vec3 base = mix(deep_trough, mid_body, h_norm);
-      base = mix(base, crest_azure, pow(h_norm, 1.8));
+      base = mix(base, crest_azure, pow(h_norm, 1.7));
 
-      // Subsurface scattering on wave crests
-      float sss = pow(max(0.0, dot(N, sun_dir)), 2.0) * pow(h_norm, 1.5);
+      // Subsurface scattering on wave crests facing the sun (translucent cyan water glow)
+      float sss = pow(max(0.0, dot(N, sun_dir)), 2.2) * pow(h_norm, 1.5);
       base += vec3(0.015, 0.20, 0.35) * sss;
 
       // Deep sky reflection via Fresnel
-      vec3 sky = vec3(0.047, 0.141, 0.306);
+      vec3 sky = vec3(0.038, 0.125, 0.285);
       water_color = mix(base, sky, fresnel * 0.5);
 
-      // Golden sunset specular highlights (Pinterest golden hour sparkles)
-      spec_color = sheen * vec3(0.98, 0.70, 0.20) * 1.1 +
+      // Golden sunset specular highlights (HDR intensity matching Pinterest sunset)
+      spec_color = broad_sheen * vec3(1.00, 0.72, 0.22) * 1.1 +
                    crest_glint * vec3(1.00, 0.92, 0.55) * 1.5 +
                    diamond_glint * vec3(1.00, 0.98, 0.95) * 2.6;
     } else {
-      // Light Mode: Radiant Mediterranean Coastal Sea (Pinterest Pins 3, 4)
+      // Radiant Mediterranean Coastal Sea (Pinterest Pins 3, 4 - preserved from user feedback)
       vec3 deep_trough = vec3(0.016, 0.205, 0.425); // Deep royal blue
       vec3 mid_body    = vec3(0.032, 0.410, 0.685); // Vibrant azure
       vec3 crest_azure = vec3(0.165, 0.685, 0.905); // Luminous turquoise crest
@@ -177,22 +185,24 @@ const FRAG_SHADER_SRC = `
       vec3 base = mix(deep_trough, mid_body, h_norm);
       base = mix(base, crest_azure, pow(h_norm, 1.8));
 
+      // Subsurface scattering
       float sss = pow(max(0.0, dot(N, sun_dir)), 2.2) * pow(h_norm, 1.5);
       base += vec3(0.05, 0.28, 0.38) * sss;
 
+      // Bright sky reflection
       vec3 sky = vec3(0.55, 0.80, 0.96);
       water_color = mix(base, sky, fresnel * 0.45);
 
-      // Silver & diamond sunlight sparkles
-      spec_color = sheen * vec3(0.95, 0.85, 0.50) +
+      // Silver diamond & golden glints
+      spec_color = broad_sheen * vec3(0.95, 0.85, 0.50) +
                    crest_glint * vec3(1.00, 0.96, 0.80) +
                    diamond_glint * vec3(1.00, 1.00, 1.00);
     }
 
     vec3 final_color = water_color + spec_color;
 
-    // Soft atmospheric top edge fade into the page background
-    float topFade = smoothstep(1.0, 0.84, uv.y);
+    // Atmospheric top edge fade into the page
+    float topFade = smoothstep(1.0, 0.88, uv.y);
 
     gl_FragColor = vec4(final_color, topFade);
   }
@@ -213,24 +223,24 @@ export function AsciiWaterFooter() {
     let height = container.clientHeight
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
 
-    // Interactive pointer state
+    // Interactive pointer state (mapped to 3D sea plane)
     const pointer = {
-      px: 0.0,
-      py: 0.0,
-      prevX: -1000,
-      prevY: -1000,
+      seaX: 0.0,
+      seaZ: 0.0,
+      prevSeaX: -1000,
+      prevSeaZ: -1000,
       active: false,
     }
 
     const ripples: Ripple[] = []
     const MAX_RIPPLES = 8
 
-    const addRipple = (rx: number, ry: number, strength = 0.8) => {
+    const addRipple = (seaX: number, seaZ: number, strength = 0.8) => {
       const nowSec = performance.now() * 0.001
       if (ripples.length >= MAX_RIPPLES) ripples.shift()
       ripples.push({
-        x: rx,
-        y: ry,
+        x: seaX,
+        y: seaZ,
         time: nowSec,
         strength,
       })
@@ -330,41 +340,61 @@ export function AsciiWaterFooter() {
             const resizeObserver = new ResizeObserver(() => updateSize())
             resizeObserver.observe(container)
 
-            const pixelToShaderP = (clientX: number, clientY: number) => {
-              const rect = canvas.getBoundingClientRect()
-              const cx = clientX - rect.left
-              const cy = clientY - rect.top
-              const px = ((cx - 0.5 * rect.width) / rect.height) * 1.25
-              const py = ((rect.height - cy - 0.5 * rect.height) / rect.height) * 1.15
-              return { x: px, y: py }
+            // Convert canvas pixel position to 3D sea plane (x, z)
+            const pixelToSea = (px: number, py: number) => {
+              const ndcX = (px - 0.5 * width) / height
+              const ndcY = (height - py - 0.5 * height) / height
+
+              const camY = 3.8
+              const camZ = 2.5
+              const fwdY = -0.72
+              const fwdZ = -0.69
+              const upY = 0.69
+              const upZ = -0.72
+
+              const rdY = ndcY * upY + fwdY
+              const rdZ = ndcY * upZ + fwdZ
+              const rdX = ndcX * 1.05
+
+              const d = Math.abs(rdY) > 0.01 ? -camY / rdY : 40.0
+              return {
+                x: d * rdX,
+                z: camZ + d * rdZ,
+              }
             }
 
             const handlePointerMove = (e: PointerEvent) => {
-              const sp = pixelToShaderP(e.clientX, e.clientY)
+              const rect = canvas.getBoundingClientRect()
+              const px = e.clientX - rect.left
+              const py = e.clientY - rect.top
+              const sea = pixelToSea(px, py)
 
               if (pointer.active) {
-                const dx = sp.x - pointer.prevX
-                const dy = sp.y - pointer.prevY
-                const dist = Math.hypot(dx, dy)
-                if (dist > 0.08) {
-                  addRipple(sp.x, sp.y, Math.min(dist * 3.5, 1.2))
-                  pointer.prevX = sp.x
-                  pointer.prevY = sp.y
+                const dx = sea.x - pointer.prevSeaX
+                const dz = sea.z - pointer.prevSeaZ
+                const dist = Math.hypot(dx, dz)
+                if (dist > 0.35) {
+                  addRipple(sea.x, sea.z, Math.min(dist * 0.8, 1.2))
+                  pointer.prevSeaX = sea.x
+                  pointer.prevSeaZ = sea.z
                 }
               } else {
                 pointer.active = true
-                pointer.prevX = sp.x
-                pointer.prevY = sp.y
-                addRipple(sp.x, sp.y, 0.7)
+                pointer.prevSeaX = sea.x
+                pointer.prevSeaZ = sea.z
+                addRipple(sea.x, sea.z, 0.7)
               }
 
-              pointer.px = sp.x
-              pointer.py = sp.y
+              pointer.seaX = sea.x
+              pointer.seaZ = sea.z
             }
 
             const handlePointerDown = (e: PointerEvent) => {
-              const sp = pixelToShaderP(e.clientX, e.clientY)
-              addRipple(sp.x, sp.y, 1.5)
+              const rect = canvas.getBoundingClientRect()
+              const px = e.clientX - rect.left
+              const py = e.clientY - rect.top
+              const sea = pixelToSea(px, py)
+              addRipple(sea.x, sea.z, 1.6)
             }
 
             const handlePointerLeave = () => {
@@ -393,7 +423,8 @@ export function AsciiWaterFooter() {
               const nowSec = (performance.now() - startTime) * 0.001
               const isDark = document.documentElement.classList.contains("dark") ? 1.0 : 0.0
 
-              const validRipples = ripples.filter((r) => nowSec - r.time < 3.5)
+              // Update active ripples buffer
+              const validRipples = ripples.filter((r) => nowSec - r.time < 3.0)
               ripplesBuffer.fill(0)
               for (let i = 0; i < validRipples.length && i < MAX_RIPPLES; i++) {
                 const r = validRipples[i]
@@ -407,7 +438,7 @@ export function AsciiWaterFooter() {
               gl.useProgram(program)
               gl.uniform2f(uRes, canvas.width, canvas.height)
               gl.uniform1f(uTime, nowSec)
-              gl.uniform2f(uMouse, pointer.px, pointer.py)
+              gl.uniform2f(uMouse, pointer.seaX, pointer.seaZ)
               gl.uniform1f(uMouseActive, pointer.active ? 1.0 : 0.0)
               gl.uniform1f(uIsDark, isDark)
               gl.uniform4fv(uRipples, ripplesBuffer)
@@ -469,6 +500,7 @@ export function AsciiWaterFooter() {
 
       ctx.clearRect(0, 0, width, height)
 
+      // Base sea gradient
       const bgGrad = ctx.createLinearGradient(0, 0, 0, height)
       if (isDark) {
         bgGrad.addColorStop(0, "rgba(2, 8, 24, 0)")
@@ -482,13 +514,14 @@ export function AsciiWaterFooter() {
       ctx.fillStyle = bgGrad
       ctx.fillRect(0, 0, width, height)
 
+      // 6 Swell ribbons
       const waveLayers = 6
       for (let layer = 0; layer < waveLayers; layer++) {
         const layerRatio = layer / (waveLayers - 1)
         const baseY = height * (0.2 + layerRatio * 0.75)
         const amp = 6 + layerRatio * 14
         const freq = 0.008 - layerRatio * 0.003
-        const speed = 0.25 + layerRatio * 0.10 // Calm peaceful speed
+        const speed = 1.2 + layerRatio * 0.6
 
         ctx.beginPath()
         ctx.moveTo(0, height)
