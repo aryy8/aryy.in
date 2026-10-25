@@ -24,6 +24,7 @@ import { CommandMenu } from "@/components/command-menu"
 import { ResearchList } from "@/components/research-list"
 import { BlogList } from "@/components/blog-list"
 import { SnoopyAsciiPond } from "@/components/snoopy-ascii-pond"
+import { AsciiWaterFooter } from "@/components/ascii-water-footer"
 
 export default function Portfolio() {
   const [isAgenticMode, setIsAgenticMode] = useState(false)
@@ -228,17 +229,15 @@ export default function Portfolio() {
               <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
 
               {/* Notes Section */}
-              <section id="notes" className="mb-12 scroll-mt-20 snap-section">
+              <section id="notes" className="mb-8 scroll-mt-20 snap-section">
                 <SectionHeader>Knowledge Base</SectionHeader>
                 <NotesGrid />
               </section>
 
-              {/* Live ML Playground */}
-              {/* <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
-              <section className="mb-12 snap-section">
-                <SectionHeader>Live ML Playground</SectionHeader>
-                <JupyterCell />
-              </section> */}
+              <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-8" />
+
+              {/* Interactive Satin Silk ASCII Water Footer */}
+              <AsciiWaterFooter />
             </>
           )}
         </main>
