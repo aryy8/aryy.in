@@ -101,7 +101,7 @@ export function LiquidGlassDock({ onToggleAgentic, isAgenticMode }: LiquidGlassD
             href="https://x.com/aryyann8"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative flex items-center justify-center size-8 sm:size-9 rounded-full text-foreground/75 hover:text-foreground hover:bg-foreground/10 dark:hover:bg-white/10 hover:scale-108 active:scale-95 transition-all duration-300 ease-out cursor-pointer"
+            className="relative flex items-center justify-center size-8 sm:size-9 rounded-full text-foreground/75 hover:text-foreground hover:bg-foreground/10 dark:hover:bg-white/10 active:scale-95 transition-all duration-300 ease-out cursor-pointer"
             aria-label="X Profile"
           >
             <svg className="size-3.5 sm:size-4 transition-transform duration-300" viewBox="0 0 24 24" fill="currentColor">
@@ -114,7 +114,7 @@ export function LiquidGlassDock({ onToggleAgentic, isAgenticMode }: LiquidGlassD
             href="https://github.com/aryy8"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative flex items-center justify-center size-8 sm:size-9 rounded-full text-foreground/75 hover:text-foreground hover:bg-foreground/10 dark:hover:bg-white/10 hover:scale-108 active:scale-95 transition-all duration-300 ease-out cursor-pointer"
+            className="relative flex items-center justify-center size-8 sm:size-9 rounded-full text-foreground/75 hover:text-foreground hover:bg-foreground/10 dark:hover:bg-white/10 active:scale-95 transition-all duration-300 ease-out cursor-pointer"
             aria-label="GitHub Profile"
           >
             <Github className="size-4 stroke-[1.8] transition-transform duration-300" />
@@ -125,7 +125,7 @@ export function LiquidGlassDock({ onToggleAgentic, isAgenticMode }: LiquidGlassD
             href="https://linkedin.com/in/aryan-rastogi"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative flex items-center justify-center size-8 sm:size-9 rounded-full text-foreground/75 hover:text-foreground hover:bg-foreground/10 dark:hover:bg-white/10 hover:scale-108 active:scale-95 transition-all duration-300 ease-out cursor-pointer"
+            className="relative flex items-center justify-center size-8 sm:size-9 rounded-full text-foreground/75 hover:text-foreground hover:bg-foreground/10 dark:hover:bg-white/10 active:scale-95 transition-all duration-300 ease-out cursor-pointer"
             aria-label="LinkedIn Profile"
           >
             <Linkedin className="size-4 stroke-[1.8] transition-transform duration-300" />
@@ -136,7 +136,7 @@ export function LiquidGlassDock({ onToggleAgentic, isAgenticMode }: LiquidGlassD
             href="/Aryan_Rastogi_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative flex items-center justify-center size-8 sm:size-9 rounded-full text-foreground/75 hover:text-foreground hover:bg-foreground/10 dark:hover:bg-white/10 hover:scale-108 active:scale-95 transition-all duration-300 ease-out cursor-pointer"
+            className="relative flex items-center justify-center size-8 sm:size-9 rounded-full text-foreground/75 hover:text-foreground hover:bg-foreground/10 dark:hover:bg-white/10 active:scale-95 transition-all duration-300 ease-out cursor-pointer"
             aria-label="View Resume"
           >
             <FileText className="size-4 stroke-[1.8] transition-transform duration-300" />
@@ -163,7 +163,7 @@ export function LiquidGlassDock({ onToggleAgentic, isAgenticMode }: LiquidGlassD
             <button
               type="button"
               onClick={toggleTheme}
-              className="relative flex items-center justify-center size-8 sm:size-9 rounded-full text-foreground hover:bg-foreground/10 dark:hover:bg-white/10 hover:scale-108 active:scale-95 transition-all duration-300 ease-out cursor-pointer shrink-0"
+              className="relative flex items-center justify-center size-8 sm:size-9 rounded-full text-foreground hover:bg-foreground/10 dark:hover:bg-white/10 active:scale-95 transition-all duration-300 ease-out cursor-pointer shrink-0"
               aria-label="Toggle Theme Mode"
             >
               <div
@@ -184,7 +184,7 @@ export function LiquidGlassDock({ onToggleAgentic, isAgenticMode }: LiquidGlassD
             <button
               type="button"
               onClick={scrollToTop}
-              className="relative flex items-center justify-center ml-0.5 cursor-pointer hover:scale-108 active:scale-95 transition-all duration-300 ease-out shrink-0"
+              className="relative flex items-center justify-center ml-0.5 cursor-pointer active:scale-95 transition-all duration-300 ease-out shrink-0"
               aria-label="Aryan Rastogi Profile"
             >
               <div className="size-7 sm:size-7.5 rounded-full border border-foreground/25 dark:border-white/30 overflow-hidden shrink-0 shadow-2xs ring-1 ring-foreground/10 dark:ring-white/15 hover:ring-foreground/40 transition-all duration-300">
