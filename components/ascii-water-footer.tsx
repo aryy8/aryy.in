@@ -29,16 +29,17 @@ const FRAG_SHADER_SRC = `
   uniform vec4 u_ripples[MAX_RIPPLES];
   uniform int u_ripple_count;
 
-  // 2D Gradient Noise for organic wave distortion
+  // 2D Pseudo-Random Hash
   vec2 hash2(vec2 p) {
     p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
     return -1.0 + 2.0 * fract(sin(p) * 43758.5453123);
   }
 
-  float gnoise(vec2 p) {
+  // 2D Gradient Noise for seamless, organic water ripples
+  float noise(vec2 p) {
     vec2 i = floor(p);
     vec2 f = fract(p);
-    vec2 u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+    vec2 u = f * f * (3.0 - 2.0 * f);
     return mix(
       mix(dot(hash2(i + vec2(0.0, 0.0)), f - vec2(0.0, 0.0)),
           dot(hash2(i + vec2(1.0, 0.0)), f - vec2(1.0, 0.0)), u.x),
@@ -48,36 +49,31 @@ const FRAG_SHADER_SRC = `
     );
   }
 
-  // Single directional wave with smooth trochoidal profile
-  float directionalWave(vec2 p, float ang_deg, float wlen, float amp, float omega, float steepness, float time) {
-    float rad = ang_deg * 0.01745329;
-    vec2 dir = vec2(cos(rad), sin(rad));
-    float k = 6.2831853 / wlen;
-    float phase = dot(p, dir) * k - time * omega;
-    float w = (sin(phase) + 1.0) * 0.5;
-    return pow(w, steepness) * amp;
-  }
+  // Rotation matrix: 36.87 degree irrational rotation to eliminate all grid patterns
+  const mat2 m_shift = mat2(0.8, 0.6, -0.6, 0.8);
 
-  // Realistic ocean wave surface with physical dispersion (slow, calm, majestic)
+  // Calm Procedural Sea Heightfield (Based on Shadertoy multi-octave water physics)
   float sea_height(vec2 p, float time) {
-    // Slow gentle time scaling so the sea rolls calmly (period ~8-12 seconds)
-    float slow_t = time * 0.22;
+    // Very gentle, calm ocean drift speed (peaceful and relaxing)
+    float slow_time = time * 0.16;
 
-    // Gentle organic domain distortion for curved liquid wavefronts
-    float warpX = 0.25 * gnoise(p * 0.6 + slow_t * 0.20);
-    float warpY = 0.25 * gnoise(p * 0.6 + vec2(3.1, 1.8) - slow_t * 0.15);
-    vec2 q = p + vec2(warpX, warpY);
-
+    float freq = 2.6;
+    float amp = 0.24;
     float h = 0.0;
-    // Natural ocean wave spectrum with physical dispersion (calm, rolling swells)
-    h += directionalWave(q, 85.0,  2.20, 0.32, 0.55, 1.25, slow_t); // Major groundswell (slow period ~11s)
-    h += directionalWave(q, 98.0,  1.50, 0.20, 0.75, 1.35, slow_t); // Cross-sea swell (period ~8s)
-    h += directionalWave(q, 75.0,  0.95, 0.12, 1.05, 1.45, slow_t); // Wind waves (period ~6s)
-    h += directionalWave(q, 105.0, 0.60, 0.07, 1.35, 1.55, slow_t); // Medium chop (period ~4.5s)
-    h += directionalWave(q, 88.0,  0.38, 0.04, 1.75, 1.65, slow_t); // Fine ripples (period ~3.5s)
-    h += directionalWave(q, 72.0,  0.22, 0.02, 2.30, 1.80, slow_t); // Surface capillary wavelets
 
-    // Interactive mouse ripples
+    vec2 cur = vec2(p.x * 0.95, p.y * 1.35);
+
+    for (int i = 0; i < 4; i++) {
+      float fi = float(i);
+      vec2 drift = vec2(slow_time * (0.55 + fi * 0.18), -slow_time * (0.35 - fi * 0.12));
+      h += noise(cur * freq + drift) * amp;
+
+      cur = (m_shift * cur) * 1.15;
+      freq *= 1.85;
+      amp *= 0.50;
+    }
+
+    // Physical interactive ripples from mouse/touch
     for (int i = 0; i < MAX_RIPPLES; i++) {
       if (i >= u_ripple_count) break;
       vec4 rip = u_ripples[i];
@@ -86,12 +82,12 @@ const FRAG_SHADER_SRC = `
         vec2 dPos = p - rip.xy;
         float r = length(dPos);
         float wavefront = r - age * 0.85;
-        float ripWave = sin(wavefront * 12.0) * exp(-abs(wavefront) * 3.0) * exp(-age * 0.9) * rip.w;
+        float ripWave = sin(wavefront * 14.0) * exp(-abs(wavefront) * 3.2) * exp(-age * 0.9) * rip.w;
         h += ripWave * 0.14;
       }
     }
 
-    // Gentle cursor wake
+    // Gentle cursor wake when hovering
     if (u_mouse_active > 0.5) {
       vec2 dm = p - u_mouse;
       float mr = length(dm);
@@ -115,64 +111,68 @@ const FRAG_SHADER_SRC = `
     float h = sea_height(p, t);
 
     // Surface normal via central differences
-    float eps = 0.007;
+    float eps = 0.008;
     float hx = (sea_height(p + vec2(eps, 0.0), t) - sea_height(p - vec2(eps, 0.0), t)) / (2.0 * eps);
     float hy = (sea_height(p + vec2(0.0, eps), t) - sea_height(p - vec2(0.0, eps), t)) / (2.0 * eps);
 
     vec3 N = normalize(vec3(-hx, -hy, 1.0));
     vec3 V = normalize(vec3(p.x * 0.05, p.y * 0.08 - 0.12, 1.0));
 
-    // Sun direction: warm golden sunset sun reflecting towards viewer
-    vec3 sun_dir = normalize(vec3(0.05, 0.38, 0.92));
+    // Sun direction: warm golden sunset sun reflecting towards camera
+    vec3 sun_dir = normalize(vec3(0.05, 0.40, 0.90));
 
-    // Specular reflection
-    vec3 R = reflect(-V, N);
-    float RdotL = max(0.0, dot(R, sun_dir));
-    float fresnel = 0.02 + 0.98 * pow(max(0.0, 1.0 - max(0.001, dot(N, V))), 5.0);
+    // Blinn-Phong Half Vector
+    vec3 H = normalize(sun_dir + V);
+    float NdotH = max(0.0, dot(N, H));
+    float NdotV = max(0.001, dot(N, V));
 
-    // Golden sun track down the center of the water
+    // Fresnel reflectance (dielectric water R0 = 0.02)
+    float fresnel = 0.02 + 0.98 * pow(1.0 - NdotV, 4.0);
+
+    // Golden sun reflection column down center
     float sun_col = exp(-pow(p.x * 0.45, 2.0) * 0.45);
 
-    // Multi-tier specular highlights
-    float sheen = pow(RdotL, 10.0) * (0.2 + 0.8 * sun_col);
-    float crest_glint = pow(RdotL, 36.0) * (0.25 + 0.75 * sun_col);
+    // Specular lighting tiers (calm, liquid sun glints)
+    float sheen = pow(NdotH, 14.0) * (0.2 + 0.8 * sun_col);
+    float crest_glint = pow(NdotH, 55.0) * (0.25 + 0.75 * sun_col);
 
-    // Micro capillary sparkles
-    float micro = gnoise(p * 18.0 + t * 0.8);
-    float sparkle_active = step(0.12, micro);
-    float diamond_glint = pow(RdotL, 160.0) * (0.35 + 0.65 * sparkle_active) * (0.3 + 0.7 * sun_col);
+    // Micro diamond sparkles
+    float micro = noise(p * 16.0 + vec2(t * 0.8, -t * 0.6));
+    float sparkle_active = step(0.10, micro);
+    float diamond_glint = pow(NdotH, 220.0) * (0.35 + 0.65 * sparkle_active) * (0.3 + 0.7 * sun_col);
 
     // Height normalization
-    float h_norm = clamp(h * 0.72 + 0.38, 0.0, 1.0);
+    float h_norm = clamp(h * 0.75 + 0.38, 0.0, 1.0);
     vec3 water_color;
     vec3 spec_color;
 
     if (u_is_dark > 0.5) {
-      // Nocturnal Atlantic Ocean (Pinterest pins 1, 2, 5)
-      vec3 deep_trough = vec3(0.010, 0.040, 0.110); // Rich midnight navy
-      vec3 mid_body    = vec3(0.022, 0.095, 0.250); // Deep sapphire
-      vec3 crest_azure = vec3(0.060, 0.265, 0.540); // Radiant ocean azure crests
+      // Dark Mode: Deep Nocturnal Atlantic Sea (Pinterest Pins 1, 2, 5)
+      // Midnight navy troughs -> Oceanic sapphire body -> Royal azure crests
+      vec3 deep_trough = vec3(0.008, 0.047, 0.118); // Rich midnight navy
+      vec3 mid_body    = vec3(0.024, 0.102, 0.267); // Oceanic sapphire depth
+      vec3 crest_azure = vec3(0.063, 0.267, 0.541); // Radiant royal azure crests
 
       vec3 base = mix(deep_trough, mid_body, h_norm);
       base = mix(base, crest_azure, pow(h_norm, 1.8));
 
-      // Subsurface scattering
-      float sss = pow(max(0.0, dot(N, sun_dir)), 2.2) * pow(h_norm, 1.5);
+      // Subsurface scattering on wave crests
+      float sss = pow(max(0.0, dot(N, sun_dir)), 2.0) * pow(h_norm, 1.5);
       base += vec3(0.015, 0.20, 0.35) * sss;
 
-      // Sky reflection
-      vec3 sky = vec3(0.038, 0.120, 0.275);
+      // Deep sky reflection via Fresnel
+      vec3 sky = vec3(0.047, 0.141, 0.306);
       water_color = mix(base, sky, fresnel * 0.5);
 
-      // Radiant golden sunset specular glints
+      // Golden sunset specular highlights (Pinterest golden hour sparkles)
       spec_color = sheen * vec3(0.98, 0.70, 0.20) * 1.1 +
-                   crest_glint * vec3(1.00, 0.92, 0.52) * 1.5 +
-                   diamond_glint * vec3(1.00, 0.98, 0.95) * 2.5;
+                   crest_glint * vec3(1.00, 0.92, 0.55) * 1.5 +
+                   diamond_glint * vec3(1.00, 0.98, 0.95) * 2.6;
     } else {
-      // Radiant Mediterranean Coastal Sea (Pinterest pins 3, 4)
-      vec3 deep_trough = vec3(0.016, 0.205, 0.425);
-      vec3 mid_body    = vec3(0.032, 0.410, 0.685);
-      vec3 crest_azure = vec3(0.165, 0.685, 0.905);
+      // Light Mode: Radiant Mediterranean Coastal Sea (Pinterest Pins 3, 4)
+      vec3 deep_trough = vec3(0.016, 0.205, 0.425); // Deep royal blue
+      vec3 mid_body    = vec3(0.032, 0.410, 0.685); // Vibrant azure
+      vec3 crest_azure = vec3(0.165, 0.685, 0.905); // Luminous turquoise crest
 
       vec3 base = mix(deep_trough, mid_body, h_norm);
       base = mix(base, crest_azure, pow(h_norm, 1.8));
@@ -183,6 +183,7 @@ const FRAG_SHADER_SRC = `
       vec3 sky = vec3(0.55, 0.80, 0.96);
       water_color = mix(base, sky, fresnel * 0.45);
 
+      // Silver & diamond sunlight sparkles
       spec_color = sheen * vec3(0.95, 0.85, 0.50) +
                    crest_glint * vec3(1.00, 0.96, 0.80) +
                    diamond_glint * vec3(1.00, 1.00, 1.00);
@@ -190,7 +191,7 @@ const FRAG_SHADER_SRC = `
 
     vec3 final_color = water_color + spec_color;
 
-    // Soft atmospheric top edge fade into the page
+    // Soft atmospheric top edge fade into the page background
     float topFade = smoothstep(1.0, 0.84, uv.y);
 
     gl_FragColor = vec4(final_color, topFade);
@@ -487,7 +488,7 @@ export function AsciiWaterFooter() {
         const baseY = height * (0.2 + layerRatio * 0.75)
         const amp = 6 + layerRatio * 14
         const freq = 0.008 - layerRatio * 0.003
-        const speed = 0.35 + layerRatio * 0.15 // Calm, slow speed
+        const speed = 0.25 + layerRatio * 0.10 // Calm peaceful speed
 
         ctx.beginPath()
         ctx.moveTo(0, height)
