@@ -70,7 +70,7 @@ export function LifeAsciiBanner() {
             let sx = nx * SW;
             const plane = mask[(sy * SW + Math.min(SW - 1, (nx * SW) | 0))] > 127;
             if (ny > HORIZON - 0.03 && !plane) {
-              let u = (sx + shift) % (cleanW * 2);
+              let u = (((sx - shift) % (cleanW * 2)) + cleanW * 2) % (cleanW * 2);
               if (u > cleanW) u = cleanW * 2 - u;
               sx = u;
             }
