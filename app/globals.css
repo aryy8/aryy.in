@@ -313,15 +313,3 @@ html:not(.dark) .life-px:hover .life-px-text { text-decoration-color: #1d4ed8; }
 @media (max-width: 640px) { .life-cover { border-radius: 10px; } }
 
 .life-essay > p { clear: both; }
-
-/* Life sky banner: pixel plane + ASCII clouds */
-.life-sky { position: relative; height: 180px; margin: 0 0 2.25rem; overflow: hidden; border: 1px dashed color-mix(in oklab, var(--foreground) 18%, transparent); border-radius: 12px; color: color-mix(in oklab, var(--foreground) 70%, transparent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-.life-sky-cloud { position: absolute; left: 0; margin: 0; font-size: 11px; line-height: 1.15; white-space: pre; animation: life-sky-drift linear infinite; will-change: transform; }
-@keyframes life-sky-drift { from { transform: translateX(110vw); } to { transform: translateX(-30vw); } }
-.life-sky-flight { position: absolute; top: 40%; left: 0; display: flex; flex-direction: row-reverse; align-items: center; gap: 6px; animation: life-sky-fly 14s linear infinite; color: var(--foreground); }
-.life-sky-plane { width: 48px; height: 24px; animation: life-sky-bob 2.4s ease-in-out infinite; }
-.life-sky-trail { font-size: 10px; letter-spacing: 2px; opacity: .45; }
-@keyframes life-sky-fly { from { transform: translateX(-160px); } to { transform: translateX(calc(48rem + 40px)); } }
-@keyframes life-sky-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-@media (max-width: 640px) { .life-sky { height: 130px; } .life-sky-cloud { font-size: 9px; } }
-@media (prefers-reduced-motion: reduce) { .life-sky-cloud, .life-sky-flight, .life-sky-plane { animation: none; } .life-sky-flight { left: 40%; } .life-sky-cloud:nth-child(odd) { left: 10%; } .life-sky-cloud:nth-child(even) { left: 60%; } }

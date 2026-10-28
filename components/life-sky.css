@@ -1,0 +1,4 @@
+.life-sky { position: relative; height: 190px; margin: 0 0 2.25rem; overflow: hidden; border: 1px dashed rgba(255,255,255,.2); border-radius: 12px; background: linear-gradient(180deg, rgba(56,189,248,.08), rgba(0,0,0,0) 75%); }
+.life-sky canvas { display: block; width: 100%; height: 100%; }
+html:not(.dark) .life-sky { border-color: rgba(0,0,0,.2); filter: invert(1) hue-rotate(180deg); }
+@media (max-width: 640px) { .life-sky { height: 140px; } }
