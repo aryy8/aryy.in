@@ -54,6 +54,7 @@ export default function LifePage() {
 
               <Photo src="/life/muj-campus.jpg" caption="First day at college" size="left" aspect="960 / 575" />
               <p>
+              <Photo src="/life/jaipur.jpg" alt="Aryan in front of Hawa Mahal, Jaipur" caption="Hawa Mahal, Jaipur" size="right" aspect="3 / 4" />
                 Jaipur is a beautiful city, and it quickly became home. I started engineering with a MacBook and a very basic
                 knowledge of HTML, CSS and Python. Around me, hackathons were happening everywhere, and I remember literally
                 searching YouTube for <U>“what is a hackathon, and what do you do in it?”</U> — and still being confused about how
