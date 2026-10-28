@@ -26,12 +26,11 @@ export default function LifePage() {
 
           <FadeIn>
             <article className={`life-essay ${body.className}`}>
-              <header className="life-header" style={{position:"relative",margin:"0 0 2.5rem",borderRadius:"14px",overflow:"hidden",aspectRatio:"3 / 1",background:"#02040a"}}>
+              <header className="life-header life-banner">
                 <LifeAsciiBanner />
-                <div style={{position:"absolute",inset:0,background:"linear-gradient(to top, rgba(2,4,10,0.85) 0%, rgba(2,4,10,0.25) 45%, rgba(2,4,10,0) 70%)"}} />
-                <div style={{position:"absolute",left:"1.5rem",bottom:"1.25rem",color:"#fff"}}>
-                  <h1 className={display.className} style={{margin:0,color:"#fff",textShadow:"0 2px 18px rgba(0,0,0,0.6)"}}>Life</h1>
-                  <p className="life-sub" style={{margin:0,color:"rgba(255,255,255,0.82)"}}>Notes from the road so far.</p>
+                <div className="life-banner-fade" />
+                <div className="life-banner-text">
+                  <h1 className={display.className}>Life</h1>
                 </div>
               </header>
 
