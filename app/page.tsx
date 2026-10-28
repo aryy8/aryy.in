@@ -15,7 +15,7 @@ import { NotesGrid } from "@/components/notes-grid"
 import { Achievements } from "@/components/achievements"
 import { WorkExperience } from "@/components/work-experience"
 import { SnoopyHero } from "@/components/snoopy-hero"
-import { Mail, MapPin } from "lucide-react"
+import { Mail, MapPin, Sparkles } from "lucide-react"
 import { Github, Linkedin, FileText } from "lucide-react"
 import { useState } from "react"
 import { AgenticView } from "@/components/agentic-view"
@@ -136,6 +136,12 @@ export default function Portfolio() {
                         <Mail className="size-3.5 text-muted-foreground/80 shrink-0" />
                         <a href="mailto:aryanfeb17@gmail.com" className="text-foreground/90 hover:text-primary hover:underline underline-offset-4 font-medium transition-colors">
                           aryanfeb17@gmail.com
+                        </a>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Sparkles className="size-3.5 text-muted-foreground/80 shrink-0" />
+                        <a href="/life" className="life-link group">
+                          <span className="life-link-text">Life</span>
                         </a>
                       </div>
                     </div>
