@@ -309,5 +309,5 @@ html:not(.dark) .life-px:hover .life-px-text { text-decoration-color: #1d4ed8; }
 @media (prefers-reduced-motion: reduce) { .life-slides .life-photo-frame img { transition: none; } }
 
 /* Life cover banner */
-.life-cover { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; margin: 0 0 2.25rem; border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent); }
-@media (max-width: 640px) { .life-cover { border-radius: 10px; } }
+.life-cover { display: block; width: 100%; height: min(62vh, 56.25vw); object-fit: cover; margin: 0; border: 0; border-radius: 0; }
+@media (max-width: 640px) { .life-cover { height: 42vh; } }
