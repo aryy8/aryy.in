@@ -52,7 +52,7 @@ export default function LifePage() {
               </p>
 
               <p>
-              <Photo src="/life/jaipur.jpg?v=2" alt="Aryan in front of Hawa Mahal, Jaipur" caption="Hawa Mahal, Jaipur" size="right" aspect="900 / 832" />
+              <Photo src="/life/jaipur.jpg?v=3" alt="Aryan in front of Hawa Mahal, Jaipur" caption="Hawa Mahal, Jaipur" size="right" aspect="900 / 675" />
                 Jaipur is a beautiful city, and it quickly became home. I started engineering with a MacBook and a very basic
                 knowledge of HTML, CSS and Python. Around me, hackathons were happening everywhere, and I remember literally
                 searching YouTube for <U>“what is a hackathon, and what do you do in it?”</U> — and still being confused about how
@@ -62,8 +62,9 @@ export default function LifePage() {
               <p>
                 So I started exploring. I sat in on tech summits and went to{" "}
                 <U>Google DevFest</U>, and slowly things started making sense. I created my GitHub account and figured out how it
-                all works. Then I joined the <U>AI² lab</U>, where a senior gave me direction — learn ML, then deep learning, then
-                GenAI — and in first year itself I got an <Win>R&amp;D ML internship at Elumina AI</Win>.
+                all works. Then I joined the <U>AI² lab</U>, and that is where I met a senior who became{" "}
+                <Win>one of the most special people in my journey</Win>. He believed in me before I did, and patiently guided me
+                from the basics of machine learning all the way to deep learning and generative AI. Because of him, in first year itself I got an <Win>R&amp;D ML internship at Elumina AI</Win>.
               </p>
               <p>
               <PhotoSlides srcs={["/uniway_project.webp", "/uniway_hackathon1.webp", "/uniway_hackathon2.webp", "/uniway_hackthon2.5.webp", "/uniway_hackathon3.webp"]} caption="UniWay hackathon" size="left" aspect="10 / 7" />
