@@ -251,7 +251,7 @@ html:not(.dark) .life-px:hover .life-px-text { text-decoration-color: #1d4ed8; }
 @media (prefers-reduced-motion: reduce) { .life-px:hover .life-px-text { animation: none; } }
 
 /* Life page */
-.life-essay { --life-accent: #1d4ed8; max-width: 640px; margin: 0 auto; font-size: 1.2rem; line-height: 1.75; color: color-mix(in oklab, var(--foreground) 88%, transparent); }
+.life-essay { --life-accent: #1d4ed8; max-width: none; margin: 0; font-size: 1.2rem; line-height: 1.75; color: color-mix(in oklab, var(--foreground) 88%, transparent); }
 .dark .life-essay { --life-accent: #38bdf8; }
 .life-essay p { margin: 0 0 1.4em; }
 .life-header { margin-bottom: 2.5rem; }
