@@ -5,7 +5,7 @@ import "./life-banner.css";
 // Dense coloured ASCII render of the wing photo. The plane stays put; sky and clouds drift back past it.
 const RAMP = " .'`,:;!i<+?|1tfjxnuczXUJCLQ0Zmwqpbhao#MW8B@";
 const COLS = 240;                 // same density as the original static render
-const Y0 = 0.12, YSPAN = 0.6;     // vertical slice of the photo shown in the 3:1 banner
+const Y0 = 0.24, YSPAN = 0.6;     // vertical slice of the photo shown in the 3:1 banner
 const HORIZON = 0.42;             // photo y where the cloud deck starts
 const CLEAN_W = 0.66;             // left part of the photo with no plane, used as moving texture
 
@@ -21,17 +21,25 @@ export function LifeAsciiBanner() {
   useEffect(() => {
     const canvas = ref.current!;
     const img = new Image();
+    const maskImg = new Image();
+    maskImg.src = "/life/wing-mask.png";
     img.src = "/life/wing-src.jpg";
     let timer: ReturnType<typeof setInterval> | undefined;
-    let alive = true;
-    img.onload = () => {
-      if (!alive) return;
+    let alive = true, started = false;
+    const ready = () => {
+      if (!alive || started || !img.complete || !maskImg.complete || !img.naturalWidth || !maskImg.naturalWidth) return;
+      started = true;
       const SW = 960, SH = 540;
       const off = document.createElement("canvas");
       off.width = SW; off.height = SH;
       const octx = off.getContext("2d", { willReadFrequently: true })!;
       octx.drawImage(img, 0, 0, SW, SH);
       const px = octx.getImageData(0, 0, SW, SH).data;
+      octx.clearRect(0, 0, SW, SH);
+      octx.drawImage(maskImg, 0, 0, SW, SH);
+      const md = octx.getImageData(0, 0, SW, SH).data;
+      const mask = new Uint8Array(SW * SH);
+      for (let i = 0; i < mask.length; i++) mask[i] = md[i * 4];
       // histogram equalisation of luminance, like the original render
       const hist = new Float64Array(256);
       for (let i = 0; i < px.length; i += 4) hist[(0.299 * px[i] + 0.587 * px[i + 1] + 0.114 * px[i + 2]) | 0]++;
@@ -60,7 +68,8 @@ export function LifeAsciiBanner() {
           for (let c = 0; c < COLS; c++) {
             const nx = c / COLS;
             let sx = nx * SW;
-            if (ny > HORIZON - 0.03 && !inPlane(nx, ny)) {
+            const plane = mask[(sy * SW + Math.min(SW - 1, (nx * SW) | 0))] > 127;
+            if (ny > HORIZON - 0.03 && !plane) {
               let u = (sx + shift) % (cleanW * 2);
               if (u > cleanW) u = cleanW * 2 - u;
               sx = u;
@@ -71,7 +80,7 @@ export function LifeAsciiBanner() {
             const m = Math.max(R, G, B, 1);
             let k: number, ci: number;
             if (dark) {
-              k = (120 + 135 * v) / m;
+              k = (170 + 85 * v) / m;
               ci = Math.floor(v * RAMP.length);
             } else {
               // light mode: ink on paper, so darker parts of the photo get denser, deeper-coloured glyphs
@@ -79,7 +88,24 @@ export function LifeAsciiBanner() {
               ci = Math.floor((1 - v * 0.85) * RAMP.length);
             }
             ci = Math.max(2, Math.min(RAMP.length - 1, ci));
-            ctx.fillStyle = `rgb(${Math.min(255, R * k) | 0},${Math.min(255, G * k) | 0},${Math.min(255, B * k) | 0})`;
+            // designed palette: sky fades from deep azure to pale ice at the horizon,
+            // clouds go from periwinkle shadows to pure white highlights
+            const lerp = (x: number, y: number, q: number) => x + (y - x) * q;
+            let cr: number, cg: number, cb: number;
+            if (ny < HORIZON) {
+              const q = Math.pow(Math.max(0, (ny - Y0) / (HORIZON - Y0)), 1.6);
+              cr = lerp(56, 214, q); cg = lerp(132, 234, q); cb = lerp(255, 255, q);
+            } else {
+              const q = Math.pow(v, 0.9);
+              cr = lerp(98, 255, q); cg = lerp(140, 255, q); cb = lerp(225, 255, q);
+            }
+            if (plane) {
+              // aircraft drawn exactly like the original static render: true photo colours
+              const k0 = (120 + 135 * v) / m;
+              cr = R * k0; cg = G * k0; cb = B * k0;
+              ci = Math.max(2, Math.min(RAMP.length - 1, Math.floor(v * RAMP.length)));
+            }
+            ctx.fillStyle = `rgb(${Math.min(255, cr) | 0},${Math.min(255, cg) | 0},${Math.min(255, cb) | 0})`;
             ctx.fillText(RAMP[ci], c * cw, r * ch);
           }
         }
@@ -88,6 +114,7 @@ export function LifeAsciiBanner() {
       draw();
       if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) timer = setInterval(draw, 60);
     };
+    img.onload = ready; maskImg.onload = ready; ready();
     return () => { alive = false; if (timer) clearInterval(timer); };
   }, []);
   return <canvas ref={ref} aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", display: "block" }} />;
