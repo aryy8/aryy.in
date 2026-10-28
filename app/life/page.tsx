@@ -74,12 +74,12 @@ export default function LifePage() {
                 <Win>first place</Win>, quite literally, through UniWay.
               </p>
               <p>
-              <Photo src="/life/solana.jpg" alt="Two laptops at the Solana India Tour workshop at MUJ" caption="Solana India Tour, MUJ" size="right" aspect="3 / 4" />
+              <Photo src="/life/solana.jpg" alt="Two laptops at the Solana India Tour workshop at MUJ" caption="Solana India Tour, MUJ" size="right" aspect="4 / 3" />
                 The cash prizes were small, but they motivated me more than I can explain. I also won several{" "}
                 <U>Solana bounties</U>, and with my own money I bought a very expensive pair of Nike shoes for the first time. It
                 felt like a big achievement, because it was mine.
               </p>
-              <PhotoSlides srcs={["/photo1_iitm_roadeye.webp", "/photo2_iitm_roadeye.webp", "/photo4_iitm_roadeye.webp", "/photo3_iitm_roadeye.webp", "/photo5_iitm_roadeye.webp"]} caption="IIT Madras, Road Safety Hackathon" size="right" aspect="4 / 3" />
+              <PhotoSlides srcs={["/photo1_iitm_roadeye.webp", "/photo2_iitm_roadeye.webp", "/photo4_iitm_roadeye.webp", "/photo3_iitm_roadeye.webp", "/photo5_iitm_roadeye.webp"]} caption="IIT Madras, Road Safety Hackathon" size="left" aspect="4 / 3" />
               <p>
                 Second year opened things up. I got to work with <U>Southern Federal University, Russia</U>, as part of an{" "}
                 <Win>International Interdisciplinary Student Project</Win>. The university recognised me with{" "}
