@@ -122,7 +122,7 @@ export function LiquidGlassDock({ onToggleAgentic, isAgenticMode }: LiquidGlassD
 
           {/* LinkedIn */}
           <a
-            href="https://linkedin.com/in/aryan-rastogi"
+            href="https://www.linkedin.com/in/aryy8"
             target="_blank"
             rel="noopener noreferrer"
             className="relative flex items-center justify-center size-8 sm:size-9 rounded-full text-foreground/75 hover:text-foreground hover:bg-foreground/10 dark:hover:bg-white/10 active:scale-95 transition-all duration-300 ease-out cursor-pointer"
