@@ -66,13 +66,13 @@ export default function LifePage() {
                 GenAI — and in first year itself I got an <Win>R&amp;D ML internship at Elumina AI</Win>.
               </p>
               <p>
+              <PhotoSlides srcs={["/uniway_project.webp", "/uniway_hackathon1.webp", "/uniway_hackathon2.webp", "/uniway_hackthon2.5.webp", "/uniway_hackathon3.webp"]} caption="UniWay hackathon" size="left" aspect="10 / 7" />
                 My first college project was <U>Unipool</U>, a cab-sharing platform for our university that my classmates loved —
                 and the first time I used Bolt, the AI website builder everyone was talking about in 2024. Then came the
                 competitions: a consultathon, <Win>1st runner-up</Win>; BrandIt, <Win>1st runner-up</Win> again; and then UniWay,
                 where the challenge was to build a navigation platform for the university. There, I found my way to{" "}
                 <Win>first place</Win>, quite literally, through UniWay.
               </p>
-              <PhotoSlides srcs={["/uniway_project.webp", "/uniway_hackathon1.webp", "/uniway_hackathon2.webp", "/uniway_hackthon2.5.webp", "/uniway_hackathon3.webp"]} caption="UniWay hackathon" size="left" aspect="10 / 7" />
               <p>
               <Photo src="/life/solana.jpg" alt="Two laptops at the Solana India Tour workshop at MUJ" caption="Solana India Tour, MUJ" size="right" aspect="3 / 4" />
                 The cash prizes were small, but they motivated me more than I can explain. I also won several{" "}
