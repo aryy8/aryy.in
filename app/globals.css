@@ -249,3 +249,34 @@ html:not(.dark) .life-px-text { text-decoration-color: rgba(0,0,0,.45); }
 html:not(.dark) .life-px:hover .life-px-text { text-decoration-color: #1d4ed8; }
 .life-px:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 6px; }
 @media (prefers-reduced-motion: reduce) { .life-px:hover .life-px-text { animation: none; } }
+
+/* Life page */
+.life-essay { --life-accent: #1d4ed8; max-width: 640px; margin: 0 auto; font-size: 1.2rem; line-height: 1.75; color: color-mix(in oklab, var(--foreground) 88%, transparent); }
+.dark .life-essay { --life-accent: #38bdf8; }
+.life-essay p { margin: 0 0 1.4em; }
+.life-header { margin-bottom: 2.5rem; }
+.life-header h1 { font-size: clamp(3rem, 8vw, 4.5rem); line-height: 1; color: var(--foreground); letter-spacing: -0.01em; }
+.life-essay .life-sub { margin-top: .9rem; font-style: italic; opacity: .7; }
+.life-chapter { margin-top: 4.5rem; }
+.life-chapter::after { content: ""; display: table; clear: both; }
+.life-chapter h2 { font-size: 2rem; line-height: 1.15; color: var(--foreground); margin-bottom: 1.2rem; }
+.life-essay .life-eyebrow { font-family: ui-monospace, monospace; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--life-accent); margin-bottom: .5rem; }
+.life-u { text-decoration: underline dashed 1px; text-decoration-color: color-mix(in oklab, var(--life-accent) 70%, transparent); text-underline-offset: 4px; }
+.life-win { font-weight: 600; color: var(--foreground); background: linear-gradient(transparent 62%, color-mix(in oklab, var(--life-accent) 22%, transparent) 62%); padding: 0 .1em; }
+.life-link { color: var(--life-accent); text-decoration: underline solid 1px; text-underline-offset: 4px; transition: opacity .2s; }
+.life-link:hover { opacity: .75; }
+.life-quote { font-size: 1.75rem; line-height: 1.3; color: var(--foreground); border-left: 2px solid var(--life-accent); padding: .2rem 0 .2rem 1.25rem; margin: 2.2rem 0; }
+.life-photo { margin: 2rem 0; }
+.life-photo--wide { margin: 2.5rem -2rem; }
+.life-photo--float { float: right; width: 42%; margin: .4rem 0 1rem 1.5rem; }
+@media (max-width: 640px) { .life-photo--float { float: none; width: 100%; margin: 1.5rem 0; } .life-photo--wide { margin: 2rem 0; } }
+.life-photo-frame { overflow: hidden; border-radius: 6px; border: 1px solid color-mix(in oklab, var(--foreground) 14%, transparent); }
+.life-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.life-photo-ph { width: 100%; height: 100%; display: flex; align-items: flex-end; padding: .7rem; background: radial-gradient(120% 90% at 20% 10%, rgba(56,189,248,.22), transparent 60%), linear-gradient(135deg, rgba(29,78,216,.16), rgba(224,242,254,.06)); }
+.life-photo-ph span { font-family: ui-monospace, monospace; font-size: .7rem; opacity: .5; }
+.life-photo figcaption { font-size: .82rem; opacity: .55; margin-top: .5rem; font-style: italic; line-height: 1.4; }
+.life-photo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+.life-photo-pair .life-photo { margin: 0; }
+.life-fade { opacity: 0; transform: translateY(14px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+.life-fade.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .life-fade { opacity: 1; transform: none; transition: none; } }
