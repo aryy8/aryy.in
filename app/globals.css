@@ -299,3 +299,11 @@ html:not(.dark) .life-px:hover .life-px-text { text-decoration-color: #1d4ed8; }
   .life-photo--left, .life-photo--right { float: none; width: 220px; margin: 1.2rem auto; }
   .life-thumbs { float: none; justify-content: center; margin: 1.2rem 0; }
 }
+
+/* Life slideshow */
+.life-slides .life-photo-frame img { position: absolute; inset: 0; opacity: 0; transition: opacity .9s ease; cursor: pointer; }
+.life-slides .life-photo-frame img.is-on { opacity: 1; }
+.life-slides-dots { display: flex; gap: 5px; justify-content: center; margin-top: .45rem; }
+.life-slides-dots button { width: 5px; height: 5px; border-radius: 999px; padding: 0; border: 0; background: currentColor; opacity: .25; transition: opacity .3s, width .3s; }
+.life-slides-dots button.is-on { opacity: .8; width: 12px; }
+@media (prefers-reduced-motion: reduce) { .life-slides .life-photo-frame img { transition: none; } }

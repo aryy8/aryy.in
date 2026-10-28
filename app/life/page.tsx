@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { DM_Serif_Display, Newsreader } from "next/font/google"
-import { FadeIn, Photo } from "@/components/life-photo"
+import { FadeIn, Photo, PhotoSlides } from "@/components/life-photo"
 
 const display = DM_Serif_Display({ subsets: ["latin"], weight: ["400"] })
 const body = Newsreader({ subsets: ["latin"], style: ["normal", "italic"] })
@@ -77,7 +77,7 @@ export default function LifePage() {
                 <U>Solana bounties</U>, and with my own money I bought a very expensive pair of Nike shoes for the first time. It
                 felt like a big achievement, because it was mine.
               </p>
-              <Photo src="/life/iit-madras.webp" caption="IIT Madras, Road Safety Hackathon" size="right" aspect="3 / 2" />
+              <PhotoSlides srcs={["/photo1_iitm_roadeye.webp", "/photo2_iitm_roadeye.webp", "/photo4_iitm_roadeye.webp", "/photo3_iitm_roadeye.webp", "/photo5_iitm_roadeye.webp"]} caption="IIT Madras, Road Safety Hackathon" size="right" aspect="4 / 3" />
               <p>
                 Second year opened things up. I got to work with <U>Southern Federal University, Russia</U>, as part of an{" "}
                 <Win>International Interdisciplinary Student Project</Win>. The university recognised me with{" "}
