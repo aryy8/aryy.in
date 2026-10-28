@@ -50,7 +50,7 @@ export default function LifePage() {
                 exams of many universities, and finally got selected for Computer Science at <U>Manipal University Jaipur</U>.
               </p>
 
-              <Photo src="/life/muj-campus.jpg" caption="First day at college" size="left" aspect="4 / 3" />
+              <Photo src="/life/muj-campus.jpg" caption="First day at college" size="left" aspect="960 / 575" />
               <p>
                 Jaipur is a beautiful city, and it quickly became home. I started engineering with a MacBook and a very basic
                 knowledge of HTML, CSS and Python. Around me, hackathons were happening everywhere, and I remember literally
