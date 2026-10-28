@@ -21,19 +21,12 @@ export default function LifePage() {
           <div className="max-w-3xl mx-auto h-full border-x-[1.5px] border-dashed border-foreground/25" />
         </div>
 
-        <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto relative px-4 sm:px-8 pt-8 sm:pt-14 pb-24">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-14 group"
-          >
-            <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
-            <span>Back to Home</span>
-          </Link>
+        <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto relative px-4 sm:px-8 pt-4 sm:pt-6 pb-24">
 
           <FadeIn>
             <article className={`life-essay ${body.className}`}>
-              <header className="life-header" style={{position:"relative",margin:"0 0 2.5rem",borderRadius:"14px",overflow:"hidden",aspectRatio:"16 / 9",background:"#02040a"}}>
-                <img src="/life/ascii-wing.png" alt="" aria-hidden="true" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",display:"block"}} />
+              <header className="life-header" style={{position:"relative",margin:"0 0 2.5rem",borderRadius:"14px",overflow:"hidden",aspectRatio:"3 / 1",background:"#02040a"}}>
+                <img src="/life/ascii-wing.png" alt="" aria-hidden="true" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",objectPosition:"center 55%",display:"block"}} />
                 <div style={{position:"absolute",inset:0,background:"linear-gradient(to top, rgba(2,4,10,0.85) 0%, rgba(2,4,10,0.25) 45%, rgba(2,4,10,0) 70%)"}} />
                 <div style={{position:"absolute",left:"1.5rem",bottom:"1.25rem",color:"#fff"}}>
                   <h1 className={display.className} style={{margin:0,color:"#fff",textShadow:"0 2px 18px rgba(0,0,0,0.6)"}}>Life</h1>
