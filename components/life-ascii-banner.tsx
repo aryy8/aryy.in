@@ -29,15 +29,23 @@ export function LifeAsciiBanner() {
     const ready = () => {
       if (!alive || started || !img.complete || !maskImg.complete || !img.naturalWidth || !maskImg.naturalWidth) return;
       started = true;
-      const SW = 960, SH = 540;
-      const off = document.createElement("canvas");
-      off.width = SW; off.height = SH;
-      const octx = off.getContext("2d", { willReadFrequently: true })!;
-      octx.drawImage(img, 0, 0, SW, SH);
-      const px = octx.getImageData(0, 0, SW, SH).data;
-      octx.clearRect(0, 0, SW, SH);
-      octx.drawImage(maskImg, 0, 0, SW, SH);
-      const md = octx.getImageData(0, 0, SW, SH).data;
+      // Area-average the photo down to one pixel per character cell (like the original render),
+      // so the plane's curves come out smooth instead of point-sampled and jagged.
+      const SW = COLS, SH = Math.round(COLS * (9 / 16) * (6 / 10));
+      const shrink = (src: CanvasImageSource, w0: number, h0: number) => {
+        let cur: CanvasImageSource = src, w = w0, h = h0;
+        while (w / 2 > SW) {
+          const c = document.createElement("canvas"); w = Math.round(w / 2); h = Math.round(h / 2);
+          c.width = w; c.height = h; const x = c.getContext("2d")!; x.imageSmoothingQuality = "high";
+          x.drawImage(cur, 0, 0, w, h); cur = c;
+        }
+        const out = document.createElement("canvas"); out.width = SW; out.height = SH;
+        const ox = out.getContext("2d", { willReadFrequently: true })!; ox.imageSmoothingQuality = "high";
+        ox.drawImage(cur, 0, 0, SW, SH);
+        return ox.getImageData(0, 0, SW, SH).data;
+      };
+      const px = shrink(img, img.naturalWidth, img.naturalHeight);
+      const md = shrink(maskImg, maskImg.naturalWidth, maskImg.naturalHeight);
       const mask = new Uint8Array(SW * SH);
       for (let i = 0; i < mask.length; i++) mask[i] = md[i * 4];
       // histogram equalisation of luminance, like the original render
