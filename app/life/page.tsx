@@ -60,7 +60,7 @@ export default function LifePage() {
               </p>
               <Photo src="/life/devfest.jpg" caption="DevFest Jaipur 2024" size="right" aspect="1 / 1" />
               <p>
-                So I started exploring. I joined <U>Google Cloud AI Study Jams</U>, sat in on tech summits and went to{" "}
+                So I started exploring. I sat in on tech summits and went to{" "}
                 <U>Google DevFest</U>, and slowly things started making sense. I created my GitHub account and figured out how it
                 all works. Then I joined the <U>AI² lab</U>, where a senior gave me direction — learn ML, then deep learning, then
                 GenAI — and in first year itself I got an <Win>R&amp;D ML internship at Elumina AI</Win>.
