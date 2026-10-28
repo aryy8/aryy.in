@@ -283,3 +283,4 @@ html:not(.dark) .life-px:hover .life-px-text { text-decoration-color: #1d4ed8; }
 .life-photo-frame:has(.life-photo-ph) { border-style: dashed; }
 .life-photo-ph { align-items: center; justify-content: center; }
 .life-photo-ph span { letter-spacing: .12em; text-transform: uppercase; }
+.life-header + .life-photo .life-photo-frame { border-radius: 14px; }

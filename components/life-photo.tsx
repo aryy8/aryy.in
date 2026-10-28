@@ -51,7 +51,7 @@ export function Photo({ src, alt, caption, size = "small", aspect = "4 / 3" }: P
           </div>
         )}
       </div>
-      <figcaption>{caption}</figcaption>
+      {caption && <figcaption>{caption}</figcaption>}
     </figure>
   )
 }

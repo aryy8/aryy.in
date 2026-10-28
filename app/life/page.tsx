@@ -48,6 +48,7 @@ export default function LifePage() {
                 <h1 className={display.className}>Life</h1>
                 <p className="life-sub">Notes from the road so far — from a Class 10 result sheet to the things I build today.</p>
               </header>
+              <Photo src="/life/hero.jpg" alt="Aryan smiling with a thumbs up at a cafe" caption="" size="wide" aspect="5 / 4" />
             </FadeIn>
 
             <Chapter eyebrow="Prologue · Class 10" title="Where it starts">
@@ -94,7 +95,7 @@ export default function LifePage() {
                 <U>Google DevFest</U>. Slowly, things started making sense. I created my GitHub account and figured out how it all
                 works.
               </p>
-              <Photo src="/life/devfest.jpg" caption="Photo: Google DevFest" size="float" aspect="4 / 5" />
+              <Photo src="/life/devfest.jpg" caption="DevFest Jaipur 2024" size="float" aspect="1 / 1" />
               <p>
                 Then I joined the <U>AI² lab</U>, where a senior gave me direction — learn ML, then deep learning, then GenAI. That
                 guidance mattered more than any course. In first year itself, I got an <Win>R&amp;D ML internship at Elumina AI</Win>.
