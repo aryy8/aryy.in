@@ -1,4 +1,5 @@
 "use client"
+import type React from "react"
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
@@ -15,7 +16,10 @@ import { NotesGrid } from "@/components/notes-grid"
 import { Achievements } from "@/components/achievements"
 import { WorkExperience } from "@/components/work-experience"
 import { SnoopyHero } from "@/components/snoopy-hero"
-import { Mail, MapPin, Sparkles } from "lucide-react"
+import { Mail, MapPin } from "lucide-react"
+import { DM_Serif_Display } from "next/font/google"
+
+const lifeSerif = DM_Serif_Display({ subsets: ["latin"], weight: ["400"] })
 import { Github, Linkedin, FileText } from "lucide-react"
 import { useState } from "react"
 import { AgenticView } from "@/components/agentic-view"
@@ -138,12 +142,6 @@ export default function Portfolio() {
                           aryanfeb17@gmail.com
                         </a>
                       </div>
-                      <div className="flex items-center gap-1.5">
-                        <Sparkles className="size-3.5 text-muted-foreground/80 shrink-0" />
-                        <a href="/life" className="life-link group">
-                          <span className="life-link-text">Life</span>
-                        </a>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -151,7 +149,12 @@ export default function Portfolio() {
 
               {/* About Section */}
               <section id="about" className="mb-12 scroll-mt-20 snap-section">
-                <SectionHeader>About Me</SectionHeader>
+                <div className="flex items-center gap-4 mb-5">
+                  <SectionHeader className="flex-1 mb-0">About Me</SectionHeader>
+                  <a href="/life" className={`life-px ${lifeSerif.className}`} aria-label="Life">
+                  <span className="life-px-text">Life</span>
+                  </a>
+                </div>
                 <div className="space-y-5 text-muted-foreground leading-relaxed text-base">
 
 
@@ -171,6 +174,7 @@ export default function Portfolio() {
 
                 </div>
               </section>
+
 
               <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
 
