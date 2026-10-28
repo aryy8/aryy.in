@@ -74,6 +74,7 @@ export default function LifePage() {
               </p>
               <PhotoSlides srcs={["/uniway_project.webp", "/uniway_hackathon1.webp", "/uniway_hackathon2.webp", "/uniway_hackthon2.5.webp", "/uniway_hackathon3.webp"]} caption="UniWay hackathon" size="left" aspect="10 / 7" />
               <p>
+              <Photo src="/life/solana.jpg" alt="Two laptops at the Solana India Tour workshop at MUJ" caption="Solana India Tour, MUJ" size="right" aspect="3 / 4" />
                 The cash prizes were small, but they motivated me more than I can explain. I also won several{" "}
                 <U>Solana bounties</U>, and with my own money I bought a very expensive pair of Nike shoes for the first time. It
                 felt like a big achievement, because it was mine.
