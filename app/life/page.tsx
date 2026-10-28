@@ -44,13 +44,13 @@ export default function LifePage() {
                 become an engineer, just like my mama and mausi.
               </p>
               <p>
+              <Photo src="/life/muj-campus.jpg" caption="First day at college" size="left" aspect="960 / 575" />
                 My family has a business in gold and medicine, and the easy road would have been to step into it. But my father
                 wanted something different for me: he wanted me to <U>study and become something on my own</U>. So I prepared for
                 JEE alongside my 12th boards, <Win>qualified JEE Main</Win>, scored <Win>91.6% in boards</Win>, sat for the entrance
                 exams of many universities, and finally got selected for Computer Science at <U>Manipal University Jaipur</U>.
               </p>
 
-              <Photo src="/life/muj-campus.jpg" caption="First day at college" size="left" aspect="960 / 575" />
               <p>
               <Photo src="/life/jaipur.jpg?v=2" alt="Aryan in front of Hawa Mahal, Jaipur" caption="Hawa Mahal, Jaipur" size="right" aspect="900 / 832" />
                 Jaipur is a beautiful city, and it quickly became home. I started engineering with a MacBook and a very basic
