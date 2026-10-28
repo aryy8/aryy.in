@@ -74,7 +74,7 @@ export default function LifePage() {
                 where the challenge was to build a navigation platform for the university. There, I found my way to{" "}
                 <Win>first place</Win>, quite literally, through UniWay.
               </p>
-              <Photo src="/life/uniway-win.webp" caption="UniWay hackathon" size="left" aspect="10 / 7" />
+              <PhotoSlides srcs={["/life/uniway-win.webp", "/uniway_hackathon1.webp", "/uniway_hackathon2.webp", "/uniway_hackthon2.5.webp", "/uniway_hackathon3.webp", "/uniway_project.webp"]} caption="UniWay hackathon" size="left" aspect="10 / 7" />
               <p>
                 The cash prizes were small, but they motivated me more than I can explain. I also won several{" "}
                 <U>Solana bounties</U>, and with my own money I bought a very expensive pair of Nike shoes for the first time. It
