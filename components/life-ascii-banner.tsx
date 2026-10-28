@@ -5,7 +5,7 @@ import "./life-banner.css";
 // Dense coloured ASCII render of the wing photo. The plane stays put; sky and clouds drift back past it.
 const RAMP = " .'`,:;!i<+?|1tfjxnuczXUJCLQ0Zmwqpbhao#MW8B@";
 const COLS = 240;                 // same density as the original static render
-const Y0 = 0.24, YSPAN = 0.6;     // vertical slice of the photo shown in the 3:1 banner
+const Y0 = 0.11, YSPAN = 0.89;     // vertical slice of the photo shown in the 2:1 banner
 const HORIZON = 0.42;             // photo y where the cloud deck starts
 const CLEAN_W = 0.66;             // left part of the photo with no plane, used as moving texture
 
