@@ -8,7 +8,7 @@ import { Bot, Search } from "lucide-react"
 const navItems = [
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
-  { id: "live-projects", label: "Live Projects" },
+  { id: "live-projects", label: "Products" },
   { id: "projects", label: "Hackathon Builds" },
   { id: "achievements", label: "Achievements" },
   { id: "blog", label: "Blogs" },

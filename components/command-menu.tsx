@@ -10,7 +10,7 @@ import { FaLinkedin } from "react-icons/fa"
 const SECTIONS = [
   { id: "about", label: "About" },
   { id: "experience", label: "Work Experience" },
-  { id: "live-projects", label: "Live Projects" },
+  { id: "live-projects", label: "Products" },
   { id: "projects", label: "Hackathon Builds" },
   { id: "research", label: "Research" },
   { id: "achievements", label: "Achievements" },

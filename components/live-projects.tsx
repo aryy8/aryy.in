@@ -71,7 +71,7 @@ export function ProjectShot({ slug, alt }: { slug: string; alt: string }) {
 export function LiveProjects() {
   return (
     <section id="live-projects" className="mb-12 scroll-mt-20 snap-section">
-      <SectionHeader>Live Projects</SectionHeader>
+      <SectionHeader>Products</SectionHeader>
       <div className="relative grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
         {PROJECTS.map((p) => (
           <div key={p.slug} className="relative flex">
