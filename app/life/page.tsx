@@ -48,7 +48,6 @@ export default function LifePage() {
                 <h1 className={display.className}>Life</h1>
                 <p className="life-sub">Notes from the road so far — from a Class 10 result sheet to the things I build today.</p>
               </header>
-              <Photo src="/life/hero.jpg" caption="Photo: somewhere along the way" size="wide" aspect="16 / 8" />
             </FadeIn>
 
             <Chapter eyebrow="Prologue · Class 10" title="Where it starts">
@@ -77,10 +76,7 @@ export default function LifePage() {
             </Chapter>
 
             <Chapter eyebrow="2024 · Jaipur" title="Manipal, and a beautiful city">
-              <PhotoPair>
-                <Photo src="/life/jaipur.jpg" caption="Photo: Jaipur" />
-                <Photo src="/life/muj-campus.jpg" caption="Photo: MUJ campus, first weeks" />
-              </PhotoPair>
+              <Photo src="/life/muj-campus.jpg" caption="First day at college" size="wide" aspect="4 / 3" />
               <p>
                 Jaipur is a beautiful city, and it became home. I started engineering with a MacBook and a very basic knowledge of
                 HTML, CSS and Python. That was the whole toolkit.
@@ -117,8 +113,8 @@ export default function LifePage() {
               </p>
               <Quote>I found my way to first place — through UniWay.</Quote>
               <PhotoPair>
-                <Photo src="/life/uniway-win.jpg" caption="Photo: UniWay, 1st place" />
-                <Photo src="/life/nike-shoes.jpg" caption="Photo: the shoes" />
+                <Photo src="/life/uniway-win.webp" caption="UniWay hackathon" aspect="10 / 7" />
+                <Photo src="/life/nike-shoes.jpg" caption="Photo: the shoes" aspect="10 / 7" />
               </PhotoPair>
               <p>
                 The cash prizes were small, but they motivated me so much. I also won several <U>Solana bounties</U>, and with my own
@@ -132,7 +128,7 @@ export default function LifePage() {
                 In second year I got the opportunity to work with <U>Southern Federal University, Russia</U>, as part of an{" "}
                 <Win>International Interdisciplinary Student Project</Win>.
               </p>
-              <Photo src="/life/iit-madras.jpg" caption="Photo: IIT Madras, Road Safety Hackathon finals" size="wide" aspect="16 / 9" />
+              <Photo src="/life/iit-madras.webp" caption="IIT Madras, National Road Safety Hackathon finals" size="wide" aspect="3 / 2" />
               <p>
                 The university recognised me with <Win>awards for student excellence</Win> and a place on the{" "}
                 <Win>Dean&apos;s List</Win> for academic performance. And I went to <U>IIT Madras</U> as a{" "}
@@ -164,8 +160,8 @@ export default function LifePage() {
                 newest one.
               </p>
               <PhotoPair>
-                <Photo src="/life/lattice.jpg" caption="Photo: Lattice" />
-                <Photo src="/life/petal.jpg" caption="Photo: Petal" />
+                <Photo src="/life/lattice.webp" caption="Lattice" aspect="16 / 10" />
+                <Photo src="/life/petal.webp" caption="Petal" aspect="16 / 10" />
               </PhotoPair>
               <p>
                 From a Class 10 result sheet to shipping things people use — the story is still being written. More soon.

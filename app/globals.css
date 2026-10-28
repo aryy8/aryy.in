@@ -280,3 +280,6 @@ html:not(.dark) .life-px:hover .life-px-text { text-decoration-color: #1d4ed8; }
 .life-fade { opacity: 0; transform: translateY(14px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
 .life-fade.is-in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .life-fade { opacity: 1; transform: none; transition: none; } }
+.life-photo-frame:has(.life-photo-ph) { border-style: dashed; }
+.life-photo-ph { align-items: center; justify-content: center; }
+.life-photo-ph span { letter-spacing: .12em; text-transform: uppercase; }
