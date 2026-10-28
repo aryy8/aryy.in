@@ -68,10 +68,10 @@ export default function LifePage() {
                 My first college project was <U>Unipool</U>, a cab-sharing platform for our university that my classmates loved —
                 and the first time I used Bolt, the AI website builder everyone was talking about in 2024. Then came the
                 competitions: a consultathon, <Win>1st runner-up</Win>; BrandIt, <Win>1st runner-up</Win> again; and then UniWay,
-                where the challenge was to build a navigation platform for the university.
+                where the challenge was to build a navigation platform for the university. There, I found my way to{" "}
+                <Win>first place</Win>, quite literally, through UniWay.
               </p>
               <Photo src="/life/uniway-win.webp" caption="UniWay hackathon" size="left" aspect="10 / 7" />
-              <blockquote className={`life-quote ${display.className}`}>There, I found my way to first place — through UniWay.</blockquote>
               <p>
                 The cash prizes were small, but they motivated me more than I can explain. I also won several{" "}
                 <U>Solana bounties</U>, and with my own money I bought a very expensive pair of Nike shoes for the first time. It
