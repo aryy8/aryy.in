@@ -1,3 +1,4 @@
+import { LifeSky } from "@/components/life-sky"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { DM_Serif_Display, Newsreader } from "next/font/google"
@@ -32,6 +33,7 @@ export default function LifePage() {
 
           <FadeIn>
             <article className={`life-essay ${body.className}`}>
+              <LifeSky />
               <header className="life-header">
                 <h1 className={display.className}>Life</h1>
                 <p className="life-sub">Notes from the road so far.</p>
