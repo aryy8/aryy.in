@@ -30,7 +30,7 @@ export default function LifePage() {
                 <LifeAsciiBanner />
                 <div className="life-banner-fade" />
                 <div className="life-banner-text">
-                  <h1 className={display.className}>Life</h1>
+                  <h1 className={`${display.className} life-title-px`}><span className="life-px-text">Life</span></h1>
                 </div>
               </header>
 

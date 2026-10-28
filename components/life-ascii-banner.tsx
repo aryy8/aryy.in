@@ -69,24 +69,41 @@ export function LifeAsciiBanner() {
         ctx.textBaseline = "top";
         for (let r = 0; r < rows; r++) {
           const ny = Y0 + (r / rows) * YSPAN;
-          // far things (sky, horizon) crawl, near clouds rush past
-          const depth = Math.max(0, (ny - HORIZON + 0.05) / (1 - HORIZON));
-          const shift = t * (0.12 + 2.6 * depth * depth);
+          // one shared cloud speed keeps cloud shapes intact (no streaking)
+          const shift = t;
           const sy = Math.min(SH - 1, (ny * SH) | 0);
           for (let c = 0; c < COLS; c++) {
             const nx = c / COLS;
-            let sx = nx * SW;
-            const plane = mask[(sy * SW + Math.min(SW - 1, (nx * SW) | 0))] > 127;
+            const sxi = Math.min(SW - 1, (nx * SW) | 0);
+            const plane = mask[sy * SW + sxi] > 127;
+            let R: number, G: number, B: number;
             if (ny > HORIZON - 0.03 && !plane) {
-              let u = (((sx - shift) % (cleanW * 2)) + cleanW * 2) % (cleanW * 2);
-              if (u > cleanW) u = cleanW * 2 - u;
-              sx = u;
+              // seamless loop over the clean cloud strip: period P, cross-fade the seam over BL cells,
+              // bilinear between columns so motion is smooth instead of stepping a cell at a time
+              const BL = 24, P = cleanW - BL;
+              let u = ((nx * SW - shift) % P + P) % P;
+              const tap = (x: number, ch: number) => {
+                const x0 = Math.floor(x), f = x - x0;
+                const a = px[(sy * SW + Math.min(SW - 1, x0)) * 4 + ch], b = px[(sy * SW + Math.min(SW - 1, x0 + 1)) * 4 + ch];
+                return a + (b - a) * f;
+              };
+              const T = (ch: number) => u < BL ? tap(u + P, ch) + (tap(u, ch) - tap(u + P, ch)) * (u / BL) : tap(u, ch);
+              R = T(0); G = T(1); B = T(2);
+            } else {
+              const i = (sy * SW + sxi) * 4;
+              R = px[i]; G = px[i + 1]; B = px[i + 2];
             }
-            const i = (sy * SW + Math.min(SW - 1, sx | 0)) * 4;
-            const R = px[i], G = px[i + 1], B = px[i + 2];
-            const v = cdf[(0.299 * R + 0.587 * G + 0.114 * B) | 0];
+            let v = cdf[Math.min(255, (0.299 * R + 0.587 * G + 0.114 * B) | 0)];
             const m = Math.max(R, G, B, 1);
             let k: number, ci: number;
+            if (ny < HORIZON && !plane) {
+              // high, thin wisps drifting slowly across the sky so it isn't static
+              const sx2 = nx * 9 - t * 0.012, sy2 = ny * 22;
+              const wisp = Math.max(0, Math.sin(sx2 + Math.sin(sy2 * 0.7 + sx2 * 0.3) * 1.6) * Math.sin(sy2 + sx2 * 0.4) - 0.55) * 1.6;
+              const shimmer = 0.04 * Math.sin(nx * 14 + ny * 30 - t * 0.05);
+              v = Math.min(1, v + wisp * 0.5 + shimmer);
+            }
+
             if (dark) {
               k = (170 + 85 * v) / m;
               ci = Math.floor(v * RAMP.length);
@@ -103,6 +120,7 @@ export function LifeAsciiBanner() {
             if (ny < HORIZON) {
               const q = Math.pow(Math.max(0, (ny - Y0) / (HORIZON - Y0)), 1.6);
               cr = lerp(56, 214, q); cg = lerp(132, 234, q); cb = lerp(255, 255, q);
+              const wq = Math.max(0, v - 0.5) * 0.9; cr = lerp(cr, 255, wq); cg = lerp(cg, 255, wq); cb = lerp(cb, 255, wq);
             } else {
               const q = Math.pow(v, 0.9);
               cr = lerp(98, 255, q); cg = lerp(140, 255, q); cb = lerp(225, 255, q);
@@ -117,10 +135,10 @@ export function LifeAsciiBanner() {
             ctx.fillText(RAMP[ci], c * cw, r * ch);
           }
         }
-        t += 2.2;
+        t += 0.3;
       };
       draw();
-      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) timer = setInterval(draw, 60);
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) timer = setInterval(draw, 30);
     };
     img.onload = ready; maskImg.onload = ready; ready();
     return () => { alive = false; if (timer) clearInterval(timer); };

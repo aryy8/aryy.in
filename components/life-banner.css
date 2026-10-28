@@ -6,3 +6,10 @@
 .life-banner .life-banner-text h1 { margin: 0; color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,0.6); }
 .life-banner .life-banner-text .life-sub { margin: 0; color: rgba(255,255,255,0.82); opacity: 1; }
 .life-banner .life-banner-text h1 { font-size: clamp(2rem, 5vw, 2.75rem); line-height: 1; }
+/* Pixel fill on the title, same tiles as the home-page Life link, sweeping left to right on hover */
+.life-banner .life-title-px { cursor: default; }
+.life-banner .life-title-px .life-px-text { text-decoration: none; color: #fff; }
+.life-banner .life-title-px:hover .life-px-text { color: transparent; animation: life-pix 3s linear infinite; text-shadow: none; }
+@media (prefers-reduced-motion: reduce) { .life-banner .life-title-px:hover .life-px-text { animation: none; } }
+.life-banner .life-title-px .life-px-text { transition: color .9s cubic-bezier(.22,1,.36,1); }
+.life-banner .life-title-px:hover .life-px-text { animation-duration: 4s; animation-timing-function: linear; }
