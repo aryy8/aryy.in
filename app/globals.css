@@ -284,3 +284,18 @@ html:not(.dark) .life-px:hover .life-px-text { text-decoration-color: #1d4ed8; }
 .life-photo-ph { align-items: center; justify-content: center; }
 .life-photo-ph span { letter-spacing: .12em; text-transform: uppercase; }
 .life-header + .life-photo .life-photo-frame { border-radius: 14px; }
+/* Life: single-flow essay, small photos */
+.life-essay::after { content: ""; display: table; clear: both; }
+.life-photo--left, .life-photo--right { width: 200px; margin-top: .35rem; margin-bottom: .8rem; }
+.life-photo--left { float: left; margin-right: 1.4rem; margin-left: 0; }
+.life-photo--right { float: right; margin-left: 1.4rem; margin-right: 0; }
+.life-photo--left .life-photo-frame, .life-photo--right .life-photo-frame, .life-thumbs .life-photo-frame { border-radius: 8px; }
+.life-essay .life-photo figcaption { font-size: .72rem; margin-top: .35rem; }
+.life-essay .life-quote { font-size: 1.45rem; clear: none; overflow: hidden; }
+.life-thumbs { float: right; display: flex; gap: .7rem; margin: .35rem 0 .8rem 1.4rem; }
+.life-thumbs .life-photo { width: 130px; margin: 0; }
+.life-thumbs a:hover img { opacity: .85; }
+@media (max-width: 640px) {
+  .life-photo--left, .life-photo--right { float: none; width: 220px; margin: 1.2rem auto; }
+  .life-thumbs { float: none; justify-content: center; margin: 1.2rem 0; }
+}

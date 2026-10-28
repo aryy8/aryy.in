@@ -31,7 +31,7 @@ type PhotoProps = {
   src?: string
   alt?: string
   caption: string
-  size?: "small" | "wide" | "float"
+  size?: "small" | "wide" | "float" | "left" | "right"
   aspect?: string
 }
 
