@@ -312,4 +312,5 @@ html:not(.dark) .life-px:hover .life-px-text { text-decoration-color: #1d4ed8; }
 .life-cover { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; margin: 0 0 2.25rem; border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent); }
 @media (max-width: 640px) { .life-cover { border-radius: 10px; } }
 
-.life-essay > p { clear: both; }
+.life-photo--right { clear: right; }
+.life-photo--left { clear: left; }
