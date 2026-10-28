@@ -32,8 +32,6 @@ export default function LifePage() {
 
           <FadeIn>
             <article className={`life-essay ${body.className}`}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="life-cover" src="/life/cover.jpg?v=3" alt="View of the wing from a plane window above the clouds" />
               <header className="life-header">
                 <h1 className={display.className}>Life</h1>
                 <p className="life-sub">Notes from the road so far.</p>
