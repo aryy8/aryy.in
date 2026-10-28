@@ -63,8 +63,8 @@ export default function LifePage() {
                 So I started exploring. I sat in on tech summits and went to{" "}
                 <U>Google DevFest</U>, and slowly things started making sense. I created my GitHub account and figured out how it
                 all works. Then I joined the <U>AI² lab</U>, and that is where I met a senior who became{" "}
-                <Win>one of the most special people in my journey</Win>. He believed in me before I did, and patiently guided me
-                from the basics of machine learning all the way to deep learning and generative AI. Because of him, in first year itself I got an <Win>R&amp;D ML internship at Elumina AI</Win>.
+                <Win>one of the most special people in my journey</Win>. They believed in me before I did, and patiently guided me
+                from the basics of machine learning all the way to deep learning and generative AI. Because of them, in first year itself I got an <Win>R&amp;D ML internship at Elumina AI</Win>.
               </p>
               <p>
               <PhotoSlides srcs={["/uniway_project.webp", "/uniway_hackathon1.webp", "/uniway_hackathon2.webp", "/uniway_hackthon2.5.webp", "/uniway_hackathon3.webp"]} caption="UniWay hackathon" size="left" aspect="10 / 7" />
