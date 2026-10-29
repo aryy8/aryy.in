@@ -230,3 +230,90 @@ html, body { overflow-x: clip; }
   -webkit-appearance: none;
   opacity: 0 !important;
 }
+
+/* Life */
+.life-px { display: inline-block; font-size: 1.85rem; line-height: 1; text-decoration: none; letter-spacing: .01em; padding: .05em .1em; }
+.life-px-text {
+  color: hsl(var(--foreground));
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%226%22%20height%3D%226%22%20shape-rendering%3D%22crispEdges%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230ea5e9%22/%3E%3Crect%20x%3D%220%22%20y%3D%221%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%2338bdf8%22/%3E%3Crect%20x%3D%220%22%20y%3D%222%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%232563eb%22/%3E%3Crect%20x%3D%220%22%20y%3D%223%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%23bae6fd%22/%3E%3Crect%20x%3D%220%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%23e0f2fe%22/%3E%3Crect%20x%3D%220%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230284c7%22/%3E%3Crect%20x%3D%221%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%232563eb%22/%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%232563eb%22/%3E%3Crect%20x%3D%221%22%20y%3D%222%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231d4ed8%22/%3E%3Crect%20x%3D%221%22%20y%3D%223%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%23bae6fd%22/%3E%3Crect%20x%3D%221%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%2338bdf8%22/%3E%3Crect%20x%3D%221%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231d4ed8%22/%3E%3Crect%20x%3D%222%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230ea5e9%22/%3E%3Crect%20x%3D%222%22%20y%3D%221%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%237dd3fc%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%2338bdf8%22/%3E%3Crect%20x%3D%222%22%20y%3D%223%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230284c7%22/%3E%3Crect%20x%3D%222%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%232563eb%22/%3E%3Crect%20x%3D%222%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%2338bdf8%22/%3E%3Crect%20x%3D%223%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230ea5e9%22/%3E%3Crect%20x%3D%223%22%20y%3D%221%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231d4ed8%22/%3E%3Crect%20x%3D%223%22%20y%3D%222%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%2338bdf8%22/%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%2338bdf8%22/%3E%3Crect%20x%3D%223%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230ea5e9%22/%3E%3Crect%20x%3D%223%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230284c7%22/%3E%3Crect%20x%3D%224%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%2338bdf8%22/%3E%3Crect%20x%3D%224%22%20y%3D%221%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%2338bdf8%22/%3E%3Crect%20x%3D%224%22%20y%3D%222%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%237dd3fc%22/%3E%3Crect%20x%3D%224%22%20y%3D%223%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%232563eb%22/%3E%3Crect%20x%3D%224%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%237dd3fc%22/%3E%3Crect%20x%3D%224%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%23bae6fd%22/%3E%3Crect%20x%3D%225%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230ea5e9%22/%3E%3Crect%20x%3D%225%22%20y%3D%221%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230284c7%22/%3E%3Crect%20x%3D%225%22%20y%3D%222%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230ea5e9%22/%3E%3Crect%20x%3D%225%22%20y%3D%223%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%23e0f2fe%22/%3E%3Crect%20x%3D%225%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%2338bdf8%22/%3E%3Crect%20x%3D%225%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%232563eb%22/%3E%3C/svg%3E");
+  background-size: 24px 24px; background-position: 0 0; image-rendering: pixelated;
+  -webkit-background-clip: text; background-clip: text;
+  transition: color .5s cubic-bezier(.4,0,.2,1);
+}
+.life-px:hover .life-px-text, .life-px:focus-visible .life-px-text { color: transparent; animation: life-pix 3s linear infinite; will-change: background-position; }
+@keyframes life-pix { to { background-position: 24px 0; } }
+html:not(.dark) .life-px-text { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%226%22%20height%3D%226%22%20shape-rendering%3D%22crispEdges%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%232563eb%22/%3E%3Crect%20x%3D%220%22%20y%3D%221%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230369a1%22/%3E%3Crect%20x%3D%220%22%20y%3D%222%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231e40af%22/%3E%3Crect%20x%3D%220%22%20y%3D%223%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230ea5e9%22/%3E%3Crect%20x%3D%220%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231d4ed8%22/%3E%3Crect%20x%3D%220%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231d4ed8%22/%3E%3Crect%20x%3D%221%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231e40af%22/%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231e40af%22/%3E%3Crect%20x%3D%221%22%20y%3D%222%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231e3a8a%22/%3E%3Crect%20x%3D%221%22%20y%3D%223%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230ea5e9%22/%3E%3Crect%20x%3D%221%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230369a1%22/%3E%3Crect%20x%3D%221%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231e3a8a%22/%3E%3Crect%20x%3D%222%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%232563eb%22/%3E%3Crect%20x%3D%222%22%20y%3D%221%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230284c7%22/%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230369a1%22/%3E%3Crect%20x%3D%222%22%20y%3D%223%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231d4ed8%22/%3E%3Crect%20x%3D%222%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231e40af%22/%3E%3Crect%20x%3D%222%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230369a1%22/%3E%3Crect%20x%3D%223%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%232563eb%22/%3E%3Crect%20x%3D%223%22%20y%3D%221%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231e3a8a%22/%3E%3Crect%20x%3D%223%22%20y%3D%222%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230369a1%22/%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230369a1%22/%3E%3Crect%20x%3D%223%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%232563eb%22/%3E%3Crect%20x%3D%223%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231d4ed8%22/%3E%3Crect%20x%3D%224%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230369a1%22/%3E%3Crect%20x%3D%224%22%20y%3D%221%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230369a1%22/%3E%3Crect%20x%3D%224%22%20y%3D%222%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230284c7%22/%3E%3Crect%20x%3D%224%22%20y%3D%223%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231e40af%22/%3E%3Crect%20x%3D%224%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230284c7%22/%3E%3Crect%20x%3D%224%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230ea5e9%22/%3E%3Crect%20x%3D%225%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%232563eb%22/%3E%3Crect%20x%3D%225%22%20y%3D%221%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231d4ed8%22/%3E%3Crect%20x%3D%225%22%20y%3D%222%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%232563eb%22/%3E%3Crect%20x%3D%225%22%20y%3D%223%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231d4ed8%22/%3E%3Crect%20x%3D%225%22%20y%3D%224%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%230369a1%22/%3E%3Crect%20x%3D%225%22%20y%3D%225%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%231e40af%22/%3E%3C/svg%3E"); }
+.life-px-text { text-decoration-line: underline; text-decoration-style: dashed; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: rgba(255,255,255,.9); transition: color .5s cubic-bezier(.4,0,.2,1), text-decoration-color .4s ease; }
+html:not(.dark) .life-px-text { text-decoration-color: rgba(0,0,0,.45); }
+.life-px:hover .life-px-text, .life-px:focus-visible .life-px-text { text-decoration-color: #38bdf8; }
+html:not(.dark) .life-px:hover .life-px-text { text-decoration-color: #1d4ed8; }
+.life-px:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 6px; }
+@media (prefers-reduced-motion: reduce) { .life-px:hover .life-px-text { animation: none; } }
+
+/* Life page */
+.life-essay { --life-accent: #1d4ed8; max-width: none; margin: 0; font-size: 1.2rem; line-height: 1.75; color: color-mix(in oklab, var(--foreground) 88%, transparent); }
+.dark .life-essay { --life-accent: #38bdf8; }
+.life-essay p { margin: 0 0 1.4em; }
+.life-header { margin-bottom: 2.5rem; }
+.life-header h1 { font-size: clamp(3rem, 8vw, 4.5rem); line-height: 1; color: var(--foreground); letter-spacing: -0.01em; }
+.life-essay .life-sub { margin-top: .9rem; font-style: italic; opacity: .7; }
+.life-chapter { margin-top: 4.5rem; }
+.life-chapter::after { content: ""; display: table; clear: both; }
+.life-chapter h2 { font-size: 2rem; line-height: 1.15; color: var(--foreground); margin-bottom: 1.2rem; }
+.life-essay .life-eyebrow { font-family: ui-monospace, monospace; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--life-accent); margin-bottom: .5rem; }
+.life-u { text-decoration: underline dashed 1px; text-decoration-color: color-mix(in oklab, var(--life-accent) 70%, transparent); text-underline-offset: 4px; }
+.life-win { font-weight: 600; color: var(--foreground); background: linear-gradient(transparent 62%, color-mix(in oklab, var(--life-accent) 22%, transparent) 62%); padding: 0 .1em; }
+.life-link { color: var(--life-accent); text-decoration: underline solid 1px; text-underline-offset: 4px; transition: opacity .2s; }
+.life-link:hover { opacity: .75; }
+.life-quote { font-size: 1.75rem; line-height: 1.3; color: var(--foreground); border-left: 2px solid var(--life-accent); padding: .2rem 0 .2rem 1.25rem; margin: 2.2rem 0; }
+.life-photo { margin: 2rem 0; }
+.life-photo--wide { margin: 2.5rem -2rem; }
+.life-photo--float { float: right; width: 42%; margin: .4rem 0 1rem 1.5rem; }
+@media (max-width: 640px) { .life-photo--float { float: none; width: 100%; margin: 1.5rem 0; } .life-photo--wide { margin: 2rem 0; } }
+.life-photo-frame { overflow: hidden; border-radius: 6px; border: 1px solid color-mix(in oklab, var(--foreground) 14%, transparent); }
+.life-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.life-photo-ph { width: 100%; height: 100%; display: flex; align-items: flex-end; padding: .7rem; background: radial-gradient(120% 90% at 20% 10%, rgba(56,189,248,.22), transparent 60%), linear-gradient(135deg, rgba(29,78,216,.16), rgba(224,242,254,.06)); }
+.life-photo-ph span { font-family: ui-monospace, monospace; font-size: .7rem; opacity: .5; }
+.life-photo figcaption { font-size: .82rem; opacity: .55; margin-top: .5rem; font-style: italic; line-height: 1.4; }
+.life-photo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+.life-photo-pair .life-photo { margin: 0; }
+.life-fade { opacity: 0; transform: translateY(14px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+.life-fade.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .life-fade { opacity: 1; transform: none; transition: none; } }
+.life-photo-frame:has(.life-photo-ph) { border-style: dashed; }
+.life-photo-ph { align-items: center; justify-content: center; }
+.life-photo-ph span { letter-spacing: .12em; text-transform: uppercase; }
+.life-header + .life-photo .life-photo-frame { border-radius: 14px; }
+/* Life: single-flow essay, small photos */
+.life-essay::after { content: ""; display: table; clear: both; }
+.life-photo--left, .life-photo--right { width: 200px; margin-top: .35rem; margin-bottom: .8rem; }
+.life-photo--left { float: left; margin-right: 1.4rem; margin-left: 0; }
+.life-photo--right { float: right; margin-left: 1.4rem; margin-right: 0; }
+.life-photo--left .life-photo-frame, .life-photo--right .life-photo-frame, .life-thumbs .life-photo-frame { border-radius: 8px; }
+.life-essay .life-photo figcaption { font-size: .72rem; margin-top: .35rem; }
+.life-essay .life-quote { font-size: 1.45rem; clear: none; overflow: hidden; }
+.life-thumbs { float: right; display: flex; gap: .7rem; margin: .35rem 0 .8rem 1.4rem; }
+.life-thumbs .life-photo { width: 130px; margin: 0; }
+.life-thumbs a:hover img { opacity: .85; }
+@media (max-width: 640px) {
+  .life-photo--left, .life-photo--right { float: none; width: 220px; margin: 1.2rem auto; }
+  .life-thumbs { float: none; justify-content: center; margin: 1.2rem 0; }
+}
+
+/* Life slideshow */
+.life-slides .life-photo-frame img { position: absolute; inset: 0; opacity: 0; transition: opacity .9s ease; cursor: pointer; }
+.life-slides .life-photo-frame img.is-on { opacity: 1; }
+.life-slides-dots { display: flex; gap: 5px; justify-content: center; margin-top: .45rem; }
+.life-slides-dots button { width: 5px; height: 5px; border-radius: 999px; padding: 0; border: 0; background: currentColor; opacity: .25; transition: opacity .3s, width .3s; }
+.life-slides-dots button.is-on { opacity: .8; width: 12px; }
+@media (prefers-reduced-motion: reduce) { .life-slides .life-photo-frame img { transition: none; } }
+
+/* Life cover banner */
+.life-cover { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; margin: 0 0 2.25rem; border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent); }
+@media (max-width: 640px) { .life-cover { border-radius: 10px; } }
+
+.life-photo--right { clear: right; }
+.life-photo--left { clear: left; }
+
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .35s; }

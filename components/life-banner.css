@@ -1,0 +1,41 @@
+/* The ASCII card stays a night-sky card in both themes so the colours keep their punch. */
+.life-banner { position: relative; margin: 0 0 2.5rem; border-radius: 14px; overflow: hidden; aspect-ratio: 2 / 1; background: #02040a; box-shadow: 0 10px 30px -12px rgba(15,23,42,0.35), 0 0 0 1px rgba(15,23,42,0.08); }
+.dark .life-banner { box-shadow: none; }
+.life-banner-fade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(2,4,10,0.75) 0%, rgba(2,4,10,0.15) 40%, rgba(2,4,10,0) 65%); }
+.life-banner-text { position: absolute; left: 1.5rem; bottom: 1.25rem; }
+.life-banner .life-banner-text h1 { margin: 0; color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,0.6); }
+.life-banner .life-banner-text .life-sub { margin: 0; color: rgba(255,255,255,0.82); opacity: 1; }
+.life-banner .life-banner-text h1 { font-size: clamp(2rem, 5vw, 2.75rem); line-height: 1; }
+/* Pixel fill on the title, same tiles as the home-page Life link, sweeping left to right on hover */
+.life-banner .life-title-px { cursor: default; }
+.life-banner .life-title-px .life-px-text { text-decoration: none; color: #fff; }
+.life-banner .life-title-px:hover .life-px-text { color: transparent; animation: life-pix 3s linear infinite; text-shadow: none; }
+@media (prefers-reduced-motion: reduce) { .life-banner .life-title-px:hover .life-px-text { animation: none; } }
+.life-banner .life-title-px .life-px-text { transition: color .9s cubic-bezier(.22,1,.36,1); }
+.life-banner .life-title-px:hover .life-px-text { animation-duration: 4s; animation-timing-function: linear; }
+/* Light theme: its own bright card */
+html:not(.dark) .life-banner { background: #f3f8ff; }
+html:not(.dark) .life-banner-fade { background: linear-gradient(to top, rgba(243,248,255,0.85) 0%, rgba(243,248,255,0.2) 40%, rgba(243,248,255,0) 65%); }
+html:not(.dark) .life-banner .life-title-px .life-px-text { color: #0f1e3d; }
+html:not(.dark) .life-banner .life-banner-text h1 { text-shadow: 0 1px 12px rgba(255,255,255,0.8); }
+html:not(.dark) .life-banner .life-title-px:hover .life-px-text { color: transparent; }
+html:not(.dark) .life-banner-fade { background: radial-gradient(ellipse 45% 55% at 0% 100%, rgba(243,248,255,0.85) 0%, rgba(243,248,255,0) 100%); }
+/* End-of-post mark and inline logos */
+.life-end { margin-top: 2.5rem; text-align: center; letter-spacing: .5em; opacity: .55; }
+.life-ico { display: inline-block; width: 1em; height: 1em; vertical-align: -0.14em; margin: 0 .1em 0 0; border-radius: 3px; }
+.life-co { white-space: nowrap; }
+.life-ico { width: .85em !important; height: .85em !important; vertical-align: -0.08em !important; margin: 0 .22em 0 .05em !important; }
+.life-end { letter-spacing: .12em !important; opacity: .9 !important; font-weight: 700; font-size: 1.35rem; margin-top: 2.25rem; }
+.life-end { margin-bottom: 0 !important; }
+.life-toggle{position:absolute;top:1.75rem;right:2rem;z-index:20;display:grid;place-items:center;width:2rem;height:2rem;border-radius:999px;background:rgba(0,0,0,.35);color:#fff;border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(6px);cursor:pointer;transition:transform .2s}
+.life-toggle:hover{transform:scale(1.08)}
+html:not(.dark) .life-toggle{background:rgba(255,255,255,.6);color:#1e2a4a;border-color:rgba(30,42,74,.2)}
+.life-home{text-align:center;margin-top:.75rem !important;font-size:.95rem}
+.life-home a{text-decoration:underline;text-underline-offset:4px;opacity:.75}
+.life-home a:hover{opacity:1}
+.life-home{text-align:left !important}
+.life-home a{opacity:1 !important}
+.life-xlink{display:inline-block;transition:transform .2s}
+.life-xlink:hover{transform:scale(1.15)}
+.life-xlink .life-ico{margin:0 .05em !important}
+.life-toggle{background:transparent !important;border:none !important;backdrop-filter:none !important;transform:none !important;top:1.75rem;right:2rem}

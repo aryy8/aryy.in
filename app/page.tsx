@@ -1,4 +1,6 @@
 "use client"
+import Link from "next/link"
+import type React from "react"
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
@@ -16,6 +18,9 @@ import { Achievements } from "@/components/achievements"
 import { WorkExperience } from "@/components/work-experience"
 import { SnoopyHero } from "@/components/snoopy-hero"
 import { Mail, MapPin } from "lucide-react"
+import { DM_Serif_Display } from "next/font/google"
+
+const lifeSerif = DM_Serif_Display({ subsets: ["latin"], weight: ["400"] })
 import { Github, Linkedin, FileText } from "lucide-react"
 import { useState } from "react"
 import { AgenticView } from "@/components/agentic-view"
@@ -79,27 +84,27 @@ export default function Portfolio() {
 
                     {/* Top Action Row: Logo Badges */}
                     <div className="flex items-center gap-1 sm:gap-2 flex-wrap pb-1 justify-end shrink-0 max-w-[200px] sm:max-w-none">
-                      <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Sylus AI">
+                      <div className="size-6 sm:size-9 rounded-full overflow-hidden isolate [transform:translateZ(0)] bg-white dark:bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Sylus AI">
                         <img src="/sylusai.webp" width={36} height={36} loading="lazy" decoding="async" alt="Sylus AI" className="w-full h-full object-contain rounded-full" />
                       </div>
-                      <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Hewlett Packard Enterprise">
+                      <div className="size-6 sm:size-9 rounded-full overflow-hidden isolate [transform:translateZ(0)] bg-white dark:bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Hewlett Packard Enterprise">
                         <div className="size-full rounded-full bg-white flex items-center justify-center p-0.5 sm:p-1">
                           <img src="/hpe_logo.webp" width={36} height={36} loading="lazy" decoding="async" alt="HPE" className="w-full h-full object-contain" />
                         </div>
                       </div>
-                      <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Amazon ML Summer School">
+                      <div className="size-6 sm:size-9 rounded-full overflow-hidden isolate [transform:translateZ(0)] bg-white dark:bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Amazon ML Summer School">
                         <img src="/amazon_logo.webp" width={36} height={36} loading="lazy" decoding="async" alt="Amazon" className="w-full h-full object-contain rounded-full" />
                       </div>
-                      <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Southern Federal University (ICTIS) Russia">
+                      <div className="size-6 sm:size-9 rounded-full overflow-hidden isolate [transform:translateZ(0)] bg-white dark:bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Southern Federal University (ICTIS) Russia">
                         <img src="/sfedu.webp" width={36} height={36} loading="lazy" decoding="async" alt="SfedU" className="w-full h-full object-contain rounded-full" />
                       </div>
-                      <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Elumina Street Solutions">
+                      <div className="size-6 sm:size-9 rounded-full overflow-hidden isolate [transform:translateZ(0)] bg-white dark:bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Elumina Street Solutions">
                         <img src="/elumina.webp" width={36} height={36} loading="lazy" decoding="async" alt="Elumina" className="w-full h-full object-contain rounded-full" />
                       </div>
-                      <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="AI²: Computational Linguistics & Vision Lab">
+                      <div className="size-6 sm:size-9 rounded-full overflow-hidden isolate [transform:translateZ(0)] bg-white dark:bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="AI²: Computational Linguistics & Vision Lab">
                         <img src="/ai2.webp" width={36} height={36} loading="lazy" decoding="async" alt="AI² Lab" className="w-full h-full object-contain rounded-full" />
                       </div>
-                      <div className="size-6 sm:size-9 rounded-full overflow-hidden bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Manipal University Jaipur">
+                      <div className="size-6 sm:size-9 rounded-full overflow-hidden isolate [transform:translateZ(0)] bg-white dark:bg-background/90 border border-border/60 p-0.5 sm:p-1 shadow-2xs transition-transform duration-200 hover:scale-110" title="Manipal University Jaipur">
                         <img src="/muj.webp" width={36} height={36} loading="lazy" decoding="async" alt="Manipal University Jaipur" className="w-full h-full object-contain rounded-full" />
                       </div>
                     </div>
@@ -145,7 +150,12 @@ export default function Portfolio() {
 
               {/* About Section */}
               <section id="about" className="mb-12 scroll-mt-20 snap-section">
-                <SectionHeader>About Me</SectionHeader>
+                <div className="flex items-center gap-4 mb-5">
+                  <SectionHeader className="flex-1 mb-0">About Me</SectionHeader>
+                  <Link href="/life" className={`life-px ${lifeSerif.className}`} aria-label="Life">
+                  <span className="life-px-text">Life</span>
+                  </Link>
+                </div>
                 <div className="space-y-5 text-muted-foreground leading-relaxed text-base">
 
 
@@ -165,6 +175,7 @@ export default function Portfolio() {
 
                 </div>
               </section>
+
 
               <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
 

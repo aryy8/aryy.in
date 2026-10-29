@@ -10,7 +10,7 @@ import { FaLinkedin } from "react-icons/fa"
 const SECTIONS = [
   { id: "about", label: "About" },
   { id: "experience", label: "Work Experience" },
-  { id: "live-projects", label: "Live Projects" },
+  { id: "live-projects", label: "Products" },
   { id: "projects", label: "Hackathon Builds" },
   { id: "research", label: "Research" },
   { id: "achievements", label: "Achievements" },
@@ -21,7 +21,7 @@ const SECTIONS = [
 const LINKS = [
   { label: "Resume", href: "/Aryan_Rastogi_Resume.pdf", icon: FileText },
   { label: "GitHub", href: "https://github.com/aryy8", icon: SiGithub },
-  { label: "LinkedIn", href: "https://linkedin.com/in/aryy8", icon: FaLinkedin },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/aryy8", icon: FaLinkedin },
   { label: "X", href: "https://x.com/aryyann8", icon: SiX },
   { label: "Email", href: "mailto:aryanfeb17@gmail.com", icon: Mail },
   { label: "Petal", href: "https://petal.aryy.in", icon: ArrowUpRight },
