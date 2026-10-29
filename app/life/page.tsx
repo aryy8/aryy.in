@@ -45,7 +45,7 @@ export default function LifePage() {
                 I come from a business family in gold banking. My father
                 wanted me to get a good education. He isn&apos;t with us anymore, but his dream that I <U>build something on my own</U> is
                 something I still carry. Engineering was my choice, so I prepared for JEE alongside my 12th boards, <Win>qualified JEE Main</Win>, scored <Win>91.6% in boards</Win>, sat for the entrance
-                exams of many universities, and finally got selected for Computer Science at <U>Manipal University Jaipur</U>.
+                exams of many universities, and finally got selected for Computer Science at <span className="life-co"><img className="life-ico" src="/life/ico-muj.png" alt="" /><U>Manipal</U></span> <U>University Jaipur</U>.
               </p>
 
               <p>
@@ -74,7 +74,7 @@ export default function LifePage() {
               <p>
               <Photo src="/life/solana.jpg" alt="Two laptops at the Solana India Tour workshop at MUJ" caption="Solana India Tour, MUJ" size="right" aspect="4 / 3" />
                 The cash prizes were small, but they motivated me more than I can explain. I also won several{" "}
-                <U>Solana bounties</U>, and with my own money I bought a quite expensive pair of Nike shoes for the first time. It
+                <span className="life-co"><img className="life-ico" src="/life/ico-solana.png" alt="" /><U>Solana</U></span> <U>bounties</U>, and with my own money I bought a quite expensive pair of Nike shoes for the first time. It
                 felt like a big achievement, because it was mine.
               </p>
               <PhotoSlides srcs={["/photo1_iitm_roadeye.webp", "/photo2_iitm_roadeye.webp", "/photo4_iitm_roadeye.webp", "/photo3_iitm_roadeye.webp", "/photo5_iitm_roadeye.webp"]} caption="IIT Madras, Road Safety Hackathon" size="left" aspect="4 / 3" />
@@ -82,13 +82,13 @@ export default function LifePage() {
                 Second year opened things up. I got to work with <U>Southern Federal University, Russia</U>, as part of an{" "}
                 <Win>International Interdisciplinary Student Project</Win>. The university recognised me with{" "}
                 <Win>awards for student excellence</Win> and a place on the <Win>Dean&apos;s List</Win>, and I went to{" "}
-                <U>IIT Madras</U> as a <Win>finalist in the National Road Safety Hackathon</Win>.
+                <span className="life-co"><img className="life-ico" src="/life/ico-iitm.png" alt="" /><U>IIT</U></span> <U>Madras</U> as a <Win>finalist in the National Road Safety Hackathon</Win>.
               </p>
               <p>
                 Alongside all of it, I kept applying for remote internships and gave so many interviews. At the end of second year,
-                I finally cracked the role of <Win>Full Stack Developer at <span className="life-co"><img className="life-ico" src="/life/ico-sylus.png?v=2" alt="" /> Sylus AI</span></Win>, where I worked on an AI platform from
+                I finally cracked the role of <Win>Full Stack Developer at <span className="life-co"><img className="life-ico" src="/life/ico-sylus.png?v=2" alt="" />Sylus</span> AI</Win>, where I worked on an AI platform from
                 scratch and was promoted to <Win>team lead and AI engineer</Win>. In third year, I was shortlisted for the{" "}
-                <U>CPP program</U> at <span className="life-co"><img className="life-ico" src="/life/ico-hpe.png" alt="" /><U>HPE</U></span>, where we&apos;re doing a research project on drive failure. I also got shortlisted for <span className="life-co"><img className="life-ico" src="/life/ico-amazon.png" alt="" /><Win>Amazon ML Summer School</Win></span>, and this winter, I&apos;ll be
+                <U>CPP program</U> at <span className="life-co"><img className="life-ico" src="/life/ico-hpe.png" alt="" /><U>HPE</U></span>, where we&apos;re doing a research project on drive failure. I also got shortlisted for <Win><span className="life-co"><img className="life-ico" src="/life/ico-amazon.png" alt="" />Amazon</span> ML Summer School</Win>, and this winter, I&apos;ll be
                 rejoining Sylus AI as <Win>AI Product Lead</Win>.
               </p>
               <div className="life-thumbs">
@@ -97,9 +97,9 @@ export default function LifePage() {
               </div>
               <p>
                 And I build my own products.{" "}
-                <a className="life-link" href="https://lattice.aryy.in" target="_blank" rel="noopener noreferrer">Lattice</a> makes
+                <span className="life-co"><img className="life-ico" src="/life/ico-lattice.png" alt="" /><a className="life-link" href="https://lattice.aryy.in" target="_blank" rel="noopener noreferrer">Lattice</a></span> makes
                 text sound natural and has reached <Win>400+ users across 52 countries</Win>;{" "}
-                <a className="life-link" href="https://petal.aryy.in" target="_blank" rel="noopener noreferrer">Petal</a> is the
+                <span className="life-co"><img className="life-ico" src="/life/ico-petal.png" alt="" /><a className="life-link" href="https://petal.aryy.in" target="_blank" rel="noopener noreferrer">Petal</a></span> is the
                 newest one. From a Class 10 result sheet to shipping things people use, the story is still being written.
               </p>
               <p className="life-end" aria-hidden="true">***</p>
