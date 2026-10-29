@@ -42,9 +42,9 @@ export default function LifePage() {
               </p>
               <p>
               <Photo src="/life/muj-campus.jpg" caption="First day at college" size="left" aspect="960 / 575" />
-                My family has a business in gold and medicine, and the easy road would have been to step into it. My father only
-                wanted me to <U>make something of my own</U>, whatever I chose. Engineering was
-                my choice, so I prepared for JEE alongside my 12th boards, <Win>qualified JEE Main</Win>, scored <Win>91.6% in boards</Win>, sat for the entrance
+                My family runs a gold and medicine business, and stepping into it would have been the easy road. But my father
+                wanted me to get a good education. He isn&apos;t with us anymore, but his dream that I <U>build something on my own</U> is
+                something I still carry. Engineering was my choice, so I prepared for JEE alongside my 12th boards, <Win>qualified JEE Main</Win>, scored <Win>91.6% in boards</Win>, sat for the entrance
                 exams of many universities, and finally got selected for Computer Science at <U>Manipal University Jaipur</U>.
               </p>
 
