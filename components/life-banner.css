@@ -20,3 +20,6 @@ html:not(.dark) .life-banner .life-title-px .life-px-text { color: #0f1e3d; }
 html:not(.dark) .life-banner .life-banner-text h1 { text-shadow: 0 1px 12px rgba(255,255,255,0.8); }
 html:not(.dark) .life-banner .life-title-px:hover .life-px-text { color: transparent; }
 html:not(.dark) .life-banner-fade { background: radial-gradient(ellipse 45% 55% at 0% 100%, rgba(243,248,255,0.85) 0%, rgba(243,248,255,0) 100%); }
+/* End-of-post mark and inline logos */
+.life-end { margin-top: 2.5rem; text-align: center; letter-spacing: .5em; opacity: .55; }
+.life-ico { display: inline-block; width: 1em; height: 1em; vertical-align: -0.14em; margin: 0 .1em 0 0; border-radius: 3px; }

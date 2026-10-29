@@ -86,10 +86,10 @@ export default function LifePage() {
               </p>
               <p>
                 Alongside all of it, I kept applying for remote internships and gave so many interviews. At the end of second year,
-                I finally cracked the role of <Win>Full Stack Developer at Sylus AI</Win>, where I worked on an AI platform from
+                I finally cracked the role of <Win>Full Stack Developer at <img className="life-ico" src="/life/ico-sylus.png?v=2" alt="" /> Sylus AI</Win>, where I worked on an AI platform from
                 scratch and was promoted to <Win>team lead and AI engineer</Win>. In third year, I was shortlisted for the{" "}
-                <U>CPP program at HPE</U>, where we&apos;re doing a research project on drive failure, and this winter, I&apos;ll be
-                rejoining Sylus AI as <Win>AI Product Lead</Win>.
+                <U>CPP program at <img className="life-ico" src="/life/ico-hpe.png" alt="" /> HPE</U>, where we&apos;re doing a research project on drive failure. I also got shortlisted for <Win><img className="life-ico" src="/life/ico-amazon.png" alt="" /> Amazon ML Summer School</Win>, and this winter, I&apos;ll be
+                rejoining <img className="life-ico" src="/life/ico-sylus.png?v=2" alt="" /> Sylus AI as <Win>AI Product Lead</Win>.
               </p>
               <div className="life-thumbs">
                 <a href="https://lattice.aryy.in" target="_blank" rel="noopener noreferrer"><Photo src="/life/lattice.webp" caption="Lattice" aspect="16 / 10" /></a>
@@ -102,6 +102,7 @@ export default function LifePage() {
                 <a className="life-link" href="https://petal.aryy.in" target="_blank" rel="noopener noreferrer">Petal</a> is the
                 newest one. From a Class 10 result sheet to shipping things people use, the story is still being written.
               </p>
+              <p className="life-end" aria-hidden="true">***</p>
             </article>
           </FadeIn>
         </main>
