@@ -86,10 +86,10 @@ export default function LifePage() {
               </p>
               <p>
                 Alongside all of it, I kept applying for remote internships and gave so many interviews. At the end of second year,
-                I finally cracked the role of <Win>Full Stack Developer at <img className="life-ico" src="/life/ico-sylus.png?v=2" alt="" /> Sylus AI</Win>, where I worked on an AI platform from
+                I finally cracked the role of <Win>Full Stack Developer at <span className="life-co"><img className="life-ico" src="/life/ico-sylus.png?v=2" alt="" /> Sylus AI</span></Win>, where I worked on an AI platform from
                 scratch and was promoted to <Win>team lead and AI engineer</Win>. In third year, I was shortlisted for the{" "}
-                <U>CPP program at <img className="life-ico" src="/life/ico-hpe.png" alt="" /> HPE</U>, where we&apos;re doing a research project on drive failure. I also got shortlisted for <Win><img className="life-ico" src="/life/ico-amazon.png" alt="" /> Amazon ML Summer School</Win>, and this winter, I&apos;ll be
-                rejoining <img className="life-ico" src="/life/ico-sylus.png?v=2" alt="" /> Sylus AI as <Win>AI Product Lead</Win>.
+                <U>CPP program</U> at <span className="life-co"><img className="life-ico" src="/life/ico-hpe.png" alt="" /><U>HPE</U></span>, where we&apos;re doing a research project on drive failure. I also got shortlisted for <span className="life-co"><img className="life-ico" src="/life/ico-amazon.png" alt="" /><Win>Amazon ML Summer School</Win></span>, and this winter, I&apos;ll be
+                rejoining Sylus AI as <Win>AI Product Lead</Win>.
               </p>
               <div className="life-thumbs">
                 <a href="https://lattice.aryy.in" target="_blank" rel="noopener noreferrer"><Photo src="/life/lattice.webp" caption="Lattice" aspect="16 / 10" /></a>
