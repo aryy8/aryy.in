@@ -33,3 +33,9 @@ html:not(.dark) .life-toggle{background:rgba(255,255,255,.6);color:#1e2a4a;borde
 .life-home{text-align:center;margin-top:.75rem !important;font-size:.95rem}
 .life-home a{text-decoration:underline;text-underline-offset:4px;opacity:.75}
 .life-home a:hover{opacity:1}
+.life-home{text-align:left !important}
+.life-home a{opacity:1 !important}
+.life-xlink{display:inline-block;transition:transform .2s}
+.life-xlink:hover{transform:scale(1.15)}
+.life-xlink .life-ico{margin:0 .05em !important}
+.life-toggle{background:transparent !important;border:none !important;backdrop-filter:none !important;transform:none !important;top:1.75rem;right:2rem}

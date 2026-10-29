@@ -101,11 +101,11 @@ export default function LifePage() {
                 <span className="life-co"><img className="life-ico" src="/life/ico-lattice.png" alt="" /><a className="life-link" href="https://lattice.aryy.in" target="_blank" rel="noopener noreferrer">Lattice</a></span> makes
                 text sound natural and has reached <Win>400+ users across 52 countries</Win>;{" "}
                 <span className="life-co"><img className="life-ico" src="/life/ico-petal.png" alt="" /><a className="life-link" href="https://petal.aryy.in" target="_blank" rel="noopener noreferrer">Petal</a></span> is the
-                newest one. I share what I build on{" "}
-                <span className="life-co"><svg className="life-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><a className="life-link" href="https://x.com/aryyann8" target="_blank" rel="noopener noreferrer">X</a></span>, so come say hi. From a Class 10 result sheet to shipping things people use, the story is still being written.
+                newest one. I'm most active on{" "}
+                <a className="life-xlink" href="https://x.com/aryyann8" target="_blank" rel="noopener noreferrer" aria-label="Aryan on X"><svg className="life-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>, sharing what I build as I go. From a Class 10 result sheet to shipping things people use, the story is still being written.
               </p>
               <p className="life-end" aria-hidden="true">*****</p>
-              <p className="life-home"><Link href="/">Home</Link></p>
+              <p className="life-home"><Link className="life-link" href="/">Home</Link></p>
             </article>
           </FadeIn>
         </main>
