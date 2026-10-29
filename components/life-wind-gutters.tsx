@@ -3,15 +3,10 @@
 import { useEffect, useRef } from "react"
 
 /**
- * LifeWindGutters: pointer-only ASCII wind in the side gutters of /life.
- * Nothing renders at rest. Moving the pointer through a gutter leaves
- * a trail of wind streaks and small cloud wisps that drift and fade.
+ * LifeWindGutters: pointer-only pixel ripples in the /life side gutters.
+ * Same wave physics as the homepage pond, drawn as soft square pixels.
+ * Nothing renders at rest; the loop sleeps once the water is calm.
  */
-
-const DARK = ["255,255,255", "224,242,254", "186,230,253", "125,211,252", "56,189,248"]
-const LIGHT = ["14,116,144", "2,132,199", "37,99,235", "56,189,248", "125,180,230"]
-
-type P = { x: number; y: number; vx: number; vy: number; life: number; max: number; kind: 0 | 1; g: number }
 
 export function LifeWindGutters() {
   const ref = useRef<HTMLCanvasElement>(null)
@@ -23,99 +18,117 @@ export function LifeWindGutters() {
     if (!ctx) return
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
 
-    let w = 0, h = 0, dpr = 1
+    const cell = 7
+    const gap = 1
+    let w = 0, h = 0, cols = 0, rows = 0
+    let h0 = new Float32Array(0), h1 = new Float32Array(0)
     let colL = 0, colR = 0
     const fadeW = 56
-    const ps: P[] = []
-    let anim = 0
-    let running = false
-    let last = { x: -1, y: -1 }
+    let anim = 0, running = false, prevT = 0, acc = 0
+    let px = -1, py = -1
 
-    const resize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2)
-      w = window.innerWidth; h = window.innerHeight
-      canvas.width = w * dpr; canvas.height = h * dpr
-      canvas.style.width = w + "px"; canvas.style.height = h + "px"
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      bounds()
-    }
     const bounds = () => {
       const m = document.querySelector("main")
       if (m) { const r = m.getBoundingClientRect(); colL = r.left - 16; colR = r.right + 16 }
       else { colL = w / 2 - 390; colR = w / 2 + 390 }
     }
-    const gutterFade = (x: number) => {
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      w = window.innerWidth; h = window.innerHeight
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr)
+      canvas.style.width = w + "px"; canvas.style.height = h + "px"
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      cols = Math.ceil(w / cell); rows = Math.ceil(h / cell)
+      h0 = new Float32Array(cols * rows); h1 = new Float32Array(cols * rows)
+      bounds()
+    }
+    const fadeAt = (x: number) => {
       if (x < colL) return Math.min(1, (colL - x) / fadeW)
       if (x > colR) return Math.min(1, (x - colR) / fadeW)
       return 0
     }
+    const drop = (x: number, y: number, s: number, rad: number) => {
+      const gx = Math.floor(x / cell), gy = Math.floor(y / cell)
+      for (let dy = -rad; dy <= rad; dy++) for (let dx = -rad; dx <= rad; dx++) {
+        const nx = gx + dx, ny = gy + dy
+        if (nx < 1 || ny < 1 || nx >= cols - 1 || ny >= rows - 1) continue
+        const d = Math.hypot(dx, dy)
+        if (d <= rad) h0[ny * cols + nx] += s * 0.5 * (1 + Math.cos((Math.PI * d) / rad))
+      }
+    }
+    const wake = () => { if (!running) { running = true; prevT = 0; anim = requestAnimationFrame(tick) } }
 
     const onMove = (e: PointerEvent) => {
       const x = e.clientX, y = e.clientY
-      const dx = last.x < 0 ? 0 : x - last.x
-      const dy = last.y < 0 ? 0 : y - last.y
-      last = { x, y }
-      if (gutterFade(x) <= 0) return
-      const speed = Math.min(40, Math.hypot(dx, dy))
-      const n = Math.max(1, Math.round(speed / 9))
-      for (let i = 0; i < n; i++) {
-        const cloud = Math.random() < 0.45
-        const max = cloud ? 110 + Math.random() * 70 : 70 + Math.random() * 50
-        ps.push({
-          x: x - dx * (i / n) + (Math.random() - 0.5) * (cloud ? 22 : 8),
-          y: y - dy * (i / n) + (Math.random() - 0.5) * (cloud ? 16 : 6),
-          vx: dx * 0.035 + 0.25 + Math.random() * 0.2,
-          vy: dy * 0.025 + (Math.random() - 0.5) * 0.1,
-          life: max, max, kind: cloud ? 0 : 1, g: Math.random(),
-        })
+      if (fadeAt(x) <= 0) { px = x; py = y; return }
+      const d = px < 0 ? 0 : Math.hypot(x - px, y - py)
+      if (px < 0 || d > 6) {
+        const steps = Math.max(1, Math.ceil(d / 10))
+        for (let i = 1; i <= steps; i++) {
+          const t = i / steps
+          drop(px < 0 ? x : px + (x - px) * t, py < 0 ? y : py + (y - py) * t, Math.min(0.9, 0.3 + d / 70) / steps * 1.6, 2)
+        }
+        px = x; py = y
+        wake()
       }
-      if (ps.length > 500) ps.splice(0, ps.length - 500)
-      if (!running) { running = true; anim = requestAnimationFrame(tick) }
     }
-    const onLeave = () => { last = { x: -1, y: -1 } }
+    const onDown = (e: PointerEvent) => { if (fadeAt(e.clientX) > 0) { drop(e.clientX, e.clientY, 2.2, 4); wake() } }
+    const onLeave = () => { px = -1; py = -1 }
 
-    let prev = 0
+    const step = () => {
+      const damp = 0.965
+      for (let y = 1; y < rows - 1; y++) {
+        const o = y * cols
+        for (let x = 1; x < cols - 1; x++) {
+          const i = o + x
+          h1[i] = ((h0[i - 1] + h0[i + 1] + h0[i - cols] + h0[i + cols]) * 0.5 - h1[i]) * damp
+        }
+      }
+      const t = h0; h0 = h1; h1 = t
+    }
+
     const tick = (now: number) => {
-      const dt = prev ? Math.min(3, (now - prev) / 16.667) : 1
-      prev = now
+      // fixed 60Hz physics so speed is identical on any display
+      const dt = prevT ? Math.min(50, now - prevT) : 16.667
+      prevT = now
+      acc += dt
+      while (acc >= 16.667) { step(); acc -= 16.667 }
+
       ctx.clearRect(0, 0, w, h)
       const dark = document.documentElement.classList.contains("dark")
-            const damp = Math.pow(0.985, dt), dampY = Math.pow(0.975, dt)
-      for (let i = ps.length - 1; i >= 0; i--) {
-        const p = ps[i]
-        p.x += p.vx * dt; p.y += p.vy * dt
-        p.vx = p.vx * damp + 0.003 * dt
-        p.vy *= dampY
-        p.life -= dt
-        const f = gutterFade(p.x)
-        if (p.life <= 0 || f <= 0) { ps.splice(i, 1); continue }
-        const t = p.life / p.max
-        const age = 1 - t
-        const fadeIn = Math.min(1, age / 0.12)
-        const fadeOut = t * t * (3 - 2 * t)
-        const a = fadeIn * fadeOut * f
-        if (a < 0.01) continue
-        const base = p.kind === 0 ? 7 : 4
-        const sz = Math.max(2, Math.round((base * (0.45 + 0.55 * t)) / 2) * 2)
-        const pal = dark ? DARK : LIGHT
-        const c = pal[Math.min(pal.length - 1, Math.floor(p.g * pal.length))]
-        ctx.fillStyle = `rgba(${c},${(a * (dark ? 0.85 : 0.75)).toFixed(3)})`
-        ctx.fillRect(p.x - sz / 2, p.y - sz / 2, sz, sz)
+      let energy = 0
+      for (let c = 0; c < cols; c++) {
+        const cx = c * cell + cell / 2
+        const f = fadeAt(cx)
+        if (f <= 0.01) continue
+        for (let r = 0; r < rows; r++) {
+          const v = h0[r * cols + c]
+          const a = Math.abs(v)
+          energy += a
+          if (a < 0.03) continue
+          const k = Math.min(1, a * 1.6)
+          const alpha = (k * k * (3 - 2 * k)) * f * (dark ? 0.85 : 0.7)
+          if (v > 0) ctx.fillStyle = dark ? `rgba(224,242,254,${alpha.toFixed(3)})` : `rgba(2,132,199,${alpha.toFixed(3)})`
+          else ctx.fillStyle = dark ? `rgba(56,189,248,${(alpha * 0.8).toFixed(3)})` : `rgba(30,64,175,${(alpha * 0.8).toFixed(3)})`
+          ctx.fillRect(c * cell, r * cell, cell - gap, cell - gap)
+        }
       }
-      if (ps.length) anim = requestAnimationFrame(tick)
-      else { running = false; prev = 0; ctx.clearRect(0, 0, w, h) }
+      if (energy > 0.5) anim = requestAnimationFrame(tick)
+      else { running = false; h0.fill(0); h1.fill(0); ctx.clearRect(0, 0, w, h) }
     }
 
     resize()
     window.addEventListener("resize", resize)
     window.addEventListener("scroll", bounds, { passive: true })
     window.addEventListener("pointermove", onMove, { passive: true })
+    window.addEventListener("pointerdown", onDown, { passive: true })
     document.documentElement.addEventListener("pointerleave", onLeave)
     return () => {
       cancelAnimationFrame(anim)
       window.removeEventListener("resize", resize)
       window.removeEventListener("scroll", bounds)
       window.removeEventListener("pointermove", onMove)
+      window.removeEventListener("pointerdown", onDown)
       document.documentElement.removeEventListener("pointerleave", onLeave)
     }
   }, [])
