@@ -1,6 +1,6 @@
 import { LifeAsciiBanner } from "@/components/life-ascii-banner";
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import { LifeThemeToggle } from "@/components/life-theme-toggle"
 import { DM_Serif_Display, Newsreader } from "next/font/google"
 import { FadeIn, Photo, PhotoSlides } from "@/components/life-photo"
 
@@ -24,6 +24,7 @@ export default function LifePage() {
 
         <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto relative px-4 sm:px-8 pt-4 sm:pt-6 pb-8">
 
+          <LifeThemeToggle />
           <FadeIn>
             <article className={`life-essay ${body.className}`}>
               <header className="life-header life-banner">
@@ -100,9 +101,11 @@ export default function LifePage() {
                 <span className="life-co"><img className="life-ico" src="/life/ico-lattice.png" alt="" /><a className="life-link" href="https://lattice.aryy.in" target="_blank" rel="noopener noreferrer">Lattice</a></span> makes
                 text sound natural and has reached <Win>400+ users across 52 countries</Win>;{" "}
                 <span className="life-co"><img className="life-ico" src="/life/ico-petal.png" alt="" /><a className="life-link" href="https://petal.aryy.in" target="_blank" rel="noopener noreferrer">Petal</a></span> is the
-                newest one. From a Class 10 result sheet to shipping things people use, the story is still being written.
+                newest one. I share what I build on{" "}
+                <span className="life-co"><svg className="life-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><a className="life-link" href="https://x.com/aryyann8" target="_blank" rel="noopener noreferrer">X</a></span>, so come say hi. From a Class 10 result sheet to shipping things people use, the story is still being written.
               </p>
               <p className="life-end" aria-hidden="true">*****</p>
+              <p className="life-home"><Link href="/">Home</Link></p>
             </article>
           </FadeIn>
         </main>
