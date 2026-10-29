@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link"
 import type React from "react"
 
 import { Card, CardContent } from "@/components/ui/card"
@@ -151,9 +152,9 @@ export default function Portfolio() {
               <section id="about" className="mb-12 scroll-mt-20 snap-section">
                 <div className="flex items-center gap-4 mb-5">
                   <SectionHeader className="flex-1 mb-0">About Me</SectionHeader>
-                  <a href="/life" className={`life-px ${lifeSerif.className}`} aria-label="Life">
+                  <Link href="/life" className={`life-px ${lifeSerif.className}`} aria-label="Life">
                   <span className="life-px-text">Life</span>
-                  </a>
+                  </Link>
                 </div>
                 <div className="space-y-5 text-muted-foreground leading-relaxed text-base">
 

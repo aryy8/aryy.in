@@ -314,3 +314,8 @@ html:not(.dark) .life-px:hover .life-px-text { text-decoration-color: #1d4ed8; }
 
 .life-photo--right { clear: right; }
 .life-photo--left { clear: left; }
+
+@view-transition { navigation: auto; }
+@keyframes page-enter { from { opacity: 0; } to { opacity: 1; } }
+.page-enter { animation: page-enter .45s cubic-bezier(.22,1,.36,1) both; }
+@media (prefers-reduced-motion: reduce) { .page-enter { animation: none; } }
