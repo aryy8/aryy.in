@@ -21,7 +21,7 @@ export default function LifePage() {
           <div className="max-w-3xl mx-auto h-full border-x-[1.5px] border-dashed border-foreground/25" />
         </div>
 
-        <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto relative px-4 sm:px-8 pt-4 sm:pt-6 pb-8">
+        <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto relative px-3 sm:px-8 pt-4 sm:pt-6 pb-8">
 
           <FadeIn>
             <article className={`life-essay ${body.className}`}>
