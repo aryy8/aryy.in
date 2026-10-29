@@ -13,3 +13,9 @@
 @media (prefers-reduced-motion: reduce) { .life-banner .life-title-px:hover .life-px-text { animation: none; } }
 .life-banner .life-title-px .life-px-text { transition: color .9s cubic-bezier(.22,1,.36,1); }
 .life-banner .life-title-px:hover .life-px-text { animation-duration: 4s; animation-timing-function: linear; }
+/* Light theme: its own bright card */
+html:not(.dark) .life-banner { background: #f3f8ff; }
+html:not(.dark) .life-banner-fade { background: linear-gradient(to top, rgba(243,248,255,0.85) 0%, rgba(243,248,255,0.2) 40%, rgba(243,248,255,0) 65%); }
+html:not(.dark) .life-banner .life-title-px .life-px-text { color: #0f1e3d; }
+html:not(.dark) .life-banner .life-banner-text h1 { text-shadow: 0 1px 12px rgba(255,255,255,0.8); }
+html:not(.dark) .life-banner .life-title-px:hover .life-px-text { color: transparent; }

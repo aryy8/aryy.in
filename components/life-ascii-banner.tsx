@@ -57,7 +57,7 @@ export function LifeAsciiBanner() {
       const ctx = canvas.getContext("2d")!;
       let t = 0;
       const draw = () => {
-        const dark = true; // card is always dark; see life-banner.css
+        const dark = document.documentElement.classList.contains("dark");
         const dpr = window.devicePixelRatio || 1;
         const w = canvas.clientWidth, h = canvas.clientHeight;
         if (canvas.width !== Math.round(w * dpr)) { canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr); }
@@ -130,6 +130,20 @@ export function LifeAsciiBanner() {
               const k0 = (120 + 135 * v) / m;
               cr = R * k0; cg = G * k0; cb = B * k0;
               ci = Math.max(2, Math.min(RAMP.length - 1, Math.floor(v * RAMP.length)));
+            }
+            if (!dark) {
+              // light card: ink on a pale sky. Bright photo areas become sparse, pale glyphs; shadows become dense blue ink
+              const lv = Math.pow(v, 2.4);
+              const q = lv;
+              ci = Math.max(2, Math.min(RAMP.length - 1, Math.floor((1 - lv * 0.8) * RAMP.length)));
+              if (plane) {
+                const k1 = (10 + 110 * lv) / m;
+                cr = R * k1; cg = G * k1; cb = B * k1 + 18;
+              } else if (ny < HORIZON) {
+                cr = lerp(35, 120, q); cg = lerp(95, 165, q); cb = lerp(215, 240, q);
+              } else {
+                cr = lerp(18, 135, q); cg = lerp(45, 172, q); cb = lerp(125, 235, q);
+              }
             }
             ctx.fillStyle = `rgb(${Math.min(255, cr) | 0},${Math.min(255, cg) | 0},${Math.min(255, cb) | 0})`;
             ctx.fillText(RAMP[ci], c * cw, r * ch);
