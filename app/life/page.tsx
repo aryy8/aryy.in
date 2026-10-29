@@ -1,6 +1,5 @@
 import { LifeAsciiBanner } from "@/components/life-ascii-banner";
 import Link from "next/link"
-import { LifeThemeToggle } from "@/components/life-theme-toggle"
 import { DM_Serif_Display, Newsreader } from "next/font/google"
 import { FadeIn, Photo, PhotoSlides } from "@/components/life-photo"
 
@@ -24,7 +23,6 @@ export default function LifePage() {
 
         <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto relative px-4 sm:px-8 pt-4 sm:pt-6 pb-8">
 
-          <LifeThemeToggle />
           <FadeIn>
             <article className={`life-essay ${body.className}`}>
               <header className="life-header life-banner">
