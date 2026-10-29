@@ -61,7 +61,7 @@ export default function LifePage() {
                 <U>Google DevFest</U>, and slowly things started making sense. I created my GitHub account and figured out how it
                 all works. Then I joined the <U>AI² lab</U>, and that is where I met a senior whose part in my story was short, but{" "}
                 <Win>it changed its direction</Win>. He showed me the path into machine learning, deep learning and
-                generative AI, and gave me the push I needed to start. Because of him, in first year itself I got an <Win>R&amp;D ML internship at <span className="life-co"><img className="life-ico" src="/elumina.webp" alt="" />Elumina</span> AI</Win>.
+                generative AI, and gave me the push I needed to start. Because of him, in first year itself I got an <Win>R&amp;D ML internship at <span className="life-co"><img className="life-ico" src="/elumina.webp" alt="" />Elumina</span></Win>.
               </p>
               <p>
               <PhotoSlides srcs={["/uniway_project.webp", "/uniway_hackathon1.webp", "/uniway_hackathon2.webp", "/uniway_hackthon2.5.webp", "/uniway_hackathon3.webp"]} caption="UniWay hackathon" size="left" aspect="10 / 7" />
@@ -86,10 +86,10 @@ export default function LifePage() {
               </p>
               <p>
                 Alongside all of it, I kept applying for remote internships and gave so many interviews. At the end of second year,
-                I finally cracked the role of <Win>Full Stack Developer at <span className="life-co"><img className="life-ico" src="/life/ico-sylus.png?v=2" alt="" />Sylus</span> AI</Win>, where I worked on an AI platform from
-                scratch and was promoted to <Win>team lead and AI engineer</Win>. In third year, I was shortlisted for the{" "}
-                <U>CPP program</U> at <span className="life-co"><img className="life-ico" src="/life/ico-hpe.png" alt="" /><U>HPE</U></span>, where we&apos;re doing a research project on drive failure. I also got shortlisted for <Win><span className="life-co"><img className="life-ico" src="/life/ico-amazon.png" alt="" />Amazon</span> ML Summer School</Win>, and this winter, I&apos;ll be
-                rejoining Sylus AI as <Win>AI Product Lead</Win>.
+                I joined <span className="life-co"><img className="life-ico" src="/life/ico-sylus.png?v=2" alt="" />Sylus</span> AI as a full stack developer, built an AI platform there from scratch, and was promoted to{" "}
+                <Win>team lead and AI engineer</Win>. In third year, my team was shortlisted for the CPP program at <span className="life-co"><img className="life-ico" src="/life/ico-hpe.png" alt="" />HPE</span>, where
+                we&apos;re researching drive failure, and I got shortlisted for the <span className="life-co"><img className="life-ico" src="/life/ico-amazon.png" alt="" />Amazon</span> ML Summer School. This winter, I&apos;ll be
+                back at Sylus AI as <Win>AI Product Lead</Win>.
               </p>
               <div className="life-thumbs">
                 <a href="https://lattice.aryy.in" target="_blank" rel="noopener noreferrer"><Photo src="/life/lattice.webp" caption="Lattice" aspect="16 / 10" /></a>
@@ -102,7 +102,7 @@ export default function LifePage() {
                 <span className="life-co"><img className="life-ico" src="/life/ico-petal.png" alt="" /><a className="life-link" href="https://petal.aryy.in" target="_blank" rel="noopener noreferrer">Petal</a></span> is the
                 newest one. From a Class 10 result sheet to shipping things people use, the story is still being written.
               </p>
-              <p className="life-end" aria-hidden="true">***</p>
+              <p className="life-end" aria-hidden="true">*****</p>
             </article>
           </FadeIn>
         </main>
