@@ -8,8 +8,8 @@ import { useEffect, useRef } from "react"
  * a trail of wind streaks and small cloud wisps that drift and fade.
  */
 
-const CLOUD = ["·", "∙", "°", "o", "O", "@"]
-const WIND = ["·", "-", "~", "≈", "=", "≡"]
+const DARK = ["255,255,255", "224,242,254", "186,230,253", "125,211,252", "56,189,248"]
+const LIGHT = ["14,116,144", "2,132,199", "37,99,235", "56,189,248", "125,180,230"]
 
 type P = { x: number; y: number; vx: number; vy: number; life: number; max: number; kind: 0 | 1; g: number }
 
@@ -80,9 +80,7 @@ export function LifeWindGutters() {
       prev = now
       ctx.clearRect(0, 0, w, h)
       const dark = document.documentElement.classList.contains("dark")
-      ctx.font = "12px ui-monospace, SFMono-Regular, Menlo, monospace"
-      ctx.textAlign = "center"; ctx.textBaseline = "middle"
-      const damp = Math.pow(0.985, dt), dampY = Math.pow(0.975, dt)
+            const damp = Math.pow(0.985, dt), dampY = Math.pow(0.975, dt)
       for (let i = ps.length - 1; i >= 0; i--) {
         const p = ps[i]
         p.x += p.vx * dt; p.y += p.vy * dt
@@ -95,14 +93,14 @@ export function LifeWindGutters() {
         const age = 1 - t
         const fadeIn = Math.min(1, age / 0.12)
         const fadeOut = t * t * (3 - 2 * t)
-        const set = p.kind === 0 ? CLOUD : WIND
-        const gi = Math.min(set.length - 1, Math.floor((t * 0.75 + p.g * 0.25) * set.length))
         const a = fadeIn * fadeOut * f
         if (a < 0.01) continue
-        ctx.fillStyle = dark
-          ? (p.kind === 0 ? `rgba(226,240,255,${(a * 0.75).toFixed(3)})` : `rgba(147,197,253,${(a * 0.6).toFixed(3)})`)
-          : (p.kind === 0 ? `rgba(30,58,110,${(a * 0.65).toFixed(3)})` : `rgba(37,99,235,${(a * 0.55).toFixed(3)})`)
-        ctx.fillText(set[gi], p.x, p.y)
+        const base = p.kind === 0 ? 7 : 4
+        const sz = Math.max(2, Math.round((base * (0.45 + 0.55 * t)) / 2) * 2)
+        const pal = dark ? DARK : LIGHT
+        const c = pal[Math.min(pal.length - 1, Math.floor(p.g * pal.length))]
+        ctx.fillStyle = `rgba(${c},${(a * (dark ? 0.85 : 0.75)).toFixed(3)})`
+        ctx.fillRect(p.x - sz / 2, p.y - sz / 2, sz, sz)
       }
       if (ps.length) anim = requestAnimationFrame(tick)
       else { running = false; prev = 0; ctx.clearRect(0, 0, w, h) }
