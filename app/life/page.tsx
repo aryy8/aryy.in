@@ -1,3 +1,4 @@
+import { LifeWindGutters } from "@/components/life-wind-gutters"
 import { LifeAsciiBanner } from "@/components/life-ascii-banner";
 import Link from "next/link"
 import { DM_Serif_Display, Newsreader } from "next/font/google"
@@ -16,6 +17,7 @@ function Win({ children }: { children: React.ReactNode }) {
 export default function LifePage() {
   return (
     <div className="min-h-screen bg-background text-foreground relative">
+      <LifeWindGutters />
       <div className="relative z-10 flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="absolute inset-y-0 left-4 sm:left-6 lg:left-12 right-4 sm:right-6 lg:right-12 pointer-events-none">
           <div className="max-w-3xl mx-auto h-full border-x-[1.5px] border-dashed border-foreground/25" />
