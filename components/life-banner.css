@@ -25,3 +25,5 @@ html:not(.dark) .life-banner-fade { background: radial-gradient(ellipse 45% 55% 
 .life-ico { display: inline-block; width: 1em; height: 1em; vertical-align: -0.14em; margin: 0 .1em 0 0; border-radius: 3px; }
 .life-co { white-space: nowrap; }
 .life-co .life-ico { margin-right: .3em; }
+.life-co { white-space: nowrap; }
+.life-co .life-ico { margin-right: .3em; }
