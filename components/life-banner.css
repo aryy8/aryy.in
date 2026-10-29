@@ -26,3 +26,4 @@ html:not(.dark) .life-banner-fade { background: radial-gradient(ellipse 45% 55% 
 .life-co { white-space: nowrap; }
 .life-ico { width: .85em !important; height: .85em !important; vertical-align: -0.08em !important; margin: 0 .22em 0 .05em !important; }
 .life-end { letter-spacing: .12em !important; opacity: .9 !important; font-weight: 700; font-size: 1.35rem; margin-top: 2.25rem; }
+.life-end { margin-bottom: 0 !important; }
