@@ -50,7 +50,7 @@ export function AgenticView() {
           </div>
           <div className="py-2.5 flex items-center justify-between">
             <span className="text-muted-foreground w-32 shrink-0 font-mono text-xs">linkedin</span>
-            <a href="https://linkedin.com/in/aryy8" target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline flex-1 truncate">
+            <a href="https://www.linkedin.com/in/aryy8" target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline flex-1 truncate">
               linkedin.com/in/aryy8
             </a>
           </div>

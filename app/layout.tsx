@@ -120,7 +120,7 @@ export default function RootLayout({
         jobTitle: "Machine Learning & AI Engineer",
         sameAs: [
           "https://github.com/aryy8",
-          "https://linkedin.com/in/aryy8",
+          "https://www.linkedin.com/in/aryy8",
           "https://x.com/aryyann8",
         ],
       },
