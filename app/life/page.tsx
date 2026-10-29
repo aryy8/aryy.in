@@ -37,7 +37,7 @@ export default function LifePage() {
               <Photo src="/life/hero.jpg" alt="Aryan smiling with a thumbs up at a cafe" caption="" size="right" aspect="4 / 5" />
               <p>
                 I like to begin this story in Class 10. I scored <Win>96.4% in my CBSE boards</Win>, and for the first time it felt
-                like I had a real say in what came next. I picked science — <U>PCM with Computer Science</U> — because I wanted to
+                like I had a real say in what came next. I picked science, <U>PCM with Computer Science</U>, because I wanted to
                 become an engineer, just like my mama and mausi.
               </p>
               <p>
@@ -52,7 +52,7 @@ export default function LifePage() {
               <Photo src="/life/jaipur.jpg?v=3" alt="Aryan in front of Hawa Mahal, Jaipur" caption="Hawa Mahal, Jaipur" size="right" aspect="900 / 675" />
                 Jaipur is a beautiful city, and it quickly became home. I started engineering with a MacBook and a very basic
                 knowledge of HTML, CSS and Python. Around me, hackathons were happening everywhere, and I remember literally
-                searching YouTube for <U>“what is a hackathon, and what do you do in it?”</U> — and still being confused about how
+                searching YouTube for <U>“what is a hackathon, and what do you do in it?”</U>, and still being confused about how
                 anyone builds a whole project on a problem statement in so little time.
               </p>
               <Photo src="/life/devfest.jpg" caption="DevFest Jaipur 2024" size="right" aspect="1 / 1" />
@@ -65,7 +65,7 @@ export default function LifePage() {
               </p>
               <p>
               <PhotoSlides srcs={["/uniway_project.webp", "/uniway_hackathon1.webp", "/uniway_hackathon2.webp", "/uniway_hackthon2.5.webp", "/uniway_hackathon3.webp"]} caption="UniWay hackathon" size="left" aspect="10 / 7" />
-                My first college project was <U>Unipool</U>, a cab-sharing platform for our university that my classmates loved —
+                My first college project was <U>Unipool</U>, a cab-sharing platform for our university that my classmates loved,
                 and the first time I used Bolt, the AI website builder everyone was talking about in 2024. Then came the
                 competitions: a consultathon, <Win>1st runner-up</Win>; BrandIt, <Win>1st runner-up</Win> again; and then UniWay,
                 where the challenge was to build a navigation platform for the university. There, I found my way to{" "}
@@ -88,7 +88,7 @@ export default function LifePage() {
                 Alongside all of it, I kept applying for remote internships and gave so many interviews. At the end of second year,
                 I finally cracked the role of <Win>Full Stack Developer at Sylus AI</Win>, where I worked on an AI platform from
                 scratch and was promoted to <Win>team lead and AI engineer</Win>. I was also shortlisted for the{" "}
-                <U>CPP program at HPE</U>, where we&apos;re doing a research project on drive failure — and this winter, I&apos;ll be
+                <U>CPP program at HPE</U>, where we&apos;re doing a research project on drive failure, and this winter, I&apos;ll be
                 rejoining Sylus AI as <Win>AI Product Lead</Win>.
               </p>
               <div className="life-thumbs">
@@ -100,7 +100,7 @@ export default function LifePage() {
                 <a className="life-link" href="https://lattice.aryy.in" target="_blank" rel="noopener noreferrer">Lattice</a> makes
                 text sound natural and has reached <Win>400+ users across 52 countries</Win>;{" "}
                 <a className="life-link" href="https://petal.aryy.in" target="_blank" rel="noopener noreferrer">Petal</a> is the
-                newest one. From a Class 10 result sheet to shipping things people use — the story is still being written.
+                newest one. From a Class 10 result sheet to shipping things people use, the story is still being written.
               </p>
             </article>
           </FadeIn>
