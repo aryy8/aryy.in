@@ -138,9 +138,9 @@ export function LifeAsciiBanner() {
               ci = Math.max(2, Math.min(RAMP.length - 1, Math.floor((1 - lv * 0.8) * RAMP.length)));
               if (plane) {
                 // deep navy ink with strong tonal range so the aircraft pops off the pale sky
-                const pv = Math.pow(v, 3) * 0.75;
-                cr = lerp(6, 105, pv); cg = lerp(12, 120, pv); cb = lerp(32, 160, pv);
-                ci = Math.max(4, Math.min(RAMP.length - 1, Math.floor((1 - pv * 0.55) * RAMP.length)));
+                const pv = Math.pow(v, 1.7);
+                cr = lerp(8, 165, pv); cg = lerp(16, 180, pv); cb = lerp(44, 215, pv);
+                ci = Math.max(4, Math.min(RAMP.length - 1, Math.floor((1 - pv * 0.85) * RAMP.length)));
               } else if (ny < HORIZON) {
                 cr = lerp(35, 120, q); cg = lerp(95, 165, q); cb = lerp(215, 240, q);
               } else {
