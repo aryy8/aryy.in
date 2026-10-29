@@ -87,7 +87,7 @@ export default function LifePage() {
               <p>
                 Alongside all of it, I kept applying for remote internships and gave so many interviews. At the end of second year,
                 I finally cracked the role of <Win>Full Stack Developer at Sylus AI</Win>, where I worked on an AI platform from
-                scratch and was promoted to <Win>team lead and AI engineer</Win>. I was also shortlisted for the{" "}
+                scratch and was promoted to <Win>team lead and AI engineer</Win>. In third year, I was shortlisted for the{" "}
                 <U>CPP program at HPE</U>, where we&apos;re doing a research project on drive failure, and this winter, I&apos;ll be
                 rejoining Sylus AI as <Win>AI Product Lead</Win>.
               </p>
