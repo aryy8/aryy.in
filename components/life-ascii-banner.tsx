@@ -137,8 +137,10 @@ export function LifeAsciiBanner() {
               const q = lv;
               ci = Math.max(2, Math.min(RAMP.length - 1, Math.floor((1 - lv * 0.8) * RAMP.length)));
               if (plane) {
-                const k1 = (10 + 110 * lv) / m;
-                cr = R * k1; cg = G * k1; cb = B * k1 + 18;
+                // deep navy ink with strong tonal range so the aircraft pops off the pale sky
+                const pv = Math.pow(v, 3) * 0.75;
+                cr = lerp(6, 105, pv); cg = lerp(12, 120, pv); cb = lerp(32, 160, pv);
+                ci = Math.max(4, Math.min(RAMP.length - 1, Math.floor((1 - pv * 0.55) * RAMP.length)));
               } else if (ny < HORIZON) {
                 cr = lerp(35, 120, q); cg = lerp(95, 165, q); cb = lerp(215, 240, q);
               } else {
