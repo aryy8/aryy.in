@@ -61,7 +61,7 @@ export default function LifePage() {
                 <U>Google DevFest</U>, and slowly things started making sense. I created my GitHub account and figured out how it
                 all works. Then I joined the <U>AI² lab</U>, and that is where I met a senior whose part in my story was short, but{" "}
                 <Win>it changed its direction</Win>. He showed me the path into machine learning, deep learning and
-                generative AI, and gave me the push I needed to start. Because of him, in first year itself I got an <Win>R&amp;D ML internship at Elumina AI</Win>.
+                generative AI, and gave me the push I needed to start. Because of him, in first year itself I got an <Win>R&amp;D ML internship at <span className="life-co"><img className="life-ico" src="/elumina.webp" alt="" />Elumina</span> AI</Win>.
               </p>
               <p>
               <PhotoSlides srcs={["/uniway_project.webp", "/uniway_hackathon1.webp", "/uniway_hackathon2.webp", "/uniway_hackthon2.5.webp", "/uniway_hackathon3.webp"]} caption="UniWay hackathon" size="left" aspect="10 / 7" />
