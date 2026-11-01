@@ -41,7 +41,7 @@ export default function LifePage() {
               </p>
               <p>
               <Photo src="/life/muj-campus.jpg" caption="First day at college" size="left" aspect="960 / 575" />
-                I come from a business family in gold. My father
+                I come from a family in the gold business. My father
                 wanted me to get a good education. He isn&apos;t with us anymore, but his dream that I <U>build something on my own</U> is
                 something I still carry. Engineering was my choice, so I prepared for JEE alongside my 12th boards, <Win>qualified JEE Main</Win>, scored <Win>91.6% in boards</Win>, sat for the entrance
                 exams of many universities, and finally got selected for Computer Science at <span className="life-co"><img className="life-ico" src="/life/ico-muj.png" alt="" /><U>Manipal</U></span> <U>University Jaipur</U>.
