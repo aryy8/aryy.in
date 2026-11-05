@@ -5,10 +5,9 @@ import type React from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { SectionHeader } from "@/components/section-header"
-import { GitHubContributionGrid } from "@/components/github-contribution-grid"
 import { LeetCodeStats } from "@/components/leetcode-stats"
 import { TechBadge } from "@/components/tech-badge"
-import { TechStack } from "@/components/tech-stack"
+import { TechAndActivity } from "@/components/tech-and-activity"
 import { LiquidGlassDock } from "@/components/liquid-glass-dock"
 import { JupyterCell } from "@/components/jupyter-cell"
 import { LiveProjects } from "@/components/live-projects"
@@ -30,6 +29,7 @@ import { ResearchList } from "@/components/research-list"
 import { BlogList } from "@/components/blog-list"
 import { SnoopyAsciiPond } from "@/components/snoopy-ascii-pond"
 import { AsciiWaterFooter } from "@/components/ascii-water-footer"
+import { SectionDivider } from "@/components/section-divider"
 
 export default function Portfolio() {
   const [isAgenticMode, setIsAgenticMode] = useState(false)
@@ -46,12 +46,15 @@ export default function Portfolio() {
       <SnoopyAsciiPond />
 
       <div className="relative z-10 flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 scroll-smooth">
-        {/* Full-height continuous dashed guide rails */}
+        {/* Full-height guide rails — dashed lines that fade in/out */}
         <div className="absolute inset-y-0 left-4 sm:left-6 lg:left-12 right-4 sm:right-6 lg:right-12 pointer-events-none">
-          <div className="max-w-3xl mx-auto h-full border-x-[1.5px] border-dashed border-foreground/25" />
+          <div className="max-w-3xl mx-auto h-full relative" style={{ maskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)', WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)' }}>
+            <div className="absolute inset-y-0 left-0 w-px border-l border-dashed border-black/[0.08] dark:border-white/[0.07]" />
+            <div className="absolute inset-y-0 right-0 w-px border-r border-dashed border-black/[0.08] dark:border-white/[0.07]" />
+          </div>
         </div>
 
-        <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto relative px-4 sm:px-8 pt-8 sm:pt-14 pb-0">
+        <main className="flex-1 w-full min-w-0 max-w-3xl mx-auto relative px-4 sm:px-8 pt-8 sm:pt-14 pb-0 bg-white/70 shadow-[0_0_0_1px_rgba(0,0,0,0.03),0_1px_3px_rgba(0,0,0,0.04),0_8px_40px_-12px_rgba(0,0,0,0.06)] dark:bg-white/[0.03] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_0_60px_-15px_rgba(100,140,255,0.06)]">
           {/* Conditional Agentic View or Standard Human Sections */}
           {isAgenticMode ? (
             <AgenticView />
@@ -128,7 +131,7 @@ export default function Portfolio() {
                       Applied AI × Research
                     </p>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                      AI Engineer @ Sylus AI <span className="text-muted-foreground/50">·</span> Amazon MLSS'26 <span className="text-muted-foreground/50">·</span> CPP-2 @ HPE
+                      AI Product Lead @ Sylus AI <span className="text-muted-foreground/50">·</span> Amazon MLSS'26 <span className="text-muted-foreground/50">·</span> CPP-2 @ HPE
                     </p>
 
                     {/* Location & Email Meta */}
@@ -177,23 +180,15 @@ export default function Portfolio() {
               </section>
 
 
-              <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
+              <SectionDivider />
 
-              {/* Tech Stack */}
+              {/* Tech Stack & GitHub Activity */}
               <section className="mb-12 snap-section">
-                <SectionHeader>Tech Stack</SectionHeader>
-                <TechStack />
+                <SectionHeader>Stack & Activity</SectionHeader>
+                <TechAndActivity />
               </section>
 
-              <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
-
-              {/* GitHub Contributions */}
-              <section className="mb-12 snap-section">
-                <SectionHeader>GitHub Activity</SectionHeader>
-                <GitHubContributionGrid />
-              </section>
-
-              <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
+              <SectionDivider />
 
               {/* LeetCode Stats */}
               {/* <section id="leetcode" className="mb-12 scroll-mt-20 snap-section">
@@ -207,12 +202,12 @@ export default function Portfolio() {
                 <WorkExperience />
               </section>
 
-              <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
+              <SectionDivider />
 
               {/* Live Projects Section */}
               <LiveProjects />
 
-              <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
+              <SectionDivider />
 
               {/* Hackathon Builds Section */}
               {/* <HackathonBuilds /> */}
@@ -229,7 +224,7 @@ export default function Portfolio() {
                 <Achievements />
               </section>
 
-              <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
+              <SectionDivider />
 
               {/* Blog Section */}
               <section id="blog" className="mb-12 scroll-mt-20 snap-section">
@@ -237,7 +232,7 @@ export default function Portfolio() {
                 <BlogList />
               </section>
 
-              <div className="-mx-4 sm:-mx-8 border-b-[1.5px] border-dashed border-foreground/25 my-12" />
+              <SectionDivider />
 
               {/* Notes Section */}
               <section id="notes" className="mb-0 scroll-mt-20 snap-section">
