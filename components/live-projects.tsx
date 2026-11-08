@@ -140,7 +140,14 @@ export function LiveProjects() {
                           alt={p.launch.alt}
                           width={p.launch.width}
                           height={p.launch.height}
-                          className="h-[22px] w-auto"
+                          className="hidden h-[22px] w-auto dark:block"
+                        />
+                        <img
+                          src={p.launch.image.replace("theme=dark", "theme=light")}
+                          alt={p.launch.alt}
+                          width={p.launch.width}
+                          height={p.launch.height}
+                          className="block h-[22px] w-auto dark:hidden"
                         />
                       </a>
                     </div>
