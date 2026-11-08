@@ -12,6 +12,7 @@ type Project = {
   outcome: string
   tags?: string[]
   metric?: string
+  launch?: { label: string; url: string; image: string; alt: string; width: number; height: number }
   snoopy?: boolean
 }
 
@@ -23,6 +24,14 @@ const PROJECTS: Project[] = [
     url: "https://petal.aryy.in",
     outcome: "Intent-to-execution PDF engine: plain-English prompts compile into validated workflows across 35+ PDF operations.",
     tags: ["GCP Cloud Run", "Supabase", "LLMs"],
+    launch: {
+      label: "Ranked #3 on ProductsFarm",
+      url: "https://productsfarm.com/product/petal",
+      image: "https://productsfarm.com/api/badge/petal?theme=dark",
+      alt: "Petal on ProductsFarm",
+      width: 220,
+      height: 48,
+    },
   },
   {
     name: "Lattice",
@@ -32,6 +41,14 @@ const PROJECTS: Project[] = [
     outcome: "Makes any text sound natural. Your words travel through a chain of languages and come back in a simple, human voice.",
     tags: ["NMT", "TypeScript", "Next.js"],
     snoopy: true,
+    launch: {
+      label: "#14 Day Rank on Product Hunt",
+      url: "https://www.producthunt.com/products/lattice-11/launches/lattice-12?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-lattice-12",
+      image: "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1262593&theme=dark",
+      alt: "Lattice - Reshape your text across languages while preserving meaning | Product Hunt",
+      width: 250,
+      height: 54,
+    },
   },
   /*
   {
@@ -80,13 +97,14 @@ export function LiveProjects() {
                 <SleepingSnoopy flyDirection="right" />
               </div>
             )}
-            <a
-              href={p.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${p.name}, open live app`}
-              className="project-card group bg-card/60 hover:bg-card/90 rounded-xl border border-border/40 hover:border-border/80 overflow-hidden shadow-xs hover:shadow-md flex flex-col w-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
-            >
+            <div className="project-card group relative bg-card/60 hover:bg-card/90 rounded-xl border border-border/40 hover:border-border/80 overflow-hidden shadow-xs hover:shadow-md flex flex-col w-full transition-all duration-300">
+              <a
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${p.name}, open live app`}
+                className="absolute inset-0 z-10 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/60"
+              />
               <div className="relative aspect-[16/10] overflow-hidden bg-muted/20 border-b border-border/30">
                 <ProjectShot slug={p.slug} alt={`${p.name} live app screenshot`} />
               </div>
@@ -106,9 +124,30 @@ export function LiveProjects() {
                   <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed pt-1">
                     {p.outcome}
                   </p>
+                  {p.launch && (
+                    <div className="relative z-20 w-fit space-y-2 pt-2">
+                      <p className="text-[11px] font-mono text-muted-foreground/75">
+                        {p.launch.label}
+                      </p>
+                      <a
+                        href={p.launch.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                      >
+                        <img
+                          src={p.launch.image}
+                          alt={p.launch.alt}
+                          width={p.launch.width}
+                          height={p.launch.height}
+                          className="h-8 w-auto"
+                        />
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
-            </a>
+            </div>
           </div>
         ))}
       </div>
