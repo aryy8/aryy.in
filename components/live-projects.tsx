@@ -109,7 +109,7 @@ export function LiveProjects() {
                 <ProjectShot slug={p.slug} alt={`${p.name} live app screenshot`} />
               </div>
               <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between gap-3">
-                <div className="space-y-1.5">
+                <div className="flex flex-1 flex-col gap-1.5">
                   <div className="flex items-center justify-between gap-2">
                     <h3 className="text-base sm:text-lg font-medium text-foreground tracking-tight group-hover:text-primary transition-colors">
                       {p.name}
@@ -125,7 +125,7 @@ export function LiveProjects() {
                     {p.outcome}
                   </p>
                   {p.launch && (
-                    <div className="relative z-20 flex items-center justify-between gap-2 pt-2">
+                    <div className="relative z-20 mt-auto flex items-center justify-between gap-2 pt-4">
                       <p className="text-[10px] font-mono text-muted-foreground/75">
                         {p.launch.label}
                       </p>
@@ -133,21 +133,21 @@ export function LiveProjects() {
                         href={p.launch.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex shrink-0 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                        className="inline-flex h-[22px] w-[102px] shrink-0 items-center justify-end rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
                       >
                         <img
                           src={p.launch.image}
                           alt={p.launch.alt}
                           width={p.launch.width}
                           height={p.launch.height}
-                          className="hidden h-[22px] w-auto dark:block"
+                          className="hidden h-[22px] w-[102px] object-contain dark:block"
                         />
                         <img
                           src={p.launch.image.replace("theme=dark", "theme=light")}
                           alt={p.launch.alt}
                           width={p.launch.width}
                           height={p.launch.height}
-                          className="block h-[22px] w-auto dark:hidden"
+                          className="block h-[22px] w-[102px] object-contain dark:hidden"
                         />
                       </a>
                     </div>
