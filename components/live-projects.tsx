@@ -125,22 +125,22 @@ export function LiveProjects() {
                     {p.outcome}
                   </p>
                   {p.launch && (
-                    <div className="relative z-20 w-fit space-y-2 pt-2">
-                      <p className="text-[11px] font-mono text-muted-foreground/75">
+                    <div className="relative z-20 flex items-center justify-between gap-2 pt-2">
+                      <p className="text-[10px] font-mono text-muted-foreground/75">
                         {p.launch.label}
                       </p>
                       <a
                         href={p.launch.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                        className="inline-flex shrink-0 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
                       >
                         <img
                           src={p.launch.image}
                           alt={p.launch.alt}
                           width={p.launch.width}
                           height={p.launch.height}
-                          className="h-8 w-auto"
+                          className="h-[22px] w-auto"
                         />
                       </a>
                     </div>
