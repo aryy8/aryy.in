@@ -460,19 +460,19 @@ export function AsciiWaterFooter() {
   return (
     <footer
       ref={containerRef}
-      className="relative w-[calc(100%+2rem)] -mx-4 sm:w-[calc(100%+4rem)] sm:-mx-8 h-48 sm:h-56 lg:h-64 mt-12 select-none overflow-hidden rounded-t-2xl sm:rounded-t-3xl border-t border-x border-border/40"
+      className="relative w-[calc(100%+2rem)] -mx-4 sm:w-[calc(100%+4rem)] sm:-mx-8 h-48 sm:h-56 lg:h-64 mt-12 select-none overflow-hidden [border-top-left-radius:50%_40px] [border-top-right-radius:50%_40px] sm:[border-top-left-radius:50%_60px] sm:[border-top-right-radius:50%_60px] border-t border-border/40"
     >
       {/* Background depth tint matching page theme */}
-      <div className="absolute inset-0 bg-background/60 pointer-events-none rounded-t-2xl sm:rounded-t-3xl" />
+      <div className="absolute inset-0 bg-background/60 pointer-events-none" />
 
       {/* Living 16-Bit Calm Pixel Ocean with Diagonal Sunray Lines */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full cursor-crosshair touch-none z-10 rounded-t-2xl sm:rounded-t-3xl"
+        className="absolute inset-0 w-full h-full cursor-crosshair touch-none z-10"
       />
 
-      {/* Subtle top edge gradient mask so the sea seamlessly merges into the page background */}
-      <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-background/80 via-background/30 to-transparent pointer-events-none z-20 rounded-t-2xl sm:rounded-t-3xl" />
+      {/* Subtle top edge gradient mask following the dome curve so the sea seamlessly merges into the page background */}
+      <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-background/80 via-background/25 to-transparent pointer-events-none z-20" />
     </footer>
   )
 }
