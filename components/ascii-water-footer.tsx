@@ -460,7 +460,11 @@ export function AsciiWaterFooter() {
   return (
     <footer
       ref={containerRef}
-      className="relative w-[calc(100%+2rem)] -mx-4 sm:w-[calc(100%+4rem)] sm:-mx-8 h-48 sm:h-56 lg:h-64 mt-12 select-none overflow-hidden [border-top-left-radius:50%_40px] [border-top-right-radius:50%_40px] sm:[border-top-left-radius:50%_60px] sm:[border-top-right-radius:50%_60px] border-t border-border/40"
+      style={{
+        clipPath: "ellipse(85% 100% at 50% 100%)",
+        WebkitClipPath: "ellipse(85% 100% at 50% 100%)",
+      }}
+      className="relative w-[calc(100%+2rem)] -mx-4 sm:w-[calc(100%+4rem)] sm:-mx-8 h-48 sm:h-56 lg:h-64 mt-12 select-none overflow-hidden"
     >
       {/* Background depth tint matching page theme */}
       <div className="absolute inset-0 bg-background/60 pointer-events-none" />
@@ -471,7 +475,7 @@ export function AsciiWaterFooter() {
         className="absolute inset-0 w-full h-full cursor-crosshair touch-none z-10"
       />
 
-      {/* Subtle top edge gradient mask following the dome curve so the sea seamlessly merges into the page background */}
+      {/* Subtle top edge gradient mask so the sea seamlessly merges into the page background */}
       <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-background/80 via-background/25 to-transparent pointer-events-none z-20" />
     </footer>
   )
